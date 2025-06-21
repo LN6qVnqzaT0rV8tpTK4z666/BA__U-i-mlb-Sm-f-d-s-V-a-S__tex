@@ -1,0 +1,4 @@
+main--real.tex
+/build/*
+!/build/main.pdf
+/logos/*.pdf
