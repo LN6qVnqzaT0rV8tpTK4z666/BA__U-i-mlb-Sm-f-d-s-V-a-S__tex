@@ -1,0 +1,30 @@
+% !TeX root = ../main.tex
+
+\chapter{Motivation}
+\label{chapter:motivation}
+
+Für den Einsatz solcher AUVs kommen unsicherheitsbehaftete Verfahren zum Einsatz, welche in den Ingenieurwissenschaften zunehmend zur Risikoabschätzung und Entscheidungsunterstützung verwendet werden. Die Verifikation solcher Systeme verlagert sich dabei zunehmend von realen in virtuelle Testumgebungen, was den Einsatz synthetischer Daten motiviert.
+
+\section{Maschinelles Lernen als methodische Grundlage}
+
+Machine-Learning-Verfahren sind heute zentrale Werkzeuge in der Datenverarbeitung und Automatisierungstechnik~\parencite{nof2023}. Im Bereich supervised, unsupervised und reinforcement learning werden Modelle trainiert, um Daten zu klassifizieren, zu strukturieren oder durch Belohnung zu optimieren. Klassische Methoden wie Klassifikation und Regression bilden das methodische Fundament dieser Ansätze.
+
+\section{Unsicherheitsbehaftete Verfahren im ML-Kontext}
+
+In der Unsicherheitsquantifizierung werden im ML-Kontext zwei Arten unterschieden~\parencite{huellermeier2021}:
+
+\begin{itemize}
+  \item \textbf{Aleatorische Unsicherheit (AC):} zufallsbedingte Unsicherheit, z.\,B.\ durch Sensordatenrauschen; nicht reduzierbar durch zusätzliche Daten.
+  \item \textbf{Epistemische Unsicherheit (EC):} modellbedingte Unsicherheit aufgrund unzureichender Daten oder Modellstruktur; potenziell reduzierbar.
+\end{itemize}
+
+\noindent
+Typische Metriken zur Quantifizierung von AC sind z.\,B.\ RMSE, MAE, CRPS, NLL, PICP oder MPIW. Für EC werden u.\,a.\ KL-Divergenz, OOD-Scores, Unsicherheitsintervalle oder Modellentropien verwendet.
+
+\section{Zusammenhang und steuerbare Unsicherheiten}
+
+Literaturquellen wie~\parencite{hoarau2025} beschreiben eine dynamische Beziehung zwischen aleatorischer und epistemischer Unsicherheit. Neuere Arbeiten gehen davon aus, dass diese Unsicherheiten – insbesondere im Zusammenspiel mit evidenzbasierten Verfahren – unter bestimmten Bedingungen gezielt beeinflussbar bzw. steuerbar sind.
+
+\section{Schlussfolgerung}
+
+Die steigende Bedeutung verlässlicher Unsicherheitsanalysen in autonomen, sicherheitskritischen Systemen motiviert die vertiefte Untersuchung maschineller Lernverfahren unter Unsicherheitsgesichtspunkten. Ziel ist es, Modelle nicht nur leistungsfähig, sondern auch vertrauenswürdig und erklärbar zu gestalten.

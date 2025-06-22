@@ -1,0 +1,64 @@
+% !TeX root = ../main.tex
+
+\chapter{Zielsetzung}
+\label{chapter:zielsetzung}
+
+\section{Zielsetzung der Arbeit}
+
+Ziel dieser Arbeit ist die Entwicklung und Analyse eines Frameworks zur quantitativen Bewertung und Aggregation von Unsicherheiten in maschinellen Lernverfahren für Surrogatmodelle autonomer Systeme. Dabei sollen sowohl aleatorische als auch epistemische Unsicherheiten systematisch unterschieden, quantifiziert und mit ingenieurwissenschaftlichen Methoden validiert werden.
+
+Ein besonderes Augenmerk liegt auf der Konzeption einer modellagnostischen Meta-Unsicherheit, die Rückschlüsse auf die Vertrauenswürdigkeit unterschiedlicher Modellansätze im Rahmen szenariobasierter Validierung zulässt. Damit soll ein Beitrag zur methodischen Fundierung der Unsicherheitsanalyse in sicherheitskritischen Anwendungen geleistet werden.
+
+\section{Forschungsfragen}
+
+Die folgenden Forschungsfragen (Research Questions, RQ) bilden den zentralen inhaltlichen Rahmen der Arbeit. Jede Frage ist so formuliert, dass sie durch geeignete Methoden (z.~B. Simulation, ML-Training, Unsicherheitsmodellierung) praktisch und theoretisch bearbeitet werden kann. 
+
+\subsection*{RQ1: Quantifizierung aleatorischer und epistemischer Unsicherheiten}
+
+\textbf{Wie lassen sich aleatorische und epistemische Unsicherheiten in machine-learning-basierten Surrogatmodellen getrennt und vergleichbar quantifizieren?}
+
+\emph{Begründung:} Eine systematische Trennung und vergleichbare Quantifizierung beider Unsicherheitsarten unter einheitlichen Modellbedingungen fehlt bisher weitgehend in der Literatur.
+
+\vspace{1em}
+
+\subsection*{RQ2: Kritikalitätsraum-Definition}
+
+\textbf{Wie kann ein Kritikalitätsraum $\Omega_k$ formal definiert werden, um sicherheitsrelevante Szenarien basierend auf aggregierter Unsicherheit zu identifizieren?}
+
+\emph{Begründung:} Der Begriff Kritikalitätsraum wird bislang häufig informell verwendet. Eine formale, quantifizierbare Definition könnte die Aussagekraft szenariobasierter Validierung deutlich erhöhen.
+
+\vspace{1em}
+
+\subsection*{RQ3: Aggregationsmethoden für Unsicherheiten}
+
+\textbf{Welche Aggregationsmethoden eignen sich zur Verknüpfung lokal berechneter Unsicherheiten zu einem szenario- oder trajektorienbezogenen Vertrauensmaß?}
+
+\emph{Begründung:} Während lokale Unsicherheiten gängig sind, fehlt es an standardisierten Verfahren zur Aggregation in ein übergeordnetes Vertrauensmaß.
+
+\vspace{1em}
+
+\subsection*{RQ4 (optional): Einfluss des Signal-Rausch-Verhältnisses}
+
+\textbf{Wie wirkt sich das Signal-Rausch-Verhältnis auf die detektierbare Struktur kritischer Regionen im Surrogatmodell aus?}
+
+\emph{Begründung:} Die Empfindlichkeit gegenüber Unsicherheitssignalen hängt stark von der Rauschstruktur und Stichprobendichte ab – ein bislang wenig untersuchter Zusammenhang.
+
+\vspace{1em}
+
+\subsection*{RQ5 (optional, übergreifend): Meta-Unsicherheit aus Evidenz und Struktur}
+
+\textbf{Inwiefern kann die Kombination evidenzbasierter Modelle mit strukturellen Metriken (z.~B. Autokorrelation, Jensen-Shannon-Divergenz) zu einer erklärbaren Meta-Unsicherheit führen?}
+
+\emph{Begründung:} Meta-Unsicherheit ist ein neuartiges Konzept. Die Integration unterschiedlicher Metriken in ein übergeordnetes Maß ist bislang methodisch nicht etabliert.
+
+\vspace{2em}
+
+% Falls du diese verworfenen Fragen als Fußnote, Anhang oder Kommentar erhalten willst:
+% \begin{comment}
+% --- Verworfen ---
+% \begin{itemize}
+%   \item Entwicklung einer modellagnostischen Meta-Unsicherheit für bayessche ML-Modelle zur Validierung im Kritikalitätsraum.
+%   \item Systematische Differenzierung aleatorischer vs. epistemischer Unsicherheit in zeitparametrisierten Szenarien.
+%   \item Evaluation von Unsicherheitsmetriken (z. B. RMSE, ECE, Sobol) zur Validierung von Surrogatmodellen.
+% \end{itemize}
+% \end{comment}

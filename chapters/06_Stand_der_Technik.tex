@@ -1,0 +1,93 @@
+% !TeX root = ../main.tex
+
+\chapter{Stand der Technik}\label{chapter:stand-der-technik}
+
+% \section{Autonome Unterwasserfahrzeuge (AUVs)}
+
+% Der aktuelle Stand der Technik bei autonomen Unterwasserfahrzeugen (AUVs) zeigt einen zunehmenden Einsatz von \textbf{machine-learning-basierten Surrogatmodellen}, etwa zur Umgebungsmodellierung, Pfadplanung oder Systemdiagnose. 
+
+% In komplexen maritimen Umgebungen sind AUVs typischerweise mit \emph{aleatorischer Unsicherheit} konfrontiert – beispielsweise durch verrauschte Sensordaten, Strömungseinflüsse oder schwankende Sichtverhältnisse. Surrogatmodelle wie \textit{Gaussian Processes}, \textit{Bayesian Neural Networks} oder \textit{Evidential Deep Learning} ermöglichen nicht nur schnelle Approximationen physikalischer Modelle, sondern auch die quantitative Erfassung \emph{epistemischer Unsicherheit} in bislang unkartierten Regionen.
+
+% Moderne Entscheidungsverfahren berücksichtigen zunehmend unsicherheitsbewusste Vorhersagen, z.\,B.\ bei:
+
+% \begin{itemize}
+%   \item adaptiver Missionsplanung,
+%   \item Risikoabschätzung in Echtzeit,
+%   \item Bewertung vergrabener Munitionsfunde.
+% \end{itemize}
+
+% Hybride Konzepte aus lernbasierten Surrogaten und probabilistischer Modellierung gelten als vielversprechender Ansatz für robuste und erklärbare AUV-Systeme unter Unsicherheit~\parencite{cui2020, yan2021}.
+
+% \section{Model Predictive Control (MPC) unter Unsicherheit}
+
+% Aktuelle Arbeiten zur Model Predictive Control (MPC) zeigen, dass klassische deterministische Modelle zunehmend durch \textbf{stochastische und robuste Varianten} ergänzt werden. Moderne Verfahren wie \emph{Stochastic MPC} und \emph{Robust MPC} integrieren probabilistische Prädiktionsintervalle zur Modellierung \emph{aleatorischer Unsicherheit}.
+
+% Zunehmend wird jedoch auch \textbf{epistemische Unsicherheit} berücksichtigt, insbesondere bei datengetriebenen Modellen wie \textit{Deep Neural Networks} oder \textit{Gaussian Processes}, deren Generalisierungsfähigkeit außerhalb des Trainingsbereichs limitiert ist.
+
+% Ansätze wie \textit{Bayesian MPC} oder \textit{Evidential MPC} versuchen, beide Unsicherheitsarten zu modellieren und in Optimierungsstrategien einzubetten – z.\,B.\ mittels:
+
+% \begin{itemize}
+%   \item adaptiver Kostenfunktionen,
+%   \item probabilistischer Constraints,
+%   \item Szenariostreuung zur Absicherung.
+% \end{itemize}
+
+% Beispielhafte Open-Source-Projekte:
+
+% \begin{itemize}
+%   \item \url{https://github.com/do-mpc/do-mpc}
+%   \item \url{https://github.com/lucasrm25/Gaussian-Process-based-Model-Predictive-Control}
+%   \item \url{https://github.com/TinyMPC/TinyMPC}
+% \end{itemize}
+
+% \section{Surrogatmodelle und Unsicherheitsdarstellung}
+
+% % Surrogatmodelle dienen der effizienten Approximation komplexer physikalischer Systeme. Typische Verfahren umfassen~\parencite{sudret2017, tik2025}:
+
+% \begin{itemize}
+%   \item \textbf{Kriging / Gaussian Process Regression (GPR)}
+%   \item \textbf{Polynomial Chaos Expansion (PCE)}
+%   \item \textbf{Gradient-Enhanced Kriging (GEK)}
+%   \item \textbf{Radiale Basisfunktionen (RBF)}
+%   \item \textbf{Support Vector Machines (SVM)}
+% \end{itemize}
+
+% Im Projektkontext kommen insbesondere \textbf{Bayessche Neuronale Netze (BNNs)} und \textbf{Ensemble-Methoden} zur Anwendung.
+
+% \section{Meta-Unsicherheit und Unsicherheitsbewertung}
+
+% % Der aktuelle Stand der Technik zur \textbf{Meta-Unsicherheit} bezieht sich auf die \emph{übergeordnete Aggregation und Bewertung} verschiedener Unsicherheitsquellen in Surrogatmodellen. Während klassische Methoden aleatorische und epistemische Unsicherheiten getrennt modellieren, zielen neuere Ansätze auf deren gemeinsame Bewertung ab~\parencite{schmitt2022}.
+
+% Methoden wie:
+
+% \begin{itemize}
+%   \item \textit{Uncertainty Meta-Learning},
+%   \item \textit{Uncertainty Calibration Layers},
+%   \item \textit{Evidential Frameworks},
+% \end{itemize}
+
+% \noindent
+% ermöglichen die adaptive Gewichtung von Unsicherheiten je nach Szenariokontext und Modellkonfidenz. Ziel ist eine robuste, vergleichbare und erklärbare Modellbewertung für sicherheitskritische Anwendungen.
+
+% \section{Sensitivitätsanalyse und Kalibrierung}
+
+% % Die Sensitivitätsanalyse quantifiziert den Einfluss einzelner Eingangsgrößen auf Modellvorhersagen oder Unsicherheiten. Sie hilft, dominante Einflussfaktoren systematisch zu identifizieren~\parencite{borgonovo2017, tunkiel2020}. Dabei unterscheidet man:
+
+% \begin{itemize}
+%   \item \textbf{Invasive Methoden:} direkt im Modell integriert,
+%   \item \textbf{Nicht-invasive Methoden:} modellunabhängige Blackbox-Analyse.
+% \end{itemize}
+
+% Die \textbf{Modellkalibrierung} dient dazu, Vorhersagen an die Realität (Ground Truth) anzupassen, etwa durch Parameterabgleich oder Szenariobasierung.
+
+% \section{Zeitreihenanalyse}
+
+% % Für die Analyse zeitabhängiger Sensordaten – wie sie bei AUVs typischerweise auftreten – kommen moderne Zeitreihenanalyse-Tools zum Einsatz. Ein Beispiel dafür ist das \textit{TSFEL Framework}~\parencite{tsfel2025}:
+
+% \begin{itemize}
+%   \item \url{https://github.com/fraunhoferportugal/tsfel}
+% \end{itemize}
+
+% \section{Zusammenfassung}
+
+% Der Stand der Technik zeigt, dass zwar zahlreiche Methoden zur Unsicherheitsquantifizierung existieren, ein systematischer, modellagnostischer und \textbf{integrierter Ansatz zur Szenariobewertung} unter Berücksichtigung beider Unsicherheitsarten jedoch fehlt. Diese Arbeit zielt darauf ab, genau diese Forschungslücke zu adressieren und einen methodischen Beitrag zur transparenten Bewertung maschineller Lernverfahren in sicherheitskritischen Anwendungen zu leisten.

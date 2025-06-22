@@ -3,7 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[sc]{mathpazo}
-\usepackage[ngerman,american]{babel}
+\usepackage[ngerman]{babel}
+\usepackage{booktabs}
 \usepackage[autostyle]{csquotes}
 \usepackage[%
   backend=biber,
@@ -14,6 +15,7 @@
   maxbibnames=99,
   giveninits,
   uniquename=init]{biblatex} % TODO: adapt citation style
+\usepackage[acronym]{glossaries} % Glossar
 \usepackage{graphicx}
 \usepackage{scrhack} % necessary for listings package
 \usepackage{listings}
@@ -64,4 +66,15 @@
   autogobble,
   keywordstyle=\bfseries\color{TUMBlue},
   stringstyle=\color{TUMAccentGreen}
+}
+
+\addto\captionsngerman{%
+  \renewcommand{\contentsname}{Inhaltsverzeichnis}
+  \renewcommand{\listfigurename}{Liste der Abbildungen}
+  \renewcommand{\listtablename}{Liste der Tabellen}
+  \renewcommand{\abstractname}{Kurzfassung}
+  \renewcommand{\bibname}{Literaturverzeichnis}
+  \renewcommand{\glossaryname}{Glossar}
+  \renewcommand{\acronymname}{Abkürzungsverzeichnis}
+  \renewcommand{\indexname}{Stichwortverzeichnis}
 }

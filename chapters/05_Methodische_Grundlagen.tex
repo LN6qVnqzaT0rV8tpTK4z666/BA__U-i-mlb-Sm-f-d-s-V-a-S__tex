@@ -1,0 +1,37 @@
+% % !TeX root = ../main.tex
+
+\chapter{Methodische Grundlagen}\label{chapter:methodik}
+
+\section{Forschungsstand und identifizierte Lücken}
+
+Trotz zahlreicher Ansätze zur Quantifizierung aleatorischer und epistemischer Unsicherheiten fehlt bislang ein \textbf{systematischer, modellagnostischer und formal integrierter Ansatz} zur kombinierten Behandlung beider Unsicherheitsarten im Rahmen der szenariobasierten Validierung autonomer Systeme.
+
+Insbesondere bleibt die \textbf{methodische Abgrenzung eines formalen Kritikalitätsraums} in vielen Arbeiten unklar. Der Übergang von lokalen Unsicherheiten zu globalen Risikomaßen ist in der Literatur lediglich punktuell adressiert.
+
+Zwar bieten Verfahren wie \textit{Evidential Deep Learning} oder \textit{Bayessche Modelle} theoretische Möglichkeiten zur Repräsentation sowohl epistemischer als auch aleatorischer Unsicherheiten, jedoch ist bisher nicht geklärt, wie diese im Zusammenspiel zur robusten Bewertung sicherheitsrelevanter Szenarien eingesetzt werden können.
+
+Diese Arbeit zielt darauf ab, zur Schließung dieser Forschungslücken beizutragen. Der Fokus liegt auf der Entwicklung eines transparenten und nachvollziehbaren Verfahrens zur Unsicherheitsbewertung, das sich für sicherheitskritische Anwendungen eignet und bestehende Lücken zwischen Theorie und Praxis adressiert.
+
+\section{Ableitung der methodischen Forschungsfragen}
+
+Die in dieser Arbeit bearbeiteten Forschungsfragen (Research Questions, RQ) leiten sich direkt aus den identifizierten Lücken im Forschungsstand ab. Während bestehende Ansätze typischerweise \emph{entweder} aleatorische \emph{oder} epistemische Unsicherheiten isoliert betrachten, fehlt ein integrierter, verallgemeinerbarer Zugang zur kombinierten Quantifizierung, Aggregation und Bewertung.
+
+Darüber hinaus bestehen methodische Unklarheiten in folgenden Aspekten:
+
+\begin{itemize}
+  \item der \textbf{Definition eines formalen Kritikalitätsraums} zur Isolierung sicherheitsrelevanter Szenarien,
+  \item der \textbf{Aggregation lokal berechneter Unsicherheiten} zu global interpretierbaren Vertrauensmaßen,
+  \item sowie der \textbf{Modellbewertung über eine Meta-Unsicherheitsgröße}, die unterschiedliche ML-Modelle vergleichbar macht.
+\end{itemize}
+
+Die Beantwortung dieser Fragen erfolgt entlang eines methodischen Rahmens, der auf machine-learning-basierten Verfahren zur Unsicherheitsquantifizierung aufbaut. Ziel ist es, durch eine geeignete Aggregation aussagekräftige Kennwerte zur Bewertung der Vertrauenswürdigkeit von Surrogatmodellen zu entwickeln.
+
+\section{Positionierung der Arbeit}
+
+Diese Bachelorarbeit positioniert sich an der Schnittstelle zwischen Unsicherheitsmodellierung, sicherheitsgerichteter Validierung und maschinellem Lernen. Die Methodik soll einen Beitrag leisten zur:
+
+\begin{enumerate}
+  \item Entwicklung eines formalen, datengetriebenen Kritikalitätsraums,
+  \item Kombination evidenzbasierter und strukturierter Metriken zur Unsicherheitsquantifizierung,
+  \item praktischen Anwendung in einem surrogatmodellbasierten Validierungsframework für autonome Unterwasserfahrzeuge (AUVs).
+\end{enumerate}

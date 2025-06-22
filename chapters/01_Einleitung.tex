@@ -1,90 +1,41 @@
 % !TeX root = ../main.tex
 % Add the above to each chapter to make compiling the PDF easier in some editors.
 
-\chapter{Introduction}\label{chapter:introduction}
+\chapter{Einleitung}
+\label{chapter:introduction}
 
-\section{Section}
-Citation test~\parencite{latex}.
+\section{Einführung}
 
-\subsection{Subsection}
+Diese Bachelorarbeit beschäftigt sich mit der Frage, wie Unsicherheiten in machine-learning-basierten Surrogatmodellen im Kontext der szenariobasierten Validierung autonomer Systeme quantifiziert und vergleichbar gemacht werden können. Die Thematik besitzt eine hohe technische Relevanz für die Verifikation komplexer Systeme und wird auch aus gesellschaftlicher Perspektive als förderwürdig eingestuft.
 
-See~\autoref{tab:sample}, \autoref{fig:sample-drawing}, \autoref{fig:sample-plot}, \autoref{fig:sample-listing}.
+\section{Gesellschaftliche Relevanz}
 
-\begin{table}[htpb]
-  \caption[Example table]{An example for a simple table.}\label{tab:sample}
-  \centering
-  \begin{tabular}{l l l l}
-    \toprule
-      A & B & C & D \\
-    \midrule
-      1 & 2 & 1 & 2 \\
-      2 & 3 & 2 & 3 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+Das Bundesministerium für Bildung und Forschung (BMBF) hebt in Zusammenarbeit mit dem Deutschen Zentrum für Luft- und Raumfahrt (DLR) in seiner Förderstrategie zum Maschinellen Lernen die hohe Bedeutung vertrauenswürdiger und erklärbarer KI-Systeme hervor~\parencite{bmbf2025}. In sicherheitskritischen Bereichen wie der maritimen Robotik ist eine verlässliche Unsicherheitsabschätzung essenziell für den Einsatz autonomer Systeme.
 
-\begin{figure}[htpb]
-  \centering
-  % This should probably go into a file in figures/
-  \begin{tikzpicture}[node distance=3cm]
-    \node (R0) {$R_1$};
-    \node (R1) [right of=R0] {$R_2$};
-    \node (R2) [below of=R1] {$R_4$};
-    \node (R3) [below of=R0] {$R_3$};
-    \node (R4) [right of=R1] {$R_5$};
+\section{Praktischer Hintergrund}
 
-    \path[every node]
-      (R0) edge (R1)
-      (R0) edge (R3)
-      (R3) edge (R2)
-      (R2) edge (R1)
-      (R1) edge (R4);
-  \end{tikzpicture}
-  \caption[Example drawing]{An example for a simple drawing.}\label{fig:sample-drawing}
-\end{figure}
+Als Grundlage für die Arbeit im Projekt dient ein Industriepraktikum im Zeitraum Oktober bis Dezember 2024. Im Rahmen des Bachelorstudiengangs Systems Engineering wurde im Projekt \enquote{Entwicklung szenariobasierter Validierungsmethoden für autonome maritime Systeme} mitgewirkt. Die dort gewonnenen Erkenntnisse bilden den Ausgangspunkt für die wissenschaftliche Bearbeitung der vorliegenden Fragestellung.
 
-\begin{figure}[htpb]
-  \centering
+\section{Einbindung in die Praxis}
 
-  \pgfplotstableset{col sep=&, row sep=\\}
-  % This should probably go into a file in data/
-  \pgfplotstableread{
-    a & b    \\
-    1 & 1000 \\
-    2 & 1500 \\
-    3 & 1600 \\
-  }\exampleA
-  \pgfplotstableread{
-    a & b    \\
-    1 & 1200 \\
-    2 & 800 \\
-    3 & 1400 \\
-  }\exampleB
-  % This should probably go into a file in figures/
-  \begin{tikzpicture}
-    \begin{axis}[
-        ymin=0,
-        legend style={legend pos=south east},
-        grid,
-        thick,
-        ylabel=Y,
-        xlabel=X
-      ]
-      \addplot table[x=a, y=b]{\exampleA};
-      \addlegendentry{Example A};
-      \addplot table[x=a, y=b]{\exampleB};
-      \addlegendentry{Example B};
-    \end{axis}
-  \end{tikzpicture}
-  \caption[Example plot]{An example for a simple plot.}\label{fig:sample-plot}
-\end{figure}
+Die Atlas Elektronik GmbH ist mit einer über 130-jährigen Geschichte als Technologieträger im maritimen Bereich tätig. Mit Blick auf zukünftige Anwendungen wird auf der Unternehmenswebseite betont, dass Systeme nicht nur funktional, sondern auch plattformübergreifend intelligent vernetzt werden sollen. Das firmeneigene Forschungsinstitut A-Lab dient hierbei als Schnittstelle zwischen akademischer Forschung und industrieller Entwicklung.
 
-\begin{figure}[htpb]
-  \centering
-  \begin{tabular}{c}
-  \begin{lstlisting}[language=SQL]
-    SELECT * FROM tbl WHERE tbl.str = "str"
-  \end{lstlisting}
-  \end{tabular}
-  \caption[Example listing]{An example for a source code listing.}\label{fig:sample-listing}
-\end{figure}
+\section{Lösungsbedarf und Anwendungskontext}
+
+Ein konkreter Bedarf ergibt sich aus dem Bericht der Deutschen Allianz Meeresforschung (DAM) zur Altlastenbeseitigung in Nord- und Ostsee~\parencite{dam2024}. Projekte der Atlas Elektronik GmbH zielen darauf ab, autonome Unterwasserfahrzeuge (AUVs) für die Detektion und Entfernung von Munitionsresten einzusetzen. 
+
+% \begin{figure}[htpb]
+%   \centering
+%   % Beispiel: Abbildung könnte hier eingebunden werden
+%   \includegraphics[width=0.7\textwidth]{figures/munitionsreste.png}
+%   \caption[Lokalisierung von Munitionsresten]{Lokalisierung von Munitionsresten (Quelle: DAM 2024)}\label{fig:munition}
+% \end{figure}
+
+% --- Continue with your original section content below ---
+
+% \section{Section}
+% Citation test~\parencite{latex}.
+
+% \subsection{Subsection}
+
+% See~\autoref{tab:sample}, \autoref{fig:sample-drawing}, \autoref{fig:sample-plot}, \autoref{fig:sample-listing}.
