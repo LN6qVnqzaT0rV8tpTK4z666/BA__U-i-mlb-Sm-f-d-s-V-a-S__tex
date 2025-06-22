@@ -2,3 +2,6 @@ main--real.tex
 /build/*
 !/build/main.pdf
 /logos/*.pdf
+# temp (DRAFT)
+**/**/*.tex
+**/**/*.pdf
