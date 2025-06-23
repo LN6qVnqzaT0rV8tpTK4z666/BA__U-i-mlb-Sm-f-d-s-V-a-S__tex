@@ -27,4 +27,13 @@
 *.png
 *.svg
 *.pdf
-*.tex
+#
+**/**/research/*
+#**/**/presentations/*
+**/**/prototypes/**/**/
+#
+*.eps
+*.nav
+*.snm
+*.vrb
+*.bib

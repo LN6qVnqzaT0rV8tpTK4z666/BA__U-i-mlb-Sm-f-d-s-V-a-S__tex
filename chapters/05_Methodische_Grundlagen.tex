@@ -17,12 +17,14 @@ Ein neuronales Netzwerk approximiert eine Funktion \( f_{\theta}(x) = \sigma(Wx 
 \begin{itemize}
   \item \( W \) die Gewichtsmatrix darstellt, z.\,B. 
     \[
-    W = 
-    \begin{pmatrix}
-      w_{11} & w_{12} & \dots \\
-      w_{21} & w_{22} & \dots \\
-      \vdots & \vdots & \ddots
-    \end{pmatrix},
+      W = 
+      \begin{pmatrix}
+        w_{11} & w_{12} & \dots  & w_{1j} \\
+        w_{21} & w_{22} & \dots  & w_{2j} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        w_{i1} & w_{i2} & \dots  & w_{ij} \\
+      \end{pmatrix}
+      \in \mathbb{R}^{i \times j}
     \]
   \item \( b \) ein Bias-Term ist, der unabhängig vom Eingangssignal die Aktivierung verschiebt.
 \end{itemize}

@@ -1,0 +1,93 @@
+\documentclass[10pt]{beamer}
+
+\usetheme{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\usepackage{tikz}
+
+\title{Presentation}
+\subtitle{EDNN vs. BNN}
+\date{\today}
+\author{Marten Windler}
+\institute{Atlas Elektronik, A-Lab}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\setbeamertemplate{section in toc}[sections numbered]
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Table of contents}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{EDNN Model}
+
+\begin{frame}{EDNN Model Architecture and Uncertainty Formulas}
+  \begin{itemize}
+    \item Input vector $\mathbf{x} \in \mathbb{R}^d$ is fed into the network.
+    \item Two fully connected layers with ReLU activations transform the input.
+    \item Output layer predicts parameters $(\mu, v, \alpha, \beta)$ of a Normal-Inverse-Gamma distribution.
+    \item Predictive mean: $\mathbb{E}[y|\mathbf{x}] = \mu$.
+    \item Predictive variance: $\mathrm{Var}[y|\mathbf{x}] = \frac{\beta}{v(\alpha - 1)}$.
+    \item Aleatoric uncertainty (data noise): $\sigma^2_{\text{alea}} = \frac{\beta}{\alpha - 1}$.
+    \item Epistemic uncertainty (model uncertainty): $\sigma^2_{\text{epis}} = \mathrm{Var}[y|\mathbf{x}] - \sigma^2_{\text{alea}}$.
+    \item Learnable parameters: weights $\mathbf{W}_i$ and biases $\mathbf{b}_i$ of the layers.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{EDNN Model}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.33\textwidth]{assets/img/model/image.png}
+    \caption{EDNN Model used.}
+  \end{figure}
+\end{frame}
+
+\section{Output Comparison}
+
+\begin{frame}{EDNN on toy function.}
+  \begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{assets/img/set-ednn/uncertainty_dim_1 copy.png}
+    \caption{EDNN Output}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{EDNN vs BNN posterior predictive}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{assets/img/set-bnn/bnn_posterior_predictive.png}
+    \includegraphics[width=0.48\textwidth]{assets/img/set-ednn/uncertainty_dim_1 copy.png}
+    \caption{Output comparison (BNN left, EDNN right)}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{EDNN vs BNN svi predictive}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{assets/img/set-bnn/bnn_svi_predictive.png}
+    \includegraphics[width=0.48\textwidth]{assets/img/set-ednn/uncertainty_dim_1 copy.png}
+    \caption{Output comparison (BNN left, EDNN right)}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[standout]
+  Discussion. \\
+  What's good, bad, directive? \\
+\end{frame}
+
+\end{document}
