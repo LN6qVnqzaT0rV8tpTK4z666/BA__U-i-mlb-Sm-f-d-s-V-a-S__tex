@@ -33,6 +33,8 @@
 % \g@addto@macro\@makechapterhead{\@afterindentfalse}
 % \makeatother
 
+\makeglossaries
+
 \bibliography{bibliography}
 
 \setkomafont{disposition}{\normalfont\bfseries} % use serif font for headings
@@ -82,4 +84,10 @@
   \renewcommand{\glossaryname}{Glossar}
   \renewcommand{\acronymname}{Abkürzungsverzeichnis}
   \renewcommand{\indexname}{Stichwortverzeichnis}
+}
+
+
+\newglossaryentry{surrogat}{
+  name=Surrogatmodell,
+  description={Ein Ersatzmodell zur Approximation komplexer Systeme}
 }
