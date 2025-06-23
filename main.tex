@@ -56,7 +56,9 @@
 \listoffigures{}
 \listoftables{}
 \microtypesetup{protrusion=true}
-\printbibliography{}
+% \printbibliography{}
+
+\chapter*{Literaturverzeichnis}
 
 % TODO: Sub-Literatur-Verzeichnisse umsetzen.
 % Definiere Filter für die Teilbibliographien
@@ -67,25 +69,23 @@
 % \defbibfilter{beitragfilter}{keyword=beitrag}
 % \defbibfilter{buchmonographiefilter}{keyword=buchmonographie}
 % \defbibfilter{buchsammelwerkfilter}{keyword=buchsammelwerk}
-% \defbibfilter{buchfilter}{keyword=buch}
-% \defbibfilter{internetdokumentfilter}{keyword=internetdokument}
-
-% \chapter{Literaturverzeichnis}
+\defbibfilter{internetdokumentfilter}{keyword=internetdokument}
+\defbibfilter{zeitschriftenaufsatzfilter}{keyword=zeitschriftenaufsatz}
 
 % \section*{Beitrag}
-% \printbibliography[filter=beitrag, heading=none]
+% \printbibliography[filter=beitragfilter, heading=none]
 
 % \section*{Buch (Monographie)}
-% \printbibliography[filter=buch, heading=none]
+% \printbibliography[filter=buchmonographiefilter, heading=none]
 
 % \section*{Buch (Sammelwerk)}
-% \printbibliography[filter=sammelwerk, heading=none]
+% \printbibliography[filter=buchsammelwerkfilter, heading=none]
 
-% \section*{Zeitschriftenaufsatz}
-% \printbibliography[filter=zeitschriftenaufsatz, heading=none]
+\section*{Zeitschriftenaufsatz}
+\printbibliography[filter=zeitschriftenaufsatzfilter, heading=none]
 
-% \section*{Internetdokument}
-% \printbibliography[filter=internetdokument, heading=none]
+\section*{Internetdokument}
+\printbibliography[filter=internetdokumentfilter, heading=none]
 
 
 \printglossary[title=Glossar, toctitle=Glossar]
