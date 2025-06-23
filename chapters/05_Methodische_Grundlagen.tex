@@ -2,36 +2,111 @@
 
 \chapter{Methodische Grundlagen}\label{chapter:methodik}
 
-\section{Forschungsstand und identifizierte Lücken}
+\section{Machine Learning}
 
-Trotz zahlreicher Ansätze zur Quantifizierung aleatorischer und epistemischer Unsicherheiten fehlt bislang ein \textbf{systematischer, modellagnostischer und formal integrierter Ansatz} zur kombinierten Behandlung beider Unsicherheitsarten im Rahmen der szenariobasierten Validierung autonomer Systeme.
+Machine Learning (ML) bezeichnet die Klasse von Algorithmen \( f_{\theta} : \mathcal{X} \rightarrow \mathcal{Y} \), die aus Daten 
+\( \mathcal{D} = \{ (x_i, y_i) \}_{i=1}^{N} \) ein Modell \( f_{\theta} \) lernen, das Eingaben \( x \in \mathcal{X} \) Vorhersagen \( \hat{y} \in \mathcal{Y} \) zuordnet. Dies geschieht durch Optimierung der Parameter \( \theta \) mittels einer Fehlerfunktion \( \mathcal{L}_{\text{loss}}(y, \hat{y}) \).
 
-Insbesondere bleibt die \textbf{methodische Abgrenzung eines formalen Kritikalitätsraums} in vielen Arbeiten unklar. Der Übergang von lokalen Unsicherheiten zu globalen Risikomaßen ist in der Literatur lediglich punktuell adressiert.
+\subsection{Architekturen}
 
-Zwar bieten Verfahren wie \textit{Evidential Deep Learning} oder \textit{Bayessche Modelle} theoretische Möglichkeiten zur Repräsentation sowohl epistemischer als auch aleatorischer Unsicherheiten, jedoch ist bisher nicht geklärt, wie diese im Zusammenspiel zur robusten Bewertung sicherheitsrelevanter Szenarien eingesetzt werden können.
+Die Laufzeit zur Anpassung der Gewichtungen eines neuronalen Netzwerks (NN) an eine Zielfunktion kann durch unterschiedliche Architekturen für spezifische Aufgaben optimiert werden. Die Kürzel der Architekturen verweisen jeweils auf ihre charakteristische Struktur.
 
-Diese Arbeit zielt darauf ab, zur Schließung dieser Forschungslücken beizutragen. Der Fokus liegt auf der Entwicklung eines transparenten und nachvollziehbaren Verfahrens zur Unsicherheitsbewertung, das sich für sicherheitskritische Anwendungen eignet und bestehende Lücken zwischen Theorie und Praxis adressiert.
-
-\section{Ableitung der methodischen Forschungsfragen}
-
-Die in dieser Arbeit bearbeiteten Forschungsfragen (Research Questions, RQ) leiten sich direkt aus den identifizierten Lücken im Forschungsstand ab. Während bestehende Ansätze typischerweise \emph{entweder} aleatorische \emph{oder} epistemische Unsicherheiten isoliert betrachten, fehlt ein integrierter, verallgemeinerbarer Zugang zur kombinierten Quantifizierung, Aggregation und Bewertung.
-
-Darüber hinaus bestehen methodische Unklarheiten in folgenden Aspekten:
+\paragraph{NN – Neural Network}
+Ein neuronales Netzwerk approximiert eine Funktion \( f_{\theta}(x) = \sigma(Wx + b) \). Dabei ist \( \sigma \) eine nichtlineare Aktivierungsfunktion, typischerweise \textit{ReLU} oder \text{Tanh}. Die Parameter des Modells sind gegeben durch \( \theta = \{ W, b \} \), wobei:
 
 \begin{itemize}
-  \item der \textbf{Definition eines formalen Kritikalitätsraums} zur Isolierung sicherheitsrelevanter Szenarien,
-  \item der \textbf{Aggregation lokal berechneter Unsicherheiten} zu global interpretierbaren Vertrauensmaßen,
-  \item sowie der \textbf{Modellbewertung über eine Meta-Unsicherheitsgröße}, die unterschiedliche ML-Modelle vergleichbar macht.
+  \item \( W \) die Gewichtsmatrix darstellt, z.\,B. 
+    \[
+    W = 
+    \begin{pmatrix}
+      w_{11} & w_{12} & \dots \\
+      w_{21} & w_{22} & \dots \\
+      \vdots & \vdots & \ddots
+    \end{pmatrix},
+    \]
+  \item \( b \) ein Bias-Term ist, der unabhängig vom Eingangssignal die Aktivierung verschiebt.
 \end{itemize}
 
-Die Beantwortung dieser Fragen erfolgt entlang eines methodischen Rahmens, der auf machine-learning-basierten Verfahren zur Unsicherheitsquantifizierung aufbaut. Ziel ist es, durch eine geeignete Aggregation aussagekräftige Kennwerte zur Bewertung der Vertrauenswürdigkeit von Surrogatmodellen zu entwickeln.
-
-\section{Positionierung der Arbeit}
-
-Diese Bachelorarbeit positioniert sich an der Schnittstelle zwischen Unsicherheitsmodellierung, sicherheitsgerichteter Validierung und maschinellem Lernen. Die Methodik soll einen Beitrag leisten zur:
-
+Eine Schicht in einem neuronalen Netzwerk besteht aus:
 \begin{enumerate}
-  \item Entwicklung eines formalen, datengetriebenen Kritikalitätsraums,
-  \item Kombination evidenzbasierter und strukturierter Metriken zur Unsicherheitsquantifizierung,
-  \item praktischen Anwendung in einem surrogatmodellbasierten Validierungsframework für autonome Unterwasserfahrzeuge (AUVs).
+  \item einer linearen Transformation: \( z = Wx + b \),
+  \item einer nichtlinearen Aktivierung: \( f(x) = \sigma(z) \).
 \end{enumerate}
+
+
+\section*{DNN – Deep Neural Network}
+
+Ein \textbf{Deep Neural Network (DNN)} erweitert ein neuronales Netz (NN) um mehrere Schichten. Dies erhöht die Tiefe des Netzwerks:
+
+\[
+f(x) = \sigma_L\left(W_L \cdot \sigma_{L-1}\left(\ldots \sigma_1\left(W_1 \cdot x + b_1\right) \ldots \right) + b_L\right)
+\]
+
+Neben der linearen Transformation erlaubt ein DNN durch das Propagieren über mehrere Schichten die Modellierung komplexer Nichtlinearitäten und somit ein tieferes Lernen relevanter Merkmale.
+
+\section*{BNN – Bayesian Neural Network}
+
+Ein \textbf{Bayesian Neural Network (BNN)} modelliert die Gewichte $\boldsymbol{\theta}$ als Zufallsvariablen $p(\theta)$. Die Vorhersage entspricht dem Erwartungswert über alle möglichen Modelle:
+
+\[
+p(y \mid x, D) = \int p(y \mid x, \theta) \cdot p(\theta \mid D) \, d\theta
+\]
+
+Dadurch wird die \textbf{epistemische Unsicherheit} (EC) über die Posterior-Verteilung der Gewichte quantifizierbar.
+
+\section*{EDN – Evidential Deep Neural Network}
+
+Ein \textbf{Evidential Deep Neural Network (EDN)} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $e$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite Monte-Carlo-Sampling-Strategie notwendig ist, um aleatorische (AC) und epistemische Unsicherheiten (EC) zu bestimmen.
+
+\subsubsection*{Parameterbedeutung:}
+\begin{itemize}
+  \item $\mu$: Erwartungswert der Zielgröße (z.\,B. Position, Fehlermaß)
+  \item $v$: Skalenparameter (inverse Varianz), modelliert die Konfidenz
+  \item $\alpha$: Formparameter der NIG-Verteilung, verknüpft mit epistemischer Evidenz
+  \item $\beta$: Skalenparameter der Varianz, verknüpft mit aleatorischer Evidenz
+  \item $E = \alpha - 1$: Gesamt-Evidenz, als Vertrauensmaß des Modells
+\end{itemize}
+
+Die kombinierte Unsicherheit ergibt sich durch:
+
+\[
+\text{Total Uncertainty} = \underbrace{\frac{\beta}{\alpha - 1}}_{\text{epistemisch}} + \underbrace{\frac{\beta}{v(\alpha - 1)}}_{\text{aleatorisch}}
+\]
+
+Diese Form erlaubt eine einmalige Modellvorhersage zur gleichzeitigen Schätzung beider Unsicherheitsarten.
+
+
+
+% \section{Forschungsstand und identifizierte Lücken}
+
+% Trotz zahlreicher Ansätze zur Quantifizierung aleatorischer und epistemischer Unsicherheiten fehlt bislang ein \textbf{systematischer, modellagnostischer und formal integrierter Ansatz} zur kombinierten Behandlung beider Unsicherheitsarten im Rahmen der szenariobasierten Validierung autonomer Systeme.
+
+% Insbesondere bleibt die \textbf{methodische Abgrenzung eines formalen Kritikalitätsraums} in vielen Arbeiten unklar. Der Übergang von lokalen Unsicherheiten zu globalen Risikomaßen ist in der Literatur lediglich punktuell adressiert.
+
+% Zwar bieten Verfahren wie \textit{Evidential Deep Learning} oder \textit{Bayessche Modelle} theoretische Möglichkeiten zur Repräsentation sowohl epistemischer als auch aleatorischer Unsicherheiten, jedoch ist bisher nicht geklärt, wie diese im Zusammenspiel zur robusten Bewertung sicherheitsrelevanter Szenarien eingesetzt werden können.
+
+% Diese Arbeit zielt darauf ab, zur Schließung dieser Forschungslücken beizutragen. Der Fokus liegt auf der Entwicklung eines transparenten und nachvollziehbaren Verfahrens zur Unsicherheitsbewertung, das sich für sicherheitskritische Anwendungen eignet und bestehende Lücken zwischen Theorie und Praxis adressiert.
+
+% \section{Ableitung der methodischen Forschungsfragen}
+
+% Die in dieser Arbeit bearbeiteten Forschungsfragen (Research Questions, RQ) leiten sich direkt aus den identifizierten Lücken im Forschungsstand ab. Während bestehende Ansätze typischerweise \emph{entweder} aleatorische \emph{oder} epistemische Unsicherheiten isoliert betrachten, fehlt ein integrierter, verallgemeinerbarer Zugang zur kombinierten Quantifizierung, Aggregation und Bewertung.
+
+% Darüber hinaus bestehen methodische Unklarheiten in folgenden Aspekten:
+
+% \begin{itemize}
+%   \item der \textbf{Definition eines formalen Kritikalitätsraums} zur Isolierung sicherheitsrelevanter Szenarien,
+%   \item der \textbf{Aggregation lokal berechneter Unsicherheiten} zu global interpretierbaren Vertrauensmaßen,
+%   \item sowie der \textbf{Modellbewertung über eine Meta-Unsicherheitsgröße}, die unterschiedliche ML-Modelle vergleichbar macht.
+% \end{itemize}
+
+% Die Beantwortung dieser Fragen erfolgt entlang eines methodischen Rahmens, der auf machine-learning-basierten Verfahren zur Unsicherheitsquantifizierung aufbaut. Ziel ist es, durch eine geeignete Aggregation aussagekräftige Kennwerte zur Bewertung der Vertrauenswürdigkeit von Surrogatmodellen zu entwickeln.
+
+% \section{Positionierung der Arbeit}
+
+% Diese Bachelorarbeit positioniert sich an der Schnittstelle zwischen Unsicherheitsmodellierung, sicherheitsgerichteter Validierung und maschinellem Lernen. Die Methodik soll einen Beitrag leisten zur:
+
+% \begin{enumerate}
+%   \item Entwicklung eines formalen, datengetriebenen Kritikalitätsraums,
+%   \item Kombination evidenzbasierter und strukturierter Metriken zur Unsicherheitsquantifizierung,
+%   \item praktischen Anwendung in einem surrogatmodellbasierten Validierungsframework für autonome Unterwasserfahrzeuge (AUVs).
+% \end{enumerate}

@@ -13,52 +13,98 @@ Ein besonderes Augenmerk liegt auf der Konzeption einer modellagnostischen Meta-
 
 Die folgenden Forschungsfragen (Research Questions, RQ) bilden den zentralen inhaltlichen Rahmen der Arbeit. Jede Frage ist so formuliert, dass sie durch geeignete Methoden (z.~B. Simulation, ML-Training, Unsicherheitsmodellierung) praktisch und theoretisch bearbeitet werden kann. 
 
-\subsection*{RQ1: Quantifizierung aleatorischer und epistemischer Unsicherheiten}
+Die zentralen Forschungsfragen dieser Arbeit lauten:
 
-\textbf{Wie lassen sich aleatorische und epistemische Unsicherheiten in machine-learning-basierten Surrogatmodellen getrennt und vergleichbar quantifizieren?}
+\begin{itemize}
+  \item {R1} Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
+  \item {R2} Welche allgemeinen und modellspezifischen Faktoren beeinflussen das Lernen von Unsicherheiten in ML-Modellen?
+  \item {R3} Wie können diese Einflussfaktoren abgeschwächt werden, um die Unsicherheitsabschätzung zu verbessern?
+  \item {R4} Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
+\end{itemize}
 
-\emph{Begründung:} Eine systematische Trennung und vergleichbare Quantifizierung beider Unsicherheitsarten unter einheitlichen Modellbedingungen fehlt bisher weitgehend in der Literatur.
+Die spezifischen Aufgaben dieser Arbeit umfassen:
 
-\vspace{1em}
+\begin{itemize}
+  \item {R5} Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung.
+  \item {R6} Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmodelle, wobei zwischen aleatorischer und epistemischer Unsicherheit unterschieden wird.
+  \item {R7} Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
+  \item {R8} Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surrogatmodelle, insbesondere Bayes'sche neuronale Netze und konforme Vorhersagen.
+  \item {R9} Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
+  \item {R10} Implementierung und Validierung der entwickelten Unsicherheitsmetriken und Modellierungstechniken in einer realistischen Anwendung, wie z.\,B. der Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten.
+  \item {R11} Verfassen eines kurzen Jupyter Notebooks, das die wichtigsten Ansätze und Ergebnisse der Arbeit zusammenfasst.
+\end{itemize}
 
-\subsection*{RQ2: Kritikalitätsraum-Definition}
 
-\textbf{Wie kann ein Kritikalitätsraum $\Omega_k$ formal definiert werden, um sicherheitsrelevante Szenarien basierend auf aggregierter Unsicherheit zu identifizieren?}
+% Die zentralen Forschungsfragen dieser Arbeit lauten:
 
-\emph{Begründung:} Der Begriff Kritikalitätsraum wird bislang häufig informell verwendet. Eine formale, quantifizierbare Definition könnte die Aussagekraft szenariobasierter Validierung deutlich erhöhen.
-
-\vspace{1em}
-
-\subsection*{RQ3: Aggregationsmethoden für Unsicherheiten}
-
-\textbf{Welche Aggregationsmethoden eignen sich zur Verknüpfung lokal berechneter Unsicherheiten zu einem szenario- oder trajektorienbezogenen Vertrauensmaß?}
-
-\emph{Begründung:} Während lokale Unsicherheiten gängig sind, fehlt es an standardisierten Verfahren zur Aggregation in ein übergeordnetes Vertrauensmaß.
-
-\vspace{1em}
-
-\subsection*{RQ4 (optional): Einfluss des Signal-Rausch-Verhältnisses}
-
-\textbf{Wie wirkt sich das Signal-Rausch-Verhältnis auf die detektierbare Struktur kritischer Regionen im Surrogatmodell aus?}
-
-\emph{Begründung:} Die Empfindlichkeit gegenüber Unsicherheitssignalen hängt stark von der Rauschstruktur und Stichprobendichte ab – ein bislang wenig untersuchter Zusammenhang.
-
-\vspace{1em}
-
-\subsection*{RQ5 (optional, übergreifend): Meta-Unsicherheit aus Evidenz und Struktur}
-
-\textbf{Inwiefern kann die Kombination evidenzbasierter Modelle mit strukturellen Metriken (z.~B. Autokorrelation, Jensen-Shannon-Divergenz) zu einer erklärbaren Meta-Unsicherheit führen?}
-
-\emph{Begründung:} Meta-Unsicherheit ist ein neuartiges Konzept. Die Integration unterschiedlicher Metriken in ein übergeordnetes Maß ist bislang methodisch nicht etabliert.
-
-\vspace{2em}
-
-% Falls du diese verworfenen Fragen als Fußnote, Anhang oder Kommentar erhalten willst:
-% \begin{comment}
-% --- Verworfen ---
 % \begin{itemize}
-%   \item Entwicklung einer modellagnostischen Meta-Unsicherheit für bayessche ML-Modelle zur Validierung im Kritikalitätsraum.
-%   \item Systematische Differenzierung aleatorischer vs. epistemischer Unsicherheit in zeitparametrisierten Szenarien.
-%   \item Evaluation von Unsicherheitsmetriken (z. B. RMSE, ECE, Sobol) zur Validierung von Surrogatmodellen.
+%   \item Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
+%   \item Welche allgemeinen und modellspezifischen Faktoren beeinflussen das Lernen von Unsicherheiten in ML-Modellen?
+%   \item Wie können diese Einflussfaktoren abgeschwächt werden, um die Unsicherheitsabschätzung zu verbessern?
+%   \item Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
 % \end{itemize}
-% \end{comment}
+
+% Die spezifischen Aufgaben dieser Arbeit umfassen:
+
+% \begin{itemize}
+%   \item Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung.
+%   \item Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmodelle, wobei zwischen aleatorischer und epistemischer Unsicherheit unterschieden wird.
+%   \item Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
+%   \item Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surrogatmodelle, insbesondere Bayes'sche neuronale Netze und konforme Vorhersagen.
+%   \item Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
+%   \item Implementierung und Validierung der entwickelten Unsicherheitsmetriken und Modellierungstechniken in einer realistischen Anwendung, wie z.\,B. der Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten.
+%   \item Verfassen eines kurzen Jupyter Notebooks, das die wichtigsten Ansätze und Ergebnisse der Arbeit zusammenfasst.
+% \end{itemize}
+
+
+% \subsection*{RQ1: Quantifizierung aleatorischer und epistemischer Unsicherheiten}
+
+% \textbf{Wie lassen sich aleatorische und epistemische Unsicherheiten in machine-learning-basierten Surrogatmodellen getrennt und vergleichbar quantifizieren?}
+
+% \emph{Begründung:} Eine systematische Trennung und vergleichbare Quantifizierung beider Unsicherheitsarten unter einheitlichen Modellbedingungen fehlt bisher weitgehend in der Literatur.
+
+% \vspace{1em}
+
+% \subsection*{RQ2: Kritikalitätsraum-Definition}
+
+% \textbf{Wie kann ein Kritikalitätsraum $\Omega_k$ formal definiert werden, um sicherheitsrelevante Szenarien basierend auf aggregierter Unsicherheit zu identifizieren?}
+
+% \emph{Begründung:} Der Begriff Kritikalitätsraum wird bislang häufig informell verwendet. Eine formale, quantifizierbare Definition könnte die Aussagekraft szenariobasierter Validierung deutlich erhöhen.
+
+% \vspace{1em}
+
+% \subsection*{RQ3: Aggregationsmethoden für Unsicherheiten}
+
+% \textbf{Welche Aggregationsmethoden eignen sich zur Verknüpfung lokal berechneter Unsicherheiten zu einem szenario- oder trajektorienbezogenen Vertrauensmaß?}
+
+% \emph{Begründung:} Während lokale Unsicherheiten gängig sind, fehlt es an standardisierten Verfahren zur Aggregation in ein übergeordnetes Vertrauensmaß.
+
+% \vspace{1em}
+
+% \subsection*{RQ4 (optional): Einfluss des Signal-Rausch-Verhältnisses}
+
+% \textbf{Wie wirkt sich das Signal-Rausch-Verhältnis auf die detektierbare Struktur kritischer Regionen im Surrogatmodell aus?}
+
+% \emph{Begründung:} Die Empfindlichkeit gegenüber Unsicherheitssignalen hängt stark von der Rauschstruktur und Stichprobendichte ab – ein bislang wenig untersuchter Zusammenhang.
+
+% \vspace{1em}
+
+% \subsection*{RQ5 (optional, übergreifend): Meta-Unsicherheit aus Evidenz und Struktur}
+
+% \textbf{Inwiefern kann die Kombination evidenzbasierter Modelle mit strukturellen Metriken (z.~B. Autokorrelation, Jensen-Shannon-Divergenz) zu einer erklärbaren Meta-Unsicherheit führen?}
+
+% \emph{Begründung:} Meta-Unsicherheit ist ein neuartiges Konzept. Die Integration unterschiedlicher Metriken in ein übergeordnetes Maß ist bislang methodisch nicht etabliert.
+
+% \vspace{2em}
+
+
+
+% % Falls du diese verworfenen Fragen als Fußnote, Anhang oder Kommentar erhalten willst:
+% % \begin{comment}
+% % --- Verworfen ---
+% % \begin{itemize}
+% %   \item Entwicklung einer modellagnostischen Meta-Unsicherheit für bayessche ML-Modelle zur Validierung im Kritikalitätsraum.
+% %   \item Systematische Differenzierung aleatorischer vs. epistemischer Unsicherheit in zeitparametrisierten Szenarien.
+% %   \item Evaluation von Unsicherheitsmetriken (z. B. RMSE, ECE, Sobol) zur Validierung von Surrogatmodellen.
+% % \end{itemize}
+% % \end{comment}
