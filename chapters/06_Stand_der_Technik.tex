@@ -3,68 +3,119 @@
 \chapter{Stand der Technik}
 \label{chapter:stand-der-technik}
 
+R1 Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
 
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{|l|l|p{\dimexpr\textwidth-8cm-2\tabcolsep}|}  % Adjusted width
+    \hline
+    & \textbf{X} & \textbf{Y} \\
+    \hline
+    \gls{Gaußsche Prozessregression} & & \\
+    \hline
+    Deep Ensembles & & \\
+    \hline
+    Hybrid-Methoden & & \\
+    \hline
+    \gls{Bayesianische neuronale Netze}s & & \\
+    \hline
+  \end{tabular}
+  \caption{R1 Vgl. v. Unsicherheitsquantifizierungsmethoden in ML}\label{tab:chapter6r1}
+\end{table}
 
-% R1 Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
+R2 Welche allgemeinen und modellspezifischen Faktoren beeinflussen das Lernen von Unsicherheiten in ML-Modellen?
 
-% 
-
-% GPR Gaußsche Prozessregression
-% Deep Ensembles 
-% Hybrid-Methoden, BAMOES
-% BNNs Bayesianische neuronale Netze
-
-% R2 Welche allgemeinen und modellspezifischen Faktoren beeinflussen das Lernen von Unsicherheiten in ML-Modellen?
-
-
+\begin{table}[htpb]
+  \begin{tabular}{|l|p{10cm}|}
+    \hline
+    \textbf{Unsicherheitsdimensionen} & \textbf{Mögliche Werte} \\
+    \hline
+    Lokalisierung im System & Umgebung, Modellierung, Funktionen, Ziele, Verfügbare Ressourcen \\
+    \hline
+    Natur & Epistemisch, Aleatorisch \\
+    \hline
+    Grad der Unsicherheit & Keine Unsicherheit, Mangel an Wissen, Mangel an Bewusstsein, Mangel an Fähigkeit Bewusstsein zu erlangen \\
+    \hline
+    Entstehungszeit & Anforderungsdefinition, Entwicklungszeit, Laufzeit \\
+    \hline
+  \end{tabular}
+  \caption{R2 Klassifizierung Unsicherheit KI-Systeme nach A. Kreuz ~\nocite{AndreasKreutz2022} ~\nocite{AndreasKreutz2022b}}\label{tab:uqclass}
+\end{table}
 
 % R3 Wie können diese Einflussfaktoren abgeschwächt werden, um die Unsicherheitsabschätzung zu verbessern?
+
+% ~\parencite{}
+
 % R4 Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
+
+% ~\parencite{}
+
 
 % Die spezifischen Aufgaben dieser Arbeit umfassen:
 
-
 % R5 Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung.
+
+% ~\parencite{}
+
 % R6 Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmodelle, wobei zwischen aleatorischer und epistemischer Unsicherheit unterschieden wird.
-% R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
+
+% ~\parencite{}
+
+R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
+
+% ~\parencite{}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{|l|l|p{\dimexpr\textwidth-8cm-2\tabcolsep}|}  % Adjusted width
+    \hline
+    & \textbf{X} & \textbf{Y} \\
+    \hline
+    A & & \\
+    \hline
+    B & & \\
+    \hline
+  \end{tabular}
+  \caption{}\label{tab:chapter6r7}
+\end{table}
+
 % R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surrogatmodelle, insbesondere Bayes'sche neuronale Netze und konforme Vorhersagen.
+
+
 % R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
-% R10 Implementierung und Validierung der entwickelten Unsicherheitsmetriken und Modellierungstechniken in einer realistischen Anwendung, wie z.\,B. der Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten.
-% R11 Verfassen eines kurzen Jupyter Notebooks, das die wichtigsten Ansätze und Ergebnisse der Arbeit zusammenfasst.
 
 
 
 
-% Datenqualität 
-
-% ~\parencite{AndreasKreutz2022}
-% ~\parencite{AndreasKreutz2022b}
-
-% EDNN Grundlage 
-
-% ~\parencite{Choi2017}
-
-EDNN Regression 
-
-~\parencite{AlexanderAmini2020}
-
-EDNN Ensemble 
-
-~\parencite{Schreck2023}
-
-% Ninad
-
-% ~\parencite{Gopakumar2024}
-
-EDNN Entwicklung
-
-~\parencite{Deng2023}
 
 
+% R_x
 
-%  
+% % EDNN Grundlage 
 
-\parencite{oberkampf2010}
+% % ~\parencite{Choi2017}
+
+% EDNN Regression 
+
+% ~\parencite{AlexanderAmini2020}
+
+% EDNN Ensemble 
+
+% ~\parencite{Schreck2023}
+
+% % Ninad
+
+% % ~\parencite{Gopakumar2024}
+
+% EDNN Entwicklung
+
+% ~\parencite{Deng2023}
+
+
+
+% %  
+
+% \parencite{oberkampf2010}
 
 
 % benchmark
