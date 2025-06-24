@@ -60,26 +60,24 @@
 
 \chapter*{Literaturverzeichnis}
 
-% TODO: Sub-Literatur-Verzeichnisse umsetzen.
+% Sub-Literatur-Verzeichnisse
 % Definiere Filter für die Teilbibliographien
-%\DeclareBibliographyCategory{primaer}
-%\DeclareBibliographyCategory{sekundaer}
-
 % Filter nach keyword (optional, falls nicht `category`)
-% \defbibfilter{beitragfilter}{keyword=beitrag}
-% \defbibfilter{buchmonographiefilter}{keyword=buchmonographie}
-% \defbibfilter{buchsammelwerkfilter}{keyword=buchsammelwerk}
+\defbibfilter{beitragfilter}{keyword=beitrag}
+\defbibfilter{buchmonographiefilter}{keyword=buchmonographie}
+\defbibfilter{buchsammelwerkfilter}{keyword=buchsammelwerk}
 \defbibfilter{internetdokumentfilter}{keyword=internetdokument}
 \defbibfilter{zeitschriftenaufsatzfilter}{keyword=zeitschriftenaufsatz}
+% \defbibfilter{softwarefilter}{keyword=software}
 
-% \section*{Beitrag}
-% \printbibliography[filter=beitragfilter, heading=none]
+\section*{Beitrag}
+\printbibliography[filter=beitragfilter, heading=none]
 
-% \section*{Buch (Monographie)}
-% \printbibliography[filter=buchmonographiefilter, heading=none]
+\section*{Buch (Monographie)}
+\printbibliography[filter=buchmonographiefilter, heading=none]
 
-% \section*{Buch (Sammelwerk)}
-% \printbibliography[filter=buchsammelwerkfilter, heading=none]
+\section*{Buch (Sammelwerk)}
+\printbibliography[filter=buchsammelwerkfilter, heading=none]
 
 \section*{Zeitschriftenaufsatz}
 \printbibliography[filter=zeitschriftenaufsatzfilter, heading=none]
@@ -87,7 +85,11 @@
 \section*{Internetdokument}
 \printbibliography[filter=internetdokumentfilter, heading=none]
 
-
 \printglossary[title=Glossar, toctitle=Glossar]
+
+% \section*{Anhang}
+
+% \section*{Software}
+% \printbibliography[filter=softwarefilter, heading=none]
 
 \end{document}
