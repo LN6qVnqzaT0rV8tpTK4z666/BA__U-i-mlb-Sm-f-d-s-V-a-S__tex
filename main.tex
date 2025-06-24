@@ -64,20 +64,18 @@
 % Definiere Filter für die Teilbibliographien
 % Filter nach keyword (optional, falls nicht `category`)
 \defbibfilter{beitragfilter}{keyword=beitrag}
-\defbibfilter{buchmonographiefilter}{keyword=buchmonographie}
-\defbibfilter{buchsammelwerkfilter}{keyword=buchsammelwerk}
+%\defbibfilter{buchmonographiefilter}{keyword=buchmonographie}
+\defbibfilter{bswfilter}{keyword=buchsammelwerk}
+\defbibfilter{datensatzfilter}{keyword=dataset}
 \defbibfilter{internetdokumentfilter}{keyword=internetdokument}
 \defbibfilter{zeitschriftenaufsatzfilter}{keyword=zeitschriftenaufsatz}
-% \defbibfilter{softwarefilter}{keyword=software}
+\defbibfilter{softwarefilter}{keyword=software}
 
 \section*{Beitrag}
 \printbibliography[filter=beitragfilter, heading=none]
 
-% \section*{Buch (Monographie)}
-% \printbibliography[filter=buchmonographiefilter, heading=none]
-
-% \section*{Buch (Sammelwerk)}
-% \printbibliography[filter=buchsammelwerkfilter, heading=none]
+\section*{Buch (Sammelwerk)}
+\printbibliography[filter=bswfilter, heading=none]
 
 \section*{Zeitschriftenaufsatz}
 \printbibliography[filter=zeitschriftenaufsatzfilter, heading=none]
@@ -91,7 +89,10 @@
 
 \section*{Anhang}
 
-% \section*{Software}
-% \printbibliography[filter=softwarefilter, heading=none]
+\section*{Datensätze}
+\printbibliography[filter=datensatzfilter, heading=none]
+
+\section*{Software}
+\printbibliography[filter=softwarefilter, heading=none]
 
 \end{document}
