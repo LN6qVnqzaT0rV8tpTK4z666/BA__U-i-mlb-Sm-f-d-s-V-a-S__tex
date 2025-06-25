@@ -2,28 +2,29 @@
 
 \chapter{Diskussion}\label{chapter:diskussion}
 
-% Nach der quantitativen Auswertung der trainierten Modelle folgt in diesem Kapitel eine reflektierende Diskussion der Ergebnisse im Hinblick auf die zuvor definierten Forschungsfragen. Dabei steht die Aussagekraft der modellierten Unsicherheiten, die Kalibrierung sowie das Verhalten des EDN im Vergleich zu etablierten Baselines aus der Literatur im Mittelpunkt. Die Ergebnisse werden hinsichtlich ihrer technischen Relevanz für szenariobasierte Validierung, Robustheit gegenüber kritischen Eingabebereichen sowie ihrer Interpretierbarkeit im Kontext sicherheitsrelevanter Entscheidungsprozesse analysiert. Darüber hinaus werden potenzielle Einschränkungen, Beobachtungen abweichender Modellverhalten sowie offene methodische Fragen kritisch eingeordnet.
+Nach der quantitativen Auswertung der trainierten Modelle folgt in diesem Kapitel eine reflektierende Diskussion der Ergebnisse im Hinblick auf die zuvor definierten Forschungsfragen. Dabei steht die Aussagekraft der modellierten Unsicherheiten, die Kalibrierung sowie das Verhalten des EDN im Vergleich zu etablierten Baselines aus der Literatur im Mittelpunkt. Die Ergebnisse werden hinsichtlich ihrer technischen Relevanz für szenariobasierte Validierung, Robustheit gegenüber kritischen Eingabebereichen sowie ihrer Interpretierbarkeit im Kontext sicherheitsrelevanter Entscheidungsprozesse analysiert. Darüber hinaus werden potenzielle Einschränkungen, Beobachtungen abweichender Modellverhalten sowie offene methodische Fragen kritisch eingeordnet.
 
-~\nocite{Jurgens.} % Is Epistemic Uncertainty Faithfully Represented by Evidential Deep Learning Methods?
+\section{Bewertung der Vertrauenswürdigkeit}
 
-~\nocite{Herd04082024} % Can you trust your ML metric? 
+%  % Can you trust your ML metric? 
+%  % Is Epistemic Uncertainty Faithfully Represented by Evidential Deep Learning Methods?
 
+Den zentralen Gegenstandpunkt zur Arbeit liefern Jürgens et al. (2024), Herd et al. (2024) durch kritisches Hinterfragen der Unsicherheit in maschinellen Lernmodellen und deren Kennzahlen. Jürgens et al. stellen fest, dass evidentielles Deep Learning Schwierigkeiten hat, epistemische Unsicherheit zuverlässig darzustellen, insbesondere in Bezug auf die Varianz. Sie argumentieren, dass die Unsicherheitsschätzungen aufgrund der Instabilität der Modellparameter über verschiedene Trainingsdurchläufe hinweg stark variieren, was auf Identifizierbarkeitsprobleme hindeutet. Dies führt zu unzuverlässigen Quantifizierungen der Unsicherheit, insbesondere in der inneren Verlustminimierung. Auf der anderen Seite schlagen Herd et al. vor, traditionelle Leistungskennzahlen wie Genauigkeit und Präzision durch subjektive Logik zu ergänzen, um Unsicherheiten systematisch zu behandeln und so die tatsächliche Modellleistung besser zu bewerten. Sie betonen, dass die gängigen Metriken oft die Unsicherheiten nicht berücksichtigen, wodurch die Modellleistung überschätzt wird. Beide Arbeiten machen deutlich, dass die Unsicherheit in den Modellen häufig nicht korrekt erfasst wird und dass eine probabilistische Behandlung der Unsicherheit notwendig ist, um die tatsächliche Modellleistung realistischer zu bewerten ~\parencite{Jurgens.} ~\parencite{Herd04082024}.
 
+\section{Bewertung der Meta-Vertrauenswürdigkeit (Meta-Unsicherheit)}
 
+Der weiterführende Begriff „Meta-Unsicherheit“ ist in der wissenschaftlichen Literatur nicht standardisiert etabliert. Ein Ziel der vorliegenden Arbeit besteht darin, über die klassische Trennung von AC und EC hinaus ein übergeordnetes Maß für die Vertrauenswürdigkeit modellbasierter Vorhersagen für den evidenzbasierten und bayesischen Ansatz zu entwickeln – eine sogenannte Meta-Unsicherheit. Darunter wird die systematische Aggregation, Interpretation und Bewertung der vom Modell selbst generierten Unsicherheiten verstanden, mit dem Ziel, ein globales, kontextsensitives Vertrauensmaß abzuleiten. 
 
+Die Meta-Unsicherheit ergibt sich nicht als direkter Modelloutput, sondern als Funktion aus mehreren Unsicherheitskomponenten, die entlang einer Trajektorie, eines Szenarios oder im Rahmen eines gesamten Validierungslaufs kumulativ betrachtet werden. Typische Einflussgrößen sind dabei:
+\begin{itemize}
+  \item die lokale Evidenz (\(\alpha^{-1}\)) des Modells in Kombination mit der Vorhersagegüte (\(\left| y - \mu \right|\)),
+  \item die Verteilung epistemischer Varianz über den Eingaberaum,
+  \item strukturelle Merkmale wie Häufung unsicherer Bereiche oder abrupte Evidenzsprünge (z.\,B. entlang eines Pfades),
+  \item sowie Metriken wie die Jensen-Shannon-Divergenz zwischen aufeinanderfolgenden Unsicherheitsverteilungen oder Modellen.
+\end{itemize}
 
-% \section{Bewertung der Vertrauenswürdigkeit (Meta-Unsicherheit)}
+Zur Erfassung der Meta-Unsicherheit kann ein aggregiertes Risikomaß definiert werden, das z.\,B. eine gewichtete Summe lokaler Unsicherheiten, Varianzgradienten oder Nichtkalibrierbarkeit darstellt. In der Praxis liefert ein solches Maß eine Einschätzung darüber, wie konsistent, robust und erklärbar die Vorhersagen eines Modells im Kontext der gestellten Aufgabe sind.
 
-% Der Begriff „Meta-Unsicherheit“ ist in der wissenschaftlichen Literatur nicht standardisiert etabliert. Ein Ziel der vorliegenden Arbeit besteht darin, über die klassische Trennung von AC und EC hinaus ein übergeordnetes Maß für die Vertrauenswürdigkeit modellbasierter Vorhersagen zu entwickeln – eine sogenannte Meta-Unsicherheit. Darunter wird die systematische Aggregation, Interpretation und Bewertung der vom Modell selbst generierten Unsicherheiten verstanden, mit dem Ziel, ein globales, kontextsensitives Vertrauensmaß abzuleiten. 
+Gerade in sicherheitskritischen Szenarien – etwa in der Validierung autonomer Systeme oder der simulationsbasierten Entscheidungsunterstützung – liefert Meta-Unsicherheit einen entscheidenden Beitrag zur Vertrauensbewertung. Sie ergänzt klassische Metriken der Modellgüte durch eine interpretierbare, quantitative Aussage über die Zuverlässigkeit des Modells selbst – nicht nur dessen Ausgabe.
 
-% Die Meta-Unsicherheit ergibt sich nicht als direkter Modelloutput, sondern als Funktion aus mehreren Unsicherheitskomponenten, die entlang einer Trajektorie, eines Szenarios oder im Rahmen eines gesamten Validierungslaufs kumulativ betrachtet werden. Typische Einflussgrößen sind dabei:
-% \begin{itemize}
-%   \item die lokale Evidenz (\(\alpha^{-1}\)) des Modells in Kombination mit der Vorhersagegüte (\(\left| y - \mu \right|\)),
-%   \item die Verteilung epistemischer Varianz über den Eingaberaum,
-%   \item strukturelle Merkmale wie Häufung unsicherer Bereiche oder abrupte Evidenzsprünge (z.\,B. entlang eines Pfades),
-%   \item sowie Metriken wie die Jensen-Shannon-Divergenz zwischen aufeinanderfolgenden Unsicherheitsverteilungen oder Modellen.
-% \end{itemize}
-
-% Zur Erfassung der Meta-Unsicherheit kann ein aggregiertes Risikomaß definiert werden, das z.\,B. eine gewichtete Summe lokaler Unsicherheiten, Varianzgradienten oder Nichtkalibrierbarkeit darstellt. In der Praxis liefert ein solches Maß eine Einschätzung darüber, wie konsistent, robust und erklärbar die Vorhersagen eines Modells im Kontext der gestellten Aufgabe sind.
-
-% Gerade in sicherheitskritischen Szenarien – etwa in der Validierung autonomer Systeme oder der simulationsbasierten Entscheidungsunterstützung – liefert Meta-Unsicherheit einen entscheidenden Beitrag zur Vertrauensbewertung. Sie ergänzt klassische Metriken der Modellgüte durch eine interpretierbare, quantitative Aussage über die Zuverlässigkeit des Modells selbst – nicht nur dessen Ausgabe.
+% Ergebnisse wissenschaftlich sinnvoll aufgreifen.
