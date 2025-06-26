@@ -30,13 +30,16 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{comment}
 \usepackage{longtable} % Wenn Tabelle zu lang für Seite ist
-\usepackage{array}     % Tabellensteuerung
+%\usepackage{array}     % Tabellensteuerung
+\usepackage{tabularx}  % Tabellensteuerung
 \usepackage{enumitem}
+\usepackage{nag}
 \usepackage{silence}
 \WarningFilter{latex}{Command \showhyphens has changed}
 \WarningFilter{datatool-base}{No `datatool' support for dialect `ngerman'}
 
-% \usepackage{parskip}
+\setlength{\parindent}{0pt}
+
 % \makeatletter
 % \g@addto@macro\@makechapterhead{\@afterindentfalse}
 % \makeatother
