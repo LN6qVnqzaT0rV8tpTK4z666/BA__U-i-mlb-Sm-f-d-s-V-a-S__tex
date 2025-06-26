@@ -19,21 +19,54 @@ R1 Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quan
 
 \begin{table}[htpb]
   \centering
-  \begin{tabular}{|l|l|p{\dimexpr\textwidth-8cm-2\tabcolsep}|}  % Adjusted width
+  \begin{tabular}{|l|p{\dimexpr\textwidth-3cm-2\tabcolsep}|}  
     \hline
-    & \textbf{X} & \textbf{Y} \\
+    \textbf{\gls{surrogat}} & \textbf{Eignungsgrund} \\
     \hline
-    \gls{Gaußsche Prozessregression} & & \\
+    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0,25em]
+      \item \gls{Gaußsche Prozessregression}
+    \end{itemize} &  
+    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+      \item Intrinsische probabilistische Ausgabe
+      \item Exakte Varianzschätzung für kleine Datensätze
+      \item Kernel-basierte Unsicherheitscharakterisierung
+    \end{itemize} \\ 
     \hline
-    Deep Ensembles & & \\
+    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+      \item Deep Ensembles
+    \end{itemize} & 
+    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+      \item Redundante Modellierung reduziert Overconfidence
+      \item Einfache Integration in existierende Architekturen
+      \item Robust gegen Out-of-Distribution-Daten
+    \end{itemize} \\
     \hline
-    Hybrid-Methoden & & \\
+    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+      \item Hybrid-Methoden
+    \end{itemize} & 
+    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+      \item Kombiniert Stärken von Blackbox-Modellen und GPR
+      \item Nachrüstbar auf existierende Modelle
+      \item Recheneffiziente Unsicherheitspropagation
+    \end{itemize} \\
     \hline
-    \gls{Bayesianische neuronale Netze}s & & \\
+    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+      \item \gls{Bayesianische neuronale Netze}s
+    \end{itemize} & 
+    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+      \item Systematische Integration von Priors
+      \item Theoretisch fundierte Parameterunsicherheit
+      \item Natürliche Regularisierung durch Bayes'sche Inferenz
+    \end{itemize} \\
     \hline
   \end{tabular}
   \caption{R1 Vgl. v. Unsicherheitsquantifizierungsmethoden in ML}\label{tab:chapter6r1}
 \end{table}
+
+
+% Übersicht aus MC25 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R2
@@ -123,9 +156,14 @@ Wie Modellspezifische Faktoren abschwächen?
 R4 Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
 
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
-Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}. Ihre Recherche differenziert zur Beantwortung die Anwendungsdomäne, datenbasierte und modellbasierte Unsicherheitsmetriken. 
+Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}. Ihre Recherche differenziert zur Beantwortung die Anwendungsdomäne, datenbasierte und modellbasierte Unsicherheitsmetriken.  
 
-\parencite{manchingal2025}
+Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische Künstliche Intelligenz. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden. \parencite{manchingal2025}
+
+
+% includegraphics
+
+
 % Die spezifischen Aufgaben dieser Arbeit umfassen:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
