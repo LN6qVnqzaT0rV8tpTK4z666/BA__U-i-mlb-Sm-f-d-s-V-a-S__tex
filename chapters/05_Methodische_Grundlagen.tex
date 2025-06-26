@@ -3,6 +3,88 @@
 \chapter{Methodische Grundlagen}
 \label{chapter:methodik}
 
+
+
+\begin{otherlanguage}{american}
+% \section{Machine Learning}
+
+% Machine learning (ML) refers to the class of algorithms \( f_{\theta} : \mathcal{X} \rightarrow \mathcal{Y} \) that learn a model \( f_{\theta} \) from data 
+% \( \mathcal{D} = \{ (x_i, y_i) \}_{i=1}^{N} \) to learn a model \( f_{\theta} \) that maps inputs \( x \in \mathcal{X} \) to predictions \( \hat{y} \in \mathcal{Y} \). This is done by optimizing the parameters \( \theta \) using an error function \( \mathcal{L}_{\text{loss}}(y, \hat{y}) \).
+
+% \subsection{Architectures}
+
+% The runtime for adjusting the weights of a neural network (NN) to a target function can be optimized by using different architectures for specific tasks. The abbreviations for the architectures refer to their characteristic structure.
+
+% \paragraph{NN – Neural Network}
+% A neural network approximates a function \( f_{\theta}(x) = \sigma(Wx + b) \). Here, \( \sigma \) is a nonlinear activation function, typically \textit{ReLU} or \textit{Tanh}. The parameters of the model are given by \( \theta = \{ W, b \} \), where:
+
+% \begin{itemize}
+%   \item \( W \) represents the weight matrix, e.g. 
+%     \[
+%       W = 
+%       \begin{pmatrix}
+%         w_{11} & w_{12} & \dots  & w_ {1j} \\
+%         w_{21} & w_{22} & \dots  & w_{2j} \\
+%         \vdots & \vdots & \ddots & \vdots \\
+%         w_{i1} & w_{i2} & \dots  & w_{ij} \\
+%       \end{pmatrix}
+%       \in \mathbb{R}^{i \times j}
+%     \]
+%   \item \( b \) is a bias term that shifts the activation independently of the input signal.
+% \end{itemize}
+
+% A layer in a neural network consists of:
+% \begin{enumerate}
+%   \item a linear transformation: \( z = Wx + b \),
+%   \item a nonlinear activation: \( f(x) = \sigma(z) \).
+% \end{enumerate}
+
+
+% \section*{DNN – Deep Neural Network}
+
+% A \textbf{Deep Neural Network (DNN)} extends a neural network (NN) by adding several layers. This increases the depth of the network:
+
+% \[
+% f(x) = \sigma_L\left(W_L \cdot \sigma_{L-1}\left(\ldots \sigma_1\left(W_1 \cdot x + b_1\right) \ldots \right) + b_L\right)
+% \]
+
+% In addition to linear transformation, a DNN allows the modeling of complex nonlinearities and thus deeper learning of relevant features by propagating across multiple layers.
+
+% \section*{BNN – Bayesian Neural Network}
+
+% A Bayesian Neural Network (BNN) models the weights $\boldsymbol{\theta}$ as random variables $p(\theta)$. The prediction corresponds to the expected value across all possible models:
+
+% \[
+% p(y \mid x, D) = \int p(y \mid x, \theta) \cdot p(\theta \mid D) \, d\theta
+% \]
+
+% This makes the \textbf{epistemic uncertainty} (EC) about the posterior distribution of the weights quantifiable.
+
+% \section*{EDN – Evidential Deep Neural Network}
+
+% % \gls{Evidence-based neural networks}
+
+% An \textbf{evidential deep neural network (\gls{evidence-based neural networks})} directly learns the parameters of a probability distribution over uncertainties through an evidence measure $e$, e.g., within a normal inverse gamma distribution $p(y \mid \mu, \sigma^2, e)$. The advantage is that no explicit Monte Carlo sampling strategy is necessary to determine aleatory (AC) and epistemic uncertainties (EC).
+
+% \subsubsection*{Parameter meaning:}
+% \begin{itemize}
+%   \item $\mu$: Expected value of the target variable (e.g., position, error measure)
+%   \item $v$: Scale parameter (inverse variance), models confidence
+%   \item $\alpha$: Shape parameter of the NIG distribution, linked to epistemic evidence
+%   \item $\beta$: Scale parameter of the variance, linked to aleatory evidence
+%   \item $E = \alpha - 1$: Total evidence, as a measure of confidence in the model
+% \end{itemize}
+
+% The combined uncertainty is given by:
+
+% \begin{equation}
+% \text{Total Uncertainty} = \underbrace{\frac{\beta}{\alpha - 1}}_{\text{epistemic}} + \underbrace{\frac{\beta}{v(\alpha - 1)}}_{\text{aleatory}}
+% \end{equation}
+
+% This form allows a single model prediction to simultaneously estimate both types of uncertainty.
+\end{otherlanguage}
+
+\begin{otherlanguage}{ngerman}
 \section{Machine Learning}
 
 Machine Learning (ML) bezeichnet die Klasse von Algorithmen \( f_{\theta} : \mathcal{X} \rightarrow \mathcal{Y} \), die aus Daten 
@@ -61,7 +143,7 @@ Dadurch wird die \textbf{epistemische Unsicherheit} (EC) über die Posterior-Ver
 
 % \gls{Evidenzbasierte neuronale Netze}
 
-Ein \textbf{Evidential Deep Neural Network (ENN)} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $e$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite Monte-Carlo-Sampling-Strategie notwendig ist, um aleatorische (AC) und epistemische Unsicherheiten (EC) zu bestimmen.
+Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $e$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite Monte-Carlo-Sampling-Strategie notwendig ist, um aleatorische (AC) und epistemische Unsicherheiten (EC) zu bestimmen.
 
 \subsubsection*{Parameterbedeutung:}
 \begin{itemize}
@@ -78,7 +160,8 @@ Die kombinierte Unsicherheit ergibt sich durch:
 \text{Total Uncertainty} = \underbrace{\frac{\beta}{\alpha - 1}}_{\text{epistemisch}} + \underbrace{\frac{\beta}{v(\alpha - 1)}}_{\text{aleatorisch}}
 \end{equation}
 
-Diese Form erlaubt eine einmalige Modellvorhersage zur gleichzeitigen Schätzung beider Unsicherheitsarten.
+Diese Form erlaubt eine einmalige Modellvorhersage zur gleichzeitigen Schätzung beider Unsicherheitsarten.  
+\end{otherlanguage}
 
 
 
@@ -115,5 +198,7 @@ Diese Form erlaubt eine einmalige Modellvorhersage zur gleichzeitigen Schätzung
 %   \item Kombination evidenzbasierter und strukturierter Metriken zur Unsicherheitsquantifizierung,
 %   \item praktischen Anwendung in einem surrogatmodellbasierten Validierungsframework für autonome Unterwasserfahrzeuge (AUVs).
 % \end{enumerate}
+
+
 
 \nocite{krause2025}

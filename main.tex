@@ -70,6 +70,7 @@
 \defbibfilter{internetdokumentfilter}{keyword=internetdokument}
 \defbibfilter{zeitschriftenaufsatzfilter}{keyword=zeitschriftenaufsatz}
 \defbibfilter{softwarefilter}{keyword=software}
+\defbibfilter{thesisfilter}{keyword=thesis}
 \defbibfilter{repositoryfilter}{keyword=repository}
 
 \section*{Beitrag}
@@ -84,13 +85,16 @@
 \section*{Internetdokument}
 \printbibliography[filter=internetdokumentfilter, heading=none]
 
+\section*{Thesis}
+\printbibliography[filter=thesisfilter, heading=none]
+
 \printglossary[title=Glossar, toctitle=Glossar]
 
-\newpage
+\newline
 
 \section*{Anhang}
 
-\section*{Datensätze}
+\section*{Datensätze}\label{datensaetze}
 \printbibliography[filter=datensatzfilter, heading=none]
 
 \section*{Software}

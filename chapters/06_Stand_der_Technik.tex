@@ -3,6 +3,14 @@
 \chapter{Stand der Technik}
 \label{chapter:stand-der-technik}
 
+\begin{otherlanguage}{american}
+%
+%
+%
+\end{otherlanguage}
+
+
+\begin{otherlanguage}{ngerman}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,6 +125,7 @@ R4 Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in r
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
 Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}. Ihre Recherche differenziert zur Beantwortung die Anwendungsdomäne, datenbasierte und modellbasierte Unsicherheitsmetriken. 
 
+\parencite{manchingal2025}
 % Die spezifischen Aufgaben dieser Arbeit umfassen:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,6 +133,7 @@ Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % R5 Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung.
+
 
 \parencite{Ulmer2023}
 
@@ -133,7 +143,22 @@ Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}
 % R6
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% R6 Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmodelle, wobei zwischen aleatorischer und epistemischer Unsicherheit unterschieden wird.
+R6 Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmodelle, wobei zwischen aleatorischer und epistemischer Unsicherheit unterschieden wird.
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{|l|l|l|l|}  % Adjusted width
+    \hline
+    & \textbf{Datenbasierte Metriken} & \textbf{Modellbasierte Metriken} \\
+    \hline
+    AC & & \\
+    \hline
+    EC & & \\
+    \hline
+  \end{tabular}
+  \caption{}\label{tab:chapter6r61}
+\end{table}
+
 
 % ~\parencite{}
 
@@ -143,21 +168,25 @@ Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}
 
 R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
 
-% ~\parencite{}
+% Beispiel-Anwendungsdomäne: Domäne. 
+
+% Anwendungsspezifikation: 
 
 \begin{table}[htpb]
   \centering
-  \begin{tabular}{|l|l|p{\dimexpr\textwidth-8cm-2\tabcolsep}|}  % Adjusted width
+  \begin{tabular}{|l|l|l|l|}  % Adjusted width
     \hline
-    & \textbf{X} & \textbf{Y} \\
+    & \textbf{Modellspezifische Metriken} & \textbf{Anwendungsspezifische Metriken} \\
     \hline
-    A & & \\
+    AC & & \\
     \hline
-    B & & \\
+    EC & & \\
     \hline
   \end{tabular}
   \caption{}\label{tab:chapter6r71}
 \end{table}
+
+% ~\parencite{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R8
@@ -177,9 +206,9 @@ R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surroga
     \hline
     & \textbf{BNN} & \textbf{CFP} \\
     \hline
-    A & & \\
+    AC & & \\
     \hline
-    B & & \\
+    EC & & \\
     \hline
   \end{tabular}
   \caption{R8 Vergleich UQ-Ansätze ML-basierter \gls{surrogat}}\label{tab:chapter6r81}
@@ -197,8 +226,6 @@ R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsi
 % S3: Durchführung der Analyse
 
 % Vergleich ausgewählter Modelle
-
-% \gls{Conformal Prediction}
 
 \begin{table}[htpb]
   \centering
@@ -390,3 +417,6 @@ R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsi
 ~\nocite{amini2020deep}
 ~\nocite{sensoy2018evidential}
 ~\nocite{nmavani2025}
+~\nocite{windler2025}
+
+\end{otherlanguage}
