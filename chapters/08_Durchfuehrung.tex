@@ -22,7 +22,18 @@
   \end{minipage}
 \end{figure}
 
-% \section*{Eigenentwicklung}
+\section*{Eigenentwicklung}
+
+Benötigt wurde eine Datenpipeline. In Entwicklung mit Herr M.Sc. N. Mavani sollte für den Vergleich von BNN, ENN als Baseline von Mavanis Seite auf \parencite{Depeweg2019}, von meiner Seite auf \parencite{Ulmer2023} aufgesetzt werden.
+
+Dazu wurden von \parencite{Depeweg2019} verwendete Datensätze verwendet und ergänzt um in \hyperref[sec:datensaetze]{Datensätze} gelistete. Aufgesetzte Stufen der Datenpipeline sind eine Vorverarbeitung zum Umwandeln von Formaten, Einlesen in Torch Dataset Klassen, Torch Trainingsklassen, Visualisierungsklassen. 
+
+Aus den Datensätzen wurden Trainings und Visualisierungen abgeleitet und generifiziert. Ebenso wurden recherchierte Loss-Funktionen generifiziert. Trainings wurden auf einen modernen Standard ergänzt wie Checkpoints, Patience-Epochen, vergleichbar und generifiziert. Nach Generifizierung bleiben einer Klasse überwiegend nur noch konfigurierbare Anteile vorbehalten. Eine Konfiguration wurde als Refactor geplant und soll von dort aus zu einer zentralen Konfiguration hochgereicht werden. 
+
+Im Projekt behandelte Metriken wurden aufgefasst mit einer Klasse Metrik, Metrik-Thresholds, Metrik-Registry, Metrik-Registry-Defintions deren Name die Funktion hinreichend vorgibt. 
+
+Integriert wurden Lösungen von Herr M.Sc. Mavani der sich zur BNN Auswertung für ein Python Pyro Jax Backend entschieden und damit Lösungen nach den Pyroworkflows für Hamilton Monte Carlo (HMC), Stochastic Variational Inference (SVI) geliefert hat. 
+
 
 % \subsection*{Experiment}
 
