@@ -175,7 +175,7 @@ Wie Allgemeine Faktoren abschwächen?
     Entstehungszeit & Frühzeitige Einbindung von Unsicherheitsmodellierung in die Anforderungsdefinition und Entwicklungszeit. \\
     \hline
   \end{tabularx}
-  \caption{R2 Abschwächung allgemeiner Faktoren KI Systeme}\label{tab:chapter6r21}
+  \caption{R3 Abschwächung allgemeiner Faktoren KI Systeme}\label{tab:chapter6r31}
 \end{table}
 
 \newline
@@ -202,7 +202,7 @@ Wie Modellspezifische Faktoren abschwächen?
     Maßstab & Verwendung von Skalenmodellen zur Reduzierung von Unsicherheit durch Skalierung des Modells auf größere Datenmengen. \\
     \hline
   \end{tabularx}
-  \caption{R2.2 Abschwächung Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Bayesianische neuronale Netze}}\label{tab:chapter6r22}
+  \caption{R3.1 Abschwächung Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Bayesianische neuronale Netze}}\label{tab:chapter6r32}
 \end{table}
 
 \begin{table}[!htpb]
@@ -230,7 +230,7 @@ Wie Modellspezifische Faktoren abschwächen?
     Netzwerktiefe & Optimierung der Netzwerktiefe unter Berücksichtigung der Modellkomplexität, um unnötige Unsicherheiten zu vermeiden. \\
     \hline
   \end{tabularx}
-  \caption{R2.2 Abschwächung Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Evidenzbasierte neuronale Netze}}\label{tab:chapter6r23}
+  \caption{R3.2 Abschwächung Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Evidenzbasierte neuronale Netze}}\label{tab:chapter6r33}
 \end{table}
 
 % ~\parencite{}
@@ -243,17 +243,22 @@ R4 Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in r
 \\
 \\
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
-Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}. Ihre Recherche differenziert zur Beantwortung die Anwendungsdomäne, datenbasierte und modellbasierte Unsicherheitsmetriken.  
+Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024} zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken. 
 \\
 \\
 Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische Künstliche Intelligenz. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden. \parencite{manchingal2025}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{../figures/x2.png}
-  \caption{}
+  \includegraphics[width=\textwidth]{../figures/x3.png}
+  \caption{R4.1}
 \end{figure}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{../figures/x2.png}
+  \caption{R4.2}
+\end{figure}
 
 % Die spezifischen Aufgaben dieser Arbeit umfassen:
 
@@ -263,10 +268,11 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
 
 R5 Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung.
 
-
 \parencite{Ulmer2023}
 
 ~\nocite{Gawlikowski2023}
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R6
@@ -280,40 +286,92 @@ R6 Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmod
     \hline
     & \textbf{Datenbasierte Metriken} & \textbf{Modellbasierte Metriken} \\
     \hline
-    AC & & \\
+    \textbf{AC} & 
+    \begin{tabular}[c]{@{}l@{}} 
+      \( \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} \) \\ 
+      Standardabweichung (Rauschen) \\[1ex]
+      \( \text{Var} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \) \\ 
+      Varianz der Residuen
+    \end{tabular}
+    & 
+    \begin{tabular}[c]{@{}l@{}} 
+      \( p(\theta \mid \mathcal{D}) \) \\ 
+      Bayesianische Unsicherheit (Posterior) \\[1ex]
+      Kreuzvalidierung (Training/Testdaten)
+    \end{tabular} \\
     \hline
-    EC & & \\
+    \textbf{EC} & 
+    \begin{tabular}[c]{@{}l@{}} 
+      \( \text{Fehler} = \sum_{i=1}^{n} |y_i - \hat{y}_i| \) \\ 
+      Fehleranalyse auf Testdaten
+    \end{tabular}
+    & 
+    \begin{tabular}[c]{@{}l@{}} 
+      \( \hat{y} \pm z \cdot \sigma \) \\ 
+      Konfidenzintervall \\[1ex]
+      \( H(p) = - \sum_{i} p(x_i) \log(p(x_i)) \) \\ 
+      Entropie der Posterior-Verteilung
+    \end{tabular} \\
     \hline
   \end{tabularx}
-  \caption{}\label{tab:chapter6r61}
+  \caption{R6 Unsicherheitsmetriken für Surrogatmodelle}\label{tab:chapter6r61}
 \end{table}
 
-
 % ~\parencite{}
+
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R7
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newpage
+
 R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
 
-% Beispiel-Anwendungsdomäne: Domäne. 
+% Beispiel-Anwendungsdomäne: [Beispiel-Domäne]
 
-% Anwendungsspezifikation: 
+% Anwendungsspezifikation:
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
   \centering
-  \begin{tabularx}{\textwidth}{|l|l|X|}
-    \hline
-    & \textbf{Modellspezifische Metriken} & \textbf{Anwendungsspezifische Metriken} \\
-    \hline
-    AC & & \\
-    \hline
-    EC & & \\
-    \hline
-  \end{tabularx}
-  \caption{}\label{tab:chapter6r71}
+  \resizebox{\textwidth}{!}{
+    \begin{tabularx}{\textwidth}{|l|l|X|}
+      \hline
+        & \textbf{Modellspezifische Metriken} & \textbf{Anwendungsspezifische Metriken} \\
+      \hline
+      \textbf{AC} & 
+      \begin{tabular}[c]{@{}l@{}} 
+        \( \text{RMSE} \) \\ 
+        \( \text{MAE} \) \\ 
+        \( \text{KL}(P \parallel Q) \)
+      \end{tabular}
+      & 
+      \begin{tabular}[c]{@{}l@{}} 
+        \( \text{Accuracy} \) \\ 
+        \( F_1 \) \\ 
+        \( \text{AUC} \)
+      \end{tabular} \\
+      \hline
+      \textbf{EC} & 
+      \begin{tabular}[c]{@{}l@{}} 
+        \( \mathcal{L}(\theta) \) \\ 
+        \( \text{BMA} \) \\ 
+        \( \text{CI} \)
+      \end{tabular}
+      & 
+      \begin{tabular}[c]{@{}l@{}} 
+        \( \text{Fehler} \) \\ 
+        \( H(p) \) \\ 
+        \( \text{AUC-PR} \)
+      \end{tabular} \\
+      \hline
+    \end{tabularx}
+  }
+  \caption{Vergleich der modellspezifischen und anwendungsspezifischen Unsicherheitsmetriken für Surrogatmodelle}\label{tab:chapter6r71}
 \end{table}
+
+\pagebreak
 
 % ~\parencite{}
 
@@ -324,8 +382,6 @@ R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken f�
 R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surrogatmodelle, insbesondere Bayes'sche neuronale Netze und konforme Vorhersagen.
 
 % Untersuchung:
-
-
 
 % Vergleich
 
