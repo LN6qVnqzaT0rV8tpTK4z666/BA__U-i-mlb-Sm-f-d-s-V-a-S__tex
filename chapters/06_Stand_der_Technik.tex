@@ -17,43 +17,43 @@
 
 R1 Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
   \centering
   \begin{tabular}{|l|p{\dimexpr\textwidth-3cm-2\tabcolsep}|}  
     \hline
     \textbf{\gls{surrogat}} & \textbf{Eignungsgrund} \\
     \hline
-    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0,25em]
+    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
       \item \gls{Gaußsche Prozessregression}
     \end{itemize} &  
-    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
       \item Intrinsische probabilistische Ausgabe
       \item Exakte Varianzschätzung für kleine Datensätze
       \item Kernel-basierte Unsicherheitscharakterisierung
     \end{itemize} \\ 
     \hline
-    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
       \item Deep Ensembles
     \end{itemize} & 
-    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
       \item Redundante Modellierung reduziert Overconfidence
       \item Einfache Integration in existierende Architekturen
       \item Robust gegen Out-of-Distribution-Daten
     \end{itemize} \\
     \hline
-    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
       \item Hybrid-Methoden
     \end{itemize} & 
-    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
       \item Kombiniert Stärken von Blackbox-Modellen und GPR
       \item Nachrüstbar auf existierende Modelle
       \item Recheneffiziente Unsicherheitspropagation
     \end{itemize} \\
     \hline
-    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
       \item \gls{Bayesianische neuronale Netze}s
     \end{itemize} & 
-    \begin{itemize}[topsep=0pt, itemsep=0pt, left=-1pt, labelsep=0.25em]
+    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
       \item Systematische Integration von Priors
       \item Theoretisch fundierte Parameterunsicherheit
       \item Natürliche Regularisierung durch Bayes'sche Inferenz
@@ -74,9 +74,10 @@ R1 Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quan
 
 R2 Welche allgemeinen und modellspezifischen Faktoren beeinflussen das Lernen von Unsicherheiten in ML-Modellen?
 
-Allgemeine Faktoren
+\newline
+R2.1 Allgemeine Faktoren
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
   \begin{tabular}{|l|p{10cm}|}
     \hline
     \textbf{Unsicherheitsdimensionen} & \textbf{Mögliche Werte} \\
@@ -90,24 +91,65 @@ Allgemeine Faktoren
     Entstehungszeit & Anforderungsdefinition, Entwicklungszeit, Laufzeit \\
     \hline
   \end{tabular}
-  \caption{R2 Allg. Fakt. Klassifizierung Unsicherheit KI-Systeme nach A. Kreuz ~\nocite{AndreasKreutz2022} ~\nocite{AndreasKreutz2022b}}\label{tab:chapter6r21}
+  \caption{R2 Allg. Faktoren Klassifizierung Unsicherheit KI-Systeme nach A. Kreuz ~\nocite{AndreasKreutz2022} ~\nocite{AndreasKreutz2022b}}\label{tab:chapter6r21}
 \end{table}
 
-Modellspezifische Faktoren
+\newline
+R2.2 Modellspezifische Faktoren
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
   \centering
-  \begin{tabular}{|l|l|p{\dimexpr\textwidth-8cm-2\tabcolsep}|}  % Adjusted width
+  \begin{tabular}{|l|p{\dimexpr\textwidth-5cm-2\tabcolsep}|}
     \hline
-    & \textbf{X} & \textbf{Y} \\
+    \textbf{\gls{Bayesianische neuronale Netze}} & \textbf{Modellspezifische Faktoren} \\
     \hline
-    A & & \\
+    Prior-Verteilungen & Wahl der Prioren beeinflusst die Unsicherheit und Vorhersagegenauigkeit. \\
     \hline
-    B & & \\
+    Likelihood-Funktion & Bestimmt, wie Unsicherheit in den Beobachtungen modelliert wird (z.B. durch Gaussian). \\
+    \hline
+    Posterior Approximation & MCMC oder Variational Inference schätzt den Posterior und die Unsicherheit. \\
+    \hline
+    Regularisierung & Hilft, Overfitting zu vermeiden und Unsicherheit zu kontrollieren. \\
+    \hline
+    Bayesische Optimierung & Optimiert Hyperparameter unter Berücksichtigung der Unsicherheit. \\
+    \hline
+    Datenqualität & Schlechte Datenqualität erhöht Unsicherheit, gute Qualität verringert sie. \\
+    \hline
+    Maßstab & Der Maßstab des Modells beeinflusst die Unsicherheitsquantifizierung. \\
     \hline
   \end{tabular}
-  \caption{R2 Modellspez. Fakt. Klassifizierung Unsicherheit Model A nach X Model B nach Y}\label{tab:chapter6r22}
+  \caption{R2.2 Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Bayesianische neuronale Netze}}\label{tab:chapter6r22}
 \end{table}
+
+\begin{table}[!htpb]
+  \centering
+  \begin{tabular}{|l|p{\dimexpr\textwidth-8cm-2\tabcolsep}|}
+    \hline
+    \textbf{\gls{Evidenzbasierte neuronale Netze}} & \textbf{Modellspezifische Faktoren} \\
+    \hline
+    Prior-Funktion & Beeinflusst, wie Unsicherheit über Daten und Parameter modelliert wird. \\
+    \hline
+    Evidenzfunktion & Modelliert Unsicherheit mit Evidenzparametern wie \( \alpha \), \( \beta \), und \( v \). \\
+    \hline
+    Posterior Approximation & Näherung der Posterior-Verteilung zur Unsicherheitsbestimmung. \\
+    \hline
+    Evidenz Optimierung & Optimierung der Evidenzparameter während des Trainings. \\
+    \hline
+    Evidenzbasierte Regularisierung & Regularisiert Evidenzparameter, um Overfitting zu vermeiden. \\
+    \hline
+    Multimodalität & Modelliert mehrere konkurrierende Unsicherheitsvorhersagen gleichzeitig. \\
+    \hline
+    Dateninhärente Unsicherheit & Unsicherheit, die direkt aus den Daten selbst resultiert. \\
+    \hline
+    Datenqualität & Schlechte Datenqualität erhöht die Unsicherheit im Modell. \\
+    \hline
+    Netzwerktiefe & Die Tiefe beeinflusst die Fähigkeit, Unsicherheit zu erfassen. \\
+    \hline
+  \end{tabular}
+  \caption{R2.2 Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Evidenzbasierte neuronale Netze}}\label{tab:chapter6r23}
+\end{table}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R3
@@ -115,9 +157,10 @@ Modellspezifische Faktoren
 
 R3 Wie können diese Einflussfaktoren abgeschwächt werden, um die Unsicherheitsabschätzung zu verbessern?
 
+\newline
 Wie Allgemeine Faktoren abschwächen?
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
   \centering
   \begin{tabular}{|l|l|p{\dimexpr\textwidth-8cm-2\tabcolsep}|}  % Adjusted width
     \hline
@@ -131,9 +174,10 @@ Wie Allgemeine Faktoren abschwächen?
   \caption{}\label{tab:chapter6r31}
 \end{table}
 
+\newline
 Wie Modellspezifische Faktoren abschwächen?
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
   \centering
   \begin{tabular}{|l|l|p{\dimexpr\textwidth-8cm-2\tabcolsep}|}  % Adjusted width
     \hline
@@ -155,9 +199,11 @@ Wie Modellspezifische Faktoren abschwächen?
 
 R4 Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
 
+\newline
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
 Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}. Ihre Recherche differenziert zur Beantwortung die Anwendungsdomäne, datenbasierte und modellbasierte Unsicherheitsmetriken.  
 
+\newline
 Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische Künstliche Intelligenz. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden. \parencite{manchingal2025}
 
 
