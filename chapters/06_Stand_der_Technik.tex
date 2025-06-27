@@ -389,15 +389,36 @@ R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surroga
   \centering
   \begin{tabularx}{\textwidth}{|l|l|X|}
     \hline
-    & \textbf{BNN} & \textbf{CFP} \\
+      & \textbf{\gls{Bayesianische neuronale Netze}} & \textbf{\gls{Conformal Prediction}} \\
     \hline
-    AC & & \\
+    \textbf{\gls{Aleatorische Unsicherheit}} & 
+    \begin{tabular}[c]{@{}l@{}} 
+      Post.-Verteilung \( p(\theta \mid \mathcal{D}) \) \\ 
+      UQ ü. Modellparam. bas. auf Train. \\[1ex]
+      MC Dropout \\ 
+    \end{tabular} &
+    \begin{tabular}[c]{@{}l@{}} 
+      CI \( \hat{y} \pm z \cdot \sigma \) \\ 
+      UQ durch CI \\[1ex]
+      Ensemble \\ 
+    \end{tabular} \\
     \hline
-    EC & & \\
+    \textbf{\gls{Epistemische Unsicherheit}} & 
+    \begin{tabular}[c]{@{}l@{}} 
+      Bayes. Uns. \( p(\theta \mid \mathcal{D}) \) \\ 
+      UQ ü. Modellparam. Bayes. Inferenz \\[1ex]
+      VI: Post.-Approx. 
+    \end{tabular} &
+    \begin{tabular}[c]{@{}l@{}} 
+      Vertr.-Regionen \\ 
+      Pred.-UQ durch CI \\[1ex]
+      GPR: UQ-Ansatz Kernel, Train. 
+    \end{tabular} \\
     \hline
   \end{tabularx}
-  \caption{R8 Vergleich UQ-Ansätze ML-basierter \gls{surrogat}}\label{tab:chapter6r81}
+  \caption{Vergleich der UQ-Ansätze für \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}}\label{tab:chapter6r81}
 \end{table}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R9
