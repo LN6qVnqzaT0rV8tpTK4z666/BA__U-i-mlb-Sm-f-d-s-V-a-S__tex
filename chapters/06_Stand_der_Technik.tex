@@ -433,18 +433,49 @@ R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsi
 
 % Vergleich ausgewählter Modelle
 
+\textit{A - Modelldefinition}, \textit{B - Parameterbereich}, \textit{C - Durchführung}
+
 \begin{table}[htpb]
   \centering
-  \begin{tabularx}{\textwidth}{|l|l|X|}
+  \begin{tabularx}{\textwidth}{|l|X|X|}
     \hline
-    & \textbf{BNN} & \textbf{Conformal Prediction} \\
+    & \textbf{BNN} & \textbf{CFP} \\
     \hline
-    A & & \\
+    \textbf{A} & 
+    \begin{tabular}[c]{@{}l@{}} 
+      Post. \( p(\theta \mid \mathcal{D}) \) \\ 
+      UQ ü. Modellparam. \\[1ex]
+      MC Dropout 
+    \end{tabular} &
+    \begin{tabular}[c]{@{}l@{}} 
+      CI \( \hat{y} \pm z \cdot \sigma \) \\ 
+      UQ durch CI \\[1ex]
+      Ensemble
+    \end{tabular} \\
     \hline
-    B & & \\
+    \textbf{B} & 
+    \begin{tabular}[c]{@{}l@{}} 
+      Modellparam.: Gew- $w_i$, Verteil. \\ 
+      - Sens. der Uns. ggü. Prioren \\ 
+      - Einfluss von Hyperparam.
+    \end{tabular} &
+    \begin{tabular}[c]{@{}l@{}} 
+      Unsicherheitsb.: CI \\ 
+      - Einfluss von Vertr.-regionen
+    \end{tabular} \\
+    \hline
+    \textbf{C} & 
+    \begin{tabular}[c]{@{}l@{}} 
+      Bayes. Inferenz z. UQ-Approx. \\ 
+      - MC Sim. mit Dropout
+    \end{tabular} &
+    \begin{tabular}[c]{@{}l@{}} 
+      Ensemble-Methode zur UQ \\ 
+      - Vertr.-regionen, CI UQ-Analyse
+    \end{tabular} \\
     \hline
   \end{tabularx}
-  \caption{R8 Sensitivitätsanalyse UQ-Schätzungen}\label{tab:chapter6r91}
+  \caption{R9 Sensitivitätsanalyse von UQ für BNN und CFP}\label{tab:chapter6r91}
 \end{table}
 
 % S4: Auswertung
