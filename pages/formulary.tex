@@ -1,0 +1,117 @@
+\newpage
+
+% Apply custom geometry for a single page
+\newgeometry{left=1cm,right=1cm,top=2cm,bottom=1.5cm}
+
+\begin{formelsammlung}
+
+\section*{Metriken}
+  \subsection*{Regression}
+  \begin{mdframed}[style=exercise]
+    \begin{itemize}[label={},left=0pt]
+      \item \text{Mittlere quadratische Abweichung} (\( \text{RMSE} \)) 
+      {\scriptsize \[ 
+          \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+      \]} \vspace{-1.5em} % Reducing space after the formula
+      \item \text{Mittlerer absoluter Fehler} (\( \text{MAE} \)) 
+      {\scriptsize \[ 
+          \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+      \]} \vspace{-1.5em}
+      \item \text{Mittlerer absoluter prozentualer Fehler} (\( \text{MAPE} \)) 
+      {\scriptsize \[ 
+          \frac{1}{n} \sum_{i=1}^{n} \left| \frac{y_i - \hat{y}_i}{y_i} \right|
+      \]} \vspace{-1.5em}
+      \item \text{Bestimmtheitsmaß} (\( R^2 \)) 
+      {\scriptsize \[ 
+        1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}
+      \]} \vspace{-1.5em}
+    \end{itemize}
+  \end{mdframed}
+
+  \subsection*{UQ}
+  % First mdframed environment
+  \begin{mdframed}[style=exercise]
+    \begin{itemize}[label={},left=0pt]
+      \item \text{Negative Log-Likelihood (Gauß)} (\( \text{NLL}_{\text{gaussian}} \)) 
+      {\scriptsize \[
+          \frac{1}{2} \log(2 \pi \sigma^2) + \frac{(y - \mu)^2}{2 \sigma^2}
+      \]} \vspace{-1.5em}
+      \item \text{Energie-Score} (\( \text{Energy Score} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} \left\| y_i - \hat{y}_i \right\|
+      \]} \vspace{-1.5em}
+      \item \text{Expected Calibration Error} (\( \text{ECE} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} \left| \text{confidence}(y_i) - \mathbb{1}(y_i \text{ is correct}) \right|
+      \]} \vspace{-1.5em}
+      \item \text{Adaptive Calibration Error} (\( \text{ACE} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} \left| \text{confidence}(y_i) - \mathbb{1}(y_i \text{ is correct}) \right|
+      \]} \vspace{-1.5em}
+      \item \text{Evidence Lower Bound} (\( \text{ELBO} \)) 
+      {\scriptsize \[
+          \mathbb{E}[\log p(y \mid \theta)] - \text{KL}(q(\theta) \parallel p(\theta))
+      \]} \vspace{-1.5em}
+      \item \text{Prediction Interval Coverage Probability} (\( \text{PICP} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} \mathbb{1}(\hat{y}_{i,\text{lower}} \leq y_i \leq \hat{y}_{i,\text{upper}})
+      \]} \vspace{-1.5em}
+      \item \text{Mean Prediction Interval Width} (\( \text{MPIW} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_{i,\text{upper}} - \hat{y}_{i,\text{lower}})
+      \]} \vspace{-1.5em}
+    \end{itemize}
+  \end{mdframed}
+
+  \pagebreak
+
+  % Second mdframed environment
+  \begin{mdframed}[style=exercise]
+    \begin{itemize}[label={},left=0pt]
+      \item \text{Continuous Ranked Probability Score} (\( \text{CRPS} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} \left| F(y_i) - G(y_i) \right|
+      \]} \vspace{-1.5em}
+      \item \text{KL-Divergenz zweier Normalvert.} (\( \text{KL}_{\text{normal}} \)) 
+      {\scriptsize \[
+          \frac{1}{2} \left( \log\left(\frac{\sigma^2}{\hat{\sigma}^2}\right) + \frac{\hat{\sigma}^2 + (\mu - \hat{\mu})^2}{\sigma^2} - 1 \right)
+      \]} \vspace{-1.5em}
+      \item \text{Mittelw. Vorhers.-Varianz} (\( \text{Mean Pred. Var.} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} \hat{\sigma}_i^2
+      \]} \vspace{-1.5em}
+      \item \text{Entropie Vorhersagen} (\( \text{Predictive Entropy} \)) 
+      {\scriptsize \[
+          1 - \sum_{i=1}^{n} p(y_i) \log p(y_i)
+      \]} \vspace{-1.5em}
+      \item \text{Epistemische Varianz} (\( \text{Epistemic Variance} \)) 
+      {\scriptsize \[
+          \frac{1}{N} \sum_{i=1}^{N} \text{Var}(\hat{y}_i)
+      \]} \vspace{-1.5em}
+      \item \text{Aleatorische Varianz} (\( \text{Aleatoric Variance} \)) 
+      {\scriptsize \[
+          \frac{1}{N} \sum_{i=1}^{N} \hat{\sigma}_i^2
+      \]} \vspace{-1.5em}
+      \item \text{Kalibrierungsfehler} (\( \text{Calibration Error} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} \left| \text{confidence}(y_i) - \mathbb{1}(y_i \text{ is correct}) \right|
+      \]} \vspace{-1.5em}
+      \item \text{Uncertainty Decomposition Analysis} (\( \text{UDA} \)) 
+      {\scriptsize \[
+          \mathbb{V}(\hat{y}_{\text{epistemic}}) + \mathbb{V}(\hat{y}_{\text{aleatoric}}) - \text{error}_{\text{true}}
+      \]} \vspace{-1.5em}
+      \item \text{Normalized Confidence Gap} (\( \text{NCG} \)) 
+      {\scriptsize \[
+          \frac{\text{confidence\_scores} - \text{baseline\_confidence\_scores}}{\text{max\_confidence} - \text{min\_confidence}}
+      \]} \vspace{-1.5em}
+      \item \text{Meta Metrik BNN-EDNN} (\( \text{MM-BNN-EDNN} \)) 
+      {\scriptsize \[
+          \text{UDA} + \text{MCE} + \text{corr\_err\_epistemic} + \text{NCG}
+      \]} \vspace{-1.5em}
+    \end{itemize}
+  \end{mdframed}
+
+\end{formelsammlung}
+
+% Restore the original geometry for subsequent pages
+\restoregeometry

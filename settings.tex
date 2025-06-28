@@ -1,10 +1,17 @@
 \PassOptionsToPackage{table,svgnames,dvipsnames}{xcolor}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[sc]{mathpazo}
 \usepackage[ngerman]{babel}
 \usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage[autostyle]{csquotes}
 \usepackage[%
   backend=biber,
@@ -15,16 +22,17 @@
   maxbibnames=99,
   giveninits,
   uniquename=init,
-  keywords=true]{biblatex} % TODO: adapt citation style
+  %keywords=true
+]{biblatex} % TODO: adapt citation style
 \usepackage[acronym]{glossaries} % Glossar
 \usepackage{graphicx}
+\usepackage{geometry}
 \usepackage{scrhack} % necessary for listings package
 \usepackage{listings}
 \usepackage{lstautogobble}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\usepackage{booktabs}
 \usepackage[final]{microtype}
 \usepackage{caption}
 \usepackage[hidelinks]{hyperref}
@@ -37,6 +45,32 @@
 \usepackage{silence}
 \WarningFilter{latex}{Command \showhyphens has changed}
 \WarningFilter{datatool-base}{No `datatool' support for dialect `ngerman'}
+
+% \usepackage{lmodern}
+% \usepackage{siunitx}
+% \AtBeginDocument{\RenewCommandCopy\qty\SI}
+% \usepackage{physics}
+% \usepackage{scrlayer-scrpage}
+% \usepackage[version=4]{mhchem}
+% \usepackage{mathtools}
+% \usepackage{float}
+\usepackage{xcolor}
+\usepackage{mdframed}
+% \usepackage{trfsigns}
+% \usepackage{capt-of}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setup Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \sisetup{locale=DE}
+% \sisetup{per-mode = symbol-or-fraction}
+% \sisetup{separate-uncertainty=true}
+% \DeclareSIUnit\year{a}
+% \DeclareSIUnit\clight{c}
+\mdfdefinestyle{exercise}{
+	backgroundcolor=black!10,roundcorner=8pt,hidealllines=true,nobreak
+}
 
 \setlength{\parindent}{0pt}
 
@@ -98,6 +132,10 @@
   \renewcommand{\indexname}{Stichwortverzeichnis}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newglossaryentry{Aleatorische Unsicherheit}{
   name=AC,
   description={Datenunsicherheit}
@@ -152,3 +190,13 @@
   name=Surrogatmodell,
   description={Ein Ersatzmodell zur Approximation komplexer Systeme}
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formelsammlung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{formelsammlung}{
+    \newpage
+    \twocolumn
+    \section*{Formelsammlung}
+}{}
