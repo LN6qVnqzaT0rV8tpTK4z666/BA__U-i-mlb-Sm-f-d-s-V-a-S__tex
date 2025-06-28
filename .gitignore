@@ -30,6 +30,8 @@
 #
 **/**/research/*
 #**/**/presentations/*
+**/**/presentations/abschlusspraesentation/*
+!**/**/presentations/abschlusspraesentation/.gitkeep
 **/**/prototypes/**/**/
 **/**/template-report-main/**/**/
 #
