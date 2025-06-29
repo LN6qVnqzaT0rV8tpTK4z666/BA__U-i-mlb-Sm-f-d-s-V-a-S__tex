@@ -40,3 +40,5 @@
 *.snm
 *.vrb
 *.bib
+#
+**/**/prototypes/evidential-deep-learning/*
