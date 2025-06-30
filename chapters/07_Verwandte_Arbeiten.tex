@@ -4,66 +4,26 @@
 
 
 % \begin{otherlanguage}{american}
-% \parencite{Depeweg2019}
-% \parencite{Ulmer2023}
 
-% % \begin{itemize}
-% %   \item {R1} Which machine learning-based surrogate models are suitable for quantifying uncertainties?
-% %   \item {R2} Which general and model-specific factors influence the learning of uncertainties in ML models?
-% %   \item {R3} How can these influencing factors be mitigated to improve uncertainty estimation?
-% %   \item {R4} To what extent can ML-based uncertainty quantification reliably correspond to the uncertainties observed in real-world application scenarios?
-% % \end{itemize}
+% \paragraph{Ulmer et al. (2023)}
+% Ulmer et al.~\parencite{Ulmer2023} provide a comprehensive overview of evidential deep learning (EDL) and its use for uncertainty estimation. In particular, the authors distinguish between \emph{Prior Networks}, which model uncertainties by separately predicting distribution parameters, and \emph{Posterior Networks}, which are based on Bayesian approximation. The paper presents various loss functions, including evidential losses for regression and classification, and discusses advantages and disadvantages of EDL compared to classical Bayesian methods such as variational inference or deep ensembles. In addition, the survey highlights challenges such as calibration, interpretability and the practical applicability of EDL methods. Ulmer et al. thus offers a current state of research and a well-founded classification of evidence-based methods in the spectrum of uncertainty quantification. 
 
-% % The specific tasks of this work include:
+% \section{Definition of the work}
 
-% % \begin{itemize}
-% %   \item {R5} Conducting a comprehensive literature review of UQ techniques in ML-based surrogate modeling.
-% %   \item {R6} Identifying and analyzing suitable uncertainty metrics for surrogate models, distinguishing between aleatory and epistemic uncertainty.
-% %   \item {R7} Comparing model-specific and application-specific evaluation metrics for quantifying uncertainty.
-% %   \item {R8} Investigating and comparing different UQ approaches for ML-based surrogate models, in particular Bayesian neural networks and conformal predictions.
-% %   \item {R9} Investigation of the theoretical influence of various factors on the uncertainty estimates of selected models.
-% %   \item {R10} Implementation and validation of the developed uncertainty metrics and modeling techniques in a realistic application, such as uncertainty estimation in critical regions of simulation data.
-% %   \item {R11} Writing a short Jupyter Notebook summarizing the most important approaches and results of the work.
-% % \end{itemize}
+% The present work does not deal with the development of new machine learning architectures, but uses existing model structures Evidential Deep Learning specifically for uncertainty assessment in scenario-based surrogate models. No general system identification, validation or control is developed, but the focus is on the analysis, aggregation and interpretation of uncertainties, not on dynamic compensation.
+% There is no exploration of complete control systems or classical MPC implementations, but a model consideration in the context of uncertain input space scenarios. Similarly, no physical AUV experiments or real-time systems are implemented, but simulations or model-based methods are considered. The work also distinguishes itself from pure fault diagnosis, classical statistical quality control, complete safety cases or normative certification methodology. (Furthermore, the aim is not to develop a complete method in the sense of a software framework, but to document an exemplary and research-oriented application).
 
-% ~\parencite{Pandey.30.11.2022}
-
-
-% \section{Delimitation of the work}
-
-% This work does not deal with the development of new machine learning architectures, but rather uses existing model structures of evidential deep learning specifically for uncertainty assessment in scenario-based surrogate models. No general system identification, validation, or control is developed; instead, the focus is on the analysis, aggregation, and interpretation of uncertainties, not on dynamic compensation.
-% There is no exploration of complete control systems or classic MPC implementations, but rather a model consideration in the context of uncertain input space scenarios. Likewise, no physical AUV experiments or real-time systems are implemented, but rather simulations and model-based methods are considered. The work also distinguishes itself from pure fault diagnosis, classical statistical quality control, complete safety cases, or normative certification methodology. (Furthermore, the aim is not to develop a complete method in the sense of a software framework, but rather to document an exemplary and research-oriented application.)
 % \end{otherlanguage}
 
 
 \begin{otherlanguage}{ngerman}
-\parencite{Depeweg2019}
-\parencite{Ulmer2023}
 
-% \begin{itemize}
-%   \item {R1} Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
-%   \item {R2} Welche allgemeinen und modellspezifischen Faktoren beeinflussen das Lernen von Unsicherheiten in ML-Modellen?
-%   \item {R3} Wie können diese Einflussfaktoren abgeschwächt werden, um die Unsicherheitsabschätzung zu verbessern?
-%   \item {R4} Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
-% \end{itemize}
-
-% Die spezifischen Aufgaben dieser Arbeit umfassen:
-
-% \begin{itemize}
-%   \item {R5} Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung.
-%   \item {R6} Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmodelle, wobei zwischen aleatorischer und epistemischer Unsicherheit unterschieden wird.
-%   \item {R7} Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
-%   \item {R8} Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surrogatmodelle, insbesondere Bayes'sche neuronale Netze und konforme Vorhersagen.
-%   \item {R9} Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
-%   \item {R10} Implementierung und Validierung der entwickelten Unsicherheitsmetriken und Modellierungstechniken in einer realistischen Anwendung, wie z.\,B. der Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten.
-%   \item {R11} Verfassen eines kurzen Jupyter Notebooks, das die wichtigsten Ansätze und Ergebnisse der Arbeit zusammenfasst.
-% \end{itemize}
-
-~\parencite{Pandey.30.11.2022}
-
+\paragraph{Ulmer et al. (2023)}
+Ulmer et al.~\parencite{Ulmer2023} liefern eine umfassende Übersicht über Evidential Deep Learning (EDL) und dessen Einsatz zur Unsicherheitsabschätzung. Die Autoren unterscheiden insbesondere zwischen \emph{Prior Networks}, die Unsicherheiten durch separate Vorhersage von Verteilungsparametern modellieren, und \emph{Posterior Networks}, die auf bayesianischer Approximation basieren. Die Arbeit stellt verschiedene Loss-Funktionen vor, darunter Evidential Losses für Regression und Klassifikation, und diskutiert Vor- und Nachteile von EDL gegenüber klassischen bayesianischen Verfahren wie Variational Inference oder Deep Ensembles. Darüber hinaus beleuchtet der Survey Herausforderungen wie Kalibrierung, Interpretierbarkeit und die praktische Anwendbarkeit von EDL-Methoden. Damit bietet Ulmer et al. einen aktuellen Stand der Forschung und eine fundierte Einordnung evidenzbasierter Verfahren in das Spektrum der Unsicherheitsquantifizierung. 
 
 \section{Abgrenzung der Arbeit}
 
 Die vorliegende Arbeit behandelt nicht die Entwicklung neuer Machine-Learning-Architekturen, sondern setzt bestehende Modellstrukturen Evidential Deep Learning gezielt zur Unsicherheitsbewertung in szenariobasierten Surrogatmodellen ein. Es wird keine generelle Systemidentifikation, Validierung oder Regelung entwickelt, sondern der Fokus liegt auf der Analyse, Aggregation und Interpretation von Unsicherheiten, nicht auf der dynamischen Kompensation.
 Es erfolgt keine Exploration vollständiger Regelungssysteme oder klassischer MPC-Implementierungen, sondern eine Modellbetrachtung im Kontext unsicherer Eingaberaum-Szenarien. Ebenso werden keine physikalischen AUV-Experimente oder Realzeitsysteme implementiert, sondern Simulationen bzw. modellbasierte Methoden betrachtet. Die Arbeit grenzt sich außerdem ab von reiner Fehlerdiagnose, klassischer statistischer Qualitätskontrolle, vollständigen Safety-Cases oder normativer Zertifizierungsmethodik. (Ferner wird keine vollständige Methodenentwicklung im Sinne eines Software-Frameworks angestrebt, sondern eine exemplarische und forschungsnahe Anwendung dokumentiert.)
+
 \end{otherlanguage}

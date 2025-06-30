@@ -366,6 +366,9 @@ R5 Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der
 
 \parencite{Gawlikowski2023}
 
+
+
+
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -527,9 +530,73 @@ Die genannten Anwendungsdomänen sind zusammengetragen aus \parencite{Gawlikowsk
 
 R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surrogatmodelle, insbesondere Bayes'sche neuronale Netze und konforme Vorhersagen.
 
-% Untersuchung:
+% R8 Untersuchung:
+\subsection*{Vergleich von BNNs und Conformal Prediction}
 
-% Vergleich
+Zur Untersuchung von R8 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI). Für CP wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch Vorhersageintervalle mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
+
+\paragraph{Vergleichskriterien}
+Es werden folgende Metriken erhoben:
+\begin{itemize}
+  \item RMSE, MAE der Punktvorhersagen
+  \item Calibration Error (ECE)
+  \item Coverage-Rate der Vorhersageintervalle
+  \item durchschnittliche Breite der Vorhersageintervalle
+  \item Rechenzeit für Training und Vorhersage
+\end{itemize}
+
+\paragraph{Ziel der Analyse}
+Ziel: Praktischen Unterschiede beider Verfahren bezüglich: 
+\begin{itemize}
+  \item Fähigkeit zur Trennung epistemischer und aleatorischer Unsicherheit (nur bei BNNs vorhanden)
+  \item strikten Garantien für die Unsicherheitsintervalle (nur bei CP vorhanden)
+  \item Ressourcenbedarf und Skalierbarkeit
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  R8 CPvsBNNMavani.py
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 1 Mavani Repo SVI, HMC cp exec on comp metrics diff most minimal analyzing
+
+% import numpy as np
+% from sklearn.model_selection import train_test_split
+% from sklearn.neural_network import MLPRegressor
+
+% # 1. Daten laden
+% X, y = load_yacht_data()  # dein Dataset-Loader
+
+% # 2. Split: Train / Calib / Test
+% X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.4, random_state=42)
+% X_calib, X_test, y_calib, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
+
+% # 3. Modell trainieren
+% model = MLPRegressor(hidden_layer_sizes=(50,50), max_iter=1000, random_state=42)
+% model.fit(X_train, y_train)
+
+% # 4. Residuen auf Calibration-Set
+% y_calib_pred = model.predict(X_calib)
+% errors = np.abs(y_calib - y_calib_pred)
+
+% # 5. Quantil bestimmen für 90%-Intervalle
+% alpha = 0.1
+% quantile = np.quantile(errors, 1 - alpha)
+
+% # 6. Prediction Intervals auf Test-Set
+% y_test_pred = model.predict(X_test)
+% lower = y_test_pred - quantile
+% upper = y_test_pred + quantile
+
+% # 7. Coverage berechnen
+% coverage = np.mean((y_test >= lower) & (y_test <= upper))
+% print(f"Coverage: {coverage:.3f}")
+
+% # Optional: Interval width
+% interval_width = np.mean(upper - lower)
+% print(f"Avg Interval Width: {interval_width:.3f}")
+
+% R8 Vergleich
 
 \begin{table}[!htpb]
   \centering
@@ -835,7 +902,7 @@ C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tuto
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
 
 ~\nocite{amini2020deep}
-%~\nocite{amini2020deep}
+%~\nocite{amini2020deepfork}
 ~\nocite{sensoy2018evidential}
 ~\nocite{nmavani2025}
 ~\nocite{windler2025}
