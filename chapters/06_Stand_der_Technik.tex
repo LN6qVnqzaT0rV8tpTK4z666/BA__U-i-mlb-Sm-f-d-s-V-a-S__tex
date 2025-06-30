@@ -364,7 +364,7 @@ R5 Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der
 
 \parencite{Ulmer2023}
 
-~\nocite{Gawlikowski2023}
+\parencite{Gawlikowski2023}
 
 \pagebreak
 
@@ -436,49 +436,75 @@ R6 Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmod
 R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
 
 % Beispiel-Anwendungsdomäne: [Beispiel-Domäne]
+Für den Vergleich werden Anwendungen im Ingenieurswesen vorgeschlagen: 
+
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Domäne} & \textbf{Typische Anwendungen} \\
+\hline
+Strukturmechanik & Spannungsanalyse, Lebensdauerberechnung \\
+\hline
+Aerodynamik & CFD-Simulation, Drag/Lift-Koeffizienten \\
+\hline
+Fahrzeugbau & Crashsimulation, Akustik (NVH), Thermomanagement \\
+\hline
+Akustik & Modalanalyse, Schallausbreitung \\
+\hline
+Materialwissenschaft & Materialeigenschaften, Werkstoffdesign \\
+\hline
+Geophysik & Erdbebensimulation, Bodenmechanik \\
+\hline
+Prozesssimulation & Chemische Reaktoren, Prozessoptimierung \\
+\hline
+Energie & Batterie-Management, Netzstabilität \\
+\hline
+\end{tabularx}
+\caption{Anwendungsdomänen im Ingenieurwesen für ML-Surrogatmodelle}
+\label{tab:ingenieurwesen-domains-small}
+\end{table}
 
 % Anwendungsspezifikation:
+Als Beispiel-Domäne zum Vergleich der modellspezifischen und anwendungsspezifischen Unsicherheitsmetriken für Surrogatmodelle im Autonomen Fahren wird der Fahrzeugbau gewählt. 
 
 \begin{table}[!htpb]
   \centering
-  \resizebox{\textwidth}{!}{
-    \begin{tabularx}{\textwidth}{|l|l|X|}
-      \hline
-        & \textbf{Modellspezifische Metriken} & \textbf{Anwendungsspezifische Metriken} \\
-      \hline
-      \textbf{AC} & 
-      \begin{tabular}[c]{@{}l@{}} 
-        \( \text{RMSE} \) \\ 
-        \( \text{MAE} \) \\ 
-        \( \text{KL}(P \parallel Q) \)
-      \end{tabular}
-      & 
-      \begin{tabular}[c]{@{}l@{}} 
-        \( \text{Accuracy} \) \\ 
-        \( F_1 \) \\ 
-        \( \text{AUC} \)
-      \end{tabular} \\
-      \hline
-      \textbf{EC} & 
-      \begin{tabular}[c]{@{}l@{}} 
-        \( \mathcal{L}(\theta) \) \\ 
-        \( \text{BMA} \) \\ 
-        \( \text{CI} \)
-      \end{tabular}
-      & 
-      \begin{tabular}[c]{@{}l@{}} 
-        \( \text{Fehler} \) \\ 
-        \( H(p) \) \\ 
-        \( \text{AUC-PR} \)
-      \end{tabular} \\
-      \hline
-    \end{tabularx}
-  }
-  \caption{Vergleich der modellspezifischen und anwendungsspezifischen Unsicherheitsmetriken für Surrogatmodelle}\label{tab:chapter6r71}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{|l|X|X|}
+    \hline
+    & \textbf{Modellspezifische Metriken} & \textbf{Anwendungsspezifische Metriken (Autonomes Fahren)} \\
+    \hline
+    \textbf{AC} & 
+    RMSE: Abweichung zwischen vorhergesagten und tatsächlichen Sensordaten (z. B. Positionen von Objekten) \newline
+    MAE: Mittlere absolute Abweichung bei Objekterkennung oder Trajektorien \newline
+    KL(P‖Q): Abweichung zwischen Vorhersage- und Ground-Truth-Wahrscheinlichkeitsverteilungen & 
+    Accuracy: Korrektheit der Objekterkennung (z. B. Fußgänger erkannt/nicht erkannt) \newline
+    F1-Score: Balance zwischen Präzision und Recall bei der Objekterkennung \newline
+    AUC: Trennschärfe bei der Klassifikation sicherer vs. unsicherer Szenarien \\
+    \hline
+    \textbf{EC} & 
+    \( \mathcal{L}(\theta) \): Loss-Funktion inklusive Unsicherheitsanteile (z. B. evidentieller Loss) \newline
+    BMA: Mittelung mehrerer Modellposteriors für robustere Unsicherheiten \newline
+    CI: Konfidenzintervalle für kritische Größen (z. B. Zeit bis Kollision) & 
+    Fehler: Abweichung von vorhergesagten zu tatsächlichen Sicherheitsabständen \newline
+    H(p): Entropie der Klassifikationsausgabe als Maß epistemischer Unsicherheit \newline
+    AUC-PR: Leistungsfähigkeit bei seltenen, kritischen Klassen (z. B. seltene Gefahrensituationen) \\
+    \hline
+  \end{tabularx}
+  \caption{Vergleich modellspezifischer und anwendungsspezifischer Unsicherheitsmetriken für Surrogatmodelle im autonomen Fahren}
+  \label{tab:chapter6r71}
 \end{table}
 
-
 \footnote{%
+
+\begin{minipage}[t]{\textwidth}
+\scriptsize
+\textbf{Quellen zu Tab. \ref{tab:ingenieurwesen-domains-small}:}\\[0.5em]
+Die genannten Anwendungsdomänen sind zusammengetragen aus \parencite{Gawlikowski2023} sowie \parencite{Ulmer2023}. Beide Werke behandeln typische Einsatzfelder von ML-basierten Surrogatmodellen im Ingenieurwesen. 
+\end{minipage}%
+\vspace{0.125em}
 \begin{minipage}[t]{\textwidth}
 \scriptsize
 \textbf{Quellen zu Tab. \ref{tab:chapter6r71}:}\\[0.5em]

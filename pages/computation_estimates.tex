@@ -5,25 +5,40 @@
 
 Zur Reproduktion der Experimente aus \parencite{amini2020deep} ergibt sich folgender Rechenaufwand.
 
-\vspace{0.5em}
-
 \begin{table}[!htbp]
   \centering
-  \begin{tabular}{ll}
-    \toprule
-    \textbf{Symbol} & \textbf{Bedeutung} \\
-    \midrule
-    $D$ & Zahl der Datensätze (1–9) \\
-    $T$ & Zahl der Trainer-Varianten (3) \\
-    $R$ & Zahl der Trials (z.\,B.\ 20) \\
-    $E$ & Zahl der Epochen (z.\,B.\ 40) \\
-    $N$ & Zahl der Trainingsdaten \\
-    $B$ & Batchgröße \\
-    $P$ & Modellparameteranzahl \\
-    \bottomrule
-  \end{tabular}
-  \caption{Parameterdefinitionen}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{|l|X|X|}
+    \hline
+    \textbf{Kategorie} & \textbf{Inhalt} & \textbf{Yacht Beispielwert} \\
+    \hline
+    \textbf{Symbol} & Parameterdefinitionen & - \\
+    \hline
+    $D$ & Zahl der Datensätze (typ. 1–9) & - \\
+    \hline
+    $T$ & Zahl der Trainer-Varianten & 3 \\
+    \hline
+    $R$ & Zahl der Trials & 20 \\
+    \hline
+    $E$ & Zahl der Epochen & 40 \\
+    \hline
+    $N$ & Zahl der Trainingsdaten & 308 \\
+    \hline
+    $B$ & Batchgröße & 16 \\
+    \hline
+    $P$ & Modellparameteranzahl & 3 \\
+    \hline
+    \textbf{MLP Architektur} & Input Layer: $d_\text{in}=6$ \newline Hidden Layer: 2 × 50 Neuronen \newline Output Layer: 4 Neuronen & - \\
+    \hline
+    \textbf{Speicherbedarf} & Modellgewichte: $P \times 4$ Bytes \newline Aktivierungen: $\mathcal{O}(B \times L)$ \newline Datensätze: gering (UCI) & - \\
+    \hline
+    \textbf{Hardware} & Kleine Datensätze: CPU ausreichend \newline Große Datensätze: GPU empfohlen (z. B. RTX 3060, ≥ 6GB VRAM) & - \\
+    \hline
+  \end{tabularx}
+  \caption{\footnotesize Übersicht Parameter, Architektur, Hardwareempfehlungen f. Reproduzierbarkeit Amini 2020}
+  \label{tab:edl-gesamt}
 \end{table}
+
 
 \vspace{-0.5em}
 
@@ -46,32 +61,6 @@ Zur Reproduktion der Experimente aus \parencite{amini2020deep} ergibt sich folge
 }
 \]
 
-\vspace{1em}
-
-\noindent
-\textbf{Beispiel Yacht-Dataset}
-
-\vspace{0.3em}
-
-\begin{table}[!htbp]
-  \centering
-  \begin{tabular}{lr}
-    \toprule
-    \textbf{Parameter} & \textbf{Wert} \\
-    \midrule
-    $N$ & 308 \\
-    $B$ & 16 \\
-    $E$ & 40 \\
-    $T$ & 3 \\
-    $R$ & 20 \\
-    $P$ & 3,104 \\
-    \bottomrule
-  \end{tabular}
-  \caption{Yacht-Dataset Parameter}
-\end{table}
-
-\vspace{-0.5em}
-
 \textbf{Berechnung FLOPs Yacht:}
 \[
 40 \times 20 \times 3{,}104 \times 16 
@@ -84,69 +73,6 @@ Zur Reproduktion der Experimente aus \parencite{amini2020deep} ergibt sich folge
 60 \times 40 \times 10^6 
 = 2.4 \times 10^9 \text{ FLOPs}
 \]
-
-\vspace{0.5em}
-
-\noindent
-\textbf{MLP-Architektur Yacht}
-
-\vspace{0.3em}
-
-\begin{table}[!htbp]
-  \centering
-  \begin{tabular}{ll}
-    \toprule
-    \textbf{Layer} & \textbf{Konfiguration} \\
-    \midrule
-    Input & $d_\text{in} = 6$ \\
-    Hidden & 2 × 50 Neuronen \\
-    Output & 4 Neuronen \\
-    \bottomrule
-  \end{tabular}
-  \caption{MLP-Struktur für Yacht}
-\end{table}
-
-\vspace{1em}
-
-\noindent
-\textbf{Speicherbedarf (ungefähr):}
-
-\vspace{0.5em}
-
-\begin{table}[!htbp]
-  \centering
-  \begin{tabular}{ll}
-    \toprule
-    \textbf{Komponente} & \textbf{Speicher} \\
-    \midrule
-    Modellgewichte & $P \times 4$ Bytes \\
-    Aktivierungen & $\mathcal{O}(B \times L)$ \\
-    Datensätze & gering bei UCI-Daten \\
-    \bottomrule
-  \end{tabular}
-  \caption{Speicherbedarf beim Training}
-\end{table}
-
-\vspace{1em}
-
-\noindent
-\textbf{Hardware-Empfehlung:}
-
-\vspace{0.5em}
-
-\begin{table}[!htbp]
-  \centering
-  \begin{tabular}{p{0.4\textwidth}p{0.5\textwidth}}
-    \toprule
-    \textbf{Kleine Datensätze} & CPU ausreichend, 2–4 Kerne, 8 GB RAM \\
-    \midrule
-    \textbf{Große Datensätze} & GPU empfohlen (z.\,B.\ RTX 3060 oder höher, $\geq$ 6 GB VRAM) \\
-    \bottomrule
-  \end{tabular}
-  \caption{Hardware-Empfehlungen}
-\end{table}
-
-\vspace{0.5em}
 
 \noindent
 Die Experimente aus \parencite{amini2020deep} sind damit auch auf moderner Consumer-Hardware grundsätzlich reproduzierbar.
