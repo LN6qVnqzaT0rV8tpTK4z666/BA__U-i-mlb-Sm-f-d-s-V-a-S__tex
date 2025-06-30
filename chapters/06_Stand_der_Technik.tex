@@ -23,48 +23,71 @@ R1 Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quan
     \hline
     \textbf{\gls{surrogat}} & \textbf{Eignungsgrund} \\
     \hline
-    \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
-      \item \gls{Gaußsche Prozessregression}
+    \begin{itemize}[topsep=0em, itemsep=0.25em, left=0em, labelsep=0.25em]
+      \item 1. \gls{Gaußsche Prozessregression}
     \end{itemize} &  
     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
-      \item Intrinsische probabilistische Ausgabe
-      \item Exakte Varianzschätzung für kleine Datensätze
-      \item Kernel-basierte Unsicherheitscharakterisierung
+      \item 1.1. Intrinsische probabilistische Ausgabe
+      \item 1.2. Exakte Varianzschätzung für kleine Datensätze
+      \item 1.3. Kernel-basierte Unsicherheitscharakterisierung
     \end{itemize} \\ 
     \hline
     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
-      \item Deep Ensembles
+      \item 2. Deep Ensembles
     \end{itemize} & 
     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
-      \item Redundante Modellierung reduziert Overconfidence
-      \item Einfache Integration in existierende Architekturen
-      \item Robust gegen Out-of-Distribution-Daten
+      \item 2.1. Redundante Modellierung reduziert Overconfidence
+      \item 2.2. Einfache Integration in existierende Architekturen
+      \item 2.3. Robust gegen Out-of-Distribution-Daten
     \end{itemize} \\
     \hline
     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
-      \item Hybrid-Methoden
+      \item 3. Hybrid-Methoden
     \end{itemize} & 
     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
-      \item Kombiniert Stärken von Blackbox-Modellen und GPR
-      \item Nachrüstbar auf existierende Modelle
-      \item Recheneffiziente Unsicherheitspropagation
+      \item 3.1. Kombiniert Stärken von Blackbox-Modellen und GPR
+      \item 3.2. Nachrüstbar auf existierende Modelle
+      \item 3.3. Recheneffiziente Unsicherheitspropagation
     \end{itemize} \\
     \hline
     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
-      \item \gls{Bayesianische neuronale Netze}s
+      \item 4. \gls{Bayesianische neuronale Netze}s
     \end{itemize} & 
     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
-      \item Systematische Integration von Priors
-      \item Theoretisch fundierte Parameterunsicherheit
-      \item Natürliche Regularisierung durch Bayes'sche Inferenz
+      \item 4.1. Systematische Integration von Priors
+      \item 4.2. Theoretisch fundierte Parameterunsicherheit
+      \item 4.3. Natürliche Regularisierung durch Bayes'sche Inferenz
     \end{itemize} \\
     \hline
   \end{tabularx}
-  \caption{R1 Vgl. v. Unsicherheitsquantifizierungsmethoden in ML}\label{tab:chapter6r1}
+  \caption{R1 Vgl. v. Unsicherheitsquantifizierungsmethoden in ML}
+  \label{tab:chapter6r1}
 \end{table}
 
+\footnote{%
+\begin{minipage}[t]{\textwidth}
+\scriptsize
+\textbf{Quellen zu Tab. \ref{tab:chapter6r1}:}\\
+1. \parencite[Kap.~2]{rasmussen2006gaussian}, 
+1.1. \parencite[S.~16–17]{rasmussen2006gaussian}, 
+1.2. \parencite[Kap.~2.2]{rasmussen2006gaussian},
+1.3. \parencite[Kap.~4]{rasmussen2006gaussian}\\[0.3em]
+2. \parencite{lakshminarayanan2017simple},
+2.1. \parencite[S.~3]{lakshminarayanan2017simple},
+2.2. \parencite[S.~5]{lakshminarayanan2017simple},
+2.3. \parencite{ovadia2019can}\\[0.3em]
+3. \parencite{perdikaris2017nonlinear}, 
+3.1. \parencite[S.~5–6]{perdikaris2017nonlinear},
+3.2. \parencite[S.~6]{perdikaris2017nonlinear},
+3.3. \parencite{liu2020multifidelity}\\[0.3em]
+4. \parencite{gal2016uncertainty}, 
+4.1. \parencite[Kap.~2.3]{gal2016uncertainty}, 
+4.2. \parencite[S.~40–41]{gal2016uncertainty}, 
+4.3. \parencite[S.~41–42]{gal2016uncertainty}
+\end{minipage}%
+}
 
-% Übersicht aus MC25 
+% (Übersicht aus MC25) 
 
 \newpage
 
@@ -82,16 +105,17 @@ R2.1 Allgemeine Faktoren
     \hline
     \textbf{Unsicherheitsdimensionen} & \textbf{Mögliche Werte} \\
     \hline
-    Lokalisierung im System & Umgebung, Modellierung, Funktionen, Ziele, Verfügbare Ressourcen \\
+    1. Lokalisierung im System & Umgebung, Modellierung, Funktionen, Ziele, Verfügbare Ressourcen \\
     \hline
-    Natur & Epistemisch, Aleatorisch \\
+    2. Natur & Epistemisch, Aleatorisch \\
     \hline
-    Grad der Unsicherheit & Keine Unsicherheit, Mangel an Wissen, Mangel an Bewusstsein, Mangel an Fähigkeit Bewusstsein zu erlangen \\
+    3. Grad der Unsicherheit & Keine Unsicherheit, Mangel an Wissen, Mangel an Bewusstsein, Mangel an Fähigkeit Bewusstsein zu erlangen \\
     \hline
-    Entstehungszeit & Anforderungsdefinition, Entwicklungszeit, Laufzeit \\
+    4. Entstehungszeit & Anforderungsdefinition, Entwicklungszeit, Laufzeit \\
     \hline
   \end{tabularx}
-  \caption{R2 Allg. Faktoren Klassifizierung Unsicherheit KI-Systeme nach A. Kreuz ~\nocite{AndreasKreutz2022} ~\nocite{AndreasKreutz2022b}}\label{tab:chapter6r21}
+  \caption{R2 Allg. Faktoren Klassifizierung Unsicherheit KI-Systeme nach A. Kreuz ~\nocite{AndreasKreutz2022} ~\nocite{AndreasKreutz2022b}}
+  \label{tab:chapter6r21}
 \end{table}
 
 \newline
@@ -103,19 +127,19 @@ R2.2 Modellspezifische Faktoren
     \hline
     \textbf{\gls{Bayesianische neuronale Netze}} & \textbf{Modellspezifische Faktoren} \\
     \hline
-    Prior-Verteilungen & Wahl der Prioren beeinflusst die Unsicherheit und Vorhersagegenauigkeit. \\
+    1. Prior-Verteilungen & Wahl der Prioren beeinflusst die Unsicherheit und Vorhersagegenauigkeit. \\
     \hline
-    Likelihood-Funktion & Bestimmt, wie Unsicherheit in den Beobachtungen modelliert wird (z.B. durch Gaussian). \\
+    2. Likelihood-Funktion & Bestimmt, wie Unsicherheit in den Beobachtungen modelliert wird (z.B. durch Gaussian). \\
     \hline
-    Posterior Approximation & MCMC oder Variational Inference schätzt den Posterior und die Unsicherheit. \\
+    3. Posterior Approximation & MCMC oder Variational Inference schätzt den Posterior und die Unsicherheit. \\
     \hline
-    Regularisierung & Hilft, Overfitting zu vermeiden und Unsicherheit zu kontrollieren. \\
+    4. Regularisierung & Hilft, Overfitting zu vermeiden und Unsicherheit zu kontrollieren. \\
     \hline
-    Bayesische Optimierung & Optimiert Hyperparameter unter Berücksichtigung der Unsicherheit. \\
+    5. Bayesische Optimierung & Optimiert Hyperparameter unter Berücksichtigung der Unsicherheit. \\
     \hline
-    Datenqualität & Schlechte Datenqualität erhöht Unsicherheit, gute Qualität verringert sie. \\
+    6. Datenqualität & Schlechte Datenqualität erhöht Unsicherheit, gute Qualität verringert sie. \\
     \hline
-    Maßstab & Der Maßstab des Modells beeinflusst die Unsicherheitsquantifizierung. \\
+    7. Maßstab & Der Maßstab des Modells beeinflusst die Unsicherheitsquantifizierung. \\
     \hline
   \end{tabularx}
   \caption{R2.2 Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Bayesianische neuronale Netze}}\label{tab:chapter6r22}
@@ -127,27 +151,60 @@ R2.2 Modellspezifische Faktoren
     \hline
     \textbf{\gls{Evidenzbasierte neuronale Netze}} & \textbf{Modellspezifische Faktoren} \\
     \hline
-    Prior-Funktion & Beeinflusst, wie Unsicherheit über Daten und Parameter modelliert wird. \\
+    1. Prior-Funktion & Beeinflusst, wie Unsicherheit über Daten und Parameter modelliert wird. \\
     \hline
-    Evidenzfunktion & Modelliert Unsicherheit mit Evidenzparametern wie \( \alpha \), \( \beta \), und \( v \). \\
+    2. Evidenzfunktion & Modelliert Unsicherheit mit Evidenzparametern wie \( \alpha \), \( \beta \), und \( v \). \\
     \hline
-    Posterior Approximation & Näherung der Posterior-Verteilung zur Unsicherheitsbestimmung. \\
+    3. Posterior Approximation & Näherung der Posterior-Verteilung zur Unsicherheitsbestimmung. \\
     \hline
-    Evidenz Optimierung & Optimierung der Evidenzparameter während des Trainings. \\
+    4. Evidenz Optimierung & Optimierung der Evidenzparameter während des Trainings. \\
     \hline
-    Evidenzbasierte Regularisierung & Regularisiert Evidenzparameter, um Overfitting zu vermeiden. \\
+    5. Evidenzbasierte Regularisierung & Regularisiert Evidenzparameter, um Overfitting zu vermeiden. \\
     \hline
-    Multimodalität & Modelliert mehrere konkurrierende Unsicherheitsvorhersagen gleichzeitig. \\
+    6. Multimodalität & Modelliert mehrere konkurrierende Unsicherheitsvorhersagen gleichzeitig. \\
     \hline
-    Dateninhärente Unsicherheit & Unsicherheit, die direkt aus den Daten selbst resultiert. \\
+    7. Dateninhärente Unsicherheit & Unsicherheit, die direkt aus den Daten selbst resultiert. \\
     \hline
-    Datenqualität & Schlechte Datenqualität erhöht die Unsicherheit im Modell. \\
+    8. Datenqualität & Schlechte Datenqualität erhöht die Unsicherheit im Modell. \\
     \hline
-    Netzwerktiefe & Die Tiefe beeinflusst die Fähigkeit, Unsicherheit zu erfassen. \\
+    9. Netzwerktiefe & Die Tiefe beeinflusst die Fähigkeit, Unsicherheit zu erfassen. \\
     \hline
   \end{tabularx}
   \caption{R2.2 Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Evidenzbasierte neuronale Netze}}\label{tab:chapter6r23}
 \end{table}
+
+\footnote{%
+\begin{minipage}[t]{\textwidth}
+\scriptsize
+\textbf{Quellen zu Tab. \ref{tab:chapter6r21}, Tab. \ref{tab:chapter6r22}, Tab. \ref{tab:chapter6r23}:}\\[0.125em]
+\textbf{R2.1 Allgemeine Faktoren}: 
+1. \parencite[S.~47–52]{AndreasKreutz2022},
+2. \parencite[S.~54]{AndreasKreutz2022},
+3. \parencite[S.~56–58]{AndreasKreutz2022},
+4. \parencite[S.~60]{AndreasKreutz2022}\\[0.125em]
+
+\textbf{R2.2.1 Bayesianische neuronale Netze}: 
+1. \parencite[Kap.~2.3]{gal2016uncertainty},
+2. \parencite[Kap.~3]{blundell2015weight},
+3. \parencite[S.~40–41]{gal2016uncertainty},
+4. \parencite[S.~41–42]{gal2016uncertainty},
+5. \parencite[Kap.~7.4]{rasmussen2006gaussian},
+6. \parencite[S.~16]{bishop2006pattern},
+7. \parencite[S.~29–31]{gal2016uncertainty}\\[0.125em]
+
+\textbf{R2.2.2 Evidenzbasierte neuronale Netze}: 
+1. \parencite{sensoy2018evidential},
+2. \parencite[S.~2–3]{sensoy2018evidential},
+3. \parencite[S.~4]{sensoy2018evidential},
+4. \parencite[S.~5]{sensoy2018evidential},
+5. \parencite[S.~6]{sensoy2018evidential},
+6. \parencite[S.~6–7]{sensoy2018evidential},
+7. \parencite{kendall2017uncertainties},
+8. \parencite{kendall2017uncertainties},
+9. \parencite[S.~6]{sensoy2018evidential}
+\end{minipage}%
+}
+
 
 \newpage
 
@@ -166,13 +223,13 @@ Wie Allgemeine Faktoren abschwächen?
     \hline
     \textbf{Unsicherheitsdimensionen} & \textbf{Mögliche Abschwächung} \\
     \hline
-    Lokalisierung im System & Verbesserung der Modellgenauigkeit und der Ressourcennutzung durch gezielte Datensammlung und Modellanpassung. \\
+    1. Lokalisierung im System & Verbesserung der Modellgenauigkeit und der Ressourcennutzung durch gezielte Datensammlung und Modellanpassung. \\
     \hline
-    Natur & Einsatz von Hybriden Modellen, die sowohl epistemische als auch aleatorische Unsicherheit modellieren können. \\
+    2. Natur & Einsatz von Hybriden Modellen, die sowohl epistemische als auch aleatorische Unsicherheit modellieren können. \\
     \hline
-    Grad der Unsicherheit & Erhöhung des Modellspezifikationsgrades, z. B. durch Mehrfachmodellierung und Unsicherheitsquantifizierung. \\
+    3. Grad der Unsicherheit & Erhöhung des Modellspezifikationsgrades, z. B. durch Mehrfachmodellierung und Unsicherheitsquantifizierung. \\
     \hline
-    Entstehungszeit & Frühzeitige Einbindung von Unsicherheitsmodellierung in die Anforderungsdefinition und Entwicklungszeit. \\
+    4. Entstehungszeit & Frühzeitige Einbindung von Unsicherheitsmodellierung in die Anforderungsdefinition und Entwicklungszeit. \\
     \hline
   \end{tabularx}
   \caption{R3 Abschwächung allgemeiner Faktoren KI Systeme}\label{tab:chapter6r31}
@@ -187,22 +244,22 @@ Wie Modellspezifische Faktoren abschwächen?
     \hline
     \textbf{Modellspezifische Faktoren} & \textbf{Abschwächung der Unsicherheitsabschätzung} \\
     \hline
-    Prior-Verteilungen & Auswahl robusterer Priors und der Anpassung der Priors an die Daten zur Vermeidung von zu starker Unsicherheit. \\
+    1. Prior-Verteilungen & Auswahl robusterer Priors und der Anpassung der Priors an die Daten zur Vermeidung von zu starker Unsicherheit. \\
     \hline
-    Likelihood-Funktion & Optimierung der Likelihood-Modelle, z. B. durch mehrdimensionale Likelihoods für die Unsicherheit. \\
+    2. Likelihood-Funktion & Optimierung der Likelihood-Modelle, z. B. durch mehrdimensionale Likelihoods für die Unsicherheit. \\
     \hline
-    Posterior Approximation & Verwendung effizienter Approximationstechniken wie Variational Inference zur besseren Unsicherheitsabschätzung. \\
+    3. Posterior Approximation & Verwendung effizienter Approximationstechniken wie Variational Inference zur besseren Unsicherheitsabschätzung. \\
     \hline
-    Regularisierung & Anwendung von stärkeren Regularisierungstechniken, um Overfitting zu vermeiden und die Unsicherheit gezielt zu verringern. \\
+    4. Regularisierung & Anwendung von stärkeren Regularisierungstechniken, um Overfitting zu vermeiden und die Unsicherheit gezielt zu verringern. \\
     \hline
-    Bayesische Optimierung & Optimierung von Hyperparametern unter Unsicherheit zur gezielten Reduzierung der Unsicherheit im Modell. \\
+    5. Bayesische Optimierung & Optimierung von Hyperparametern unter Unsicherheit zur gezielten Reduzierung der Unsicherheit im Modell. \\
     \hline
-    Datenqualität & Verbesserung der Datenqualität durch Datenbereinigung und Zusammenstellung von Trainingsdatensätzen, die die Unsicherheit reduzieren. \\
+    6. Datenqualität & Verbesserung der Datenqualität durch Datenbereinigung und Zusammenstellung von Trainingsdatensätzen, die die Unsicherheit reduzieren. \\
     \hline
-    Maßstab & Verwendung von Skalenmodellen zur Reduzierung von Unsicherheit durch Skalierung des Modells auf größere Datenmengen. \\
+    7. Maßstab & Verwendung von Skalenmodellen zur Reduzierung von Unsicherheit durch Skalierung des Modells auf größere Datenmengen. \\
     \hline
   \end{tabularx}
-  \caption{R3.1 Abschwächung Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Bayesianische neuronale Netze}}\label{tab:chapter6r32}
+  \caption{R3.1 Abschwächung Modellspezifische Faktoren zur Unsicherheitsklassifizierung \textbf{\gls{Bayesianische neuronale Netze}}}\label{tab:chapter6r32}
 \end{table}
 
 \begin{table}[!htpb]
@@ -211,35 +268,70 @@ Wie Modellspezifische Faktoren abschwächen?
     \hline
     \textbf{Modellspezifische Faktoren} & \textbf{Abschwächung der Unsicherheitsabschätzung} \\
     \hline
-    Prior-Funktion & Verwendung von flexiblen Prior-Funktionen, die auf den spezifischen Unsicherheitsgrad der Daten abgestimmt sind. \\
+    1. Prior-Funktion & Verwendung von flexiblen Prior-Funktionen, die auf den spezifischen Unsicherheitsgrad der Daten abgestimmt sind. \\
     \hline
-    Evidenzfunktion & Verbesserung der Evidenzparameter, z. B. durch den Einsatz von multimodalen Evidenzfunktionen, um Unsicherheit besser zu modellieren. \\
+    2. Evidenzfunktion & Verbesserung der Evidenzparameter, z. B. durch den Einsatz von multimodalen Evidenzfunktionen, um Unsicherheit besser zu modellieren. \\
     \hline
-    Posterior Approximation & Anwendung von genauen MCMC-Methoden oder besseren Näherungsverfahren zur genaueren Posterior-Bestimmung. \\
+    3. Posterior Approximation & Anwendung von genauen MCMC-Methoden oder besseren Näherungsverfahren zur genaueren Posterior-Bestimmung. \\
     \hline
-    Evidenz Optimierung & Evidenzparameter optimieren, um unsichere Parameterbereiche zu vermeiden und so Unsicherheit zu reduzieren. \\
+    4. Evidenz Optimierung & Evidenzparameter optimieren, um unsichere Parameterbereiche zu vermeiden und so Unsicherheit zu reduzieren. \\
     \hline
-    Evidenzbasierte Regularisierung & Stärkere Regularisierung der Evidenzparameter zur Vermeidung von zu großer Unsicherheit bei der Modellierung. \\
+    5. Evidenzbasierte Regularisierung & Stärkere Regularisierung der Evidenzparameter zur Vermeidung von zu großer Unsicherheit bei der Modellierung. \\
     \hline
-    Multimodalität & Integration von multimodalen Unsicherheitsmodellen, um verschiedene Unsicherheitsquellen gleichzeitig zu verarbeiten. \\
+    6. Multimodalität & Integration von multimodalen Unsicherheitsmodellen, um verschiedene Unsicherheitsquellen gleichzeitig zu verarbeiten. \\
     \hline
-    Dateninhärente Unsicherheit & Reduktion der Datenrauschen und Verbesserung der Datenvorverarbeitung, um die Datenunsicherheit zu minimieren. \\
+    7. Dateninhärente Unsicherheit & Reduktion der Datenrauschen und Verbesserung der Datenvorverarbeitung, um die Datenunsicherheit zu minimieren. \\
     \hline
-    Datenqualität & Optimierung der Datenqualität durch Verwendung besserer Datensätze und Datenaugmentation. \\
+    8. Datenqualität & Optimierung der Datenqualität durch Verwendung besserer Datensätze und Datenaugmentation. \\
     \hline
-    Netzwerktiefe & Optimierung der Netzwerktiefe unter Berücksichtigung der Modellkomplexität, um unnötige Unsicherheiten zu vermeiden. \\
+    9. Netzwerktiefe & Optimierung der Netzwerktiefe unter Berücksichtigung der Modellkomplexität, um unnötige Unsicherheiten zu vermeiden. \\
     \hline
   \end{tabularx}
-  \caption{R3.2 Abschwächung Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Evidenzbasierte neuronale Netze}}\label{tab:chapter6r33}
+  \caption{R3.2 Abschwächung Modellspezifische Faktoren zur Unsicherheitsklassifizierung \textbf{\gls{Evidenzbasierte neuronale Netze}}}\label{tab:chapter6r33}
 \end{table}
 
-% ~\parencite{}
+\footnote{%
+\begin{minipage}[t]{\textwidth}
+\scriptsize
+\textbf{Quellen zu Tab. \ref{tab:chapter6r31}, Tab. \ref{tab:chapter6r32}, Tab. \ref{tab:chapter6r33}:}\\[0.125em]
+\textbf{R3 Allgemeine Faktoren}\\
+1. \parencite[S.~47–52]{AndreasKreutz2022},
+2. \parencite[S.~6–9]{perdikaris2017nonlinear},
+3. \parencite[S.~3]{ovadia2019can},
+4. \parencite[S.~60]{AndreasKreutz2022} \\[0.125em]
+
+\textbf{R3.1 Bayesianische neuronale Netze}\\
+1. \parencite[Kap.~2.3]{gal2016uncertainty},
+2. \parencite[Kap.~3]{blundell2015weight},
+3. \parencite[S.~40–41]{gal2016uncertainty},
+4. \parencite[S.~41–42]{gal2016uncertainty},
+5. \parencite[Kap.~7.4]{rasmussen2006gaussian},
+6. \parencite[S.~16]{bishop2006pattern},
+7. \parencite[S.~29–31]{gal2016uncertainty} \\[0.125em]
+
+\textbf{R3.2 Evidenzbasierte neuronale Netze}\\
+1. \parencite{sensoy2018evidential},
+2. \parencite[S.~3–4]{sensoy2018evidential},
+3. \parencite[S.~4]{sensoy2018evidential},
+4. \parencite[S.~5]{sensoy2018evidential},
+5. \parencite[S.~6]{sensoy2018evidential},
+6. \parencite[S.~6–7]{sensoy2018evidential},
+7. \parencite{kendall2017uncertainties},
+8. \parencite{kendall2017uncertainties},
+9. \parencite[S.~6]{sensoy2018evidential}
+\end{minipage}%
+}
+
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 R4 Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
+\\
+\\
+% Beweis aus Herleitung wie das einander entsprechen kann.
 \\
 \\
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
@@ -262,6 +354,8 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
 
 % Die spezifischen Aufgaben dieser Arbeit umfassen:
 
+\pagebreak
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -272,7 +366,7 @@ R5 Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der
 
 ~\nocite{Gawlikowski2023}
 
-\newpage
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R6
@@ -317,15 +411,27 @@ R6 Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmod
   \caption{R6 Unsicherheitsmetriken für Surrogatmodelle}\label{tab:chapter6r61}
 \end{table}
 
-% ~\parencite{}
+
+\footnote{%
+\begin{minipage}[t]{\textwidth}
+\scriptsize
+\textbf{Quellen zu Tab. \ref{tab:chapter6r61}:}\\[0.125em]
+\textbf{AC (Aleatorische Unsicherheit)}\\
+\quad Datenbasierte Metriken: \parencite[S.~28–30]{bishop2006pattern}, 
+\quad Modellbasierte Metriken: \parencite[Kap.~2]{rasmussen2006gaussian}; \parencite{blundell2015weight}\\ [0.125em]
+
+\textbf{EC (Epistemische Unsicherheit)}\\
+\quad Datenbasierte Metriken: \parencite[S.~30–32]{bishop2006pattern}, 
+\quad Modellbasierte Metriken: \parencite[S.~40–42]{gal2016uncertainty}; \parencite{sensoy2018evidential}, 
+\end{minipage}%
+}
+
 
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R7
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
 
 R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
 
@@ -371,9 +477,23 @@ R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken f�
   \caption{Vergleich der modellspezifischen und anwendungsspezifischen Unsicherheitsmetriken für Surrogatmodelle}\label{tab:chapter6r71}
 \end{table}
 
-\pagebreak
 
-% ~\parencite{}
+\footnote{%
+\begin{minipage}[t]{\textwidth}
+\scriptsize
+\textbf{Quellen zu Tab. \ref{tab:chapter6r71}:}\\[0.5em]
+\textbf{AC (Aleatorische Unsicherheit)}\\
+\quad Modellspezifische Metriken: \parencite[S.~224–226]{bishop2006pattern}; \parencite[Kap.~2]{rasmussen2006gaussian} \\
+\quad Anwendungsspezifische Metriken: \parencite[S.~40–42]{bishop2006pattern} \\[0.5em]
+
+\textbf{EC (Epistemische Unsicherheit)}\\
+\quad Modellspezifische Metriken: \parencite[S.~40–42]{gal2016uncertainty}; \parencite{blundell2015weight}; \parencite{sensoy2018evidential} \\
+\quad Anwendungsspezifische Metriken: \parencite[S.~233–235]{bishop2006pattern}; \parencite{ovadia2019can}
+\end{minipage}%
+}
+
+
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R8
@@ -419,6 +539,23 @@ R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surroga
   \caption{Vergleich der UQ-Ansätze für \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}}\label{tab:chapter6r81}
 \end{table}
 
+
+\footnote{%
+\begin{minipage}[t]{\textwidth}
+\scriptsize
+\textbf{Quellen zu Tab. \ref{tab:chapter6r81}:}\\[0.5em]
+\textbf{Bayesianische neuronale Netze (BNNs)}\\
+Aleatorische Unsicherheit: \parencite[Kap.~3]{blundell2015weight}; \parencite[S.~40–42]{gal2016uncertainty} \\
+Epistemische Unsicherheit: \parencite[S.~40–42]{gal2016uncertainty}; \parencite{mackay1992practical} \\[0.5em]
+
+\textbf{Conformal Prediction (CP)}\\
+Aleatorische Unsicherheit: \parencite[S.~4–5]{vovk2005algorithmic}; \parencite{angelopoulos2021gentle} \\
+Epistemische Unsicherheit: \parencite{angelopoulos2021gentle}; \parencite[S.~63–65]{shafer2008tutorial}; \parencite{rasmussen2006gaussian}
+\end{minipage}%
+}
+
+
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R9
@@ -479,6 +616,26 @@ R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsi
 \end{table}
 
 % S4: Auswertung
+
+
+\footnote{%
+\begin{minipage}[t]{\textwidth}
+\scriptsize
+\textbf{Quellen zu Tab. \ref{tab:chapter6r91}:}\\[0.5em]
+\textbf{BNN (Bayesianische neuronale Netze)}\\
+A (Modelldefinition): \parencite[Kap.~3]{blundell2015weight}; \parencite[S.~40–42]{gal2016uncertainty} \\
+B (Parameterbereich): \parencite[S.~448–450]{mackay1992practical}; \parencite[Kap.~5]{rasmussen2006gaussian} \\
+C (Durchführung): \parencite[S.~41–42]{gal2016uncertainty}; \parencite{blundell2015weight} \\[0.5em]
+
+\textbf{CFP (Conformal Prediction)}\\
+A (Modelldefinition): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tutorial} \\
+B (Parameterbereich): \parencite[S.~63–65]{shafer2008tutorial}; \parencite{vovk2005algorithmic} \\
+C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tutorial}
+\end{minipage}%
+}
+
+
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R_base
@@ -652,6 +809,7 @@ R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
 
 ~\nocite{amini2020deep}
+%~\nocite{amini2020deep}
 ~\nocite{sensoy2018evidential}
 ~\nocite{nmavani2025}
 ~\nocite{windler2025}

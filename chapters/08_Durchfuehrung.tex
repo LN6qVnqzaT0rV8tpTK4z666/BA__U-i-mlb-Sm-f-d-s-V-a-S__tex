@@ -13,15 +13,11 @@
 \begin{otherlanguage}{ngerman}
 \section*{Bekannte Ansätze}
 
-% amini2020deep
+Zur Validierung der eingesetzten Methodik für \gls{Evidenzbasierte neuronale Netze} wird der von \parencite{amini2020deep} veröffentlichte Benchmark reproduziert. Hierfür wird die im Anhang dargestellte Aufwandsschätzung berücksichtigt, die auf die im Unternehmen verfügbare Hardware abgestimmt ist, (~\ref{sec:aufwand-edl}).
 
-% sensoy2018evidential
-
-\parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
+% \parencite{amini2020deep} Sektion 4 Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} über $\{ \text{RMSE}, \text{NLL} \} \times \{ \text{dropout}, \text{ensembles}, \text{evidential} \} \times \{ \text{boston}, \text{concrete}, \text{energy}, \text{kin8nm}, \text{naval}, \text{power}, \text{protein}, \text{wine}, \text{yacht} \}$. % Der Benchmark konnte reroduziert werden. 
 
 % ~\ref{tab:resultsamini}
-
-% \parencite{amini2020deep} Sektion 4 Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} über $\{ \text{RMSE}, \text{NLL} \} \times \{ \text{dropout}, \text{ensembles}, \text{evidential} \} \times \{ \text{boston}, \text{concrete}, \text{energy}, \text{kin8nm}, \text{naval}, \text{power}, \text{protein}, \text{wine}, \text{yacht} \}$. % Der Benchmark konnte reroduziert werden ~\ref{tab:resultsamini}. 
 
 
 % \begin{table}[htbp]
@@ -49,6 +45,9 @@
 %     \label{tab:resultsamini}
 % \end{table}
 
+\parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
+
+% ~\ref{tab:resultsamini}
 
 \begin{figure}[!h]
   \centering
