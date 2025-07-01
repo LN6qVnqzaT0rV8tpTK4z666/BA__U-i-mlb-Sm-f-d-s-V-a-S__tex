@@ -344,6 +344,11 @@ Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}
 \newline
 Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische Künstliche Intelligenz. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden. \parencite{manchingal2025}
 
+Ein Ansatz, Evidential Neural Networks (ENNs) auf Nicht-Wissen zu trainieren, besteht darin, das Modell so zu konditionieren, dass es bei unbekannten Eingaben geringe Evidenz liefert. Dazu werden Out-of-Distribution (OOD)-Beispiele im Training eingebunden und die Loss-Funktion um einen Term erweitert, der die Evidenzverteilung in Richtung einer Uniform-Verteilung drängt:
+
+
+\textbf{Model Evidentielles Wissen}
+
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x3.png}
@@ -355,6 +360,16 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
   \includegraphics[width=\textwidth]{../figures/x2.png}
   \caption{R4.2}
 \end{figure}
+
+
+\textbf{Model Evidentielles Nicht-Wissen}
+
+\[
+\text{Loss}_{\text{total}} = \text{Loss}_{\text{in}} + \lambda \cdot \text{KL}\bigl(\text{Dir}(\boldsymbol{\alpha}) \,\|\, \text{Uniform}\bigr).
+\]
+
+Dies verhindert überhöhte Evidenzwerte bei unbekannten Inputs. Bei Regression kann analog die Varianz gezielt maximiert werden, indem $\alpha$ und $\beta$ auf niedrige Werte gesetzt werden. So lernt das ENN, Nicht-Wissen explizit durch geringe Evidenz und hohe Unsicherheit auszudrücken (vgl. Manchingal et al. (MC25)).
+
 
 % Die spezifischen Aufgaben dieser Arbeit umfassen:
 
@@ -720,23 +735,30 @@ R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surroga
 
 Zur Untersuchung von R8 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI) \parencite{nmavani2025}. Für \gls{Conformal Prediction} wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch Vorhersageintervalle mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
 
-\paragraph{Vergleichskriterien}
-Es werden folgende Metriken erhoben:
-\begin{itemize}
-  \item RMSE, MAE der Punktvorhersagen
-  \item Calibration Error (ECE)
-  \item Coverage-Rate der Vorhersageintervalle
-  \item durchschnittliche Breite der Vorhersageintervalle
-  \item Rechenzeit für Training und Vorhersage
-\end{itemize}
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Aspekt} & \textbf{Details} \\ \hline
 
-\paragraph{Ziel der Analyse}
-Ziel: Praktischen Unterschiede beider Verfahren bezüglich: 
-\begin{itemize}
-  \item Fähigkeit zur Trennung epistemischer und aleatorischer Unsicherheit (nur bei BNNs vorhanden)
-  \item strikten Garantien für die Unsicherheitsintervalle (nur bei CP vorhanden)
-  \item Ressourcenbedarf und Skalierbarkeit
-\end{itemize}
+\textbf{Vergleichskriterien} &
+RMSE, MAE der Punktvorhersagen \newline
+Calibration Error (ECE) \newline
+Coverage-Rate der Vorhersageintervalle \newline
+Durchschnittliche Breite der Vorhersageintervalle \newline
+Rechenzeit für Training und Vorhersage \\ \hline
+
+\textbf{Ziel der Analyse} &
+Unterschiede der Verfahren hinsichtlich: \newline
+- Trennung epistemischer und aleatorischer Unsicherheit (nur bei BNNs) \newline
+- Strikten Garantien für Unsicherheitsintervalle (nur bei CP) \newline
+- Ressourcenbedarf und Skalierbarkeit \\ \hline
+
+\end{tabularx}
+\caption{R8 Vergleichskriterien und Analyseziele für Evidential Deep Learning vs. andere Methoden}
+\label{tab:vergleichskriterien}
+\end{table}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -814,7 +836,7 @@ Ziel: Praktischen Unterschiede beider Verfahren bezüglich:
     \end{tabular} \\
     \hline
   \end{tabularx}
-  \caption{Vergleich der UQ-Ansätze für \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}}\label{tab:chapter6r81}
+  \caption{R8 Vergleich der UQ-Ansätze für \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}}\label{tab:chapter6r81}
 \end{table}
 
 
