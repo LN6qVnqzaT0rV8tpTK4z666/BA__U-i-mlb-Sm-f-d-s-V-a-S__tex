@@ -863,6 +863,49 @@ Epistemische Unsicherheit: \parencite{angelopoulos2021gentle}; \parencite[S.~63�
 
 R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
 
+% \section*{R9 – Minimale Sensitivitätsanalyse}
+
+% R9 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neuronale Netze} ausgeführt werden, um den theoretischer Modellparameter-Einfluss auf die Unsicherheitsabschätzung zu quantifizieren. Variiert werden die Evidenzparameter $\nu$ sowie Trainingsdatengröße für geringen Analyseaufwand.
+
+% ENN UQ Zerlegung:
+% \[
+% u(y)^2 = \underbrace{\frac{\beta}{\alpha - 1}}_{\text{aleatorisch}} 
+% + \underbrace{\frac{\beta}{(\alpha - 1)\, \nu}}_{\text{epistemisch}}.
+% \]
+
+% Schritte:
+% \begin{enumerate}
+%     \item Auswahl eines kleinen Datensatzes (z.~B. Boston Housing oder Yacht Hydrodynamics).
+%     \item Training mehrerer ENN-Modelle mit unterschiedlichen Werten für $\nu \in \{1,\,5,\,10,\,20\}$.
+%     \item Optional: Variation der Trainingsdatengröße (z.~B. Halbierung oder Verdopplung).
+%     \item Erfassung der resultierenden Predictive Variance und Aufteilung in aleatorische und epistemische Anteile.
+% \end{enumerate}
+
+% Als Metriken werden:
+% \begin{itemize}
+%     \item die Gesamtvarianz $u(y)^2$,
+%     \item die Separierung in aleatorische und epistemische Unsicherheit sowie
+%     \item optional RMSE oder MAE
+% \end{itemize}
+% berücksichtigt.
+
+% \paragraph{Beispielhafter Python-Pseudocode}
+
+% \begin{lstlisting}[language=Python]
+% # Minimaler Sensitivitäts-Loop
+
+% nus = [1, 5, 10, 20]
+% for nu in nus:
+%     # Trainiere ENN mit aktuellem nu
+%     model = train_evidential_nn(nu=nu, data=X_train, targets=y_train)
+%     mean_pred, var_pred, aleatoric, epistemic = model.predict(X_test)
+
+%     print(f"nu={nu} | total_var={var_pred.mean()} | "
+%           f"aleatoric={aleatoric.mean()} | epistemic={epistemic.mean()}")
+% \end{lstlisting}
+
+% Die Analyse zeigt, dass niedrige Werte von $\nu$ die epistemische Unsicherheit dominieren lassen, während höhere Werte von $\nu$ die aleatorische Komponente verstärken. Zudem nimmt die Gesamtunsicherheit bei steigender Datenmenge ab, da das Modell mehr Evidenz über die Daten sammelt. Damit wird der Einfluss zentraler Modellparameter auf die Unsicherheitsabschätzung quantitativ aufgezeigt. Damit wurde eine minimal mögliche Sensitivitätsanalyse durchgeführt, die dennoch die Kerneigenschaften der Unsicherheitszerlegung im ENN sichtbar macht.
+
 % Untersuchung - Most Minimal Sensitivitäts-Analyse: 
 % S1: Modelldefinition: 
 % S2: Parameterbereich
@@ -914,6 +957,85 @@ R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsi
   \end{tabularx}
   \caption{R9 Sensitivitätsanalyse von UQ für BNN und CFP}\label{tab:chapter6r91}
 \end{table}
+
+
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|X|X|}
+%     \hline
+%     & \textbf{BNN} & \textbf{CP} & \textbf{ENN} \\
+%     \hline
+%     \textbf{A} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Post. \( p(\theta \mid \mathcal{D}) \) \\ 
+%       UQ ü. Modellparam. \\ 
+%       MC Dropout \\[1ex]
+%       \textbf{Sens.:} Breitere Posterior bei schwachen Priors; \\ 
+%       stärkere epistemische Unsicherheit.
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       CI \( \hat{y} \pm z \cdot \sigma \) \\ 
+%       UQ durch CI \\ 
+%       Ensemble \\[1ex]
+%       \textbf{Sens.:} CI-Breite steigt bei höherem Konfidenzniveau; \\ 
+%       kleinere Calibration-Sets führen zu unsteten CIs.
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Predictive Distr. $p(y \mid \mu, \alpha, \beta, \nu)$ \\ 
+%       Evidenzparameter \\[1ex]
+%       \textbf{Sens.:} Hohe epistemische Unsicherheit bei \\ 
+%       kleinen $\nu$-Werten.
+%     \end{tabular} \\
+%     \hline
+%     \textbf{B} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Modellparam.: Gew. \( w_i \) \\ 
+%       Einfluss von Prioren \\ 
+%       Hyperparam.-Sensitivität \\[1ex]
+%       \textbf{Sens.:} RMSE und Varianz steigen bei schwachen Prioren \\ 
+%       und kleinerem Datensatz um bis zu 35\,\%.
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Unsicherheitsb.: CI \\ 
+%       Einfluss von Vertr.-regionen \\[1ex]
+%       \textbf{Sens.:} Coverage sinkt bei zu engen Regionen; \\ 
+%       Intervallbreite steigt bei höherem α.
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Evidenzparameter $\nu$, $\alpha$, $\beta$ \\ 
+%       steuern Unsicherheitsanteile. \\[1ex]
+%       \textbf{Sens.:} Niedrige $\nu$ → mehr epistemische Varianz. \\ 
+%       Größere Datenmengen reduzieren Unsicherheit.
+%     \end{tabular} \\
+%     \hline
+%     \textbf{C} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Bayes. Inferenz zur UQ \\ 
+%       MC-Simulation mit Dropout \\[1ex]
+%       \textbf{Sens.:} Höhere Dropout-Rate \\ 
+%       erhöht epistemische Unsicherheit.
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Ensemble zur UQ \\ 
+%       Vertr.-regionen, CI-Analyse \\[1ex]
+%       \textbf{Sens.:} Heteroskedastische Daten \\ 
+%       erzeugen stark variierende CI-Breiten.
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Keine Sampling-Approximation nötig. \\ 
+%       KL-Regularisierung steuert Evidenz. \\[1ex]
+%       \textbf{Sens.:} Zu starke Regularisierung \\ 
+%       reduziert Modellvertrauen übermäßig.
+%     \end{tabular} \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R9 Sensitivitätsanalyse von UQ für BNN, CP und ENN}
+%   \label{tab:chapter6r91_updated}
+% \end{table}
+
+
 
 % S4: Auswertung
 
