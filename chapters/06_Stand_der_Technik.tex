@@ -19,6 +19,7 @@ R1 Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quan
 
 \begin{table}[!htpb]
   \centering
+  \footnotesize
   \begin{tabularx}{\textwidth}{|l|X|}
     \hline
     \textbf{\gls{surrogat}} & \textbf{Eignungsgrund} \\
@@ -101,6 +102,8 @@ R2 Welche allgemeinen und modellspezifischen Faktoren beeinflussen das Lernen vo
 R2.1 Allgemeine Faktoren
 
 \begin{table}[!htpb]
+  \centering
+  \footnotesize
   \begin{tabularx}{\textwidth}{|l|X|}
     \hline
     \textbf{Unsicherheitsdimensionen} & \textbf{Mögliche Werte} \\
@@ -123,6 +126,7 @@ R2.2 Modellspezifische Faktoren
 
 \begin{table}[!htpb]
   \centering
+  \footnotesize
   \begin{tabularx}{\textwidth}{|l|X|}
     \hline
     \textbf{\gls{Bayesianische neuronale Netze}} & \textbf{Modellspezifische Faktoren} \\
@@ -147,6 +151,7 @@ R2.2 Modellspezifische Faktoren
 
 \begin{table}[!htpb]
   \centering
+  \footnotesize
   \begin{tabularx}{\textwidth}{|l|X|}
     \hline
     \textbf{\gls{Evidenzbasierte neuronale Netze}} & \textbf{Modellspezifische Faktoren} \\
@@ -219,6 +224,7 @@ Wie Allgemeine Faktoren abschwächen?
 
 \begin{table}[!htpb]
   \centering
+  \footnotesize
   \begin{tabularx}{\textwidth}{|l|X|}
     \hline
     \textbf{Unsicherheitsdimensionen} & \textbf{Mögliche Abschwächung} \\
@@ -240,6 +246,7 @@ Wie Modellspezifische Faktoren abschwächen?
 
 \begin{table}[!htpb]
   \centering
+  \footnotesize
   \begin{tabularx}{\textwidth}{|l|X|}
     \hline
     \textbf{Modellspezifische Faktoren} & \textbf{Abschwächung der Unsicherheitsabschätzung} \\
@@ -264,6 +271,7 @@ Wie Modellspezifische Faktoren abschwächen?
 
 \begin{table}[!htpb]
   \centering
+  \footnotesize
   \begin{tabularx}{\textwidth}{|l|X|}
     \hline
     \textbf{Modellspezifische Faktoren} & \textbf{Abschwächung der Unsicherheitsabschätzung} \\
@@ -329,15 +337,11 @@ Wie Modellspezifische Faktoren abschwächen?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 R4 Inwieweit kann ML-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
-\\
-\\
 % Beweis aus Herleitung wie das einander entsprechen kann.
-\\
-\\
+\newline
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
 Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024} zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken. 
-\\
-\\
+\newline
 Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische Künstliche Intelligenz. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden. \parencite{manchingal2025}
 
 \begin{figure}[ht]
@@ -362,12 +366,193 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
 
 R5 Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung.
 
-\parencite{Ulmer2023}
+Der Beitrag zur umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung wird auf \gls{Evidenzbasierte neuronale Netze} eingegrenzt. In \gls{Evidenzbasierte neuronale Netze} soll zwischen In- und Exklusionskriterien unterschieden werden.
 
-\parencite{Gawlikowski2023}
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Kriterium} & \textbf{Beschreibung} \\ \hline
 
+\textbf{Inklusionskriterien} & 
+Evidential Deep Learning oder evidenzbasierte Unsicherheitsmodellierung \newline
+Peer-reviewed oder relevante arXiv-Preprints \newline
+Mit Experimenten oder Anwendungen \newline
+Publikationen 2016–2025 \newline
+Englischsprachig \\ \hline
 
+\textbf{Exklusionskriterien} &
+Keine Implementierung oder rein theoretisch ohne EDL-Bezug \newline
+Nur Bayesian NNs/Ensembles ohne evidenzielle Ansätze \newline
+Rein technische Papers ohne Unsicherheitsbezug \newline
+Nicht-englischsprachig \newline
+Nur Poster oder Abstracts ohne Volltext \\ \hline
 
+\end{tabularx}
+\caption{R5 Auswahlkriterien für die Literaturübersicht zu Evidential Deep Learning}
+\label{tab:auswahlkriterien}
+\end{table}
+
+% Fragenkatalog der mit Scopes abgedeckt werden soll. 
+
+% Wie wird Evidential Deep Learning zur Quantifizierung von Unsicherheit in neuronalen Netzen eingesetzt?
+
+% Welche Methoden, Benchmarks und Anwendungen existieren für EDL?
+
+% Was ist die optimale Loss-Funktion für EDL?
+
+% Welche mathematischen Grundlagen liegen Evidential Deep Learning zugrunde?
+
+% Wie ist die Verbindung zwischen EDL und Subjective Logic?
+
+% Worin unterscheiden sich Evidential Deep Learning und Bayesian Deep Learning?
+
+% Welche Architekturen eignen sich für Evidential Learning?
+
+% Welche Modifikationen sind an klassischen CNNs, RNNs, Transformers für EDL nötig?
+
+% Wie werden evidenzielle Layer in bestehende Architekturen integriert?
+
+% Worin liegen die Unterschiede zwischen Evidential Loss und Standard-Loss-Funktionen wie Cross Entropy?
+
+% Welche Rolle spielt KL-Regularisierung im Kontext von EDL?
+
+% Wie geht EDL mit fehlerhaften oder unsicheren Labels um?
+
+% Worin unterscheiden sich epistemische und aleatorische Unsicherheiten bei EDL?
+
+% Wie können evidenzielle Parameter interpretiert werden?
+
+% Welche Benchmarks werden typischerweise für EDL genutzt (z. B. MNIST, CIFAR-10, OOD-Tests)?
+
+% Wie schneidet EDL im Vergleich zu Bayesian Neural Networks und Deep Ensembles ab?
+
+% Welche Anwendungsgebiete gibt es für EDL, insbesondere in Bereichen wie Autonomous Driving oder Industrie 4.0?
+
+% Welche Herausforderungen bestehen aktuell bei Training und Einsatz von Evidential Deep Learning?
+
+% Welche Overconfidence-Probleme können bei EDL auftreten?
+
+% Wie skalierbar ist Evidential Deep Learning auf große Modelle und Datensätze?
+
+% Wie verhält sich EDL im Vergleich zu deterministischen Methoden mit nachträglicher Kalibrierung?
+
+Für die Literaturübersicht wurde ein Fragenkatalog generiert, der mit seinen Schwerpunkten folgende Scopes ergeben hat. 
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Scope} & \textbf{Beschreibung} \\ \hline
+
+1. Theoretische Grundlagen &
+1.1. Mathematische Formulierung von EDL \newline
+1.2. Verbindung zu Subjective Logic \newline
+1.3. Unterschiede zu Bayesian Deep Learning \\ \hline
+
+2. Architekturen &
+2.1. Netzarchitekturen für Evidential Learning \newline
+2.2. Modifikationen an klassischen CNNs, RNNs, Transformers \newline
+2.3. Integration evidenzieller Layer \\ \hline
+
+3. Loss Functions &
+3.1. Evidential Loss vs. Standard Cross Entropy \newline
+3.2. KL-Regularisierung \newline
+3.3. Umgang mit fehlerhaften Labels \\ \hline
+
+4. Uncertainty Types &
+4.1. Epistemische vs. aleatorische Unsicherheit \newline
+4.2. Interpretation evidenzieller Parameter \\ \hline
+
+5. Benchmarks &
+5.1. Typische Datensätze (MNIST, CIFAR-10, OOD-Tests) \newline
+5.2. Vergleich zu Bayesian NNs und Ensembles \\ \hline
+
+6. Anwendungsgebiete &
+6.1. Autonomous Driving \newline
+6.2. Industrie 4.0 \\ \hline
+
+7. Vergleich zu anderen Methoden &
+7.1. Bayesian Neural Networks \newline
+7.2. Deep Ensembles \newline
+7.3. Deterministische Methoden mit Calibration \\ \hline
+
+8. Herausforderungen &
+8.1. Trainingsstabilität \newline
+8.2. Overconfidence-Probleme \newline
+8.3. Skalierbarkeit auf große Modelle \\ \hline
+
+\end{tabularx}
+\caption{R5 Scopes der Fragen der Literaturübersicht zu Evidential Deep Learning}
+\label{tab:edl_scopes}
+\end{table}
+
+\pagebreak
+
+Mit den R5 Scopes der Fragen der Literaturübersicht zu Evidential Deep Learning wurden folgende 
+R5 Scopes der Antworten der Literaturübersicht zu Evidential Deep Learning mit zugehörigen Quellen definiert. 
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Scope} & \textbf{Beschreibung / Quellen} \\ \hline
+
+1.1. & Sensoy et al. (2018): Evidential Deep Learning to Quantify Classification Uncertainty \cite{sensoy2018evidential} \newline
+         Sensoy et al. (2023): Evidential Deep Learning: Theory and Practice \cite{sensoy2023tutorial} \\ 
+1.2. & Jøsang (2016): Subjective Logic \cite{josang2016subjective} \\ 
+1.3. & Kendall \& Gal (2017): What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? \cite{kendall2017uncertainties} \newline
+         Peters et al. (2023): On the Mathematical Consistency of Evidential Learning \cite{peters2023consistency} \\ \hline
+
+2.1. & Amini et al. (2020): Deep Evidential Regression \cite{amini2020deep} \newline
+         Tian et al. (2024): Evidential Graph Neural Networks \cite{tian2024egnn} \\ 
+2.2. & Sensoy et al. (2020): Uncertainty-Aware Deep Classification \cite{sensoy2020uncertainty} \newline
+         Bohlke et al. (2023): Evidential Vision Transformers \cite{bohlke2023evidentialvit} \\ 
+2.3. & Zhou et al. (2022): Evidential Transformer Networks \cite{zhou2022evidential} \newline
+         Bohlke et al. (2023): Evidential Vision Transformers \cite{bohlke2023evidentialvit} \\ \hline
+
+3.1. & Sensoy et al. (2018): Evidential Loss Function (Evidential Deep Learning) \cite{sensoy2018evidential} \\ 
+3.2. & Sensoy et al. (2020): KL-Regularization in Evidential Networks \cite{sensoy2020uncertainty} \newline
+         Amini et al. (2023): Improved KL Regularization for Evidential Regression \cite{amini2023kl} \\ 
+3.3. & Dhamija et al. (2018): Reducing Model Confidence for Out-of-Distribution Detection \cite{dhamija2018reducing} \\ \hline
+
+4.1. & Kendall \& Gal (2017): Aleatoric and Epistemic Uncertainty \cite{kendall2017uncertainties} \newline
+         Tran et al. (2023): Separating Aleatoric and Epistemic Uncertainty in Evidential Models \cite{tran2023separating} \\ 
+4.2. & Amini et al. (2020): Interpreting evidential parameters in regression tasks \cite{amini2020deep} \\ \hline
+
+5.1. & Amini et al. (2020): Evaluation on MNIST, CIFAR-10, OOD \cite{amini2020deep} \newline
+         Bohlke et al. (2023): Evaluation on CIFAR-100C, ImageNet-O \cite{bohlke2023evidentialvit} \\ 
+5.2. & Lakshminarayanan et al. (2017): Deep Ensembles as Baseline for Uncertainty \cite{lakshminarayanan2017simple} \newline
+         Tran et al. (2023): Comparative Benchmarks \cite{tran2023separating} \\ \hline
+
+6.1. & Feng et al. (2022): Evidential Uncertainty in Autonomous Driving \cite{feng2022review} \\ 
+6.2. & Wang et al. (2022): Uncertainty Modeling in Industrial AI \cite{wang2022uncertainty} \newline
+         Gupta et al. (2023): Evidential Learning for Industrial Predictive Maintenance \cite{gupta2023industrialedl} \newline
+         Chen et al. (2024): Uncertainty Estimation in Vision-Language Models \cite{chen2024vlm} \\ \hline
+
+7.1. & Gal \& Ghahramani (2016): Dropout as Bayesian Approximation \cite{gal2016dropout} \\ 
+7.2. & Lakshminarayanan et al. (2017): Deep Ensembles \cite{lakshminarayanan2017simple} \\ 
+7.3. & Guo et al. (2017): On Calibration of Modern Neural Networks \cite{guo2017calibration} \newline
+         Tran et al. (2023): Comparison of calibration in evidential vs. deterministic methods \cite{tran2023separating} \\ \hline
+
+8.1. & Sensoy et al. (2020): Training stability in evidential networks \cite{sensoy2020uncertainty} \newline
+         Peters et al. (2023): Loss function degeneracies \cite{peters2023consistency} \\ 
+8.2. & Dhamija et al. (2018): Overconfidence in neural networks \cite{dhamija2018reducing} \newline
+         Chen et al. (2024): Overconfidence in multimodal evidential learning \cite{chen2024vlm} \\ 
+8.3. & Zhou et al. (2022): Scalability of evidential transformers \cite{zhou2022evidential} \newline
+         Bohlke et al. (2023): Scalability challenges in large Vision Transformers \cite{bohlke2023evidentialvit} \\ \hline
+
+\end{tabularx}
+\caption{R5 Scopes der Antworten der Literaturübersicht zu Evidential Deep Learning mit aktuellen Quellen (2016–2025)}
+\label{tab:edl_scopes_sources_updated}
+\end{table}
+
+Hochwertige, zentrale Umfragen sind \parencite{Ulmer2023}, \parencite{Gawlikowski2023}. 
+
+Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der Realdaten ist im Anhang \ref{sec:enn_gum_derivation}.
 
 \pagebreak
 
@@ -533,7 +718,7 @@ R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surroga
 % R8 Untersuchung:
 \subsection*{Vergleich von BNNs und Conformal Prediction}
 
-Zur Untersuchung von R8 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI). Für CP wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch Vorhersageintervalle mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
+Zur Untersuchung von R8 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI) \parencite{nmavani2025}. Für \gls{Conformal Prediction} wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch Vorhersageintervalle mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
 
 \paragraph{Vergleichskriterien}
 Es werden folgende Metriken erhoben:

@@ -1,0 +1,94 @@
+\pagebreak
+
+\section*{Herleitung der Unsicherheitsäquivalenz zwischen Evidential Neural Networks und GUM}
+\label{sec:enn_gum_derivation}
+
+Die Messunsicherheit gemäß GUM (Guide to the Expression of Uncertainty in Measurement) wird im Kern als Varianz des Messwerts verstanden:
+
+\begin{equation}
+u(x)^2 = \mathrm{Var}(x) = \mathbb{E}\left[(x - \mu)^2\right].
+\end{equation}
+
+Messunsicherheiten werden meist in Form eines Konfidenzintervalls angegeben:
+
+\begin{equation}
+x \pm k \cdot u(x),
+\end{equation}
+
+wobei $k$ dem gewählten Vertrauensniveau entspricht.
+
+\subsection*{Ausgabe eines \gls{Evidenzbasierte neuronale Netze}}
+
+Ein \gls{Evidenzbasierte neuronale Netze} liefert keine einzelne Punktvorhersage, sondern eine Wahrscheinlichkeitsverteilung über mögliche Werte. Insbesondere wird oft eine Normal-Inverse-Gamma-Verteilung (NIG) für die Regression verwendet. Ein \gls{Evidenzbasierte neuronale Netze} liefert folgende Parameter:
+
+\begin{itemize}
+    \item $\mu$ = Erwartungswert der Vorhersage
+    \item $\nu$ = Evidenz über die Präzision (Sicherheit der Schätzung von $\mu$)
+    \item $\alpha, \beta$ = Parameter der Inverse-Gamma-Verteilung über die Varianz $\sigma^2$
+\end{itemize}
+
+Die bedingte Verteilung über $y$ lautet:
+
+\begin{equation}
+p(y \mid \mu, \alpha, \beta, \nu) 
+=
+\int 
+\mathcal{N}\left(y \mid \mu, \frac{\sigma^2}{\nu}\right) 
+\cdot
+\mathrm{InvGamma}(\sigma^2 \mid \alpha, \beta) 
+\; d\sigma^2.
+\end{equation}
+
+Diese Mischverteilung führt zu einer Student-\(t\)-Verteilung für \(y\).
+
+\subsection*{Varianz eines \gls{Evidenzbasierte neuronale Netze}}
+
+Die Vorhersagevarianz (Predictive Variance) eines \gls{Evidenzbasierte neuronale Netze} ergibt sich zu:
+
+\begin{equation}
+\mathrm{Var}(y) 
+=
+\mathbb{E}\left[\sigma^2\right] 
++ 
+\frac{\beta}{(\alpha - 1)\cdot \nu}.
+\end{equation}
+
+Dabei gilt:
+
+\begin{equation}
+\mathbb{E}[\sigma^2] = \frac{\beta}{\alpha - 1}.
+\end{equation}
+
+Die Vorhersageunsicherheit kann also geschrieben werden als:
+
+\begin{equation}
+u(y)^2 
+=
+\underbrace{\mathbb{E}[\sigma^2]}_{\text{aleatorische Unsicherheit}}
++
+\underbrace{\frac{\mathbb{E}[\sigma^2]}{\nu}}_{\text{epistemische Unsicherheit}}.
+\end{equation}
+
+\subsection*{Äquivalenz zu GUM}
+
+Dies entspricht exakt der Definition der GUM, die die Gesamtmessunsicherheit als Summe verschiedener Unsicherheitsquellen betrachtet. Somit kann die Varianz eines \gls{Evidenzbasierte neuronale Netze} direkt als Messunsicherheit gemäß GUM interpretiert werden. Daraus ergibt sich für ein Konfidenzintervall analog zur GUM-Notation:
+
+\begin{equation}
+\left[
+y_\text{pred} - k \cdot u(y),
+\quad
+y_\text{pred} + k \cdot u(y)
+\right].
+\end{equation}
+
+\subsection*{Zusammenfassung}
+
+Die in Evidential Neural Networks modellierte Predictive Variance entspricht der Definition der Messunsicherheit gemäß GUM, da sie sowohl die aleatorische Streuung des Messwertes als auch die epistemische Unsicherheit der Parameterschätzung integriert. Somit können die Unsicherheiten eines \gls{Evidenzbasierte neuronale Netze} direkt in die standardisierte Unsicherheitsangabe eines Messprozesses überführt werden:
+
+\begin{equation}
+u(y)^2 
+=
+\frac{\beta}{\alpha - 1}
++
+\frac{\beta}{(\alpha - 1)\cdot \nu}.
+\end{equation}
