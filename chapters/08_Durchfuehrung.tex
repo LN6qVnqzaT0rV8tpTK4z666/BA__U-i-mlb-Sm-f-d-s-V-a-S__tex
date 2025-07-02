@@ -20,41 +20,106 @@ Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten} beantwort
 
 Zur Validierung der eingesetzten Methodik für \gls{Evidenzbasierte neuronale Netze} wird der von \parencite{amini2020deep} veröffentlichte Benchmark reproduziert. Hierfür wird die im Anhang dargestellte Aufwandsschätzung berücksichtigt, die auf die im Unternehmen verfügbare Hardware abgestimmt ist, (~\ref{sec:aufwand-edl}).
 
-% \parencite{amini2020deep} Sektion 4 Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} über $\{ \text{RMSE}, \text{NLL} \} \times \{ \text{dropout}, \text{ensembles}, \text{evidential} \} \times \{ \text{boston}, \text{concrete}, \text{energy}, \text{kin8nm}, \text{naval}, \text{power}, \text{protein}, \text{wine}, \text{yacht} \}$. % Der Benchmark konnte reroduziert werden. 
+\paragraph{Vergleich Amini EDNN Regression} \parencite{amini2020deep} Sektion 4 Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze}.  
+\begin{noindentquote}
+\scriptsize
+\[
+\{ \text{RMSE}, \text{NLL} \} 
+\times 
+\{ \text{dropout}, \text{ensembles}, \text{evidential} \} 
+\times 
+\{ \text{boston}, \text{concrete}, \text{energy}, \text{kin8nm}, \text{naval}, \text{power}, \text{protein}, \text{wine}, \text{yacht} \}
+\]  
+\end{noindentquote}
+Der Benchmark konnte in erster Konfiguration annähernd reproduziert werden. 
+\begin{noindentquote}
+  \footnotesize
+  \texttt{python3 neurips2020/run\_uci\_dataset\_tests.py --datasets boston concrete energy-efficiency kin8nm naval power-plant protein wine yacht --num-trials 1 --num-epochs 5}
+\end{noindentquote}
+ mit Laufzeit von 9 Minuten 10.2 Sekunden $\leq$ 10 Minuten als \grqq Proof of concept\grqq. Die Konvergenz zu Aminis Werten ($\Delta (\text{RMSE}) = \left[ -0.5;\ -0.6 \right]$; $\Delta \text{NLL} = -0.08$) wird deutlich für die Konfiguration hinreichend umfangreicher Datensätze $\{\text{kin8nm}, \text{naval}, \text{protein} \}$. ~\ref{tab:comparison_ours_vs_amini_tabularx_v2} unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
 
-% ~\ref{tab:resultsamini}
+\begin{table*}[!htbp]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|}
+\hline
+\multirow{}{}{\textbf{Datensatz}} 
+& \multicolumn{3}{c|}{\textbf{RMSE}} 
+& \multicolumn{3}{c|}{\textbf{NLL}} \\ \cline{2-7}
+& \textbf{Dropout} & \textbf{Ensemble} & \textbf{Evidential} 
+& \textbf{Dropout} & \textbf{Ensemble} & \textbf{Evidential} \\ \hline
+boston 
+& 3.678 \newline \textit{2.896} \newline \mbox{$\Delta=+0.782$} 
+& 4.956 \newline \textit{2.998} \newline \mbox{$\Delta=+1.958$} 
+& 3.672 \newline \textit{2.886} \newline \mbox{$\Delta=+0.786$} 
+& 4.636 \newline \textit{2.755} \newline \mbox{$\Delta=+1.881$} 
+& 2.981 \newline \textit{2.838} \newline \mbox{$\Delta=+0.143$} 
+& 2.621 \newline \textit{2.701} \newline \mbox{$\Delta=-0.080$} \\ \hline
+concrete 
+& 6.905 \newline \textit{5.367} \newline \mbox{$\Delta=+1.538$} 
+& 6.705 \newline \textit{5.263} \newline \mbox{$\Delta=+1.442$} 
+& 6.496 \newline \textit{5.163} \newline \mbox{$\Delta=+1.333$} 
+& 5.254 \newline \textit{3.213} \newline \mbox{$\Delta=+2.041$} 
+& 3.271 \newline \textit{3.193} \newline \mbox{$\Delta=+0.078$} 
+& 3.277 \newline \textit{3.138} \newline \mbox{$\Delta=+0.139$} \\ \hline
+energy-efficiency 
+& 2.721 \newline \textit{1.200} \newline \mbox{$\Delta=+1.521$} 
+& 2.516 \newline \textit{0.987} \newline \mbox{$\Delta=+1.529$} 
+& 2.487 \newline \textit{0.984} \newline \mbox{$\Delta=+1.503$} 
+& 4.699 \newline \textit{-0.964} \newline \mbox{$\Delta=+5.663$} 
+& 1.920 \newline \textit{-1.315} \newline \mbox{$\Delta=+3.235$} 
+& 1.879 \newline \textit{-1.376} \newline \mbox{$\Delta=+3.255$} \\ \hline
+kin8nm 
+& 0.095 \newline \textit{0.096} \newline \mbox{$\Delta=-0.001$} 
+& 0.084 \newline \textit{0.080} \newline \mbox{$\Delta=+0.004$} 
+& 0.088 \newline \textit{0.077} \newline \mbox{$\Delta=+0.011$} 
+& 1.114 \newline \textit{-1.213} \newline \mbox{$\Delta=+2.327$} 
+& -1.113 \newline \textit{-1.496} \newline \mbox{$\Delta=+0.383$} 
+& -0.992 \newline \textit{-1.537} \newline \mbox{$\Delta=+0.545$} \\ \hline
+naval 
+& 0.005 \newline \textit{0.003} \newline \mbox{$\Delta=+0.002$} 
+& 0.005 \newline \textit{0.002} \newline \mbox{$\Delta=+0.003$} 
+& 0.005 \newline \textit{0.002} \newline \mbox{$\Delta=+0.003$} 
+& -2.438 \newline \textit{-6.233} \newline \mbox{$\Delta=+3.795$} 
+& -3.931 \newline \textit{-6.967} \newline \mbox{$\Delta=+3.036$} 
+& -3.747 \newline \textit{-6.987} \newline \mbox{$\Delta=+3.240$} \\ \hline
+power-plant 
+& 3.349 \newline \textit{4.049} \newline \mbox{$\Delta=-0.700$} 
+& 3.467 \newline \textit{4.021} \newline \mbox{$\Delta=-0.554$} 
+& 3.377 \newline \textit{3.987} \newline \mbox{$\Delta=-0.610$} 
+& 5.281 \newline \textit{2.795} \newline \mbox{$\Delta=+2.486$} 
+& 2.678 \newline \textit{2.765} \newline \mbox{$\Delta=-0.087$} 
+& 2.671 \newline \textit{2.755} \newline \mbox{$\Delta=-0.084$} \\ \hline
+protein 
+& 4.355 \newline \textit{4.512} \newline \mbox{$\Delta=-0.157$} 
+& 3.939 \newline \textit{4.480} \newline \mbox{$\Delta=-0.541$} 
+& 4.169 \newline \textit{4.430} \newline \mbox{$\Delta=-0.261$} 
+& 4.266 \newline \textit{2.871} \newline \mbox{$\Delta=+1.395$} 
+& 2.742 \newline \textit{2.837} \newline \mbox{$\Delta=-0.095$} 
+& 2.706 \newline \textit{2.779} \newline \mbox{$\Delta=-0.073$} \\ \hline
+wine 
+& 0.826 \newline \textit{0.648} \newline \mbox{$\Delta=+0.178$} 
+& 0.829 \newline \textit{0.631} \newline \mbox{$\Delta=+0.198$} 
+& 0.722 \newline \textit{0.609} \newline \mbox{$\Delta=+0.113$} 
+& 2.255 \newline \textit{-0.574} \newline \mbox{$\Delta=+2.829$} 
+& 1.390 \newline \textit{-0.618} \newline \mbox{$\Delta=+2.008$} 
+& 1.187 \newline \textit{-0.679} \newline \mbox{$\Delta=+1.866$} \\ \hline
+yacht 
+& 7.046 \newline \textit{1.711} \newline \mbox{$\Delta=+5.335$} 
+& 9.197 \newline \textit{1.337} \newline \mbox{$\Delta=+7.860$} 
+& 5.557 \newline \textit{1.252} \newline \mbox{$\Delta=+4.305$} 
+& 5.170 \newline \textit{-1.637} \newline \mbox{$\Delta=+6.807$} 
+& 3.041 \newline \textit{-2.257} \newline \mbox{$\Delta=+5.298$} 
+& 2.401 \newline \textit{-2.341} \newline \mbox{$\Delta=+4.742$} \\ \hline
+\end{tabularx}
+\caption{Vergleich reproduzierte Ergebnisse mit Benchmark \textit{Amini et al. (2020)}}
+\label{tab:comparison_ours_vs_amini_tabularx_v3}
+\end{table*}
 
 
-% \begin{table}[htbp]
-%     \centering
-%     \begin{tabular}{|c|ccc|ccc|}
-%         \hline
-%         Dataset 
-%         & \multicolumn{3}{c|}{\shortstack{RMSE}} 
-%         & \multicolumn{3}{c|}{\shortstack{NLL}} 
-%         \\ \hline
-%         & Dropout & Ensemble & Evidential 
-%         & Dropout & Ensemble & Evidential 
-%         \\ \hline
-%         Boston & & & & & & \\ \hline
-%         Concrete & & & & & & \\ \hline
-%         Energy & & & & & & \\ \hline
-%         Kin8nm & & & & & & \\ \hline
-%         Naval & & & & & & \\ \hline
-%         Power & & & & & & \\ \hline
-%         Protein & & & & & & \\ \hline
-%         Wine & & & & & & \\ \hline
-%         Yacht & & & & & & \\ \hline
-%     \end{tabular}
-%     \caption{Comparison to Regression results for various datasets from Amini 2020}
-%     \label{tab:resultsamini}
-% \end{table}
+\paragraph{Vergleich Amini EDNN Klassifikation} \parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
 
-\parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
 
-% ~\ref{tab:resultsamini}
-
-% \subsection*{Benchmark EDNN}
 
 \section*{Eigenentwicklung}
 

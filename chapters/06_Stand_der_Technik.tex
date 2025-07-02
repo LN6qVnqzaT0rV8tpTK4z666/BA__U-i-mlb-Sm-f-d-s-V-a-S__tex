@@ -1067,7 +1067,7 @@ Der aktuelle Stand im Bereich Machine Learning für die szenariobasierte Validie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+  \newline
 R1 Welche auf maschinellem Lernen basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
 
 \begin{table}[!htpb]
@@ -1436,7 +1436,7 @@ Dies verhindert überhöhte Evidenzwerte bei unbekannten Inputs. Bei Regression 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 R5 Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung.
-
+\newline
 Der Beitrag zur umfassenden Literaturübersicht über UQ-Techniken in der ML-basierten Surrogatmodellierung wird auf \gls{Evidenzbasierte neuronale Netze} eingegrenzt. In \gls{Evidenzbasierte neuronale Netze} soll zwischen In- und Exklusionskriterien unterschieden werden.
 
 \begin{table}[htbp]
@@ -1693,7 +1693,7 @@ R6 Identifizierung und Analyse geeigneter Unsicherheitsmetriken für Surrogatmod
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 R7 Vergleich modellspezifischer und anwendungsspezifischer Bewertungsmetriken für die Quantifizierung von Unsicherheit.
-
+\newline
 % Beispiel-Anwendungsdomäne: [Beispiel-Domäne]
 Für den Vergleich werden Anwendungen im Ingenieurswesen vorgeschlagen: 
 
@@ -1787,7 +1787,7 @@ Die genannten Anwendungsdomänen sind zusammengetragen aus \parencite{Gawlikowsk
 R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surrogatmodelle, insbesondere Bayes'sche neuronale Netze und konforme Vorhersagen.
 
 % R8 Untersuchung:
-
+\newline
 Zur Untersuchung von R8 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI) \parencite{nmavani2025}. Für \gls{Conformal Prediction} wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch Vorhersageintervalle mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
 
 \begin{table}[htbp]
@@ -1870,10 +1870,10 @@ Der Vergleichs-Score wird berechnet als:
   \]
 }
 
-\begin{table}[htbp]
+\begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|X|}
 \hline
 \textbf{Methode} & \textbf{RMSE} & \textbf{MAE} & \textbf{Coverage} & \textbf{ECE} & \textbf{Mean Interval Width} & \textbf{Score} \\
 \hline
@@ -1919,7 +1919,7 @@ Epistemische Unsicherheit: \parencite{angelopoulos2021gentle}; \parencite[S.~63�
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
-
+\newline
 R9 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neuronale Netze} ausgeführt werden, um den theoretischer Modellparameter-Einfluss auf die Unsicherheitsabschätzung zu quantifizieren. Variiert werden die Evidenzparameter $\nu$ sowie Trainingsdatengröße für geringen Analyseaufwand.
 
 % Untersuchung - Most Minimal Sensitivitäts-Analyse: 
@@ -1999,7 +1999,7 @@ R9 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neu
 \begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}
 \hline
 $\nu$ 
 & mean total var 
@@ -2016,7 +2016,7 @@ $\nu$
 \hline
 20 & $0.8376 \pm 0.0804$ & $0.7978 \pm 0.0766$ & $0.0399 \pm 0.0038$ & $156.6731$ & $0.0058$ \\
 \hline
-\end{tabular}
+\end{tabularx}
 \caption{R9 Min. Sensitivitätsanalyse \gls{Evidenzbasierte neuronale Netze} mit $\pm 2\sigma$}
 \label{tab:enn_results}
 \end{table}
@@ -2029,7 +2029,7 @@ Der Parameter $\nu$ steuert im \gls{Evidenzbasierte neuronale Netze} die Gewicht
 \begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}
 \hline
 Dropout 
 & mean total var 
@@ -2046,7 +2046,7 @@ Dropout
 \hline
 0.50 & $0.1482 \pm 0.3429$ & $0.0783 \pm 0.1419$ & $0.0699 \pm 0.2080$ & $8.9771$ & $0.0429$ \\
 \hline
-\end{tabular}
+\end{tabularx}
 \caption{R9 Min. Sensitivitätsanalyse \gls{Bayesianische neuronale Netze} mit $\pm 2\sigma$}
 \label{tab:bnn_results}
 \end{table} 
@@ -2059,7 +2059,7 @@ Die Dropout-Rate im \gls{Bayesianische neuronale Netze} beeinflusst direkt die \
 \begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|X|}
 \hline
 $\alpha$ 
 & Coverage 
@@ -2077,7 +2077,7 @@ $\alpha$
 \hline
 0.01 & 1.000 & 3.0993 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
 \hline
-\end{tabular}
+\end{tabularx}
 \caption{R9 Min. Sensitivitätsanalyse \gls{Conformal Prediction} mit $\pm 2\sigma$}
 \label{tab:cp_results}
 \end{table}
