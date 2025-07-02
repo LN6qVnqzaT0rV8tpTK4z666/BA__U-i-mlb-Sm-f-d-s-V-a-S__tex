@@ -735,7 +735,6 @@ Die genannten Anwendungsdomänen sind zusammengetragen aus \parencite{Gawlikowsk
 R8 Untersuchung und Vergleich verschiedener UQ-Ansätze für ML-basierte Surrogatmodelle, insbesondere Bayes'sche neuronale Netze und konforme Vorhersagen.
 
 % R8 Untersuchung:
-\subsection*{Vergleich von BNNs und Conformal Prediction}
 
 Zur Untersuchung von R8 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI) \parencite{nmavani2025}. Für \gls{Conformal Prediction} wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch Vorhersageintervalle mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
 
@@ -766,46 +765,8 @@ Unterschiede der Verfahren hinsichtlich: \newline
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  R8 CPvsBNNMavani.py
+%  R8 /assets/repos/BA__U-i-mlb-Sm-f-d-s-V-a-S__tex/prototypes/prototype_s8-02-07-25/prototype_s8-02-07-25.py
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% 1 Mavani Repo SVI, HMC cp exec on comp metrics diff most minimal analyzing
-
-% import numpy as np
-% from sklearn.model_selection import train_test_split
-% from sklearn.neural_network import MLPRegressor
-
-% # 1. Daten laden
-% X, y = load_yacht_data()  # dein Dataset-Loader
-
-% # 2. Split: Train / Calib / Test
-% X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.4, random_state=42)
-% X_calib, X_test, y_calib, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
-
-% # 3. Modell trainieren
-% model = MLPRegressor(hidden_layer_sizes=(50,50), max_iter=1000, random_state=42)
-% model.fit(X_train, y_train)
-
-% # 4. Residuen auf Calibration-Set
-% y_calib_pred = model.predict(X_calib)
-% errors = np.abs(y_calib - y_calib_pred)
-
-% # 5. Quantil bestimmen für 90%-Intervalle
-% alpha = 0.1
-% quantile = np.quantile(errors, 1 - alpha)
-
-% # 6. Prediction Intervals auf Test-Set
-% y_test_pred = model.predict(X_test)
-% lower = y_test_pred - quantile
-% upper = y_test_pred + quantile
-
-% # 7. Coverage berechnen
-% coverage = np.mean((y_test >= lower) & (y_test <= upper))
-% print(f"Coverage: {coverage:.3f}")
-
-% # Optional: Interval width
-% interval_width = np.mean(upper - lower)
-% print(f"Avg Interval Width: {interval_width:.3f}")
 
 % R8 Vergleich
 
@@ -842,6 +803,46 @@ Unterschiede der Verfahren hinsichtlich: \newline
   \end{tabularx}
   \caption{R8 Vergleich der UQ-Ansätze für \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}}\label{tab:chapter6r81}
 \end{table}
+
+
+
+\paragraph{Vergleichs-Score}
+
+Der Vergleichs-Score wird berechnet als:
+{
+  \[\footnotesize
+  \text{Score} = w_\text{err} \cdot \frac{\text{RMSE}}{\text{Norm}_\text{RMSE}}
+  + w_\text{ECE} \cdot \frac{\text{ECE}}{\text{Norm}_\text{ECE}}
+  + w_\text{width} \cdot \frac{\text{IntervalWidth}}{\text{Norm}_\text{Width}}
+  + w_\text{runtime} \cdot \frac{\text{Runtime}}{\text{Norm}_\text{Runtime}}
+  \]
+}
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|}
+\hline
+\textbf{Methode} & \textbf{RMSE} & \textbf{MAE} & \textbf{Coverage} & \textbf{ECE} & \textbf{Mean Interval Width} & \textbf{Score} \\
+\hline
+BNN HMC & 6.845 & 5.697 & 0.010 & 0.990 & 2.404 & 1.3988 \\
+\hline
+BNN SVI & 1367.638 & 1046.232 & 0.020 & 0.980 & 70.001 & 69.8022 \\
+\hline
+CP      & 0.096 & 0.075 & 0.870 & 0.130 & 0.267 & 0.0493 \\
+\hline
+\end{tabularx}
+\caption{Vergleich der Modelle BNN (HMC, SVI) und CP hinsichtlich Performanz und Unsicherheitsquantifizierung.}
+\label{tab:r8_results}
+\end{table}
+
+
+\paragraph{Interpretation der Ergebnisse}
+
+1. \textbf{BNN HMC}: Liefert moderaten Fehler (RMSE $\approx$ 6{,}8), geringe epistemische Unsicherheit, aber extrem geringe Coverage. Die Unsicherheitsintervalle decken die wahren Werte kaum ab, was ein Overconfidence-Problem zeigt.\\
+2. \textbf{BNN SVI}: Scheitert deutlich. Sehr hoher RMSE ($\approx$ 1367) und große epistemische Varianz deuten auf Instabilität oder falsche Konvergenz hin.\\
+3. \textbf{Conformal Prediction (CP)}: Erzielt sehr niedrige Fehler (RMSE $\approx$ 0{,}096), gute Coverage (ca. 87\,\%) und den besten Score. Die Methode empfiehlt sich auf diesem Datensatz.
+
 
 
 \footnote{%
@@ -935,7 +936,9 @@ R9 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neu
   \label{tab:chapter6r91_clean}
 \end{table}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% R9 **/assets/repos/BA__U-i-mlb-Sm-f-d-s-V-a-S__tex/prototypes/prototype_s9-02-07-25/*.py
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % S4: Auswertung
 \newline 
