@@ -11,6 +11,7 @@
 
 
 \begin{otherlanguage}{ngerman}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -344,18 +345,19 @@ Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024}
 \newline
 Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische Künstliche Intelligenz. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden. \parencite{manchingal2025}
 
-Ein Ansatz, Evidential Neural Networks (ENNs) auf Nicht-Wissen zu trainieren, besteht darin, das Modell so zu konditionieren, dass es bei unbekannten Eingaben geringe Evidenz liefert. Dazu werden Out-of-Distribution (OOD)-Beispiele im Training eingebunden und die Loss-Funktion um einen Term erweitert, der die Evidenzverteilung in Richtung einer Uniform-Verteilung drängt:
+
+\pagebreak
 
 
 \textbf{Model Evidentielles Wissen}
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x3.png}
   \caption{R4.1}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x2.png}
   \caption{R4.2}
@@ -363,6 +365,8 @@ Ein Ansatz, Evidential Neural Networks (ENNs) auf Nicht-Wissen zu trainieren, be
 
 
 \textbf{Model Evidentielles Nicht-Wissen}
+
+Ein Ansatz, \gls{Evidenzbasierte neuronale Netze} auf Nicht-Wissen zu trainieren, besteht darin, das Modell so zu konditionieren, dass es bei unbekannten Eingaben geringe Evidenz liefert. Dazu werden Out-of-Distribution (OOD)-Beispiele im Training eingebunden und die Loss-Funktion um einen Term erweitert, der die Evidenzverteilung in Richtung einer Uniform-Verteilung drängt:
 
 \[
 \text{Loss}_{\text{total}} = \text{Loss}_{\text{in}} + \lambda \cdot \text{KL}\bigl(\text{Dir}(\boldsymbol{\alpha}) \,\|\, \text{Uniform}\bigr).
@@ -564,9 +568,9 @@ R5 Scopes der Antworten der Literaturübersicht zu Evidential Deep Learning mit 
 \caption{R5 Scopes der Antworten der Literaturübersicht zu Evidential Deep Learning mit aktuellen Quellen (2016–2025)}
 \label{tab:edl_scopes_sources_updated}
 \end{table}
-
+\newline
 Hochwertige, zentrale Umfragen sind \parencite{Ulmer2023}, \parencite{Gawlikowski2023}. 
-
+\newline
 Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der Realdaten ist im Anhang \ref{sec:enn_gum_derivation}.
 
 \pagebreak
@@ -863,48 +867,7 @@ Epistemische Unsicherheit: \parencite{angelopoulos2021gentle}; \parencite[S.~63�
 
 R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
 
-% \section*{R9 – Minimale Sensitivitätsanalyse}
-
-% R9 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neuronale Netze} ausgeführt werden, um den theoretischer Modellparameter-Einfluss auf die Unsicherheitsabschätzung zu quantifizieren. Variiert werden die Evidenzparameter $\nu$ sowie Trainingsdatengröße für geringen Analyseaufwand.
-
-% ENN UQ Zerlegung:
-% \[
-% u(y)^2 = \underbrace{\frac{\beta}{\alpha - 1}}_{\text{aleatorisch}} 
-% + \underbrace{\frac{\beta}{(\alpha - 1)\, \nu}}_{\text{epistemisch}}.
-% \]
-
-% Schritte:
-% \begin{enumerate}
-%     \item Auswahl eines kleinen Datensatzes (z.~B. Boston Housing oder Yacht Hydrodynamics).
-%     \item Training mehrerer ENN-Modelle mit unterschiedlichen Werten für $\nu \in \{1,\,5,\,10,\,20\}$.
-%     \item Optional: Variation der Trainingsdatengröße (z.~B. Halbierung oder Verdopplung).
-%     \item Erfassung der resultierenden Predictive Variance und Aufteilung in aleatorische und epistemische Anteile.
-% \end{enumerate}
-
-% Als Metriken werden:
-% \begin{itemize}
-%     \item die Gesamtvarianz $u(y)^2$,
-%     \item die Separierung in aleatorische und epistemische Unsicherheit sowie
-%     \item optional RMSE oder MAE
-% \end{itemize}
-% berücksichtigt.
-
-% \paragraph{Beispielhafter Python-Pseudocode}
-
-% \begin{lstlisting}[language=Python]
-% # Minimaler Sensitivitäts-Loop
-
-% nus = [1, 5, 10, 20]
-% for nu in nus:
-%     # Trainiere ENN mit aktuellem nu
-%     model = train_evidential_nn(nu=nu, data=X_train, targets=y_train)
-%     mean_pred, var_pred, aleatoric, epistemic = model.predict(X_test)
-
-%     print(f"nu={nu} | total_var={var_pred.mean()} | "
-%           f"aleatoric={aleatoric.mean()} | epistemic={epistemic.mean()}")
-% \end{lstlisting}
-
-% Die Analyse zeigt, dass niedrige Werte von $\nu$ die epistemische Unsicherheit dominieren lassen, während höhere Werte von $\nu$ die aleatorische Komponente verstärken. Zudem nimmt die Gesamtunsicherheit bei steigender Datenmenge ab, da das Modell mehr Evidenz über die Daten sammelt. Damit wird der Einfluss zentraler Modellparameter auf die Unsicherheitsabschätzung quantitativ aufgezeigt. Damit wurde eine minimal mögliche Sensitivitätsanalyse durchgeführt, die dennoch die Kerneigenschaften der Unsicherheitszerlegung im ENN sichtbar macht.
+R9 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neuronale Netze} ausgeführt werden, um den theoretischer Modellparameter-Einfluss auf die Unsicherheitsabschätzung zu quantifizieren. Variiert werden die Evidenzparameter $\nu$ sowie Trainingsdatengröße für geringen Analyseaufwand.
 
 % Untersuchung - Most Minimal Sensitivitäts-Analyse: 
 % S1: Modelldefinition: 
@@ -917,127 +880,192 @@ R9 Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsi
 
 \begin{table}[!htpb]
   \centering
-  \begin{tabularx}{\textwidth}{|l|X|X|}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{|l|X|X|X|}
     \hline
-    & \textbf{BNN} & \textbf{CFP} \\
+    & \textbf{BNN} & \textbf{CP} & \textbf{ENN} \\
     \hline
     \textbf{A} & 
     \begin{tabular}[c]{@{}l@{}} 
       Post. \( p(\theta \mid \mathcal{D}) \) \\ 
-      UQ ü. Modellparam. \\[1ex]
-      MC Dropout 
+      UQ über Modellparameter \\ 
+      MC Dropout
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
       CI \( \hat{y} \pm z \cdot \sigma \) \\ 
-      UQ durch CI \\[1ex]
+      UQ durch Konfidenzintervalle \\ 
       Ensemble
+    \end{tabular} &
+    \begin{tabular}[c]{@{}l@{}} 
+      Predictive Distr. \( p(y \mid \mu, \alpha, \beta, \nu) \) \\ 
+      Evidenzparameter
     \end{tabular} \\
     \hline
     \textbf{B} & 
     \begin{tabular}[c]{@{}l@{}} 
-      Modellparam.: Gew- $w_i$, Verteil. \\ 
-      - Sens. der Uns. ggü. Prioren \\ 
-      - Einfluss von Hyperparam.
+      Modellparameter: Gewichte \( w_i \) \\ 
+      Einfluss von Prioren \\ 
+      Hyperparameter-Sensitivität
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
-      Unsicherheitsb.: CI \\ 
-      - Einfluss von Vertr.-regionen
+      Unsicherheitsbestimmung über CI \\ 
+      Einfluss von Vertrauensregionen
+    \end{tabular} &
+    \begin{tabular}[c]{@{}l@{}} 
+      Evidenzparameter \(\nu\), \(\alpha\), \(\beta\) \\ 
+      steuern Unsicherheitsanteile.
     \end{tabular} \\
     \hline
     \textbf{C} & 
     \begin{tabular}[c]{@{}l@{}} 
-      Bayes. Inferenz z. UQ-Approx. \\ 
-      - MC Sim. mit Dropout
+      Bayessche Inferenz zur UQ \\ 
+      MC-Simulation mit Dropout
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
-      Ensemble-Methode zur UQ \\ 
-      - Vertr.-regionen, CI UQ-Analyse
+      Ensemble zur UQ \\ 
+      Vertrauensregionen, CI-Analyse
+    \end{tabular} &
+    \begin{tabular}[c]{@{}l@{}} 
+      Keine Sampling-Approximation nötig \\ 
+      KL-Regularisierung steuert Evidenz
     \end{tabular} \\
     \hline
   \end{tabularx}
-  \caption{R9 Sensitivitätsanalyse von UQ für BNN und CFP}\label{tab:chapter6r91}
+  \caption{R9 Übersicht der UQ-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction} und \gls{Evidenzbasierte neuronale Netze} ohne kommentierte Sensitivitätsangaben}
+  \label{tab:chapter6r91_clean}
 \end{table}
 
 
 
-% \begin{table}[!htpb]
-%   \centering
-%   \footnotesize
-%   \begin{tabularx}{\textwidth}{|l|X|X|X|}
-%     \hline
-%     & \textbf{BNN} & \textbf{CP} & \textbf{ENN} \\
-%     \hline
-%     \textbf{A} & 
-%     \begin{tabular}[c]{@{}l@{}} 
-%       Post. \( p(\theta \mid \mathcal{D}) \) \\ 
-%       UQ ü. Modellparam. \\ 
-%       MC Dropout \\[1ex]
-%       \textbf{Sens.:} Breitere Posterior bei schwachen Priors; \\ 
-%       stärkere epistemische Unsicherheit.
-%     \end{tabular} &
-%     \begin{tabular}[c]{@{}l@{}} 
-%       CI \( \hat{y} \pm z \cdot \sigma \) \\ 
-%       UQ durch CI \\ 
-%       Ensemble \\[1ex]
-%       \textbf{Sens.:} CI-Breite steigt bei höherem Konfidenzniveau; \\ 
-%       kleinere Calibration-Sets führen zu unsteten CIs.
-%     \end{tabular} &
-%     \begin{tabular}[c]{@{}l@{}} 
-%       Predictive Distr. $p(y \mid \mu, \alpha, \beta, \nu)$ \\ 
-%       Evidenzparameter \\[1ex]
-%       \textbf{Sens.:} Hohe epistemische Unsicherheit bei \\ 
-%       kleinen $\nu$-Werten.
-%     \end{tabular} \\
-%     \hline
-%     \textbf{B} & 
-%     \begin{tabular}[c]{@{}l@{}} 
-%       Modellparam.: Gew. \( w_i \) \\ 
-%       Einfluss von Prioren \\ 
-%       Hyperparam.-Sensitivität \\[1ex]
-%       \textbf{Sens.:} RMSE und Varianz steigen bei schwachen Prioren \\ 
-%       und kleinerem Datensatz um bis zu 35\,\%.
-%     \end{tabular} &
-%     \begin{tabular}[c]{@{}l@{}} 
-%       Unsicherheitsb.: CI \\ 
-%       Einfluss von Vertr.-regionen \\[1ex]
-%       \textbf{Sens.:} Coverage sinkt bei zu engen Regionen; \\ 
-%       Intervallbreite steigt bei höherem α.
-%     \end{tabular} &
-%     \begin{tabular}[c]{@{}l@{}} 
-%       Evidenzparameter $\nu$, $\alpha$, $\beta$ \\ 
-%       steuern Unsicherheitsanteile. \\[1ex]
-%       \textbf{Sens.:} Niedrige $\nu$ → mehr epistemische Varianz. \\ 
-%       Größere Datenmengen reduzieren Unsicherheit.
-%     \end{tabular} \\
-%     \hline
-%     \textbf{C} & 
-%     \begin{tabular}[c]{@{}l@{}} 
-%       Bayes. Inferenz zur UQ \\ 
-%       MC-Simulation mit Dropout \\[1ex]
-%       \textbf{Sens.:} Höhere Dropout-Rate \\ 
-%       erhöht epistemische Unsicherheit.
-%     \end{tabular} &
-%     \begin{tabular}[c]{@{}l@{}} 
-%       Ensemble zur UQ \\ 
-%       Vertr.-regionen, CI-Analyse \\[1ex]
-%       \textbf{Sens.:} Heteroskedastische Daten \\ 
-%       erzeugen stark variierende CI-Breiten.
-%     \end{tabular} &
-%     \begin{tabular}[c]{@{}l@{}} 
-%       Keine Sampling-Approximation nötig. \\ 
-%       KL-Regularisierung steuert Evidenz. \\[1ex]
-%       \textbf{Sens.:} Zu starke Regularisierung \\ 
-%       reduziert Modellvertrauen übermäßig.
-%     \end{tabular} \\
-%     \hline
-%   \end{tabularx}
-%   \caption{R9 Sensitivitätsanalyse von UQ für BNN, CP und ENN}
-%   \label{tab:chapter6r91_updated}
-% \end{table}
-
-
-
 % S4: Auswertung
+\newline 
+\texttt{min\_sensitivity\_analysis\_enn.py} liefert:
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$\nu$ 
+& mean total var 
+& mean aleatoric 
+& mean epistemic 
+& RMSE 
+& RUI \\
+\hline
+1  & $1.6191 \pm 0.1344$ & $0.8095 \pm 0.0672$ & $0.8095 \pm 0.0672$ & $155.7554$ & $0.0082$ \\
+\hline
+5  & $1.0007 \pm 0.1152$ & $0.8339 \pm 0.0960$ & $0.1668 \pm 0.0192$ & $155.8031$ & $0.0064$ \\
+\hline
+10 & $0.8591 \pm 0.0482$ & $0.7810 \pm 0.0439$ & $0.0781 \pm 0.0044$ & $155.0450$ & $0.0060$ \\
+\hline
+20 & $0.8376 \pm 0.0804$ & $0.7978 \pm 0.0766$ & $0.0399 \pm 0.0038$ & $156.6731$ & $0.0058$ \\
+\hline
+\end{tabular}
+\caption{R9 Min. Sensitivitätsanalyse \gls{Evidenzbasierte neuronale Netze} mit $\pm 2\sigma$}
+\label{tab:enn_results}
+\end{table}
+
+Der Parameter $\nu$ steuert im \gls{Evidenzbasierte neuronale Netze} die Gewichtung zwischen \gls{Epistemische Unsicherheit} und \gls{Aleatorische Unsicherheit}, wobei kleine ν-Werte die \gls{Epistemische Unsicherheit} dominieren lassen und große $\nu$-Werte die Unsicherheitszerlegung stärker zugunsten der \gls{Aleatorische Unsicherheit} Komponente verschieben.
+
+\newline
+\texttt{min\_sensitivity\_analysis\_bnn.py} liefert:
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Dropout 
+& mean total var 
+& mean aleatoric 
+& mean epistemic 
+& RMSE 
+& RUI \\
+\hline
+0.05 & $0.0079 \pm 0.0162$ & $0.0051 \pm 0.0108$ & $0.0028 \pm 0.0059$ & $6.8592$ & $0.0129$ \\
+\hline
+0.10 & $0.0164 \pm 0.0382$ & $0.0099 \pm 0.0219$ & $0.0065 \pm 0.0167$ & $6.5767$ & $0.0195$ \\
+\hline
+0.20 & $0.0347 \pm 0.0859$ & $0.0198 \pm 0.0460$ & $0.0150 \pm 0.0409$ & $7.2445$ & $0.0257$ \\
+\hline
+0.50 & $0.1482 \pm 0.3429$ & $0.0783 \pm 0.1419$ & $0.0699 \pm 0.2080$ & $8.9771$ & $0.0429$ \\
+\hline
+\end{tabular}
+\caption{R9 Min. Sensitivitätsanalyse \gls{Bayesianische neuronale Netze} mit $\pm 2\sigma$}
+\label{tab:bnn_results}
+\end{table} 
+
+Die Dropout-Rate im \gls{Bayesianische neuronale Netze} beeinflusst direkt die \gls{Epistemische Unsicherheit}, da höhere Dropout-Raten mehr Modellvariabilität zulassen und somit größere \gls{Epistemische Unsicherheit} in den Vorhersagen erzeugen.
+
+\newline
+\texttt{min\_sensitivity\_analysis\_cp.py} liefert:
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$\alpha$ 
+& Coverage 
+& Mean CI-Width 
+& mean aleatoric 
+& mean epistemic 
+& mean total var 
+& RUI \\
+\hline
+0.20 & 0.820 & 1.0022 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
+\hline
+0.10 & 0.913 & 1.3215 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
+\hline
+0.05 & 0.953 & 1.7910 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
+\hline
+0.01 & 1.000 & 3.0993 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
+\hline
+\end{tabular}
+\caption{R9 Min. Sensitivitätsanalyse \gls{Conformal Prediction} mit $\pm 2\sigma$}
+\label{tab:cp_results}
+\end{table}
+
+Das Signifikanzniveau $\alpha$ bestimmt bei \gls{Conformal Prediction} die Breite der Vorhersageintervalle, wobei kleinere $\alpha$-Werte zu höheren Konfidenzniveaus und damit breiteren, konservativeren Unsicherheitsintervallen führen.
+
+
+
+\paragraph{Vergleichende Auswertung Modelle \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction}, \gls{Evidenzbasierte neuronale Netze}}
+
+Die drei Tabellen zeigen die Sensitivitätsanalysen für \gls{Evidenzbasierte neuronale Netze}, \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction} unter Variation ihrer jeweiligen Steuerungsgrößen (\(\nu\), Dropout-Rate, \(\alpha\)). Als gemeinsame K\gls{Evidenzbasierte neuronale Netze}zahlen wurden die mittlere Gesamtvarianz \(\overline{u(y)^2}\), die mittlere aleatorische Varianz \(\overline{u_{\text{aleatorisch}}^2}\), die mittlere epistemische Varianz \(\overline{u_{\text{epistemisch}}^2}\), daneben der RMSE sowie der \emph{Relative Uncertainty Index} (RUI) ausgewertet.  
+
+Im direkten Vergleich zeigen \gls{Evidenzbasierte neuronale Netze} insgesamt höhere Varianzen, z.\,B. bis \(\overline{u(y)^2} \approx 1.6\), während der RMSE relativ stabil bei etwa \(155\) liegt. Die Zerlegung der Unsicherheit zeigt bei \gls{Evidenzbasierte neuronale Netze} für kleine \(\nu\) etwa gleiche Anteile zwischen \(\overline{u_{\text{aleatorisch}}^2}\) und \(\overline{u_{\text{epistemisch}}^2}\). Mit steigender Evidenz \(\nu\) sinkt \(\overline{u_{\text{epistemisch}}^2}\) deutlich, wodurch sich der Anteil der Unsicherheit zunehmend auf die aleatorische Komponente verlagert. Dies verdeutlicht, dass zu geringe \(\nu\)-Werte eine Overconfidence verhindern können, da das Modell dann größere epistemische Unsicherheit zulässt.  
+
+Die \gls{Bayesianische neuronale Netze} liefern deutlich kleinere Varianzen, teilweise unter \(\overline{u(y)^2} < 0.02\), bei gleichzeitig wesentlich niedrigerem RMSE zwischen \(6\) und \(9\). Höhere Dropout-Raten führen jedoch zu steigenden Werten sowohl für \(\overline{u_{\text{epistemisch}}^2}\) als auch für \(\overline{u_{\text{aleatorisch}}^2}\), was auf zunehmende Unsicherheitsstreuung hinweist. Allerdings kann ein zu niedriges Dropout-Raten-Niveau bei \gls{Bayesianische neuronale Netze}s Overconfidence fördern, da epistemische Unsicherheit dann unterrepräsentiert bleibt.  
+
+\gls{Conformal Prediction} liefert über alle \(\alpha\)-Level hinweg konstante mittlere Varianzwerte, da der zugrundeliegende Random-Forest-Fit unverändert bleibt. Hier beträgt \(\overline{u(y)^2} \approx 0.57\), zusammengesetzt aus einer moderaten epistemischen Varianz \(\overline{u_{\text{epistemisch}}^2} \approx 0.36\) und einer geringeren aleatorischen Komponente \(\overline{u_{\text{aleatorisch}}^2} \approx 0.21\). Die RUI-Werte liegen bei \gls{Conformal Prediction} mit ca. \(1.9\) deutlich höher, was eine relativ große Unsicherheitsbreite im Verhältnis zum RMSE (hier \(< 0.4\)) reflektiert. Durch die direkte Intervallberechnung schützt \gls{Conformal Prediction} per Konstruktion stärker gegen Overconfidence, bleibt jedoch konservativer.  
+
+Insgesamt zeigen die Modelle unterschiedliche Profile: \gls{Evidenzbasierte neuronale Netze} weist die höchsten Unsicherheitsniveaus bei konstant hohem RMSE auf. \gls{Bayesianische neuronale Netze} erzielt geringere Fehler und niedrigere Unsicherheiten, reagiert aber sensibel auf die gewählte Dropout-Rate. \gls{Conformal Prediction} liefert stabile, aber eher breite Intervalle und sichert robuste Kalibrierung. Die Kennzahlen \(\overline{u(y)^2}\), \(\overline{u_{\text{aleatorisch}}^2}\), \(\overline{u_{\text{epistemisch}}^2}\), RMSE und RUI erlauben eine methodenübergreifende Bewertung der Unsicherheiten und helfen, Overconfidence frühzeitig zu erkennen.
+
+
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Methode} & \textbf{Sensitivitätsaspekte} \\
+\hline
+\textbf{BNN} &
+Breitere Posterior bei schwachen Priors; stärkere epistemische Unsicherheit. Höhere Dropout-Rate \(\rightarrow\) erhöht epistemische Unsicherheit. \\
+\hline
+\textbf{CP} &
+CI-Breite steigt bei höherem Konfidenzniveau; kleinere Calibration-Sets führen zu unsteten CIs. Coverage sinkt bei zu engen Regionen; Intervallbreite steigt bei höherem \(\alpha\). Heteroskedastische Daten erzeugen stark variierende CI-Breiten. \\
+\hline
+\textbf{ENN} &
+Hohe epistemische Unsicherheit bei kleinen \(\nu\)-Werten. Niedrige \(\nu\) \(\rightarrow\) mehr epistemische Varianz. Größere Datenmengen reduzieren Unsicherheit. Zu starke KL-Regularisierung reduziert Modellvertrauen übermäßig. \\
+\hline
+\end{tabularx}
+\caption{R9 Zusammenfassung Sensitivität UQ-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction}, \gls{Evidenzbasierte neuronale Netze}}
+\label{tab:sensitivity_r9_transposed}
+\end{table}
+
 
 
 \footnote{%
@@ -1056,41 +1084,67 @@ C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tuto
 \end{minipage}%
 }
 
-
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% R_base
+% Bezug ML in szenariobasierter Validierung autonomer Systeme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Datensätze
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% % EDNN Grundlage 
+~\nocite{BostonHousing2013}
+~\nocite{CombinedCyclePowerPlant2014}
+~\nocite{ConcreteCompressiveStrength1998}
+~\nocite{ConditionBasedMaintenanceOfNavalPropulsionPlants2014}
+~\nocite{EnergyEfficiency2012}
+~\nocite{Fisher1936}
+~\nocite{Cortez2009}
+~\nocite{Gains2024}
 
-% \parencite{oberkampf2010}
-% ~\parencite{Choi2017}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Software 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% EDNN Regression 
+~\nocite{DuckDBDevelopers.2024}
+~\nocite{EdlPytorchDevelopers.2024}
+~\nocite{LoguruDevelopers.2024}
+~\nocite{MatplotlibDevelopers.2024}
+~\nocite{NotebookDevelopers.2024}
+~\nocite{NumpyDevelopers.2024}
+~\nocite{OpenpyxlDevelopers.2024}
+~\nocite{PandasDevelopers.2024}
+~\nocite{ProperscoringDevelopers.2024}
+~\nocite{PyroPplDevelopers.2024}
+~\nocite{PytestDevelopers.2024}
+~\nocite{RuffDevelopers.2024}
+~\nocite{ScikitLearnDevelopers.2024}
+~\nocite{ScipyDevelopers.2024}
+~\nocite{SeabornDevelopers.2024}
+~\nocite{SphinxDevelopers.2024}
+~\nocite{TensorflowDevelopers.2024}
+~\nocite{TorchDevelopers.2024}
+~\nocite{TorchmetricsDevelopers.2024}
+~\nocite{TorchvisionDevelopers.2024}
+~\nocite{XlrdDevelopers.2024}
 
-% ~\parencite{AlexanderAmini2020}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Repos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
 
-% EDNN Ensemble 
+~\nocite{amini2020deep}
+%~\nocite{amini2020deepfork}
+~\nocite{sensoy2018evidential}
+~\nocite{nmavani2025}
+~\nocite{windler2025}
 
-% ~\parencite{Schreck2023}
-
-% % Ninad
-
-% % ~\parencite{Gopakumar2024}
-
-% EDNN Entwicklung
-
-% ~\parencite{Deng2023}
-
-
-
-% benchmark
-% K. GREENMAN, A. SOLEIMANY, K. YANG: Benchmarking Uncertainty Quantification For Protein Engineering. URL https://openreview.net/pdf?id=G0vuqNwxaeA. – Aktualisierungsdatum: 21.04.2022 – Überprüfungsdatum 14.04.2025 
-
-% benchmark <-> proteindataset
-
+\end{otherlanguage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Archive.
@@ -1186,54 +1240,34 @@ C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tuto
 
 % Der Stand der Technik zeigt, dass zwar zahlreiche Methoden zur Unsicherheitsquantifizierung existieren, ein systematischer, modellagnostischer und \textbf{integrierter Ansatz zur Szenariobewertung} unter Berücksichtigung beider Unsicherheitsarten jedoch fehlt. Diese Arbeit zielt darauf ab einen methodischen Beitrag zur transparenten Bewertung maschineller Lernverfahren in sicherheitskritischen Anwendungen zu leisten.
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Datensätze
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-~\nocite{BostonHousing2013}
-~\nocite{CombinedCyclePowerPlant2014}
-~\nocite{ConcreteCompressiveStrength1998}
-~\nocite{ConditionBasedMaintenanceOfNavalPropulsionPlants2014}
-~\nocite{EnergyEfficiency2012}
-~\nocite{Fisher1936}
-~\nocite{Cortez2009}
-~\nocite{Gains2024}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Software 
+% R_base
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-~\nocite{DuckDBDevelopers.2024}
-~\nocite{EdlPytorchDevelopers.2024}
-~\nocite{LoguruDevelopers.2024}
-~\nocite{MatplotlibDevelopers.2024}
-~\nocite{NotebookDevelopers.2024}
-~\nocite{NumpyDevelopers.2024}
-~\nocite{OpenpyxlDevelopers.2024}
-~\nocite{PandasDevelopers.2024}
-~\nocite{ProperscoringDevelopers.2024}
-~\nocite{PyroPplDevelopers.2024}
-~\nocite{PytestDevelopers.2024}
-~\nocite{RuffDevelopers.2024}
-~\nocite{ScikitLearnDevelopers.2024}
-~\nocite{ScipyDevelopers.2024}
-~\nocite{SeabornDevelopers.2024}
-~\nocite{SphinxDevelopers.2024}
-~\nocite{TensorflowDevelopers.2024}
-~\nocite{TorchDevelopers.2024}
-~\nocite{TorchmetricsDevelopers.2024}
-~\nocite{TorchvisionDevelopers.2024}
-~\nocite{XlrdDevelopers.2024}
+% % EDNN Grundlage 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Repos
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+% \parencite{oberkampf2010}
+% ~\parencite{Choi2017}
 
-~\nocite{amini2020deep}
-%~\nocite{amini2020deepfork}
-~\nocite{sensoy2018evidential}
-~\nocite{nmavani2025}
-~\nocite{windler2025}
+% EDNN Regression 
 
-\end{otherlanguage}
+% ~\parencite{AlexanderAmini2020}
+
+% EDNN Ensemble 
+
+% ~\parencite{Schreck2023}
+
+% % Ninad
+
+% % ~\parencite{Gopakumar2024}
+
+% EDNN Entwicklung
+
+% ~\parencite{Deng2023}
+
+
+
+% benchmark
+% K. GREENMAN, A. SOLEIMANY, K. YANG: Benchmarking Uncertainty Quantification For Protein Engineering. URL https://openreview.net/pdf?id=G0vuqNwxaeA. – Aktualisierungsdatum: 21.04.2022 – Überprüfungsdatum 14.04.2025 
+
+% benchmark <-> proteindataset
