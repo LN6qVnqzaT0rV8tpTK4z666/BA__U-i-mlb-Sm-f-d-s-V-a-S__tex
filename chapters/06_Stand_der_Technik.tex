@@ -1403,26 +1403,30 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
 
 \textbf{Model Evidentielles Wissen}
 
+Ein in der Literatur üblicher Ansatz ist das Trainineren von \gls{Evidenzbasierte neuronale Netze} auf Evidentiellem Wissen. 
+
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x3.png}
-  \caption{R4.1}
+  \caption{R4.1 \glqq Epistemic Learning\grqq nach Manchingal et al. 2025}
 \end{figure}
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x2.png}
-  \caption{R4.2}
+  \caption{R4.2 \glqq Major approaches to uncertainty in AI\grqq nach Manchingal et al. 2025}
 \end{figure}
 
 
 \textbf{Model Evidentielles Nicht-Wissen}
 
-Ein Ansatz, \gls{Evidenzbasierte neuronale Netze} auf Nicht-Wissen zu trainieren, besteht darin, das Modell so zu konditionieren, dass es bei unbekannten Eingaben geringe Evidenz liefert. Dazu werden Out-of-Distribution (OOD)-Beispiele im Training eingebunden und die Loss-Funktion um einen Term erweitert, der die Evidenzverteilung in Richtung einer Uniform-Verteilung drängt:
+Ein Ansatz, \gls{Evidenzbasierte neuronale Netze} auf Nicht-Wissen zu trainieren, besteht darin, das Modell so zu konditionieren, dass es bei unbekannten Eingaben geringe Evidenz liefert. Dazu werden \gls{Out-of-Distribution}-Beispiele im Training eingebunden und die Loss-Funktion um einen Term erweitert, der die Evidenzverteilung in Richtung einer Uniform-Verteilung drängt:
 
-\[
-\text{Loss}_{\text{total}} = \text{Loss}_{\text{in}} + \lambda \cdot \text{KL}\bigl(\text{Dir}(\boldsymbol{\alpha}) \,\|\, \text{Uniform}\bigr).
-\]
+\begin{equation}
+\text{Loss}_{\text{total}} 
+= \text{Loss}_{\text{in}} 
++ \lambda \cdot \text{KL}\bigl(\text{Dir}(\boldsymbol{\alpha}) \,\|\, \text{Uniform}\bigr).
+\end{equation}
 
 Dies verhindert überhöhte Evidenzwerte bei unbekannten Inputs. Bei Regression kann analog die Varianz gezielt maximiert werden, indem $\alpha$ und $\beta$ auf niedrige Werte gesetzt werden. So lernt das ENN, Nicht-Wissen explizit durch geringe Evidenz und hohe Unsicherheit auszudrücken (vgl. Manchingal et al. (MC25)).
 

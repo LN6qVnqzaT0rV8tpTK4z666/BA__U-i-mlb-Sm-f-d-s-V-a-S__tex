@@ -23,20 +23,20 @@ Zur Validierung der eingesetzten Methodik für \gls{Evidenzbasierte neuronale Ne
 \paragraph{Vergleich Amini EDNN Regression} \parencite{amini2020deep} Sektion 4 Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze}.  
 \begin{noindentquote}
 \scriptsize
-\[
+$
 \{ \text{RMSE}, \text{NLL} \} 
 \times 
 \{ \text{dropout}, \text{ensembles}, \text{evidential} \} 
 \times 
 \{ \text{boston}, \text{concrete}, \text{energy}, \text{kin8nm}, \text{naval}, \text{power}, \text{protein}, \text{wine}, \text{yacht} \}
-\]  
+$  
 \end{noindentquote}
 Der Benchmark konnte in erster Konfiguration annähernd reproduziert werden. 
 \begin{noindentquote}
   \footnotesize
   \texttt{python3 neurips2020/run\_uci\_dataset\_tests.py --datasets boston concrete energy-efficiency kin8nm naval power-plant protein wine yacht --num-trials 1 --num-epochs 5}
 \end{noindentquote}
- mit Laufzeit von 9 Minuten 10.2 Sekunden $\leq$ 10 Minuten als \grqq Proof of concept\grqq. Die Konvergenz zu Aminis Werten ($\Delta (\text{RMSE}) = \left[ -0.5;\ -0.6 \right]$; $\Delta \text{NLL} = -0.08$) wird deutlich für die Konfiguration hinreichend umfangreicher Datensätze $\{\text{kin8nm}, \text{naval}, \text{protein} \}$. ~\ref{tab:comparison_ours_vs_amini_tabularx_v2} unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
+ mit Laufzeit von 9 Minuten 10.2 Sekunden $\leq$ 10 Minuten als \glqq Proof of concept\grqq. Die Konvergenz zu Aminis Werten ($\Delta (\text{RMSE}) = \left[ -0.5;\ -0.6 \right]$; $\Delta \text{NLL} = -0.08$) wird deutlich für die Konfiguration hinreichend umfangreicher Datensätze $\{\text{kin8nm}, \text{naval}, \text{protein} \}$. ~\ref{tab:comparison_ours_vs_amini_tabularx_v2} unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
 
 \begin{table*}[!htbp]
 \centering
@@ -123,7 +123,7 @@ yacht
 
 \section*{Eigenentwicklung}
 
-Benötigt wurde eine Datenpipeline. In Entwicklung mit Herr M.Sc. N. Mavani sollte für den Vergleich von BNN, ENN als Baseline von Mavanis Seite auf \parencite{Depeweg2019}, von meiner Seite auf \parencite{Ulmer2023} aufgesetzt werden.\newline
+Benötigt wurde eine Datenpipeline. In Entwicklung mit Herr M.Sc. N. Mavani sollte für den Vergleich von \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} als Baseline von Mavanis Seite auf \parencite{Depeweg2019}, von meiner Seite auf \parencite{Ulmer2023} aufgesetzt werden.\newline
 
 Dazu wurden von \parencite{Depeweg2019} verwendete Datensätze verwendet und ergänzt um in \hyperref[sec:datensaetze]{Datensätze} gelistete. Aufgesetzte Stufen der Datenpipeline sind eine Vorverarbeitung zum Umwandeln von Formaten, Einlesen in Torch Dataset Klassen, Torch Trainingsklassen, Visualisierungsklassen.\newline
 
@@ -193,10 +193,6 @@ BNN Accuracy & & & & & & & \\
 \section{}
 
 Abschließend sollen nach R11 die wichtigsten Ansätze und Ergebnisse der Arbeit in einem kurzen Jupyter Notebook zusammenfasst werden. 
-
-Dafür 
-
-
 
 
 \end{otherlanguage}

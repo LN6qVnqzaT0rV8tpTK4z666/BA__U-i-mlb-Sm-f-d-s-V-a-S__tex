@@ -1,7 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IAT Template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \NeedsTeXFormat{LaTeX2e}
+% \ProvidesClass{iat}[2020/05/15 v1 Template]
+% \PassOptionsToClass{%
+% 	a4paper,%
+% 	11pt,%
+% 	parskip=half,%
+% 	%twoside,%
+% 	%openright,%
+% 	BCOR=3mm,%
+% }{scrreprt}
+% \ProcessOptions\relax
+% \LoadClass{scrreprt}
+
+
+
+% \PassOptionsToPackage{right=5cm,top=3.5cm,bottom=4cm,head=25pt,foot=21pt, footskip=1.1cm}{geometry}
+% \PassOptionsToPackage{hidelinks,breaklinks}{hyperref}	% add "linktocpage" option for page number instead of chapter name
+% \PassOptionsToPackage{libertine}{newtxmath}
+% \PassOptionsToPackage{headsepline=3pt, footsepline, automark, autooneside=false}{scrlayer-scrpage}
+% \PassOptionsToPackage{english,main=ngerman}{babel}
+% \PassOptionsToPackage{detect-all}{siunitx}
+% \PassOptionsToPackage{style=ieee, urldate=comp, bibencoding=UTF8, backend=biber}{biblatex}
+% \PassOptionsToPackage{T1}{fontenc}
+% \PassOptionsToPackage{utf8}{inputenc}
+
+% \RequirePackage{caption}
+
+% \RequirePackage{geometry}
+
+% \RequirePackage{fontenc}
+% \RequirePackage{inputenc}
+
+% \RequirePackage{babel}
+% \RequirePackage{csquotes}
+% \RequirePackage{microtype}
+% \RequirePackage{setspace}% für Onehalfspacing, ggf irgendwie erstetzen
+
+% \RequirePackage{libertine}
+% \RequirePackage{newtxmath}
+% \RequirePackage{amsmath,amsfonts,amstext}
+
+% \RequirePackage{hyperref}
+% \RequirePackage{color}
+% \RequirePackage{graphicx}
+% \RequirePackage{siunitx}
+% \RequirePackage{textcomp}
+% \RequirePackage{biblatex}
+% \RequirePackage{glossaries}
+% \RequirePackage{scrlayer-scrpage}
+
+% %---------------------------------------
+
+
+%%Pagestyle--IAT------------
+\definecolor{iatred}{rgb}{0.79,0,0}
+\addtokomafont{headsepline}{\color{iatred}}
+
+\newpairofpagestyles{iat}{
+	\ihead{\headmark}
+	\chead{}
+	\ohead{%
+		\begin{minipage}{0.1\linewidth}%
+			\includegraphics[width=\linewidth]{Logos/iat_logo.pdf}%
+		\end{minipage}
+	}
+	\lofoot{%
+		\begin{minipage}{0.1\linewidth}%
+			\vspace{1mm}
+			\includegraphics[scale=0.09]{Logos/UHB_Logo_4c}\relax%
+		\end{minipage}%
+	}
+	\rofoot{\pagemark}
+}
+\newpairofpagestyles{iat-conformity}{
+	\KOMAoption{headsepline}{false}
+	\ihead{}
+	\chead{}
+	\ohead{}
+	\lofoot{}
+	\rofoot{\pagemark}
+}
+
+%Format Options
+%-----------------------
+\onehalfspacing
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+%Caption Formatting
+%\addtokomafont{captionlabel}{\sffamily\bfseries}
+%\setcapindent{0em}
+%\setcapwidth{1\textwidth}
+%\KOMAoptions{captions=nooneline}
+\urlstyle{same} % Prevents URLs in bibliography from exceeding bounds
+
+%Figures Centered in Figure-Environment
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother
+
+%\input{ctII_tutorials_glossaries.tex}
+%\makeglossaries
+\graphicspath{{./ctII_graphics/}}
+\renewcommand*\chapterpagestyle{iat}
+
+
+\hypersetup{%
+	pdftitle	={\subject -- \author -- \today},
+	pdfauthor	={\author},
+	pdfsubject	={\subject},
+	pdfkeywords ={\keywords}
+}
+
+
+\setlength{\footheight}{21pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TUM Template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \PassOptionsToPackage{table,svgnames,dvipsnames}{xcolor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Packages
+% IAT Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pdfpages} %The following package is needed to implement pdfs for conformity decl.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TUM Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[utf8]{inputenc}
@@ -34,7 +163,13 @@
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \usepackage[final]{microtype}
-\usepackage{caption}
+\usepackage[%
+justification=raggedright,
+singlelinecheck=false,
+font=footnotesize,
+format=hang,
+indent=1cm
+]{caption}
 \usepackage[hidelinks]{hyperref}
 \usepackage{comment}
 \usepackage{longtable} % Wenn Tabelle zu lang für Seite ist
@@ -198,6 +333,11 @@
 \newglossaryentry{Gaußsche Prozessregression}{
   name=GPR,
   description={Nichtparametrisches, probabilistisches Modell zur Vorhersage,  Quantifizierung von Unsicherheiten in Regressionen (Vorhersagen als Verteilungen statt als Punktwerte)}
+}
+
+\newglossaryentry{Out-of-Distribution}{
+  name=OOD,
+  description={Out-Of-Distribution-Data bezeichnet Datenpunkte, die aus einer anderen Verteilung stammen als derjenigen, auf der das Modell trainiert wurde, und deren Erkennung für die zuverlässige Unsicherheitsquantifizierung essenziell ist}
 }
 
 \newglossaryentry{surrogat}{
