@@ -3,14 +3,1066 @@
 \chapter{Stand der Technik}
 \label{chapter:stand-der-technik}
 
-\begin{otherlanguage}{american}
-%
-%
-%
-\end{otherlanguage}
+% \begin{otherlanguage}{american}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Reference ML in scenario-based validation of autonomous systems
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The current state of machine learning for scenario-based validation of autonomous systems relies heavily on data-based models to predict complex parameterized situations, for example in traffic. The engineering surrogate model is intended to assess risks and check the plausibility of scenarios, for example when a control system should predict a situation. For this purpose, the RQ is discussed in the following state-of-the-art research.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R1
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% R1 Which machine-learning-based surrogate models are suitable for uncertainty quantification?
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|}
+%     \hline
+%     \textbf{Surrogate Model} & \textbf{Reason for Suitability} \\
+%     \hline
+%     \begin{itemize}[topsep=0em, itemsep=0.25em, left=0em, labelsep=0.25em]
+%       \item 1. Gaussian Process Regression
+%     \end{itemize} &  
+%     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
+%       \item 1.1. Intrinsic probabilistic output
+%       \item 1.2. Exact variance estimation for small datasets
+%       \item 1.3. Kernel-based uncertainty characterization
+%     \end{itemize} \\ 
+%     \hline
+%     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
+%       \item 2. Deep Ensembles
+%     \end{itemize} & 
+%     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
+%       \item 2.1. Redundant modeling reduces overconfidence
+%       \item 2.2. Easy integration into existing architectures
+%       \item 2.3. Robust against out-of-distribution data
+%     \end{itemize} \\
+%     \hline
+%     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
+%       \item 3. Hybrid Methods
+%     \end{itemize} & 
+%     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
+%       \item 3.1. Combines strengths of black-box models and GPR
+%       \item 3.2. Can be retrofitted onto existing models
+%       \item 3.3. Computationally efficient uncertainty propagation
+%     \end{itemize} \\
+%     \hline
+%     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
+%       \item 4. Bayesian Neural Networks
+%     \end{itemize} & 
+%     \begin{itemize}[topsep=0em, itemsep=0em, left=0em, labelsep=0.25em]
+%       \item 4.1. Systematic integration of priors
+%       \item 4.2. Theoretically grounded parameter uncertainty
+%       \item 4.3. Natural regularization through Bayesian inference
+%     \end{itemize} \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R1 Comparison of uncertainty quantification methods in ML}
+%   \label{tab:chapter6r1}
+% \end{table}
+
+% \footnote{%
+% \begin{minipage}[t]{\textwidth}
+% \scriptsize
+% \textbf{Sources for Tab. \ref{tab:chapter6r1}:}\\
+% 1. \parencite[Ch.~2]{rasmussen2006gaussian}, 
+% 1.1. \parencite[p.~16–17]{rasmussen2006gaussian}, 
+% 1.2. \parencite[Ch.~2.2]{rasmussen2006gaussian},
+% 1.3. \parencite[Ch.~4]{rasmussen2006gaussian}\\[0.3em]
+% 2. \parencite{lakshminarayanan2017simple},
+% 2.1. \parencite[p.~3]{lakshminarayanan2017simple},
+% 2.2. \parencite[p.~5]{lakshminarayanan2017simple},
+% 2.3. \parencite{ovadia2019can}\\[0.3em]
+% 3. \parencite{perdikaris2017nonlinear}, 
+% 3.1. \parencite[p.~5–6]{perdikaris2017nonlinear},
+% 3.2. \parencite[p.~6]{perdikaris2017nonlinear},
+% 3.3. \parencite{liu2020multifidelity}\\[0.3em]
+% 4. \parencite{gal2016uncertainty}, 
+% 4.1. \parencite[Ch.~2.3]{gal2016uncertainty}, 
+% 4.2. \parencite[p.~40–41]{gal2016uncertainty}, 
+% 4.3. \parencite[p.~41–42]{gal2016uncertainty}
+% \end{minipage}%
+% }
+
+% % (Overview from MC25)
+
+% \newpage
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R2
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% R2 Which general and model-specific factors influence uncertainty learning in ML models?
+
+% \newline
+% R2.1 General Factors
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|}
+%     \hline
+%     \textbf{Uncertainty Dimensions} & \textbf{Possible Values} \\
+%     \hline
+%     1. Localization in the system & Environment, modeling, functions, objectives, available resources \\
+%     \hline
+%     2. Nature & Epistemic, Aleatoric \\
+%     \hline
+%     3. Degree of uncertainty & No uncertainty, lack of knowledge, lack of awareness, lack of capability to gain awareness \\
+%     \hline
+%     4. Time of emergence & Requirements definition, development time, runtime \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R2 General factors for classifying uncertainty in AI systems, based on A. Kreutz~\nocite{AndreasKreutz2022}~\nocite{AndreasKreutz2022b}}
+%   \label{tab:chapter6r21}
+% \end{table}
+
+% \newline
+% R2.2 Model-specific Factors
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|}
+%     \hline
+%     \textbf{Bayesian Neural Networks} & \textbf{Model-specific Factors} \\
+%     \hline
+%     1. Prior distributions & The choice of priors affects uncertainty and prediction accuracy. \\
+%     \hline
+%     2. Likelihood function & Determines how uncertainty in observations is modeled (e.g. Gaussian). \\
+%     \hline
+%     3. Posterior approximation & MCMC or variational inference estimates the posterior and uncertainty. \\
+%     \hline
+%     4. Regularization & Helps avoid overfitting and control uncertainty. \\
+%     \hline
+%     5. Bayesian optimization & Optimizes hyperparameters considering uncertainty. \\
+%     \hline
+%     6. Data quality & Poor data quality increases uncertainty, good quality reduces it. \\
+%     \hline
+%     7. Model scale & The scale of the model influences uncertainty quantification. \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R2.2 Model-specific factors for uncertainty classification in Bayesian Neural Networks}
+%   \label{tab:chapter6r22}
+% \end{table}
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|}
+%     \hline
+%     \textbf{Evidential Neural Networks} & \textbf{Model-specific Factors} \\
+%     \hline
+%     1. Prior function & Influences how uncertainty is modeled over data and parameters. \\
+%     \hline
+%     2. Evidence function & Models uncertainty via evidence parameters such as \( \alpha \), \( \beta \), and \( v \). \\
+%     \hline
+%     3. Posterior approximation & Approximation of the posterior distribution to determine uncertainty. \\
+%     \hline
+%     4. Evidence optimization & Optimization of evidence parameters during training. \\
+%     \hline
+%     5. Evidence-based regularization & Regularizes evidence parameters to prevent overfitting. \\
+%     \hline
+%     6. Multimodality & Simultaneous modeling of multiple competing uncertainty predictions. \\
+%     \hline
+%     7. Data-inherent uncertainty & Uncertainty that directly arises from the data itself. \\
+%     \hline
+%     8. Data quality & Poor data quality increases uncertainty in the model. \\
+%     \hline
+%     9. Network depth & The depth affects the capability to capture uncertainty. \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R2.2 Model-specific factors for uncertainty classification in Evidential Neural Networks}
+%   \label{tab:chapter6r23}
+% \end{table}
+
+% \footnote{%
+% \begin{minipage}[t]{\textwidth}
+% \scriptsize
+% \textbf{Sources for Tab. \ref{tab:chapter6r21}, Tab. \ref{tab:chapter6r22}, Tab. \ref{tab:chapter6r23}:}\\[0.125em]
+% \textbf{R2.1 General Factors:} 
+% 1. \parencite[p.~47–52]{AndreasKreutz2022},
+% 2. \parencite[p.~54]{AndreasKreutz2022},
+% 3. \parencite[p.~56–58]{AndreasKreutz2022},
+% 4. \parencite[p.~60]{AndreasKreutz2022}\\[0.125em]
+
+% \textbf{R2.2.1 Bayesian Neural Networks:} 
+% 1. \parencite[Ch.~2.3]{gal2016uncertainty},
+% 2. \parencite[Ch.~3]{blundell2015weight},
+% 3. \parencite[p.~40–41]{gal2016uncertainty},
+% 4. \parencite[p.~41–42]{gal2016uncertainty},
+% 5. \parencite[Ch.~7.4]{rasmussen2006gaussian},
+% 6. \parencite[p.~16]{bishop2006pattern},
+% 7. \parencite[p.~29–31]{gal2016uncertainty}\\[0.125em]
+
+% \textbf{R2.2.2 Evidential Neural Networks:} 
+% 1. \parencite{sensoy2018evidential},
+% 2. \parencite[p.~2–3]{sensoy2018evidential},
+% 3. \parencite[p.~4]{sensoy2018evidential},
+% 4. \parencite[p.~5]{sensoy2018evidential},
+% 5. \parencite[p.~6]{sensoy2018evidential},
+% 6. \parencite[p.~6–7]{sensoy2018evidential},
+% 7. \parencite{kendall2017uncertainties},
+% 8. \parencite{kendall2017uncertainties},
+% 9. \parencite[p.~6]{sensoy2018evidential}
+% \end{minipage}%
+% }
+
+% \newpage
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R3
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% R3 How can these influencing factors be mitigated to improve uncertainty estimation?
+
+% \newline
+% How to mitigate general factors?
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|}
+%     \hline
+%     \textbf{Uncertainty Dimensions} & \textbf{Possible Mitigation} \\
+%     \hline
+%     1. Localization in the system & Improve model accuracy and resource utilization through targeted data collection and model adaptation. \\
+%     \hline
+%     2. Nature & Use of hybrid models capable of modeling both epistemic and aleatoric uncertainty. \\
+%     \hline
+%     3. Degree of uncertainty & Increase model specification, e.g., through ensemble modeling and explicit uncertainty quantification. \\
+%     \hline
+%     4. Time of occurrence & Integrate uncertainty modeling early in requirements definition and development phases. \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R3 Mitigation of general factors in AI systems}
+%   \label{tab:chapter6r31}
+% \end{table}
+
+% \newline
+% How to mitigate model-specific factors?
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|}
+%     \hline
+%     \textbf{Model-specific factors} & \textbf{Mitigation of uncertainty estimation} \\
+%     \hline
+%     1. Prior distributions & Choose more robust priors and adapt priors to the data to avoid excessive uncertainty. \\
+%     \hline
+%     2. Likelihood function & Optimize likelihood models, e.g., by using multidimensional likelihoods for uncertainty modeling. \\
+%     \hline
+%     3. Posterior approximation & Employ efficient approximation techniques such as Variational Inference for improved uncertainty estimation. \\
+%     \hline
+%     4. Regularization & Apply stronger regularization techniques to avoid overfitting and explicitly reduce uncertainty. \\
+%     \hline
+%     5. Bayesian optimization & Optimize hyperparameters under uncertainty to specifically reduce uncertainty in the model. \\
+%     \hline
+%     6. Data quality & Improve data quality through data cleansing and compilation of training sets that reduce uncertainty. \\
+%     \hline
+%     7. Scale & Use scaling models to reduce uncertainty by training models on larger data sets. \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R3.1 Mitigation of model-specific factors for uncertainty estimation in \textbf{\gls{Bayesian Neural Networks}}}
+%   \label{tab:chapter6r32}
+% \end{table}
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|}
+%     \hline
+%     \textbf{Model-specific factors} & \textbf{Mitigation of uncertainty estimation} \\
+%     \hline
+%     1. Prior function & Use flexible prior functions tailored to the specific level of data uncertainty. \\
+%     \hline
+%     2. Evidence function & Improve evidence parameters, e.g., by using multimodal evidence functions to better model uncertainty. \\
+%     \hline
+%     3. Posterior approximation & Apply precise MCMC methods or improved approximation methods for more accurate posterior estimation. \\
+%     \hline
+%     4. Evidence optimization & Optimize evidence parameters to avoid highly uncertain parameter regions and thus reduce uncertainty. \\
+%     \hline
+%     5. Evidence-based regularization & Apply stronger regularization of evidence parameters to avoid excessive uncertainty in modeling. \\
+%     \hline
+%     6. Multimodality & Integrate multimodal uncertainty models to capture multiple sources of uncertainty simultaneously. \\
+%     \hline
+%     7. Data-inherent uncertainty & Reduce data noise and improve preprocessing to minimize uncertainty inherent in the data. \\
+%     \hline
+%     8. Data quality & Improve data quality by using better datasets and data augmentation. \\
+%     \hline
+%     9. Network depth & Optimize network depth with regard to model complexity to avoid unnecessary uncertainties. \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R3.2 Mitigation of model-specific factors for uncertainty estimation in \textbf{\gls{Evidential Neural Networks}}}
+%   \label{tab:chapter6r33}
+% \end{table}
+
+% \footnote{%
+% \begin{minipage}[t]{\textwidth}
+% \scriptsize
+% \textbf{Sources for Tab. \ref{tab:chapter6r31}, Tab. \ref{tab:chapter6r32}, Tab. \ref{tab:chapter6r33}:}\\[0.125em]
+% \textbf{R3 General factors}\\
+% 1. \parencite[pp.~47–52]{AndreasKreutz2022},
+% 2. \parencite[pp.~6–9]{perdikaris2017nonlinear},
+% 3. \parencite[p.~3]{ovadia2019can},
+% 4. \parencite[p.~60]{AndreasKreutz2022} \\[0.125em]
+
+% \textbf{R3.1 Bayesian Neural Networks}\\
+% 1. \parencite[Chap.~2.3]{gal2016uncertainty},
+% 2. \parencite[Chap.~3]{blundell2015weight},
+% 3. \parencite[pp.~40–41]{gal2016uncertainty},
+% 4. \parencite[pp.~41–42]{gal2016uncertainty},
+% 5. \parencite[Chap.~7.4]{rasmussen2006gaussian},
+% 6. \parencite[p.~16]{bishop2006pattern},
+% 7. \parencite[pp.~29–31]{gal2016uncertainty} \\[0.125em]
+
+% \textbf{R3.2 Evidential Neural Networks}\\
+% 1. \parencite{sensoy2018evidential},
+% 2. \parencite[pp.~3–4]{sensoy2018evidential},
+% 3. \parencite[p.~4]{sensoy2018evidential},
+% 4. \parencite[p.~5]{sensoy2018evidential},
+% 5. \parencite[p.~6]{sensoy2018evidential},
+% 6. \parencite[pp.~6–7]{sensoy2018evidential},
+% 7. \parencite{kendall2017uncertainties},
+% 8. \parencite{kendall2017uncertainties},
+% 9. \parencite[p.~6]{sensoy2018evidential}
+% \end{minipage}%
+% }
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R4
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% R4 To what extent can ML-based uncertainty quantification reliably reflect the uncertainties observed in real-world application scenarios?
+% % Evidence from theoretical derivation of how correspondence can be achieved.
+% \newline
+% % UQ-Pred-UQ-Data-EQ-Ensure-Framework
+% Lanini et al. provide a framework for assessing R4 \parencite{Lanini2024}, aimed at optimization within an application domain. Their research further differentiates between data-based and model-based uncertainty metrics to address this question.
+% \newline
+% Manchingal et al. distance themselves from the optimization toward application domains. They describe epistemic artificial intelligence as a paradigm shift. At its core, the goal is to train not only on knowledge in the form of data, but also explicitly on the absence of knowledge. \parencite{manchingal2025}
+
+
+% \pagebreak
+
+
+% \textbf{Modeling Evidential Knowledge}
+
+% \begin{figure}[!ht]
+%   \centering
+%   \includegraphics[width=\textwidth]{../figures/x3.png}
+%   \caption{R4.1}
+% \end{figure}
+
+% \begin{figure}[!ht]
+%   \centering
+%   \includegraphics[width=\textwidth]{../figures/x2.png}
+%   \caption{R4.2}
+% \end{figure}
+
+
+% \textbf{Modeling Evidential Ignorance}
+
+% One approach to training \gls{evidential neural networks} on ignorance is to condition the model such that it produces low evidence values for unknown inputs. This is achieved by including out-of-distribution (OOD) examples during training and augmenting the loss function with a term that pushes the evidence distribution toward a uniform distribution:
+
+% \[
+% \text{Loss}_{\text{total}} = \text{Loss}_{\text{in}} + \lambda \cdot \text{KL}\bigl(\text{Dir}(\boldsymbol{\alpha}) \,\|\, \text{Uniform}\bigr).
+% \]
+
+% This prevents excessively high evidence values for unknown inputs. In regression tasks, variance can similarly be intentionally increased by setting $\alpha$ and $\beta$ to low values. Thus, the ENN learns to explicitly express ignorance through low evidence and high uncertainty (cf. Manchingal et al. (MC25)).
+
+
+% \pagebreak
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R5
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% R5 Conducting a comprehensive literature review on UQ techniques in ML-based surrogate modeling.
+
+% The contribution to a comprehensive literature review on UQ techniques in ML-based surrogate modeling is focused on \gls{evidential neural networks}. Within \gls{evidential neural networks}, a distinction is made between inclusion and exclusion criteria.
+
+% \begin{table}[htbp]
+% \centering
+% \footnotesize
+% \begin{tabularx}{\textwidth}{|l|X|}
+% \hline
+% \textbf{Criterion} & \textbf{Description} \\ \hline
+
+% \textbf{Inclusion Criteria} & 
+% Evidential Deep Learning or evidential uncertainty modeling \newline
+% Peer-reviewed or relevant arXiv preprints \newline
+% Including experiments or applications \newline
+% Publications from 2016–2025 \newline
+% English language \\ \hline
+
+% \textbf{Exclusion Criteria} &
+% No implementation or purely theoretical without EDL reference \newline
+% Only Bayesian NNs/ensembles without evidential approaches \newline
+% Purely technical papers without relevance to uncertainty \newline
+% Non-English publications \newline
+% Only posters or abstracts without full text \\ \hline
+
+% \end{tabularx}
+% \caption{R5 Selection criteria for the literature review on Evidential Deep Learning}
+% \label{tab:auswahlkriterien}
+% \end{table}
+
+% % Catalog of questions covered by the scopes. 
+
+% % How is Evidential Deep Learning used for uncertainty quantification in neural networks?
+
+% % Which methods, benchmarks, and applications exist for EDL?
+
+% % What is the optimal loss function for EDL?
+
+% % What are the mathematical foundations underlying Evidential Deep Learning?
+
+% % What is the connection between EDL and Subjective Logic?
+
+% % How do Evidential Deep Learning and Bayesian Deep Learning differ?
+
+% % Which architectures are suitable for Evidential Learning?
+
+% % What modifications are necessary for classical CNNs, RNNs, Transformers for EDL?
+
+% % How are evidential layers integrated into existing architectures?
+
+% % What are the differences between evidential loss and standard loss functions like cross entropy?
+
+% % What role does KL regularization play in the context of EDL?
+
+% % How does EDL handle erroneous or uncertain labels?
+
+% % How do epistemic and aleatoric uncertainties differ in EDL?
+
+% % How can evidential parameters be interpreted?
+
+% % Which benchmarks are typically used for EDL (e.g., MNIST, CIFAR-10, OOD tests)?
+
+% % How does EDL perform compared to Bayesian Neural Networks and Deep Ensembles?
+
+% % What are the application areas for EDL, especially in fields like autonomous driving or Industry 4.0?
+
+% % What challenges currently exist in training and deploying Evidential Deep Learning?
+
+% % What overconfidence problems can occur in EDL?
+
+% % How scalable is Evidential Deep Learning to large models and datasets?
+
+% % How does EDL compare to deterministic methods with post-hoc calibration?
+
+% A catalog of questions has been generated for the literature review, which has resulted in the following scopes:
+
+% \begin{table}[htbp]
+% \centering
+% \footnotesize
+% \begin{tabularx}{\textwidth}{|l|X|}
+% \hline
+% \textbf{Scope} & \textbf{Description} \\ \hline
+
+% 1. Theoretical Foundations &
+% 1.1. Mathematical formulation of EDL \newline
+% 1.2. Connection to Subjective Logic \newline
+% 1.3. Differences from Bayesian Deep Learning \\ \hline
+
+% 2. Architectures &
+% 2.1. Network architectures for evidential learning \newline
+% 2.2. Modifications to classical CNNs, RNNs, Transformers \newline
+% 2.3. Integration of evidential layers \\ \hline
+
+% 3. Loss Functions &
+% 3.1. Evidential Loss vs. standard cross entropy \newline
+% 3.2. KL regularization \newline
+% 3.3. Handling noisy labels \\ \hline
+
+% 4. Uncertainty Types &
+% 4.1. Epistemic vs. aleatoric uncertainty \newline
+% 4.2. Interpretation of evidential parameters \\ \hline
+
+% 5. Benchmarks &
+% 5.1. Typical datasets (MNIST, CIFAR-10, OOD tests) \newline
+% 5.2. Comparison to Bayesian NNs and ensembles \\ \hline
+
+% 6. Application Domains &
+% 6.1. Autonomous driving \newline
+% 6.2. Industry 4.0 \\ \hline
+
+% 7. Comparison to Other Methods &
+% 7.1. Bayesian Neural Networks \newline
+% 7.2. Deep Ensembles \newline
+% 7.3. Deterministic methods with calibration \\ \hline
+
+% 8. Challenges &
+% 8.1. Training stability \newline
+% 8.2. Overconfidence problems \newline
+% 8.3. Scalability to large models \\ \hline
+
+% \end{tabularx}
+% \caption{R5 Scopes of the questions for the literature review on Evidential Deep Learning}
+% \label{tab:edl_scopes}
+% \end{table}
+
+% \pagebreak
+
+% Based on the R5 scopes of the questions in the literature review on Evidential Deep Learning, the following R5 scopes of answers for the literature review on Evidential Deep Learning with corresponding sources have been defined:
+
+% \begin{table}[htbp]
+% \centering
+% \footnotesize
+% \begin{tabularx}{\textwidth}{|l|X|}
+% \hline
+% \textbf{Scope} & \textbf{Description / Sources} \\ \hline
+
+% 1.1. & Sensoy et al. (2018): Evidential Deep Learning to Quantify Classification Uncertainty \cite{sensoy2018evidential} \newline
+%          Sensoy et al. (2023): Evidential Deep Learning: Theory and Practice \cite{sensoy2023tutorial} \\ 
+% 1.2. & Jøsang (2016): Subjective Logic \cite{josang2016subjective} \\ 
+% 1.3. & Kendall \& Gal (2017): What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? \cite{kendall2017uncertainties} \newline
+%          Peters et al. (2023): On the Mathematical Consistency of Evidential Learning \cite{peters2023consistency} \\ \hline
+
+% 2.1. & Amini et al. (2020): Deep Evidential Regression \cite{amini2020deep} \newline
+%          Tian et al. (2024): Evidential Graph Neural Networks \cite{tian2024egnn} \\ 
+% 2.2. & Sensoy et al. (2020): Uncertainty-Aware Deep Classification \cite{sensoy2020uncertainty} \newline
+%          Bohlke et al. (2023): Evidential Vision Transformers \cite{bohlke2023evidentialvit} \\ 
+% 2.3. & Zhou et al. (2022): Evidential Transformer Networks \cite{zhou2022evidential} \newline
+%          Bohlke et al. (2023): Evidential Vision Transformers \cite{bohlke2023evidentialvit} \\ \hline
+
+% 3.1. & Sensoy et al. (2018): Evidential Loss Function (Evidential Deep Learning) \cite{sensoy2018evidential} \\ 
+% 3.2. & Sensoy et al. (2020): KL Regularization in Evidential Networks \cite{sensoy2020uncertainty} \newline
+%          Amini et al. (2023): Improved KL Regularization for Evidential Regression \cite{amini2023kl} \\ 
+% 3.3. & Dhamija et al. (2018): Reducing Model Confidence for Out-of-Distribution Detection \cite{dhamija2018reducing} \\ \hline
+
+% 4.1. & Kendall \& Gal (2017): Aleatoric and Epistemic Uncertainty \cite{kendall2017uncertainties} \newline
+%          Tran et al. (2023): Separating Aleatoric and Epistemic Uncertainty in Evidential Models \cite{tran2023separating} \\ 
+% 4.2. & Amini et al. (2020): Interpreting evidential parameters in regression tasks \cite{amini2020deep} \\ \hline
+
+% 5.1. & Amini et al. (2020): Evaluation on MNIST, CIFAR-10, OOD \cite{amini2020deep} \newline
+%          Bohlke et al. (2023): Evaluation on CIFAR-100C, ImageNet-O \cite{bohlke2023evidentialvit} \\ 
+% 5.2. & Lakshminarayanan et al. (2017): Deep Ensembles as Baseline for Uncertainty \cite{lakshminarayanan2017simple} \newline
+%          Tran et al. (2023): Comparative Benchmarks \cite{tran2023separating} \\ \hline
+
+% 6.1. & Feng et al. (2022): Evidential Uncertainty in Autonomous Driving \cite{feng2022review} \\ 
+% 6.2. & Wang et al. (2022): Uncertainty Modeling in Industrial AI \cite{wang2022uncertainty} \newline
+%          Gupta et al. (2023): Evidential Learning for Industrial Predictive Maintenance \cite{gupta2023industrialedl} \newline
+%          Chen et al. (2024): Uncertainty Estimation in Vision-Language Models \cite{chen2024vlm} \\ \hline
+
+% 7.1. & Gal \& Ghahramani (2016): Dropout as Bayesian Approximation \cite{gal2016dropout} \\ 
+% 7.2. & Lakshminarayanan et al. (2017): Deep Ensembles \cite{lakshminarayanan2017simple} \\ 
+% 7.3. & Guo et al. (2017): On Calibration of Modern Neural Networks \cite{guo2017calibration} \newline
+%          Tran et al. (2023): Comparison of calibration in evidential vs. deterministic methods \cite{tran2023separating} \\ \hline
+
+% 8.1. & Sensoy et al. (2020): Training stability in evidential networks \cite{sensoy2020uncertainty} \newline
+%          Peters et al. (2023): Loss function degeneracies \cite{peters2023consistency} \\ 
+% 8.2. & Dhamija et al. (2018): Overconfidence in neural networks \cite{dhamija2018reducing} \newline
+%          Chen et al. (2024): Overconfidence in multimodal evidential learning \cite{chen2024vlm} \\ 
+% 8.3. & Zhou et al. (2022): Scalability of evidential transformers \cite{zhou2022evidential} \newline
+%          Bohlke et al. (2023): Scalability challenges in large Vision Transformers \cite{bohlke2023evidentialvit} \\ \hline
+
+% \end{tabularx}
+% \caption{R5 Scopes of the answers in the literature review on Evidential Deep Learning with current sources (2016–2025)}
+% \label{tab:edl_scopes_sources_updated}
+% \end{table}
+% \newline
+% High-quality, central surveys include \parencite{Ulmer2023}, \parencite{Gawlikowski2023}.
+% \newline
+% The relationship between model-based evidential uncertainty and that observed in real-world data is elaborated in Appendix \ref{sec:enn_gum_derivation}.
+
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R6
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% R6 Identification and analysis of suitable uncertainty metrics for surrogate models, distinguishing between aleatoric and epistemic uncertainty.
+
+% \begin{table}[htpb]
+%   \centering
+%   \begin{tabularx}{\textwidth}{|l|l|X|}
+%     \hline
+%     & \textbf{Data-based Metrics} & \textbf{Model-based Metrics} \\
+%     \hline
+%     \textbf{AC} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       \( \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} \) \\ 
+%       Standard deviation (noise) \\[1ex]
+%       \( \text{Var} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \) \\ 
+%       Variance of residuals
+%     \end{tabular}
+%     & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       \( p(\theta \mid \mathcal{D}) \) \\ 
+%       Bayesian uncertainty (posterior) \\[1ex]
+%       Cross-validation (train/test splits)
+%     \end{tabular} \\
+%     \hline
+%     \textbf{EC} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       \( \text{Error} = \sum_{i=1}^{n} |y_i - \hat{y}_i| \) \\ 
+%       Error analysis on test data
+%     \end{tabular}
+%     & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       \( \hat{y} \pm z \cdot \sigma \) \\ 
+%       Confidence interval \\[1ex]
+%       \( H(p) = - \sum_{i} p(x_i) \log(p(x_i)) \) \\ 
+%       Entropy of the posterior distribution
+%     \end{tabular} \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R6 Uncertainty metrics for surrogate models}
+%   \label{tab:chapter6r61}
+% \end{table}
+
+% \footnote{%
+% \begin{minipage}[t]{\textwidth}
+% \scriptsize
+% \textbf{Sources for Table \ref{tab:chapter6r61}:}\\[0.125em]
+% \textbf{AC (Aleatoric Uncertainty)}\\
+% \quad Data-based metrics: \parencite[pp.~28–30]{bishop2006pattern}, 
+% \quad Model-based metrics: \parencite[Ch.~2]{rasmussen2006gaussian}; \parencite{blundell2015weight}\\ [0.125em]
+
+% \textbf{EC (Epistemic Uncertainty)}\\
+% \quad Data-based metrics: \parencite[pp.~30–32]{bishop2006pattern}, 
+% \quad Model-based metrics: \parencite[pp.~40–42]{gal2016uncertainty}; \parencite{sensoy2018evidential},
+% \end{minipage}%
+% }
+
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R7
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% R7 Comparison of model-specific and application-specific evaluation metrics for uncertainty quantification.
+
+% % Example application domain: [Example Domain]
+% For the comparison, applications in engineering are proposed:
+
+% \begin{table}[!htbp]
+% \centering
+% \scriptsize
+% \begin{tabularx}{\textwidth}{|l|X|}
+% \hline
+% \textbf{Domain} & \textbf{Typical Applications} \\
+% \hline
+% Structural Mechanics & Stress analysis, fatigue life prediction \\
+% \hline
+% Aerodynamics & CFD simulations, drag/lift coefficients \\
+% \hline
+% Automotive Engineering & Crash simulations, acoustics (NVH), thermal management \\
+% \hline
+% Acoustics & Modal analysis, sound propagation \\
+% \hline
+% Materials Science & Material properties, materials design \\
+% \hline
+% Geophysics & Earthquake simulation, soil mechanics \\
+% \hline
+% Process Simulation & Chemical reactors, process optimization \\
+% \hline
+% Energy & Battery management, grid stability \\
+% \hline
+% \end{tabularx}
+% \caption{Engineering application domains for ML surrogate models}
+% \label{tab:ingenieurwesen-domains-small}
+% \end{table}
+
+% % Application specification:
+% As an example domain for comparing model-specific and application-specific uncertainty metrics for surrogate models in autonomous driving, the field of automotive engineering is chosen.
+
+% \begin{table}[!htpb]
+%   \centering
+%   \scriptsize
+%   \begin{tabularx}{\textwidth}{|l|X|X|}
+%     \hline
+%     & \textbf{Model-specific Metrics} & \textbf{Application-specific Metrics (Autonomous Driving)} \\
+%     \hline
+%     \textbf{AC} & 
+%     RMSE: Deviation between predicted and actual sensor data (e.g., object positions) \newline
+%     MAE: Mean absolute error in object detection or trajectory prediction \newline
+%     KL(P‖Q): Divergence between predicted and ground truth probability distributions & 
+%     Accuracy: Correctness of object detection (e.g., pedestrian detected/not detected) \newline
+%     F1-Score: Balance between precision and recall in object detection \newline
+%     AUC: Discriminative power in classifying safe vs. unsafe scenarios \\
+%     \hline
+%     \textbf{EC} & 
+%     \( \mathcal{L}(\theta) \): Loss function including uncertainty terms (e.g., evidential loss) \newline
+%     BMA: Bayesian Model Averaging of multiple posteriors for more robust uncertainties \newline
+%     CI: Confidence intervals for critical quantities (e.g., time-to-collision) & 
+%     Error: Deviation between predicted and actual safety distances \newline
+%     H(p): Entropy of classification output as a measure of epistemic uncertainty \newline
+%     AUC-PR: Performance for rare, critical classes (e.g., rare hazardous situations) \\
+%     \hline
+%   \end{tabularx}
+%   \caption{Comparison of model-specific and application-specific uncertainty metrics for surrogate models in autonomous driving}
+%   \label{tab:chapter6r71}
+% \end{table}
+
+% \footnote{%
+
+% \begin{minipage}[t]{\textwidth}
+% \scriptsize
+% \textbf{Sources for Table \ref{tab:ingenieurwesen-domains-small}:}\\[0.5em]
+% The listed application domains are compiled from \parencite{Gawlikowski2023} and \parencite{Ulmer2023}. Both works discuss typical use cases for ML-based surrogate models in engineering.
+% \end{minipage}%
+% \vspace{0.125em}
+% \begin{minipage}[t]{\textwidth}
+% \scriptsize
+% \textbf{Sources for Table \ref{tab:chapter6r71}:}\\[0.5em]
+% \textbf{AC (Aleatoric Uncertainty)}\\
+% \quad Model-specific metrics: \parencite[pp.~224–226]{bishop2006pattern}; \parencite[Ch.~2]{rasmussen2006gaussian} \\
+% \quad Application-specific metrics: \parencite[pp.~40–42]{bishop2006pattern} \\[0.5em]
+
+% \textbf{EC (Epistemic Uncertainty)}\\
+% \quad Model-specific metrics: \parencite[pp.~40–42]{gal2016uncertainty}; \parencite{blundell2015weight}; \parencite{sensoy2018evidential} \\
+% \quad Application-specific metrics: \parencite[pp.~233–235]{bishop2006pattern}; \parencite{ovadia2019can}
+% \end{minipage}%
+% }
+
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %  R8 /assets/repos/BA__U-i-mlb-Sm-f-d-s-V-a-S__tex/prototypes/prototype_s8-02-07-25/prototype_s8-02-07-25.py
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % R8 Comparison
+
+% \begin{table}[!htpb]
+%   \centering
+%   \begin{tabularx}{\textwidth}{|l|l|X|}
+%     \hline
+%       & \textbf{Bayesian Neural Networks} & \textbf{Conformal Prediction} \\
+%     \hline
+%     \textbf{Aleatoric Uncertainty} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Posterior distribution \( p(\theta \mid \mathcal{D}) \) \\ 
+%       UQ via model parameters based on training \\[1ex]
+%       MC Dropout \\ 
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       CI \( \hat{y} \pm z \cdot \sigma \) \\ 
+%       UQ through confidence intervals \\[1ex]
+%       Ensemble \\ 
+%     \end{tabular} \\
+%     \hline
+%     \textbf{Epistemic Uncertainty} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Bayesian uncertainty \( p(\theta \mid \mathcal{D}) \) \\ 
+%       UQ via model parameters through Bayesian inference \\[1ex]
+%       VI: Posterior approximation
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Confidence regions \\ 
+%       Predictive UQ through confidence intervals \\[1ex]
+%       GPR: kernel-based UQ approach, training
+%     \end{tabular} \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R8 Comparison of UQ approaches for Bayesian Neural Networks and Conformal Prediction}
+%   \label{tab:chapter6r81}
+% \end{table}
+
+
+% \paragraph{Comparison Score}
+
+% The comparison score is computed as:
+% {
+%   \[\footnotesize
+%   \text{Score} = w_\text{err} \cdot \frac{\text{RMSE}}{\text{Norm}_\text{RMSE}}
+%   + w_\text{ECE} \cdot \frac{\text{ECE}}{\text{Norm}_\text{ECE}}
+%   + w_\text{width} \cdot \frac{\text{IntervalWidth}}{\text{Norm}_\text{Width}}
+%   + w_\text{runtime} \cdot \frac{\text{Runtime}}{\text{Norm}_\text{Runtime}}
+%   \]
+% }
+
+
+% \begin{table}[htbp]
+% \centering
+% \footnotesize
+% \begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|}
+% \hline
+% \textbf{Method} & \textbf{RMSE} & \textbf{MAE} & \textbf{Coverage} & \textbf{ECE} & \textbf{Mean Interval Width} & \textbf{Score} \\
+% \hline
+% BNN HMC & 6.845 & 5.697 & 0.010 & 0.990 & 2.404 & 1.3988 \\
+% \hline
+% BNN SVI & 1367.638 & 1046.232 & 0.020 & 0.980 & 70.001 & 69.8022 \\
+% \hline
+% CP      & 0.096 & 0.075 & 0.870 & 0.130 & 0.267 & 0.0493 \\
+% \hline
+% \end{tabularx}
+% \caption{Comparison of BNN (HMC, SVI) and CP models in terms of performance and uncertainty quantification.}
+% \label{tab:r8_results}
+% \end{table}
+
+
+% \paragraph{Interpretation of Results}
+
+% 1. \textbf{BNN HMC}: Delivers moderate error (RMSE ≈ 6.8), low epistemic uncertainty, but extremely low coverage. The uncertainty intervals barely capture the true values, indicating an overconfidence problem.\\
+% 2. \textbf{BNN SVI}: Clearly fails. Very high RMSE (≈ 1367) and large epistemic variance indicate instability or convergence issues.\\
+% 3. \textbf{Conformal Prediction (CP)}: Achieves very low error (RMSE ≈ 0.096), good coverage (approx. 87%), and the best score. This method is recommended for this dataset.
+
+
+% \footnote{%
+% \begin{minipage}[t]{\textwidth}
+% \scriptsize
+% \textbf{Sources for Table \ref{tab:chapter6r81}:}\\[0.5em]
+% \textbf{Bayesian Neural Networks (BNNs)}\\
+% Aleatoric Uncertainty: \parencite[Ch.~3]{blundell2015weight}; \parencite[pp.~40–42]{gal2016uncertainty} \\
+% Epistemic Uncertainty: \parencite[pp.~40–42]{gal2016uncertainty}; \parencite{mackay1992practical} \\[0.5em]
+
+% \textbf{Conformal Prediction (CP)}\\
+% Aleatoric Uncertainty: \parencite[pp.~4–5]{vovk2005algorithmic}; \parencite{angelopoulos2021gentle} \\
+% Epistemic Uncertainty: \parencite{angelopoulos2021gentle}; \parencite[pp.~63–65]{shafer2008tutorial}; \parencite{rasmussen2006gaussian}
+% \end{minipage}%
+% }
+
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R9
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% R9 Investigation of the theoretical influence of various factors on the uncertainty estimates of selected models.
+
+% R9 is to be executed using a minimal sensitivity analysis example on \gls{Evidential Neural Networks} (ENN) in order to quantify the theoretical influence of model parameters on uncertainty estimation. The evidence parameter $\nu$ and training data size are varied to keep the analysis effort low.
+
+% % Investigation - Most Minimal Sensitivity Analysis:
+% % S1: Model Definition
+% % S2: Parameter Range
+% % S3: Execution of the Analysis
+
+% % Comparison of selected models
+
+% \textit{A - Model Definition}, \textit{B - Parameter Range}, \textit{C - Execution}
+
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|l|X|X|X|}
+%     \hline
+%     & \textbf{BNN} & \textbf{CP} & \textbf{ENN} \\
+%     \hline
+%     \textbf{A} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Posterior \( p(\theta \mid \mathcal{D}) \) \\ 
+%       UQ via model parameters \\ 
+%       MC Dropout
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       CI \( \hat{y} \pm z \cdot \sigma \) \\ 
+%       UQ via confidence intervals \\ 
+%       Ensemble
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Predictive distribution \( p(y \mid \mu, \alpha, \beta, \nu) \) \\ 
+%       Evidence parameters
+%     \end{tabular} \\
+%     \hline
+%     \textbf{B} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Model parameters: weights \( w_i \) \\ 
+%       Influence of priors \\ 
+%       Hyperparameter sensitivity
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Uncertainty estimation via CI \\ 
+%       Influence of confidence regions
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Evidence parameters \(\nu\), \(\alpha\), \(\beta\) \\ 
+%       control uncertainty components.
+%     \end{tabular} \\
+%     \hline
+%     \textbf{C} & 
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Bayesian inference for UQ \\ 
+%       MC simulation with dropout
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       Ensemble for UQ \\ 
+%       Confidence region and CI analysis
+%     \end{tabular} &
+%     \begin{tabular}[c]{@{}l@{}} 
+%       No sampling approximation needed \\ 
+%       KL regularization controls evidence
+%     \end{tabular} \\
+%     \hline
+%   \end{tabularx}
+%   \caption{R9 Overview of UQ methods for \gls{Bayesian Neural Networks}, \gls{Conformal Prediction} and \gls{Evidential Neural Networks} without sensitivity annotations}
+%   \label{tab:chapter6r91_clean}
+% \end{table}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % R9 **/assets/repos/BA__U-i-mlb-Sm-f-d-s-V-a-S__tex/prototypes/prototype_s9-02-07-25/*.py
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % S4: Evaluation
+% \newline 
+% \texttt{min\_sensitivity\_analysis\_enn.py} yields:
+
+% \begin{table}[!htbp]
+% \centering
+% \footnotesize
+% \begin{tabular}{|c|c|c|c|c|c|}
+% \hline
+% $\nu$ 
+% & mean total var 
+% & mean aleatoric 
+% & mean epistemic 
+% & RMSE 
+% & RUI \\
+% \hline
+% 1  & $1.6191 \pm 0.1344$ & $0.8095 \pm 0.0672$ & $0.8095 \pm 0.0672$ & $155.7554$ & $0.0082$ \\
+% \hline
+% 5  & $1.0007 \pm 0.1152$ & $0.8339 \pm 0.0960$ & $0.1668 \pm 0.0192$ & $155.8031$ & $0.0064$ \\
+% \hline
+% 10 & $0.8591 \pm 0.0482$ & $0.7810 \pm 0.0439$ & $0.0781 \pm 0.0044$ & $155.0450$ & $0.0060$ \\
+% \hline
+% 20 & $0.8376 \pm 0.0804$ & $0.7978 \pm 0.0766$ & $0.0399 \pm 0.0038$ & $156.6731$ & $0.0058$ \\
+% \hline
+% \end{tabular}
+% \caption{R9 Minimal sensitivity analysis \gls{Evidential Neural Networks} with $\pm 2\sigma$}
+% \label{tab:enn_results}
+% \end{table}
+
+% The parameter $\nu$ in \gls{Evidential Neural Networks} controls the balance between \gls{Epistemic Uncertainty} and \gls{Aleatoric Uncertainty}. Low $\nu$ values emphasize epistemic uncertainty, while higher $\nu$ values shift the uncertainty decomposition more strongly toward the aleatoric component.
+
+% \newline
+% \texttt{min\_sensitivity\_analysis\_bnn.py} yields:
+
+% \begin{table}[!htbp]
+% \centering
+% \footnotesize
+% \begin{tabular}{|c|c|c|c|c|c|}
+% \hline
+% Dropout 
+% & mean total var 
+% & mean aleatoric 
+% & mean epistemic 
+% & RMSE 
+% & RUI \\
+% \hline
+% 0.05 & $0.0079 \pm 0.0162$ & $0.0051 \pm 0.0108$ & $0.0028 \pm 0.0059$ & $6.8592$ & $0.0129$ \\
+% \hline
+% 0.10 & $0.0164 \pm 0.0382$ & $0.0099 \pm 0.0219$ & $0.0065 \pm 0.0167$ & $6.5767$ & $0.0195$ \\
+% \hline
+% 0.20 & $0.0347 \pm 0.0859$ & $0.0198 \pm 0.0460$ & $0.0150 \pm 0.0409$ & $7.2445$ & $0.0257$ \\
+% \hline
+% 0.50 & $0.1482 \pm 0.3429$ & $0.0783 \pm 0.1419$ & $0.0699 \pm 0.2080$ & $8.9771$ & $0.0429$ \\
+% \hline
+% \end{tabular}
+% \caption{R9 Minimal sensitivity analysis \gls{Bayesian Neural Networks} with $\pm 2\sigma$}
+% \label{tab:bnn_results}
+% \end{table} 
+
+% The dropout rate in \gls{Bayesian Neural Networks} directly influences \gls{Epistemic Uncertainty}, as higher dropout rates allow greater model variability and thus produce higher epistemic uncertainty in predictions.
+
+% \newline
+% \texttt{min\_sensitivity\_analysis\_cp.py} yields:
+
+% \begin{table}[!htbp]
+% \centering
+% \footnotesize
+% \begin{tabular}{|c|c|c|c|c|c|c|}
+% \hline
+% $\alpha$ 
+% & Coverage 
+% & Mean CI-Width 
+% & mean aleatoric 
+% & mean epistemic 
+% & mean total var 
+% & RUI \\
+% \hline
+% 0.20 & 0.820 & 1.0022 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
+% \hline
+% 0.10 & 0.913 & 1.3215 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
+% \hline
+% 0.05 & 0.953 & 1.7910 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
+% \hline
+% 0.01 & 1.000 & 3.0993 & $0.2088 \pm 0.9139$ & $0.3612 \pm 0.4821$ & $0.5700 \pm 0.4821$ & $1.8978$ \\
+% \hline
+% \end{tabular}
+% \caption{R9 Minimal sensitivity analysis \gls{Conformal Prediction} with $\pm 2\sigma$}
+% \label{tab:cp_results}
+% \end{table}
+
+% The significance level $\alpha$ in \gls{Conformal Prediction} determines the width of the prediction intervals. Smaller $\alpha$ values result in higher confidence levels and thus wider, more conservative uncertainty intervals.
+
+% \paragraph{Comparative Evaluation of Models \gls{Bayesian Neural Networks}, \gls{Conformal Prediction}, \gls{Evidential Neural Networks}}
+
+% The three tables show the sensitivity analyses for \gls{Evidential Neural Networks}, \gls{Bayesian Neural Networks}, and \gls{Conformal Prediction} under variation of their respective control parameters (\(\nu\), dropout rate, \(\alpha\)). The key metrics evaluated were the mean total variance \(\overline{u(y)^2}\), mean aleatoric variance \(\overline{u_{\text{aleatoric}}^2}\), mean epistemic variance \(\overline{u_{\text{epistemic}}^2}\), RMSE, and the \emph{Relative Uncertainty Index} (RUI).
+
+% In direct comparison, \gls{Evidential Neural Networks} exhibit the highest variances, e.g., up to \(\overline{u(y)^2} \approx 1.6\), while RMSE remains relatively stable around 155. The uncertainty decomposition in ENNs shows roughly equal contributions from \(\overline{u_{\text{aleatoric}}^2}\) and \(\overline{u_{\text{epistemic}}^2}\) at low \(\nu\). As \(\nu\) increases, \(\overline{u_{\text{epistemic}}^2}\) decreases significantly, shifting the uncertainty share more toward the aleatoric component. This highlights that very low \(\nu\) values can prevent overconfidence because the model allows for greater epistemic uncertainty.
+
+% \gls{Bayesian Neural Networks} yield much lower variances, often below \(\overline{u(y)^2} < 0.02\), with significantly lower RMSE between 6 and 9. However, higher dropout rates lead to increasing values for both \(\overline{u_{\text{epistemic}}^2}\) and \(\overline{u_{\text{aleatoric}}^2}\), indicating greater spread in uncertainty. Too low dropout rates, however, may foster overconfidence because epistemic uncertainty remains underrepresented.
+
+% \gls{Conformal Prediction} produces consistent mean variance values across all \(\alpha\) levels because the underlying Random Forest fit remains unchanged. Here, \(\overline{u(y)^2} \approx 0.57\), comprised of moderate epistemic variance \(\overline{u_{\text{epistemic}}^2} \approx 0.36\) and lower aleatoric component \(\overline{u_{\text{aleatoric}}^2} \approx 0.21\). The RUI values for \gls{Conformal Prediction} are noticeably higher at around 1.9, reflecting relatively broad uncertainty widths compared to the low RMSE (< 0.4). Due to direct interval calculation, \gls{Conformal Prediction} inherently guards against overconfidence but remains more conservative.
+
+% Overall, the models show different profiles: \gls{Evidential Neural Networks} have the highest uncertainty levels but stable RMSE around 155. \gls{Bayesian Neural Networks} achieve lower errors and lower uncertainties but are sensitive to dropout rates. \gls{Conformal Prediction} yields stable but wider intervals, providing robust calibration. The metrics \(\overline{u(y)^2}\), \(\overline{u_{\text{aleatoric}}^2}\), \(\overline{u_{\text{epistemic}}^2}\), RMSE, and RUI enable a cross-method assessment of uncertainty and help detect overconfidence early.
+
+
+% \begin{table}[!htbp]
+% \centering
+% \footnotesize
+% \begin{tabularx}{\textwidth}{|l|X|}
+% \hline
+% \textbf{Method} & \textbf{Sensitivity Aspects} \\
+% \hline
+% \textbf{BNN} &
+% Broader posterior with weak priors; stronger epistemic uncertainty. Higher dropout rate → increases epistemic uncertainty. \\
+% \hline
+% \textbf{CP} &
+% CI width increases with higher confidence level; smaller calibration sets lead to unstable CIs. Coverage decreases with too narrow regions; interval width grows with higher \(\alpha\). Heteroscedastic data cause highly varying CI widths. \\
+% \hline
+% \textbf{ENN} &
+% High epistemic uncertainty at low \(\nu\). Low \(\nu\) → more epistemic variance. Larger datasets reduce uncertainty. Excessive KL regularization may reduce model confidence excessively. \\
+% \hline
+% \end{tabularx}
+% \caption{R9 Summary of sensitivity aspects of UQ methods \gls{Bayesian Neural Networks}, \gls{Conformal Prediction}, \gls{Evidential Neural Networks}}
+% \label{tab:sensitivity_r9_transposed}
+% \end{table}
+
+
+% \footnote{%
+% \begin{minipage}[t]{\textwidth}
+% \scriptsize
+% \textbf{Sources for Table \ref{tab:chapter6r91}:}\\[0.5em]
+% \textbf{BNN (Bayesian Neural Networks)}\\
+% A (Model Definition): \parencite[Ch.~3]{blundell2015weight}; \parencite[pp.~40–42]{gal2016uncertainty} \\
+% B (Parameter Range): \parencite[pp.~448–450]{mackay1992practical}; \parencite[Ch.~5]{rasmussen2006gaussian} \\
+% C (Execution): \parencite[pp.~41–42]{gal2016uncertainty}; \parencite{blundell2015weight} \\[0.5em]
+
+% \textbf{CP (Conformal Prediction)}\\
+% A (Model Definition): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tutorial} \\
+% B (Parameter Range): \parencite[pp.~63–65]{shafer2008tutorial}; \parencite{vovk2005algorithmic} \\
+% C (Execution): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tutorial}
+% \end{minipage}%
+% }
+
+% \pagebreak
+% \end{otherlanguage}
 
 
 \begin{otherlanguage}{ngerman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bezug ML in szenariobasierter Validierung autonomer Systeme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Der aktuelle Stand im Bereich Machine Learning für die szenariobasierte Validierung autonomer Systeme setzt stark auf datenbasierte Modelle, um komplexe parametrisierte Situationen vorherzusagen, zum Beispiel im Verkehr. Das ingenieurstechnische Ersatzmodell als Surrogat soll Risiken bewerten und die Plausibilität von Szenarien prüfen, zum Beispiel wann eine Steuerung eine Situation vorhersagen soll. Dazu wird im folgenden Rahmen der RQ erörtert.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R1
@@ -1087,17 +2139,7 @@ C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tuto
 \end{minipage}%
 }
 
-\pagebreak
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bezug ML in szenariobasierter Validierung autonomer Systeme
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%
-%
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Datensätze
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
