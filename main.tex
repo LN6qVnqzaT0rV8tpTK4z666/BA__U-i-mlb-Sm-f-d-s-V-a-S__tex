@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% IAT Template
+% IAT Template: Document Class Options
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \NeedsTeXFormat{LaTeX2e}
+\NeedsTeXFormat{LaTeX2e}
 % \ProvidesClass{iat}[2020/05/15 v1 Template]
 % \PassOptionsToClass{%
 % 	a4paper,%
@@ -17,106 +17,23 @@
 
 
 
-% \PassOptionsToPackage{right=5cm,top=3.5cm,bottom=4cm,head=25pt,foot=21pt, footskip=1.1cm}{geometry}
-% \PassOptionsToPackage{hidelinks,breaklinks}{hyperref}	% add "linktocpage" option for page number instead of chapter name
-% \PassOptionsToPackage{libertine}{newtxmath}
-% \PassOptionsToPackage{headsepline=3pt, footsepline, automark, autooneside=false}{scrlayer-scrpage}
-% \PassOptionsToPackage{english,main=ngerman}{babel}
-% \PassOptionsToPackage{detect-all}{siunitx}
-% \PassOptionsToPackage{style=ieee, urldate=comp, bibencoding=UTF8, backend=biber}{biblatex}
-% \PassOptionsToPackage{T1}{fontenc}
-% \PassOptionsToPackage{utf8}{inputenc}
-
-% \RequirePackage{caption}
-
-% \RequirePackage{geometry}
-
-% \RequirePackage{fontenc}
-% \RequirePackage{inputenc}
-
-% \RequirePackage{babel}
-% \RequirePackage{csquotes}
-% \RequirePackage{microtype}
-% \RequirePackage{setspace}% für Onehalfspacing, ggf irgendwie erstetzen
-
-% \RequirePackage{libertine}
-% \RequirePackage{newtxmath}
-% \RequirePackage{amsmath,amsfonts,amstext}
-
-% \RequirePackage{hyperref}
-% \RequirePackage{color}
-% \RequirePackage{graphicx}
-% \RequirePackage{siunitx}
-% \RequirePackage{textcomp}
-% \RequirePackage{biblatex}
-% \RequirePackage{glossaries}
-% \RequirePackage{scrlayer-scrpage}
-
-% %---------------------------------------
-
-
-% %%Pagestyle--IAT------------
-% \definecolor{iatred}{rgb}{0.79,0,0}
-% \addtokomafont{headsepline}{\color{iatred}}
-
-% \newpairofpagestyles{iat}{
-% 	\ihead{\headmark}
-% 	\chead{}
-% 	\ohead{%
-% 		\begin{minipage}{0.1\linewidth}%
-% 			\includegraphics[width=\linewidth]{Logos/iat_logo.pdf}%
-% 		\end{minipage}
-% 	}
-% 	\lofoot{%
-% 		\begin{minipage}{0.1\linewidth}%
-% 			\vspace{1mm}
-% 			\includegraphics[scale=0.09]{Logos/UHB_Logo_4c}\relax%
-% 		\end{minipage}%
-% 	}
-% 	\rofoot{\pagemark}
-% }
-% \newpairofpagestyles{iat-conformity}{
-% 	\KOMAoption{headsepline}{false}
-% 	\ihead{}
-% 	\chead{}
-% 	\ohead{}
-% 	\lofoot{}
-% 	\rofoot{\pagemark}
-% }
-
-% %Format Options
-% %-----------------------
-% \onehalfspacing
-% \renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
-% %Caption Formatting
-% %\addtokomafont{captionlabel}{\sffamily\bfseries}
-% %\setcapindent{0em}
-% %\setcapwidth{1\textwidth}
-% %\KOMAoptions{captions=nooneline}
-% \urlstyle{same} % Prevents URLs in bibliography from exceeding bounds
-
-% %Figures Centered in Figure-Environment
-% \makeatletter
-% \g@addto@macro\@floatboxreset\centering
-% \makeatother
-
-% %\input{ctII_tutorials_glossaries.tex}
-% %\makeglossaries
-% \graphicspath{{./ctII_graphics/}}
-% \renewcommand*\chapterpagestyle{iat}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TUM Template
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage[l2tabu,orthodox]{nag}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% IAT Template
+% IAT Template: Document Class
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \documentclass[]{iat}
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TUM Template: Document Class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO: decide if one-sided/two-sided
 %\documentclass[headsepline,footsepline,footinclude=false,fontsize=11pt,paper=a4,listof=totoc,bibliography=totoc,BCOR=12mm,DIV=12]{scrbook} % two-sided
 \documentclass[headsepline,footsepline,footinclude=false,oneside,fontsize=11pt,paper=a4,listof=totoc,bibliography=totoc]{scrbook} % one-sided
@@ -139,59 +56,121 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% IAT Template
+% IAT Template: Intro Page Variables
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%Namen eingeben / Insert Name
-\renewcommand{\author}{Marten Windler}
-%Art der Arbeit / Scope (Project, Thesis...)
-\providecommand{\scope}{Thesis}
-%Thema der Arbeit / Theme of Thesis
-\renewcommand{\subject}{Unsicherheiten in machine-learning-basierten Surrogatmodellen für die szenariobasierte Validierung autonomer Systeme}
-%Schlagwörter / Keywords
-\providecommand{\keywords}{Unsicherheitsquantifizierung, Machine-Learning, Surrogatmodell, Szenariobasierte Validierung, Autonome Systeme}
+\renewcommand{\author}{Marten Windler} %Namen eingeben / Insert Name
+\providecommand{\scope}{Thesis} %Art der Arbeit / Scope (Project, Thesis...)
+\renewcommand{\subject}{Unsicherheiten in machine-learning-basierten Surrogatmodellen für die szenariobasierte Validierung autonomer Systeme} %Thema der Arbeit / Theme of Thesis
+\providecommand{\keywords}{Unsicherheitsquantifizierung, Machine-Learning, Surrogatmodell, Szenariobasierte Validierung, Autonome Systeme} %Schlagwörter / Keywords
 %Literaturliste *.bib / Bibliography
 %\providecommand{\bibfile}{IAT_Beispiel_literature}
 %Matrikelnummer / Student ID
 \providecommand{\studentID}{4175773}
-%Betreuer /& Tutors
-\providecommand{\tutora}{M.Sc. Ricardo Bosold}
-\providecommand{\tutorb}{M.Sc. Daniel Autenrieth}
-%Prüfer / Examiner
-\providecommand{\examinera}{Prof. Dr.-Ing. Kai Michels}
-\providecommand{\examinerb}{Dr.-Ing. Dennis Pierl}
+\providecommand{\tutora}{M.Sc. Ricardo Bosold} %Betreuer /& Tutors
+\providecommand{\tutorb}{M.Sc. Daniel Autenrieth} %Betreuer /& Tutors
+\providecommand{\examinera}{Prof. Dr.-Ing. Kai Michels} %Prüfer / Examiner
+\providecommand{\examinerb}{Dr.-Ing. Dennis Pierl} %Prüfer / Examiner
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DOCUMENT
+% IAT Template: Intro Page Template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{iatred}{rgb}{0.79,0,0}
+\addtokomafont{headsepline}{\color{iatred}}
+
+\newpairofpagestyles{iat}{
+	\ihead{\headmark}
+	\chead{}
+	\ohead{%
+		\begin{minipage}{0.1\linewidth}%
+			\includegraphics[width=\linewidth]{../logos/iat_logo.pdf}%
+		\end{minipage}
+	}
+	\lofoot{%
+		\begin{minipage}{0.1\linewidth}%
+			\vspace{1mm}
+			\includegraphics[scale=0.09]{../logos/UHB_Logo_4c}\relax%
+		\end{minipage}%
+	}
+	\rofoot{\pagemark}
+}
+\newpairofpagestyles{iat-conformity}{
+	\KOMAoption{headsepline}{false}
+	\ihead{}
+	\chead{}
+	\ohead{}
+	\lofoot{}
+	\rofoot{\pagemark}
+}
+
+%Format Options
+%-----------------------
+\onehalfspacing
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+%Caption Formatting
+%\addtokomafont{captionlabel}{\sffamily\bfseries}
+%\setcapindent{0em}
+%\setcapwidth{1\textwidth}
+%\KOMAoptions{captions=nooneline}
+\urlstyle{same} % Prevents URLs in bibliography from exceeding bounds
+
+%Figures Centered in Figure-Environment
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother
+
+%\input{ctII_tutorials_glossaries.tex}
+%\makeglossaries
+\graphicspath{{./ctII_graphics/}}
+\renewcommand*\chapterpagestyle{iat}
+
+\hypersetup{%
+	pdftitle	={\subject -- \author -- \today},
+	pdfauthor	={\author},
+	pdfsubject	={\subject},
+	pdfkeywords ={\keywords}
+}
+
+\setlength{\footheight}{21pt}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LATEX DOCUMENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\pagenumbering{alph} % suppr. "destination with the same identifier has been already used" 
 
-% Set page numbering to avoid "destination with the same identifier has been already used" warning for cover page.
-% (see https://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Problems_with_Links_and_Pages).
-\pagenumbering{alph}
-\input{pages/cover}
 
-\frontmatter{}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COVER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{pages/cover}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONTENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
 \input{pages/title_iat}
-\input{pages/title_tum}
+% \input{pages/title_tum}
 \input{pages/disclaimer}
+% \input{pages/information_conformity.tex}
 %\input{pages/acknowledgments}
 \input{pages/abstract}
 \microtypesetup{protrusion=false}
 \tableofcontents{}
 \microtypesetup{protrusion=true}
-
-\mainmatter{}
+\mainmatter
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHAPTERS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \input{chapters/01_Einleitung}
 \input{chapters/02_Motivation}
 \input{chapters/03_Problemstellung}
@@ -208,14 +187,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ATTACHEMENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \appendix{}
-
 \microtypesetup{protrusion=false}
 \listoffigures{}
 \listoftables{}
 \microtypesetup{protrusion=true}
-% \printbibliography{}
 
 \chapter*{Literaturverzeichnis}
 
@@ -223,7 +199,6 @@
 % Definiere Filter für die Teilbibliographien
 % Filter nach keyword (optional, falls nicht `category`)
 \defbibfilter{beitragfilter}{keyword=beitrag}
-%\defbibfilter{buchmonographiefilter}{keyword=buchmonographie}
 \defbibfilter{bswfilter}{keyword=buchsammelwerk}
 \defbibfilter{datensatzfilter}{keyword=dataset}
 \defbibfilter{internetdokumentfilter}{keyword=internetdokument}
@@ -265,10 +240,6 @@
 \input{pages/hardware_specification.tex}
 \input{pages/computation_estimates.tex}
 
-% \input{pages/attachement_experiment_conf.tex}
-% \input{pages/attachement_visuals.tex}
-
-% attachement_derivations
 \input{pages/derivation__uq_real_data_vs_uq_ednn.tex}
 
 \end{document}

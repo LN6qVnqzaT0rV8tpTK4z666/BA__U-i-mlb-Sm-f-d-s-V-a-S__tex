@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% IAT Template
+% IAT Template Document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \NeedsTeXFormat{LaTeX2e}
+\NeedsTeXFormat{LaTeX2e}
 % \ProvidesClass{iat}[2020/05/15 v1 Template]
 % \PassOptionsToClass{%
 % 	a4paper,%
@@ -15,108 +15,6 @@
 % \ProcessOptions\relax
 % \LoadClass{scrreprt}
 
-
-
-% \PassOptionsToPackage{right=5cm,top=3.5cm,bottom=4cm,head=25pt,foot=21pt, footskip=1.1cm}{geometry}
-% \PassOptionsToPackage{hidelinks,breaklinks}{hyperref}	% add "linktocpage" option for page number instead of chapter name
-% \PassOptionsToPackage{libertine}{newtxmath}
-% \PassOptionsToPackage{headsepline=3pt, footsepline, automark, autooneside=false}{scrlayer-scrpage}
-% \PassOptionsToPackage{english,main=ngerman}{babel}
-% \PassOptionsToPackage{detect-all}{siunitx}
-% \PassOptionsToPackage{style=ieee, urldate=comp, bibencoding=UTF8, backend=biber}{biblatex}
-% \PassOptionsToPackage{T1}{fontenc}
-% \PassOptionsToPackage{utf8}{inputenc}
-
-% \RequirePackage{caption}
-
-% \RequirePackage{geometry}
-
-% \RequirePackage{fontenc}
-% \RequirePackage{inputenc}
-
-% \RequirePackage{babel}
-% \RequirePackage{csquotes}
-% \RequirePackage{microtype}
-% \RequirePackage{setspace}% für Onehalfspacing, ggf irgendwie erstetzen
-
-% \RequirePackage{libertine}
-% \RequirePackage{newtxmath}
-% \RequirePackage{amsmath,amsfonts,amstext}
-
-% \RequirePackage{hyperref}
-% \RequirePackage{color}
-% \RequirePackage{graphicx}
-% \RequirePackage{siunitx}
-% \RequirePackage{textcomp}
-% \RequirePackage{biblatex}
-% \RequirePackage{glossaries}
-% \RequirePackage{scrlayer-scrpage}
-
-% %---------------------------------------
-
-
-%%Pagestyle--IAT------------
-\definecolor{iatred}{rgb}{0.79,0,0}
-\addtokomafont{headsepline}{\color{iatred}}
-
-\newpairofpagestyles{iat}{
-	\ihead{\headmark}
-	\chead{}
-	\ohead{%
-		\begin{minipage}{0.1\linewidth}%
-			\includegraphics[width=\linewidth]{Logos/iat_logo.pdf}%
-		\end{minipage}
-	}
-	\lofoot{%
-		\begin{minipage}{0.1\linewidth}%
-			\vspace{1mm}
-			\includegraphics[scale=0.09]{Logos/UHB_Logo_4c}\relax%
-		\end{minipage}%
-	}
-	\rofoot{\pagemark}
-}
-\newpairofpagestyles{iat-conformity}{
-	\KOMAoption{headsepline}{false}
-	\ihead{}
-	\chead{}
-	\ohead{}
-	\lofoot{}
-	\rofoot{\pagemark}
-}
-
-%Format Options
-%-----------------------
-\onehalfspacing
-\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
-%Caption Formatting
-%\addtokomafont{captionlabel}{\sffamily\bfseries}
-%\setcapindent{0em}
-%\setcapwidth{1\textwidth}
-%\KOMAoptions{captions=nooneline}
-\urlstyle{same} % Prevents URLs in bibliography from exceeding bounds
-
-%Figures Centered in Figure-Environment
-\makeatletter
-\g@addto@macro\@floatboxreset\centering
-\makeatother
-
-%\input{ctII_tutorials_glossaries.tex}
-%\makeglossaries
-\graphicspath{{./ctII_graphics/}}
-\renewcommand*\chapterpagestyle{iat}
-
-
-\hypersetup{%
-	pdftitle	={\subject -- \author -- \today},
-	pdfauthor	={\author},
-	pdfsubject	={\subject},
-	pdfkeywords ={\keywords}
-}
-
-
-\setlength{\footheight}{21pt}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TUM Template
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,28 +22,25 @@
 \PassOptionsToPackage{table,svgnames,dvipsnames}{xcolor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% IAT Packages
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{pdfpages} %The following package is needed to implement pdfs for conformity decl.  
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TUM Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[sc]{mathpazo}
+% \usepackage[sc]{mathpazo}
 \usepackage[ngerman]{babel}
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amstext}
 \usepackage[autostyle]{csquotes}
 \usepackage[%
   backend=biber,
+  bibencoding=UTF8,
+  urldate=comp,
   url=false,
-  style=alphabetic,
+  style=ieee, % alphabetic
   maxnames=4,
   minnames=3,
   maxbibnames=99,
@@ -195,7 +90,38 @@ indent=1cm
 % \usepackage{capt-of}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Setup Packages
+% IAT Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pdfpages} %The following package is needed to implement pdfs for conformity decl.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IAT Template Packages (cleared of doubles)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \PassOptionsToPackage{right=5cm,top=3.5cm,bottom=4cm,head=25pt,foot=21pt, footskip=1.1cm}{geometry}
+% \PassOptionsToPackage{hidelinks,breaklinks}{hyperref}	% add "linktocpage" option for page number instead of chapter name
+% \PassOptionsToPackage{libertine}{newtxmath}
+% \PassOptionsToPackage{headsepline=3pt, footsepline, automark, autooneside=false}{scrlayer-scrpage}
+% \PassOptionsToPackage{english,main=ngerman}{babel}
+% \PassOptionsToPackage{detect-all}{siunitx}
+% \PassOptionsToPackage{style=ieee, urldate=comp, bibencoding=UTF8, backend=biber}{biblatex}
+% \PassOptionsToPackage{T1}{fontenc}
+% \PassOptionsToPackage{utf8}{inputenc}
+
+\RequirePackage{babel}
+% \RequirePackage{csquotes}
+% \RequirePackage{microtype}
+\RequirePackage{setspace}% für Onehalfspacing, ggf irgendwie erstetzen
+\RequirePackage{libertine}
+\RequirePackage{newtxmath}
+\RequirePackage{color}
+% \RequirePackage{textcomp}
+% \RequirePackage{glossaries}
+\RequirePackage{scrlayer-scrpage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TUM Setup Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \sisetup{locale=DE}
@@ -224,36 +150,48 @@ indent=1cm
 % Add table of contents to PDF bookmarks
 \BeforeTOCHead[toc]{{\cleardoublepage\pdfbookmark[0]{\contentsname}{toc}}}
 
-% Define TUM corporate design colors
-% Taken from http://portal.mytum.de/corporatedesign/index_print/vorlagen/index_farben
-\definecolor{TUMBlue}{HTML}{0065BD}
-\definecolor{TUMSecondaryBlue}{HTML}{005293}
-\definecolor{TUMSecondaryBlue2}{HTML}{003359}
-\definecolor{TUMBlack}{HTML}{000000}
-\definecolor{TUMWhite}{HTML}{FFFFFF}
-\definecolor{TUMDarkGray}{HTML}{333333}
-\definecolor{TUMGray}{HTML}{808080}
-\definecolor{TUMLightGray}{HTML}{CCCCC6}
-\definecolor{TUMAccentGray}{HTML}{DAD7CB}
-\definecolor{TUMAccentOrange}{HTML}{E37222}
-\definecolor{TUMAccentGreen}{HTML}{A2AD00}
-\definecolor{TUMAccentLightBlue}{HTML}{98C6EA}
-\definecolor{TUMAccentBlue}{HTML}{64A0C8}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Universität Bremen: CI Colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Uni Bremen Corporate Design Colors (Core)
+\definecolor{UniBremenRed}{HTML}{CC071E}
+\definecolor{UniBremenDarkGray}{HTML}{333333}
+\definecolor{UniBremenLightGray}{HTML}{DCDCDC}
+\definecolor{UniBremenWhite}{HTML}{FFFFFF}
+\definecolor{UniBremenBlack}{HTML}{000000}
+\definecolor{UniBremenBlue}{HTML}{003DA5}
+
+% Derived or custom Bremen-inspired colors
+\definecolor{UniBremenBlueDark}{HTML}{002966} % darker Bremen blue
+\definecolor{UniBremenBlueDarker}{HTML}{001A33} % even darker Bremen blue
+\definecolor{UniBremenGray}{HTML}{808080} % mid gray, not official
+\definecolor{UniBremenAccentGray}{HTML}{DAD7CB} % custom warm gray
+\definecolor{UniBremenOrange}{HTML}{CC3200} % orange derived from Bremen red
+\definecolor{UniBremenGreen}{HTML}{A2AD00} % custom green, not in CD
+\definecolor{UniBremenLightBlue}{HTML}{98BFE0} % light tint of Bremen blue
+\definecolor{UniBremenAccentBlue}{HTML}{4C88BA} % lighter Bremen blue
 
 % Settings for pgfplots
 \pgfplotsset{compat=newest}
 \pgfplotsset{
-  % For available color names, see http://www.latextemplates.com/svgnames-colors
-  cycle list={TUMBlue\\TUMAccentOrange\\TUMAccentGreen\\TUMSecondaryBlue2\\TUMDarkGray\\},
+	% For available color names, see http://www.latextemplates.com/svgnames-colors
+	cycle list={
+		UniBremenBlue\\
+		UniBremenOrange\\
+		UniBremenGreen\\
+		UniBremenBlueDarker\\
+		UniBremenDarkGray\\
+	},
 }
 
 % Settings for lstlistings
 \lstset{%
-  basicstyle=\ttfamily,
-  columns=fullflexible,
-  autogobble,
-  keywordstyle=\bfseries\color{TUMBlue},
-  stringstyle=\color{TUMAccentGreen}
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	autogobble,
+	keywordstyle=\bfseries\color{UniBremenBlue},
+	stringstyle=\color{UniBremenGreen}
 }
 
 \addto\captionsngerman{%
@@ -281,9 +219,18 @@ indent=1cm
 {\list{}{\leftmargin=0pt\rightmargin=0pt}\item[]}
 {\endlist}
 
+\newenvironment{pseudoitemize}
+  {\begin{list}{}{\leftmargin=2em \itemindent=0pt \itemsep=0pt \topsep=0pt}}
+  {\end{list}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Glossar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{accuracy}{
+  name={Accuracy},
+  description={Maß für die Treffergenauigkeit eines Modells, definiert als Anteil korrekt klassifizierter Vorhersagen an allen Vorhersagen}
+}
 
 \newglossaryentry{Aleatorische Unsicherheit}{
   name=AC,
@@ -293,6 +240,11 @@ indent=1cm
 \newglossaryentry{Autonomous Underwater Vehicle}{
   name=AUV,
   description={Autonomes Unterwasser Fahrzeug}
+}
+
+\newglossaryentry{bayesianischeinferenz}{
+  name={BI},
+  description={Schätzung unbekannter Größen durch Kombination von Daten und Vorwissen mittels Bayes-Theorem}
 }
 
 \newglossaryentry{Bundesministerium für Bildung und Forschung}{
@@ -335,6 +287,11 @@ indent=1cm
   description={Nichtparametrisches, probabilistisches Modell zur Vorhersage,  Quantifizierung von Unsicherheiten in Regressionen (Vorhersagen als Verteilungen statt als Punktwerte)}
 }
 
+\newglossaryentry{machinelearning}{
+  name={ML},
+  description={Teilgebiet der Künstlichen Intelligenz, das Systeme befähigt, Muster in Daten zu erkennen und daraus zu lernen, ohne explizit programmiert zu sein}
+}
+
 \newglossaryentry{Out-of-Distribution}{
   name=OOD,
   description={Out-Of-Distribution-Data bezeichnet Datenpunkte, die aus einer anderen Verteilung stammen als derjenigen, auf der das Modell trainiert wurde, und deren Erkennung für die zuverlässige Unsicherheitsquantifizierung essenziell ist}
@@ -343,4 +300,14 @@ indent=1cm
 \newglossaryentry{surrogat}{
   name=Surrogatmodell,
   description={Ein Ersatzmodell zur Approximation komplexer Systeme}
+}
+
+\newglossaryentry{relativeuncertaintyindex}{
+  name={RUI},
+  description={Maß für die Unsicherheitsbewertung im Verhältnis zur mittleren Vorhersage oder zu Referenzwerten}
+}
+
+\newglossaryentry{variationalinference}{
+  name={VI},
+  description={Approximation komplexer Wahrscheinlichkeitsverteilungen durch Optimierung einfacherer Verteilunge (Minimierung Kullback-Leibler)}
 }
