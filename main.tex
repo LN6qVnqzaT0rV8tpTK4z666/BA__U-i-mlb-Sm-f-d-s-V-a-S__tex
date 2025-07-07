@@ -178,9 +178,9 @@
 \input{chapters/05_Methodische_Grundlagen}
 \input{chapters/06_Stand_der_Technik}
 \input{chapters/07_Verwandte_Arbeiten}
-\input{chapters/08_Durchfuehrung}
-\input{chapters/09_Diskussion}
-\input{chapters/10_Fazit_Ausblick}
+%\input{chapters/08_Durchfuehrung}
+%\input{chapters/09_Diskussion}
+%\input{chapters/10_Fazit_Ausblick}
 
 
 
@@ -208,19 +208,39 @@
 \defbibfilter{repositoryfilter}{keyword=repository}
 
 \section*{Beitrag}
-\printbibliography[filter=beitragfilter, heading=none]
+\printbibliography[
+	filter=beitragfilter, 
+	heading=none, 
+	sorting=nyt
+]
 
 \section*{Buch (Sammelwerk)}
-\printbibliography[filter=bswfilter, heading=none]
+\printbibliography[
+	filter=bswfilter, 
+	heading=none, 
+	sorting=nyt
+]
 
 \section*{Zeitschriftenaufsatz}
-\printbibliography[filter=zeitschriftenaufsatzfilter, heading=none]
+\printbibliography[
+	filter=zeitschriftenaufsatzfilter, 
+	heading=none, 
+	sorting=nyt
+]
 
 \section*{Internetdokument}
-\printbibliography[filter=internetdokumentfilter, heading=none]
+\printbibliography[
+	filter=internetdokumentfilter, 
+	heading=none, 
+	sorting=nyt
+]
 
 \section*{Thesis}
-\printbibliography[filter=thesisfilter, heading=none]
+\printbibliography[
+	filter=thesisfilter, 
+	heading=none, 
+	sorting=nyt
+]
 
 \printglossary[title=Glossar, toctitle=Glossar]
 
@@ -229,12 +249,24 @@
 \section*{Anhang}
 
 \section*{Datensätze}\label{datensaetze}
-\printbibliography[filter=datensatzfilter, heading=none]
+\printbibliography[
+	filter=datensatzfilter, 
+	heading=none, 
+	sorting=nyt
+]
 
 \section*{Software}
-\printbibliography[filter=softwarefilter, heading=none]
+\printbibliography[
+	filter=softwarefilter, 
+	heading=none, 
+	sorting=nyt
+]
 
-\printbibliography[filter=repositoryfilter, heading=none]
+\printbibliography[
+	filter=repositoryfilter, 
+	heading=none, 
+	sorting=nyt
+]
 
 \input{pages/formulary.tex}
 \input{pages/hardware_specification.tex}

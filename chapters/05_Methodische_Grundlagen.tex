@@ -89,15 +89,15 @@
 \begin{otherlanguage}{ngerman}
 \section{Machine Learning}
 
-Machine Learning (ML) bezeichnet die Klasse von Algorithmen \( f_{\theta} : \mathcal{X} \rightarrow \mathcal{Y} \), die aus Daten 
+Machine Learning (\gls{machinelearning}) bezeichnet die Klasse von Algorithmen \( f_{\theta} : \mathcal{X} \rightarrow \mathcal{Y} \), die aus Daten 
 \( \mathcal{D} = \{ (x_i, y_i) \}_{i=1}^{N} \) ein Modell \( f_{\theta} \) lernen, das Eingaben \( x \in \mathcal{X} \) Vorhersagen \( \hat{y} \in \mathcal{Y} \) zuordnet. Dies geschieht durch Optimierung der Parameter \( \theta \) mittels einer Fehlerfunktion \( \mathcal{L}_{\text{loss}}(y, \hat{y}) \).
 
 \subsection{Architekturen}
 
-Die Laufzeit zur Anpassung der Gewichtungen eines neuronalen Netzwerks (NN) an eine Zielfunktion kann durch unterschiedliche Architekturen für spezifische Aufgaben optimiert werden. Die Kürzel der Architekturen verweisen jeweils auf ihre charakteristische Struktur.
+Die Laufzeit zur Anpassung der Gewichtungen eines neuronalen Netzwerks (\gls{neuronalesnetzwerk}) an eine Zielfunktion kann durch unterschiedliche Architekturen für spezifische Aufgaben optimiert werden. Die Kürzel der Architekturen verweisen jeweils auf ihre charakteristische Struktur.
 
-\paragraph{NN – Neural Network}
-Ein neuronales Netzwerk approximiert eine Funktion \( f_{\theta}(x) = \sigma(Wx + b) \). Dabei ist \( \sigma \) eine nichtlineare Aktivierungsfunktion, typischerweise \textit{ReLU} oder \textit{Tanh}. Die Parameter des Modells sind gegeben durch \( \theta = \{ W, b \} \), wobei:
+\paragraph{NN – Neuronales Netzwerk}
+Ein \gls{neuronalesnetzwerk} approximiert eine Funktion \( f_{\theta}(x) = \sigma(Wx + b) \). Dabei ist \( \sigma \) eine nichtlineare Aktivierungsfunktion, typischerweise \textit{ReLU} oder \textit{Tanh}. Die Parameter des Modells sind gegeben durch \( \theta = \{ W, b \} \), wobei:
 
 \begin{itemize}
   \item \( W \) die Gewichtsmatrix darstellt, z.\,B. 
@@ -114,7 +114,7 @@ Ein neuronales Netzwerk approximiert eine Funktion \( f_{\theta}(x) = \sigma(Wx 
   \item \( b \) ein Bias-Term ist, der unabhängig vom Eingangssignal die Aktivierung verschiebt.
 \end{itemize}
 
-Eine Schicht in einem neuronalen Netzwerk besteht aus:
+Eine Schicht in einem \gls{neuronalesnetzwerk} besteht aus:
 \begin{enumerate}
   \item einer linearen Transformation: \( z = Wx + b \),
   \item einer nichtlinearen Aktivierung: \( f(x) = \sigma(z) \).
@@ -123,29 +123,27 @@ Eine Schicht in einem neuronalen Netzwerk besteht aus:
 
 \section*{DNN – Deep Neural Network}
 
-Ein \textbf{Deep Neural Network (DNN)} erweitert ein neuronales Netz (NN) um mehrere Schichten. Dies erhöht die Tiefe des Netzwerks:
+Ein \textbf{Deep Neural Network (\gls{DeepNeuralNetwork})} erweitert ein \gls{neuronalesnetzwerk} um mehrere Schichten. Dies erhöht die Tiefe des Netzwerks:
 
 \[
 f(x) = \sigma_L\left(W_L \cdot \sigma_{L-1}\left(\ldots \sigma_1\left(W_1 \cdot x + b_1\right) \ldots \right) + b_L\right)
 \]
 
-Neben der linearen Transformation erlaubt ein DNN durch das Propagieren über mehrere Schichten die Modellierung komplexer Nichtlinearitäten und somit ein tieferes Lernen relevanter Merkmale.
+Neben der linearen Transformation erlaubt ein \gls{DeepNeuralNetwork} durch das Propagieren über mehrere Schichten die Modellierung komplexer Nichtlinearitäten und somit ein tieferes Lernen relevanter Merkmale.
 
 \section*{BNN – Bayesian Neural Network}
 
-Ein \textbf{Bayesian Neural Network (BNN)} modelliert die Gewichte $\boldsymbol{\theta}$ als Zufallsvariablen $p(\theta)$. Die Vorhersage entspricht dem Erwartungswert über alle möglichen Modelle:
+Ein \textbf{Bayesian Neural Network (\gls{Bayesianische neuronale Netze})} modelliert die Gewichte $\boldsymbol{\theta}$ als Zufallsvariablen $p(\theta)$. Die Vorhersage entspricht dem Erwartungswert über alle möglichen Modelle:
 
 \[
 p(y \mid x, D) = \int p(y \mid x, \theta) \cdot p(\theta \mid D) \, d\theta
 \]
 
-Dadurch wird die \textbf{epistemische Unsicherheit} (EC) über die Posterior-Verteilung der Gewichte quantifizierbar.
+Dadurch wird die \textbf{\gls{Epistemische Unsicherheit}} über die Posterior-Verteilung der Gewichte quantifizierbar.
 
-\section*{EDN – Evidential Deep Neural Network}
+\section*{\gls{Evidenzbasierte neuronale Netze} – Evidential Deep Neural Network}
 
-% \gls{Evidenzbasierte neuronale Netze}
-
-Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $e$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite Monte-Carlo-Sampling-Strategie notwendig ist, um aleatorische (AC) und epistemische Unsicherheiten (EC) zu bestimmen.
+Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $e$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite \gls{MonteCarloSampling}-Strategie notwendig ist, um \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} zu bestimmen.
 
 \subsubsection*{Parameterbedeutung:}
 \begin{itemize}

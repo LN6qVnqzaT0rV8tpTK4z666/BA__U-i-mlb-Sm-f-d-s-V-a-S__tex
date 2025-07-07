@@ -12,7 +12,7 @@
 
 \begin{otherlanguage}{ngerman}
 
-In der Durchführung soll \textit{R10 Implementierung und Validierung der entwickelten Unsicherheitsmetriken
+In der Durchführung soll \textit{A6 Implementierung und Validierung der entwickelten Unsicherheitsmetriken
 und Modellierungstechniken in einer realistischen Anwendung, wie z. B. der
 Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten} beantwortet werden. \parencite{amini2020deep} liefert einen bekannten validierten Ansatz aus öffentlicher Forschung. Hergert 2025 liefert einen bekannten validierten Ansatz von Unternehmensseite. 
 
@@ -20,7 +20,7 @@ Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten} beantwort
 
 Zur Validierung der eingesetzten Methodik für \gls{Evidenzbasierte neuronale Netze} wird der von \parencite{amini2020deep} veröffentlichte Benchmark reproduziert. Hierfür wird die im Anhang dargestellte Aufwandsschätzung berücksichtigt, die auf die im Unternehmen verfügbare Hardware abgestimmt ist, (~\ref{sec:aufwand-edl}).
 
-\paragraph{Vergleich Amini EDNN Regression} \parencite{amini2020deep} Sektion 4 Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze}.  
+\paragraph{Vergleich Amini \gls{Evidenzbasierte neuronale Netze} Regression} \parencite{amini2020deep} Sektion 4 Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze}.  
 \begin{noindentquote}
 \scriptsize
 $
@@ -117,7 +117,7 @@ yacht
 \end{table*}
 
 
-\paragraph{Vergleich Amini EDNN Klassifikation} \parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
+\paragraph{Vergleich Amini \gls{Evidenzbasierte neuronale Netze} Klassifikation} \parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
 
 
 
@@ -131,7 +131,7 @@ Aus den Datensätzen wurden Trainings und Visualisierungen abgeleitet und generi
 
 Im Projekt behandelte Metriken wurden aufgefasst mit einer Klasse Metrik, Metrik-Thresholds, Metrik-Registry, Metrik-Registry-Defintions deren Name die Funktion hinreichend vorgibt.\newline
 
-Integriert wurden Lösungen von Herr M.Sc. Mavani der sich zur BNN Auswertung für ein Python Pyro Jax Backend entschieden und damit Lösungen nach den Pyroworkflows für Hamilton Monte Carlo (HMC), Stochastic Variational Inference (SVI) geliefert hat.
+Integriert wurden Lösungen von Herr M.Sc. Mavani der sich zur \gls{Bayesianische neuronale Netze} Auswertung für ein Python Pyro Jax Backend entschieden und damit Lösungen nach den Pyroworkflows für Hamilton Monte Carlo (\gls{hmc}), Stochastic Variational Inference (\gls{svi}) geliefert hat.
 
 
 % \subsection*{Experiment}
@@ -158,12 +158,12 @@ BNN Accuracy & & & & & & & \\
   \begin{minipage}{0.5\textwidth}
       \centering
       \includegraphics[width=\textwidth]{../figures/bnn_posterior_predictive.png}
-      \caption{Ninand Mavani Visual Benchmark BNN HMC}
+      \caption{Ninand Mavani Visual Benchmark \gls{Bayesianische neuronale Netze} \gls{hmc}}
   \end{minipage}%
   \begin{minipage}{0.5\textwidth}
       \centering
       \includegraphics[width=\textwidth]{../figures/bnn_svi_predictive.png}
-      \caption{Ninand Mavani Visual Benchmark BNN SVI}
+      \caption{Ninand Mavani Visual Benchmark \gls{Bayesianische neuronale Netze} \gls{svi}}
   \end{minipage}
 \end{figure}
 
@@ -192,7 +192,7 @@ BNN Accuracy & & & & & & & \\
 
 \section{}
 
-Abschließend sollen nach R11 die wichtigsten Ansätze und Ergebnisse der Arbeit in einem kurzen Jupyter Notebook zusammenfasst werden. 
+Abschließend sollen nach A7 die wichtigsten Ansätze und Ergebnisse der Arbeit in einem kurzen Jupyter Notebook zusammenfasst werden. 
 
 
 \end{otherlanguage}

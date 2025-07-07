@@ -56,10 +56,6 @@
       {\scriptsize \[
           \frac{1}{n} \sum_{i=1}^{n} \mathbb{1}(\hat{y}_{i,\text{lower}} \leq y_i \leq \hat{y}_{i,\text{upper}})
       \]} \vspace{-1.5em}
-      \item \text{Mean Prediction Interval Width} (\( \text{MPIW} \)) 
-      {\scriptsize \[
-          \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_{i,\text{upper}} - \hat{y}_{i,\text{lower}})
-      \]} \vspace{-1.5em}
     \end{itemize}
   \end{mdframed}
 
@@ -68,6 +64,11 @@
   % Second mdframed environment
   \begin{mdframed}[style=exercise]
     \begin{itemize}[label={},left=0pt]
+
+      \item \text{Mean Prediction Interval Width} (\( \text{MPIW} \)) 
+      {\scriptsize \[
+          \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_{i,\text{upper}} - \hat{y}_{i,\text{lower}})
+      \]} \vspace{-1.5em}
       \item \text{Continuous Ranked Probability Score} (\( \text{CRPS} \)) 
       {\scriptsize \[
           \frac{1}{n} \sum_{i=1}^{n} \left| F(y_i) - G(y_i) \right|
@@ -104,7 +105,7 @@
       {\scriptsize \[
           \frac{\text{confidence\_scores} - \text{baseline\_confidence\_scores}}{\text{max\_confidence} - \text{min\_confidence}}
       \]} \vspace{-1.5em}
-      \item \text{Meta Metrik BNN-EDNN} (\( \text{MM-BNN-EDNN} \)) 
+      \item \text{Meta Metrik \gls{Bayesianische neuronale Netze}-\gls{Evidenzbasierte neuronale Netze}} (\( \text{MM-BNN-EDNN} \)) 
       {\scriptsize \[
           \text{UDA} + \text{MCE} + \text{corr\_err\_epistemic} + \text{NCG}
       \]} \vspace{-1.5em}
@@ -112,6 +113,102 @@
   \end{mdframed}
 
 \end{formelsammlung}
+
+\newpage
+
+
+\begin{formelsammlung}
+
+    %\section*{}
+    \section*{Bayes}
+    \begin{mdframed}[style=exercise]
+    \begin{itemize}[label={},left=0pt]
+        \item \textbf{Bayes-Theorem}
+        
+        {\scriptsize \[
+        p(\theta \mid \mathcal{D}) 
+        = \frac{p(\mathcal{D} \mid \theta)\, p(\theta)}{p(\mathcal{D})}
+        \]} 
+        
+        {\scriptsize \[
+        \text{mit } p(\mathcal{D}) = \int p(\mathcal{D} \mid \theta)\, p(\theta)\, d\theta.
+        \]}
+        
+    %   \item \textbf{Bedeutung der Terme:}
+    %     \begin{itemize}[label={},left=1em]
+    %       \item \( p(\theta \mid \mathcal{D}) \): Posterior-Verteilung — aktualisiertes Wissen über die Parameter \(\theta\) nach Beobachtung der Daten \(\mathcal{D}\).
+    %       \item \( p(\mathcal{D} \mid \theta) \): Likelihood — Wahrscheinlichkeit der Daten \(\mathcal{D}\) gegeben den Parametern \(\theta\).
+    %       \item \( p(\theta) \): Prior-Verteilung — Vorwissen oder Annahmen über die Parameter \(\theta\) vor Beobachtung der Daten.
+    %       \item \( p(\mathcal{D}) \): Evidenz oder Marginal Likelihood — Wahrscheinlichkeit der Daten unter allen möglichen \(\theta\), dient zur Normalisierung.
+    %     \end{itemize}
+    \end{itemize}
+    \end{mdframed}
+
+    \section*{Loss-Funktionen}
+    \begin{mdframed}[style=exercise]
+    \begin{itemize}[label={},left=0pt]
+        \item \textbf{Total Loss mit Dirichlet-Regularisierung}
+        
+        {\scriptsize \[
+        \text{Loss}_{\text{total}} 
+        = \text{Loss}_{\text{in}} 
+        + \lambda \cdot \text{KL}\bigl(\text{Dir}(\boldsymbol{\alpha}) 
+        \,\|\, \text{Uniform}\bigr).
+        \]}
+
+        \item \textbf{Evidential Regression Loss}
+
+        {\scriptsize
+        \begin{align*}
+        \text{NLL} 
+        &= 
+        \tfrac{1}{2}\log\left(\frac{\pi}{v}\right)
+        - \alpha \log \bigl(2\beta(1+v)\bigr) 
+        + \bigl(\alpha + \tfrac{1}{2}\bigr) 
+            \log\bigl((y - \mu)^2\, v + 2\beta(1+v)\bigr) \\
+        &\quad 
+        + \log\Gamma(\alpha) 
+        - \log\Gamma(\alpha + 0.5)
+        \\[1em]
+        \text{abs} 
+        &= \text{NLL} 
+            + \lambda \cdot |y - \mu| 
+            \cdot \bigl(2\cdot \log(1+v) + \alpha\bigr)
+        \\[1em]
+        \text{mse} 
+        &= \text{NLL} 
+            + \lambda \cdot (y - \mu)^2 
+            \cdot \bigl(2\cdot \log(1+v) + \alpha\bigr)
+        \\[1em]
+        \text{kl} 
+        &= \text{NLL} 
+            + \text{KL}_{\text{Gamma}}(\alpha,\beta)
+        \\[1em]
+        \text{scaled} 
+        &= \text{NLL} 
+            + \lambda \cdot \frac{|y - \mu|}{\alpha}
+        \\[1em]
+        \text{variational}
+        &= 
+        \frac{1}{2}
+        \left[
+            \log\left(\frac{1}{\alpha/\beta}\right)
+            + \frac{\alpha}{\beta} \cdot (y - \mu)^2
+        \right]
+        \\[1em]
+        \text{full}
+        &= 
+        \text{NLL} 
+        + \lambda \cdot |y - \mu| \cdot \bigl(2\cdot \log(1+v) + \alpha\bigr)
+        + \text{KL}_{\text{Gamma}}(\alpha,\beta)
+        \end{align*}
+        }
+    \end{itemize}
+    \end{mdframed}
+
+
+\end{formelsammlung}
+
 
 % Restore the original geometry for subsequent pages
 \restoregeometry
