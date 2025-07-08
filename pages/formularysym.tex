@@ -1,46 +1,42 @@
 \newpage
 
-% Apply custom geometry for a single page
+% Für eine Seite mit geändertem Rand:
 \newgeometry{left=1cm,right=1cm,top=2cm,bottom=1.5cm}
 
-\begin{formelsammlung}
+\chapter*{Formelzeichenverzeichnis}
+\addcontentsline{toc}{chapter}{Formelzeichenverzeichnis}
 
-  \section*{Formelzeichen}
+\begin{mdframed}[style=exercise]
+\begin{tabularx}{\textwidth}{>{$}l<{$} X l}
+\toprule
+\textbf{Symbol} & \textbf{Bedeutung} & \textbf{Einheit} \\
+\midrule
+\alpha_{1} & Signifikanzniveau in \gls{Conformal Prediction}, steuert die Breite der Konfidenzintervalle & [–] \\
+\alpha_{2} & Evidenzparameter (Shape) der evidentiellen Verteilung & [–] \\
+\beta & Skalenparameter der evidentiellen Verteilung & [–] \\
+\nu & Evidenzparameter in evidenzbasierten Netzen; steuert die Gewichtung zwischen epistemischer und aleatorischer Unsicherheit & [–] \\
+p_{\text{dropout}} & Dropout-Rate im \gls{Bayesianische neuronale Netze}, beeinflusst die epistemische Unsicherheit & [–] \\
+v & Varianzbezogener Parameter in Evidential Regression & [–] \\
+\mu & Erwartungswert der Vorhersage & [wie Zielgröße] \\
+\hat{y} & Vorhersagewert des Modells & [wie Zielgröße] \\
+y & Beobachteter (tatsächlicher) Wert & [wie Zielgröße] \\
+\bar{\sigma}^2_{\text{total}} & Mittlere Gesamtvarianz (Summe aus epistemischer und aleatorischer Varianz) & [(wie Zielgröße)$^2$] \\
+\bar{\sigma}^2_{\text{aleatoric}} & Mittlere aleatorische Varianz (Datenrauschen) & [(wie Zielgröße)$^2$] \\
+\bar{\sigma}^2_{\text{epistemic}} & Mittlere epistemische Varianz (Modellunsicherheit) & [(wie Zielgröße)$^2$] \\
+\sigma_{\text{aleatorisch}}^2 & Aleatorische Varianz (Datenrauschen) & [(wie Zielgröße)$^2$] \\
+\sigma_{\text{epistemisch}}^2 & Epistemische Varianz (Modellunsicherheit) & [(wie Zielgröße)$^2$] \\
+\sigma_{\text{total}}^2 & Gesamtvarianz & [(wie Zielgröße)$^2$] \\
+\text{RMSE} & Root Mean Squared Error (Wurzel der mittleren quadratischen Abweichung) & [wie Zielgröße] \\
+\text{MAE} & Mean Absolute Error (Mittlerer absoluter Fehler) & [wie Zielgröße] \\
+\text{Coverage} & Abdeckungswahrscheinlichkeit der Unsicherheitsintervalle & [–] \\
+\text{Calibration Error} & Maß für die Diskrepanz zwischen prognostizierter Konfidenz und tatsächlicher Trefferquote & [–] \\
+\text{Mean Interval Width} & Mittlere Breite der berechneten Unsicherheitsintervalle & [wie Zielgröße] \\
+\text{Score} & Aggregiertes Maß für die Gesamtperformance eines Modells & [–] \\
+\text{RUI} & Relative Uncertainty Index, relatives Maß für Unsicherheitsbreite im Verhältnis zum Fehlermaß & [–] \\
+\text{NLL} & Negative Log-Likelihood & [–] \\
+\text{KL}(P \,\|\, Q) & Kullback-Leibler-Divergenz zwischen Verteilungen \( P \) und \( Q \) & [–] \\
+\bottomrule
+\end{tabularx}
+\end{mdframed}
 
-  \begin{mdframed}[style=exercise]
-    \begin{tabularx}{\textwidth}{>{$}l<{$} X}
-        \toprule
-        \textbf{Symbol} & \textbf{Bedeutung} \\
-        \midrule
-        \alpha_{1} & Signifikanzniveau in \gls{Conformal Prediction}, steuert die Breite der Konfidenzintervalle \\
-        \alpha_{2} & Evidenzparameter (Shape) der evidentiellen Verteilung \\
-        \beta & Skalenparameter der evidentiellen Verteilung \\
-        \nu & Evidenzparameter in evidenzbasierten Netzen; steuert die Gewichtung zwischen epistemischer und aleatorischer Unsicherheit \\
-        p_{\text{dropout}} & Dropout-Rate im \gls{Bayesianische neuronale Netze}, beeinflusst die epistemische Unsicherheit \\
-        v & Varianzbezogener Parameter in Evidential Regression \\
-        \mu & Erwartungswert der Vorhersage \\
-        \hat{y} & Vorhersagewert des Modells \\
-        y & Beobachteter (tatsächlicher) Wert \\
-        \bar{\sigma}^2_{\text{total}} & Mittlere Gesamtvarianz (Summe aus epistemischer und aleatorischer Varianz) \\
-        \bar{\sigma}^2_{\text{aleatoric}} & Mittlere aleatorische Varianz (Datenrauschen) \\
-        \bar{\sigma}^2_{\text{epistemic}} & Mittlere epistemische Varianz (Modellunsicherheit) \\
-        \sigma_{\text{aleatorisch}}^2 & Aleatorische Varianz (Datenrauschen) \\
-        \sigma_{\text{epistemisch}}^2 & Epistemische Varianz (Modellunsicherheit) \\
-        \sigma_{\text{total}}^2 & Gesamtvarianz \\
-        \text{RMSE} & Root Mean Squared Error (Wurzel der mittleren quadratischen Abweichung) \\
-        \text{MAE} & Mean Absolute Error (Mittlerer absoluter Fehler) \\
-        \text{Coverage} & Abdeckungswahrscheinlichkeit der Unsicherheitsintervalle \\
-        \text{Calibration Error} & Maß für die Diskrepanz zwischen prognostizierter Konfidenz und tatsächlicher Trefferquote \\
-        \text{Mean Interval Width} & Mittlere Breite der berechneten Unsicherheitsintervalle \\
-        \text{Score} & Aggregiertes Maß für die Gesamtperformance eines Modells \\
-        \text{RUI} & Relative Uncertainty Index, relatives Maß für Unsicherheitsbreite im Verhältnis zum Fehlermaß \\
-        \text{NLL} & Negative Log-Likelihood \\
-        \text{KL}(P \,\|\, Q) & Kullback-Leibler-Divergenz zwischen Verteilungen \( P \) und \( Q \) \\
-        \bottomrule
-    \end{tabularx}
-  \end{mdframed}
-
-\end{formelsammlung}
-
-% Restore the original geometry for subsequent pages
 \restoregeometry

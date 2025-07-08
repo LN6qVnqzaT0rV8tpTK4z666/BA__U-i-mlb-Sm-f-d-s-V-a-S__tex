@@ -51,7 +51,7 @@
 \usepackage[acronym]{glossaries} % Glossar
 \usepackage{graphicx}
 \usepackage{geometry}
-\usepackage{scrhack} % necessary for listings package
+\usepackage{scrhack} % listings 
 \usepackage{listings}
 \usepackage{lstautogobble}
 \usepackage{tikz}
@@ -71,8 +71,8 @@ indent=1cm
 %\usepackage{array}     % Tabellen
 \usepackage{tabularx}  % Tabellen
 \usepackage{enumitem}
-\usepackage{nag}
-\usepackage{silence}
+\usepackage{nag} 
+\usepackage{silence} % Warnungen
 \WarningFilter{latex}{Command \showhyphens has changed}
 \WarningFilter{datatool-base}{No `datatool' support for dialect `ngerman'}
 \usepackage{tabularray} % Tabellen 
@@ -81,7 +81,6 @@ indent=1cm
 \usepackage{ltablex} % Tabellen
 \usepackage{makecell} % Tabellen
 \keepXColumns % verhindert, dass ltablex die Spaltenanzahl ändert
-
 % \usepackage{lmodern}
 % \usepackage{siunitx}
 % \AtBeginDocument{\RenewCommandCopy\qty\SI}
@@ -94,6 +93,10 @@ indent=1cm
 \usepackage{mdframed}
 % \usepackage{trfsigns}
 % \usepackage{capt-of}
+\usepackage[intoc]{nomencl} % Formelzeichen
+\makenomenclature
+\renewcommand{\nomname}{Formelzeichenverzeichnis}
+% \renewcommand{\nompreamble}{He he geiht in Kopp he steilt futt de Ohren.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % IAT Packages
@@ -279,13 +282,13 @@ indent=1cm
 }
 
 \newglossaryentry{CRPS}{
-    name=CRPS,
+    name={CRPS},
     description={\textit{Continuous Ranked Probability Score} Maß zur Bewertung probabilistischer Vorhersagen, das die Distanz zwischen kumulativen Verteilungsfunktionen von Vorhersage und Beobachtung misst}
 }
 
-\newglossaryentry{DeepNeuralNetwork}{
-  name={DNN},
-  description={\textit{Deep Neural Network}; ein tiefes neuronales Netzwerk mit mehreren Schichten zwischen Eingabe und Ausgabe, das komplexe nichtlineare Zusammenhänge modellieren kann}
+\newglossaryentry{Deutschen Allianz für Meeresforschung}{
+  name={DAM},
+  description={\textit{Deutschen Allianz für Meeresforschung}}
 }
 
 \newglossaryentry{Deutschen Zentrum für Luft- und Raumfahrt}{
@@ -293,9 +296,10 @@ indent=1cm
   description={\textit{Deutsches Zentrum für Luft- und Raumfahrt}}
 }
 
-\newglossaryentry{Deutschen Allianz für Meeresforschung}{
-  name={DAM},
-  description={\textit{Deutschen Allianz für Meeresforschung}}
+
+\newglossaryentry{DeepNeuralNetwork}{
+  name={DNN},
+  description={\textit{Deep Neural Network}; ein tiefes neuronales Netzwerk mit mehreren Schichten zwischen Eingabe und Ausgabe, das komplexe nichtlineare Zusammenhänge modellieren kann}
 }
 
 \newglossaryentry{Epistemische Unsicherheit}{

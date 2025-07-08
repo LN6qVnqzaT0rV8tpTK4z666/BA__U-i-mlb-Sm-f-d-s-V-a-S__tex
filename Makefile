@@ -11,8 +11,9 @@ pdf:
 	pdflatex -interaction=nonstopmode -output-directory=$(OUT) $(FILE)
 	pdflatex -interaction=nonstopmode -output-directory=$(OUT) $(FILE)
 	makeindex $(OUT)/main.glo -s main.ist -o $(OUT)/main.gls
+	makeindex $(OUT)/main.nlo -s nomencl.ist -o $(OUT)/main.nls
 	sleep 5s
-	code $(PDF)
+	code build/$(PDF)
 
 # watch:
 # latexmk -interaction=nonstopmode -outdir=$(OUT) -pdf -pvc -halt-on-error $(FILE)
