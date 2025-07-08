@@ -1969,33 +1969,73 @@ Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der
     & \hspace{0.6em}\textbf{Datenbasierte Metriken} & \hspace{0.6em}\textbf{Modellbasierte Metriken} \\
     \hline
 
-    \multirow{6}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} & 
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Standardabweichung des Rauschens: \( \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} \) \parencite[S.~28–30]{bishop2006pattern}
-      \item Varianz der Residuen: \( \text{Var} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \) \parencite[S.~28–30]{bishop2006pattern}
-    \end{itemize}
+    \multirow{2}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
+    \parbox[t]{\linewidth}{
+      \begin{itemize}[topsep=0em, itemsep=0.4em, leftmargin=*, label={}]
+        \item Standardabweichung des Rauschens:
+        
+        \( \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} \)
+        
+        \parencite[S.~28–30]{bishop2006pattern}
+        
+        \item Varianz der Residuen:
+        
+        \( \text{Var} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \)
+        
+        \parencite[S.~28–30]{bishop2006pattern}
+      \end{itemize}
+    }
     &
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Bayesianische Unsicherheit (Posterior): \( p(\theta \mid \mathcal{D}) \) \parencite[Kap.~2]{rasmussen2006gaussian}
-      \item Kreuzvalidierung: Bewertung auf Trainings- und Testdaten \parencite{blundell2015weight}
-    \end{itemize}
+    \parbox[t]{\linewidth}{
+      \begin{itemize}[topsep=0em, itemsep=0.4em, leftmargin=*, label={}]
+        \item Bayesianische Unsicherheit (Posterior):
+        
+        \( p(\theta \mid \mathcal{D}) \)
+        
+        \parencite[Kap.~2]{rasmussen2006gaussian}
+        
+        \item Kreuzvalidierung:
+        
+        Bewertung auf Trainings- und Testdaten
+        
+        \parencite{blundell2015weight}
+      \end{itemize}
+    }
     \\ \hline
 
-    \multirow{6}{*}{\textbf{\gls{Epistemische Unsicherheit}}} & 
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Fehleranalyse auf Testdaten: \( \text{Fehler} = \sum_{i=1}^{n} |y_i - \hat{y}_i| \) \parencite[S.~30–32]{bishop2006pattern}
-    \end{itemize}
+    \multirow{2}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
+    \parbox[t]{\linewidth}{
+      \begin{itemize}[topsep=0em, itemsep=0.4em, leftmargin=*, label={}]
+        \item Fehleranalyse auf Testdaten:
+        
+        \( \text{Fehler} = \sum_{i=1}^{n} |y_i - \hat{y}_i| \)
+        
+        \parencite[S.~30–32]{bishop2006pattern}
+      \end{itemize}
+    }
     &
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Konfidenzintervall: \( \hat{y} \pm z \cdot \sigma \) \parencite[S.~40–42]{gal2016uncertainty}
-      \item Entropie der Posterior-Verteilung: \( H(p) = - \sum_{i} p(x_i) \log(p(x_i)) \) \parencite{sensoy2018evidential}
-    \end{itemize}
+    \parbox[t]{\linewidth}{
+      \begin{itemize}[topsep=0em, itemsep=0.4em, leftmargin=*, label={}]
+        \item Konfidenzintervall:
+        
+        \( \hat{y} \pm z \cdot \sigma \)
+        
+        \parencite[S.~40–42]{gal2016uncertainty}
+        
+        \item Entropie der Posterior-Verteilung:
+        
+        \( H(p) = - \sum_{i} p(x_i) \log(p(x_i)) \)
+        
+        \parencite{sensoy2018evidential}
+      \end{itemize}
+    }
     \\ \hline
 
   \end{tabularx}
   \caption{A2 Unsicherheitsmetriken für Surrogatmodelle}
   \label{tab:chapter6r61}
 \end{table}
+
 
 
 

@@ -39,7 +39,9 @@
 !**/**/presentations/abschlusspraesentation/template-presentation-main/template-presentation-main/.gitignore
 !**/**/presentations/abschlusspraesentation/template-presentation-main/template-presentation-main/Vorlage_copy.tex
 !**/**/presentations/abschlusspraesentation/template-presentation-main/template-presentation-main/Vorlage.tex
-**/**/prototypes/**/**/
+**/**/prototypes/*
+!**/**/prototypes/jupyternotebook/
+!**/**/prototypes/jupyternotebook/a7.ipynb
 **/**/template-report-main/**/**/
 #
 *.eps
