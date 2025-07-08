@@ -36,7 +36,7 @@ Der Benchmark konnte in erster Konfiguration annähernd reproduziert werden.
   \footnotesize
   \texttt{python3 neurips2020/run\_uci\_dataset\_tests.py --datasets boston concrete energy-efficiency kin8nm naval power-plant protein wine yacht --num-trials 1 --num-epochs 5}
 \end{noindentquote}
- mit Laufzeit von 9 Minuten 10.2 Sekunden $\leq$ 10 Minuten als \glqq Proof of concept\grqq. Die Konvergenz zu Aminis Werten ($\Delta (\text{RMSE}) = \left[ -0.5;\ -0.6 \right]$; $\Delta \text{NLL} = -0.08$) wird deutlich für die Konfiguration hinreichend umfangreicher Datensätze $\{\text{kin8nm}, \text{naval}, \text{protein} \}$. ~\ref{tab:comparison_ours_vs_amini_tabularx_v2} unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
+ mit Laufzeit von 9 Minuten 10.2 Sekunden $\leq$ 10 Minuten als \glqq Proof of concept\grqq. Die Konvergenz zu Aminis Werten ($\Delta (\text{RMSE}) = \left[ -0.5;\ -0.6 \right]$; $\Delta \text{NLL} = -0.08$) wird deutlich für die Konfiguration hinreichend umfangreicher Datensätze $\{\text{kin8nm}, \text{naval}, \text{protein} \}$. ~\ref{tab:comparison_ours_vs_amini_tabularx_v2} unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang. % Für den visuell Abgleich siehe Abschnitt~\ref{sec:visualisierungen_edl_amini2020_regression}
 
 \begin{table*}[!htbp]
 \centering
@@ -117,7 +117,7 @@ yacht
 \end{table*}
 
 
-\paragraph{Vergleich Amini \gls{Evidenzbasierte neuronale Netze} Klassifikation} \parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang.
+\paragraph{Vergleich Amini \gls{Evidenzbasierte neuronale Netze} Klassifikation} \parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang. % Für den visuell Abgleich siehe Abschnitt~\ref{sec:visualisierungen_edl_amini2020_classification}
 
 
 
