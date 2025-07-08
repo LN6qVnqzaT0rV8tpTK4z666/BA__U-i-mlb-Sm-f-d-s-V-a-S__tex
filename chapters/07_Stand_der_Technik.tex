@@ -1153,7 +1153,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
 \textbf{R2} Welche \textit{allgemeinen} und \textit{modellspezifischen} Faktoren beeinflussen das Lernen von Unsicherheiten in \gls{machinelearning}-Modellen?
 \par\noindent\\
 
-\textbf{R2.1} \textit{Allgemeine Faktoren}
+\textbf{R2.1} \textit{Allgemeine Faktoren} welche das Lernen von Unsicherheiten in \gls{machinelearning}-Modellen beeinflussen.
 
 \begin{table}[!htpb]
   \centering
@@ -1209,7 +1209,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
 
 \newpage
 
-\textbf{R2.2} \textit{Modellspezifische Faktoren}
+\textbf{R2.2} \textit{Modellspezifische Faktoren} die das Lernen von Unsicherheiten in \gls{machinelearning}-Modellen beeinflussen.
 
 \begin{table}[!htpb]
   \centering
@@ -1333,6 +1333,8 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
   \caption{R2.2 Modellspezifische Faktoren zur Unsicherheitsklassifizierung \gls{Evidenzbasierte neuronale Netze}}
   \label{tab:chapter6r23}
 \end{table}
+
+
 
 %\newpage
 
@@ -1579,7 +1581,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
 Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024} zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken. 
 \newline
-Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische \gls{kuenstlicheintelligenz}. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden. \parencite{manchingal2025}. 
+Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische \gls{kuenstlicheintelligenz}. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden \parencite{manchingal2025}. 
 
 %TODO: Weiterführend argumentieren nach Feedback Daniel
 
@@ -1755,8 +1757,8 @@ Für die Literaturübersicht wurde ein Fragenkatalog generiert, der mit seinen S
 
 \pagebreak
 
-Mit den A1 Scopes der Fragen der Literaturübersicht zu \gls{EvidentialDeepLearning} wurden folgende 
-A1 Scopes der Antworten der Literaturübersicht zu \gls{EvidentialDeepLearning} mit zugehörigen Quellen definiert. 
+Mit den \textbf{A1} \textit{Scopes der Fragen der Literaturübersicht zu \gls{EvidentialDeepLearning}} wurden folgende 
+\textbf{A1} \textit{Scopes der Antworten der Literaturübersicht zu \gls{EvidentialDeepLearning}} mit zugehörigen Quellen definiert. 
 
 \begin{table}[htbp]
 \centering
@@ -1966,48 +1968,35 @@ Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der
     \hline
     & \hspace{0.6em}\textbf{Datenbasierte Metriken} & \hspace{0.6em}\textbf{Modellbasierte Metriken} \\
     \hline
+
     \multirow{6}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} & 
     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item \( \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} \): Standardabweichung des Rauschens
-      \item \( \text{Var} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \): Varianz der Residuen
+      \item Standardabweichung des Rauschens: \( \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} \) \parencite[S.~28–30]{bishop2006pattern}
+      \item Varianz der Residuen: \( \text{Var} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \) \parencite[S.~28–30]{bishop2006pattern}
     \end{itemize}
     &
     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item \( p(\theta \mid \mathcal{D}) \): Bayesianische Unsicherheit (Posterior)
-      \item Kreuzvalidierung: Bewertung auf Trainings- und Testdaten
+      \item Bayesianische Unsicherheit (Posterior): \( p(\theta \mid \mathcal{D}) \) \parencite[Kap.~2]{rasmussen2006gaussian}
+      \item Kreuzvalidierung: Bewertung auf Trainings- und Testdaten \parencite{blundell2015weight}
     \end{itemize}
-    \\
-    \hline
-    \multirow{6}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
+    \\ \hline
+
+    \multirow{6}{*}{\textbf{\gls{Epistemische Unsicherheit}}} & 
     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item \( \text{Fehler} = \sum_{i=1}^{n} |y_i - \hat{y}_i| \): Fehleranalyse auf Testdaten
+      \item Fehleranalyse auf Testdaten: \( \text{Fehler} = \sum_{i=1}^{n} |y_i - \hat{y}_i| \) \parencite[S.~30–32]{bishop2006pattern}
     \end{itemize}
     &
     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item \( \hat{y} \pm z \cdot \sigma \): Konfidenzintervall
-      \item \( H(p) = - \sum_{i} p(x_i) \log(p(x_i)) \): Entropie der Posterior-Verteilung
+      \item Konfidenzintervall: \( \hat{y} \pm z \cdot \sigma \) \parencite[S.~40–42]{gal2016uncertainty}
+      \item Entropie der Posterior-Verteilung: \( H(p) = - \sum_{i} p(x_i) \log(p(x_i)) \) \parencite{sensoy2018evidential}
     \end{itemize}
-    \\
-    \hline
+    \\ \hline
+
   \end{tabularx}
   \caption{A2 Unsicherheitsmetriken für Surrogatmodelle}
   \label{tab:chapter6r61}
 \end{table}
 
-
-\footnote{%
-\begin{minipage}[t]{\textwidth}
-\scriptsize
-\textbf{Quellen zu Tab. \ref{tab:chapter6r61}:}\\[0.125em]
-\textbf{AC (Aleatorische Unsicherheit)}\\
-\quad Datenbasierte Metriken: \parencite[S.~28–30]{bishop2006pattern}, 
-\quad Modellbasierte Metriken: \parencite[Kap.~2]{rasmussen2006gaussian}; \parencite{blundell2015weight}\\ [0.125em]
-
-\textbf{EC (Epistemische Unsicherheit)}\\
-\quad Datenbasierte Metriken: \parencite[S.~30–32]{bishop2006pattern}, 
-\quad Modellbasierte Metriken: \parencite[S.~40–42]{gal2016uncertainty}; \parencite{sensoy2018evidential}, 
-\end{minipage}%
-}
 
 
 \pagebreak
@@ -2049,68 +2038,76 @@ Energie & Batterie-Management, Netzstabilität \\
 \end{table}
 
 % Anwendungsspezifikation:
-Als Beispiel-Domäne zum Vergleich der modellspezifischen und anwendungsspezifischen Unsicherheitsmetriken für Surrogatmodelle im Autonomen Fahren wird der Fahrzeugbau gewählt. 
+Als Beispiel-Domäne zum Vergleich der modellspezifischen und anwendungsspezifischen Unsicherheitsmetriken für Surrogatmodelle im Autonomen Fahren wird der Fahrzeugbau gewählt. Die genannten Anwendungsdomänen sind zusammengetragen aus \parencite{Gawlikowski2023} sowie \parencite{Ulmer2023}. Beide Werke behandeln typische Einsatzfelder von ML-basierten Surrogatmodellen im Ingenieurwesen.
 
 \begin{table}[!htpb]
-  \centering
-  \scriptsize
-  \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|X|X|}
-    \hline
-    & \hspace{0.6em}\textbf{Modellspezifische Metriken} & \hspace{0.6em}\textbf{Anwendungsspezifische Metriken} \\
-    \hline
-    \multirow{8}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item \texttt{RMSE:} Abweichung zwischen vorhergesagten und tatsächlichen Sensordaten (z. B. Positionen von Objekten)
-      \item \texttt{MAE:} Mittlere absolute Abweichung bei Objekterkennung oder Trajektorien
-      \item \texttt{KL($P\Vert Q$):} Abweichung zwischen Vorhersage- und Ground-Truth-Wahrscheinlichkeitsverteilungen
-    \end{itemize}
-    &
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item \texttt{Accuracy}: Korrektheit der Objekterkennung (z. B. Fußgänger erkannt/nicht erkannt)
-      \item \texttt{F1-Score}: Balance zwischen Präzision und Recall bei der Objekterkennung
-      \item \texttt{AUC}: Trennschärfe bei der Klassifikation sicherer vs. unsicherer Szenarien
-    \end{itemize}
-    \\
-    \hline
-    \multirow{8}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item \texttt{$\mathcal{L}(\theta)$}: Loss-Funktion inkl. Unsicherheitsanteile (z. B. evidentieller Loss)
-      \item \texttt{BMA}: Mittelung mehrerer Modellposteriors für robustere Unsicherheiten
-      \item \texttt{CI}: Konfidenzintervalle für kritische Größen (z. B. Zeit bis Kollision)
-    \end{itemize}
-    &
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item \texttt{Fehler $\epsilon$}: Abweichung von vorhergesagten zu tatsächlichen Sicherheitsabständen
-      \item \texttt{$H(p)$}: Entropie der Klassifikationsausgabe als Maß epistemischer Unsicherheit
-      \item \texttt{AUC-PR}: Leistungsfähigkeit bei seltenen, kritischen Klassen (z. B. seltene Gefahrensituationen)
-    \end{itemize}
-    \\
-    \hline
-  \end{tabularx}
-  \caption{Vergleich modellspezifischer und anwendungsspezifischer Unsicherheitsmetriken für Surrogatmodelle im autonomen Fahren}
-  \label{tab:chapter6r71}
+	\centering
+	\footnotesize
+	\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|X|X|}
+		\hline
+		& \hspace{0.6em}\textbf{Modellspezifische Metriken} 
+		& \hspace{0.6em}\textbf{Anwendungsspezifische Metriken} \\
+		\hline
+		
+		\multirow{8}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
+		
+		\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+			\item \texttt{RMSE:} Abweichung zwischen vorhergesagten und tatsächlichen Sensordaten (z. B. Positionen von Objekten) \par
+			\begin{scriptsize}\textit{Quelle:} \parencite[S.~224–226]{bishop2006pattern}\end{scriptsize}
+			
+			\item \texttt{MAE:} Mittlere absolute Abweichung bei Objekterkennung oder Trajektorien \par
+			\begin{scriptsize}\textit{Quelle:} \parencite[S.~224–226]{bishop2006pattern}\end{scriptsize}
+			
+			\item \texttt{KL($P\Vert Q$):} Abweichung zwischen Vorhersage- und Ground-Truth-Wahrscheinlichkeitsverteilungen \par
+			\begin{scriptsize}\textit{Quelle:} \parencite[Kap.~2]{rasmussen2006gaussian}\end{scriptsize}
+		\end{itemize}
+		&
+		
+		\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+			\item \texttt{Accuracy:} Korrektheit der Objekterkennung (z. B. Fußgänger erkannt/nicht erkannt) \par
+			\begin{scriptsize}\textit{Quelle:} \parencite[S.~40–42]{bishop2006pattern}\end{scriptsize}
+			
+			\item \texttt{F1-Score:} Balance zwischen Präzision und Recall bei der Objekterkennung \par
+			\begin{scriptsize}\textit{Quelle:} \parencite[S.~40–42]{bishop2006pattern}\end{scriptsize}
+			
+			\item \texttt{AUC:} Trennschärfe bei der Klassifikation sicherer vs. unsicherer Szenarien \par
+			\begin{scriptsize}\textit{Quelle:} \parencite[S.~40–42]{bishop2006pattern}\end{scriptsize}
+		\end{itemize}
+		\\
+		\hline
+		
+		\multirow{8}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
+		
+		\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+			\item \texttt{$\mathcal{L}(\theta)$:} Loss-Funktion inkl. Unsicherheitsanteile (z. B. evidentieller Loss) \par
+			\begin{scriptsize}\textit{Quelle:} \parencite{sensoy2018evidential}\end{scriptsize}
+			
+			\item \texttt{BMA:} Mittelung mehrerer Modellposteriors für robustere Unsicherheiten \par
+			\begin{scriptsize}\textit{Quelle:} \parencite{blundell2015weight}\end{scriptsize}
+			
+			\item \texttt{CI:} Konfidenzintervalle für kritische Größen (z. B. Zeit bis Kollision) \par
+			\begin{scriptsize}\textit{Quelle:} \parencite[S.~40–42]{gal2016uncertainty}\end{scriptsize}
+		\end{itemize}
+		&
+		
+		\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+			\item \texttt{Fehler $\epsilon$:} Abweichung von vorhergesagten zu tatsächlichen Sicherheitsabständen \par
+			\begin{scriptsize}\textit{Quelle:} \parencite[S.~233–235]{bishop2006pattern}\end{scriptsize}
+			
+			\item \texttt{$H(p)$:} Entropie der Klassifikationsausgabe als Maß epistemischer Unsicherheit \par
+			\begin{scriptsize}\textit{Quelle:} \parencite{ovadia2019can}\end{scriptsize}
+			
+			\item \texttt{AUC-PR:} Leistungsfähigkeit bei seltenen, kritischen Klassen (z. B. seltene Gefahrensituationen) \par
+			\begin{scriptsize}\textit{Quelle:} \parencite{ovadia2019can}\end{scriptsize}
+		\end{itemize}
+		\\
+		\hline
+		
+	\end{tabularx}
+	\caption{Vergleich modellspezifischer und anwendungsspezifischer Unsicherheitsmetriken für Surrogatmodelle im autonomen Fahren}
+	\label{tab:chapter6r71}
 \end{table}
 
-\footnote{%
-
-\begin{minipage}[t]{\textwidth}
-\scriptsize
-\textbf{Quellen zu Tab. \ref{tab:ingenieurwesen-domains-small}:}\\[0.5em]
-Die genannten Anwendungsdomänen sind zusammengetragen aus \parencite{Gawlikowski2023} sowie \parencite{Ulmer2023}. Beide Werke behandeln typische Einsatzfelder von ML-basierten Surrogatmodellen im Ingenieurwesen. 
-\end{minipage}%
-\vspace{0.125em}
-\begin{minipage}[t]{\textwidth}
-\scriptsize
-\textbf{Quellen zu Tab. \ref{tab:chapter6r71}:}\\[0.5em]
-\textbf{AC (Aleatorische Unsicherheit)}\\
-\quad Modellspezifische Metriken: \parencite[S.~224–226]{bishop2006pattern}; \parencite[Kap.~2]{rasmussen2006gaussian} \\
-\quad Anwendungsspezifische Metriken: \parencite[S.~40–42]{bishop2006pattern} \\[0.5em]
-
-\textbf{EC (Epistemische Unsicherheit)}\\
-\quad Modellspezifische Metriken: \parencite[S.~40–42]{gal2016uncertainty}; \parencite{blundell2015weight}; \parencite{sensoy2018evidential} \\
-\quad Anwendungsspezifische Metriken: \parencite[S.~233–235]{bishop2006pattern}; \parencite{ovadia2019can}
-\end{minipage}%
-}
 
 
 \pagebreak
@@ -2154,9 +2151,10 @@ Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale
   \\ \hline
 
   \end{tabularx}
-  \caption{A4 Vergleichskriterien und Analyseziele für \gls{evidentialdeeplearning} zu anderen Methoden}
+  \caption{A4 Vergleichskriterien und Analyseziele für \gls{EvidentialDeepLearning} zu anderen Methoden}
   \label{tab:vergleichskriterien}
 \end{table}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2174,31 +2172,35 @@ Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale
     \hline
 
     \multirow{6}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
+
     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Posterior-Verteilung \( p(\theta \mid \mathcal{D}) \)
-      \item Unsicherheitsquantifizierung über Modellparameter auf Trainingsdaten
-      \item MC Dropout
+      \item Posterior-Verteilung \( p(\theta \mid \mathcal{D}) \) \parencite[Kap.~3]{blundell2015weight}
+      \item Unsicherheitsquantifizierung über Modellparameter auf Trainingsdaten \parencite[S.~40–42]{gal2016uncertainty}
+      \item MC Dropout \parencite[S.~40–42]{gal2016uncertainty}
     \end{itemize}
     &
+
     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Konfidenzintervall \( \hat{y} \pm z \cdot \sigma \)
-      \item Unsicherheitsquantifizierung durch Konfidenzintervalle
-      \item Ensemble-Methoden
+      \item Konfidenzintervall \( \hat{y} \pm z \cdot \sigma \) \parencite[S.~4–5]{vovk2005algorithmic}
+      \item Unsicherheitsquantifizierung durch Konfidenzintervalle \parencite{angelopoulos2021gentle}
+      \item Ensemble-Methoden \parencite{angelopoulos2021gentle}
     \end{itemize}
     \\
     \hline
 
     \multirow{6}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
+
     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Bayesianische Unsicherheit \( p(\theta \mid \mathcal{D}) \)
-      \item \gls{bayesianischeinferenz}: Unsicherheitsquantifizierung über bay. Modellparameter
-      \item \gls{variationalinference}: Posterior-Approximation
+      \item Bayesianische Unsicherheit \( p(\theta \mid \mathcal{D}) \) \parencite[S.~40–42]{gal2016uncertainty}
+      \item \gls{bayesianischeinferenz}: Unsicherheitsquantifizierung über bay. Modellparameter \parencite{mackay1992practical}
+      \item \gls{variationalinference}: Posterior-Approximation \parencite[S.~40–42]{gal2016uncertainty}
     \end{itemize}
     &
+
     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Vertrauensregionen
-      \item Prädiktive Unsicherheitsquantifizierung durch Konfidenzintervalle
-      \item GPR: UQ-Ansatz mit Kernel-Methoden und Training
+      \item Vertrauensregionen \parencite{angelopoulos2021gentle}
+      \item Prädiktive Unsicherheitsquantifizierung durch Konfidenzintervalle \parencite[S.~63–65]{shafer2008tutorial}
+      \item GPR: UQ-Ansatz mit Kernel-Methoden und Training \parencite{rasmussen2006gaussian}
     \end{itemize}
     \\
     \hline
@@ -2207,7 +2209,6 @@ Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale
   \caption{A5 Vergleich der UQ-Ansätze für \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}}
   \label{tab:chapter6r81}
 \end{table}
-
 
 
 
@@ -2241,6 +2242,8 @@ Der Vergleichs-Score wird berechnet als:
   \label{tab:r8_results}
 \end{table}
 
+
+
 % \par\noindent\\
 \paragraph{Interpretation der Ergebnisse}\par
 
@@ -2248,21 +2251,6 @@ Der Vergleichs-Score wird berechnet als:
 2. \textbf{\gls{Bayesianische neuronale Netze} \gls{svi}}: Scheitert deutlich. Sehr hoher RMSE ($\approx$ 1367) und große epistemische Varianz deuten auf Instabilität oder falsche Konvergenz hin.\\
 3. \textbf{\gls{Conformal Prediction}}: Erzielt sehr niedrige Fehler (RMSE $\approx$ 0{,}096), gute Coverage (ca. 87\,\%) und den besten Score. Die Methode empfiehlt sich auf diesem Datensatz.
 
-
-
-\footnote{%
-\begin{minipage}[t]{\textwidth}
-\scriptsize
-\textbf{Quellen zu Tab. \ref{tab:chapter6r81}:}\\[0.5em]
-\textbf{\gls{Bayesianische neuronale Netze}}\\
-Aleatorische Unsicherheit: \parencite[Kap.~3]{blundell2015weight}; \parencite[S.~40–42]{gal2016uncertainty} \\
-Epistemische Unsicherheit: \parencite[S.~40–42]{gal2016uncertainty}; \parencite{mackay1992practical} \\[0.5em]
-
-\textbf{\gls{Conformal Prediction}}\\
-Aleatorische Unsicherheit: \parencite[S.~4–5]{vovk2005algorithmic}; \parencite{angelopoulos2021gentle} \\
-Epistemische Unsicherheit: \parencite{angelopoulos2021gentle}; \parencite[S.~63–65]{shafer2008tutorial}; \parencite{rasmussen2006gaussian}
-\end{minipage}%
-}
 
 
 \pagebreak
@@ -2273,6 +2261,7 @@ Epistemische Unsicherheit: \parencite{angelopoulos2021gentle}; \parencite[S.~63�
 
 \textbf{A6} Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
 \par\noindent\\
+
 A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neuronale Netze} ausgeführt werden, um den theoretischer Modellparameter-Einfluss auf die Unsicherheitsabschätzung zu quantifizieren. Variiert werden die Evidenzparameter $\nu$ sowie Trainingsdatengröße für geringen Analyseaufwand.
 
 % Untersuchung - Most Minimal Sensitivitäts-Analyse: 
@@ -2282,8 +2271,6 @@ A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neu
 
 % Vergleich ausgewählter Modelle
 
-\textit{A - Modelldefinition}, \textit{B - Parameterbereich}, \textit{C - Durchführung}
-
 \begin{table}[!htpb]
   \centering
   \footnotesize
@@ -2291,55 +2278,61 @@ A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neu
     \hline
     & \textbf{BNN} & \textbf{CP} & \textbf{ENN} \\
     \hline
+
     \textbf{A} & 
     \begin{tabular}[c]{@{}l@{}} 
-      Post. \( p(\theta \mid \mathcal{D}) \) \\ 
-      UQ über Modellparameter \\ 
-      MC Dropout
+      Post. \( p(\theta \mid \mathcal{D}) \) \parencite[Kap.~3]{blundell2015weight} \\ 
+      UQ über Modellparameter \parencite[S.~40–42]{gal2016uncertainty} \\ 
+      MC Dropout \parencite[S.~40–42]{gal2016uncertainty}
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
-      CI \( \hat{y} \pm z \cdot \sigma \) \\ 
-      UQ durch Konfidenzintervalle \\ 
-      Ensemble
+      CI \( \hat{y} \pm z \cdot \sigma \) \parencite[S.~4–5]{vovk2005algorithmic} \\ 
+      UQ durch Konfidenzintervalle \parencite{angelopoulos2021gentle} \\ 
+      Ensemble \parencite{angelopoulos2021gentle}
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
       Predictive Distr. \( p(y \mid \mu, \alpha, \beta, \nu) \) \\ 
       Evidenzparameter
     \end{tabular} \\
     \hline
+
     \textbf{B} & 
     \begin{tabular}[c]{@{}l@{}} 
-      Modellparameter: Gewichte \( w_i \) \\ 
-      Einfluss von Prioren \\ 
-      Hyperparameter-Sensitivität
+      Modellparameter: Gewichte \( w_i \) \parencite[S.~448–450]{mackay1992practical} \\ 
+      Einfluss von Prioren \parencite[Kap.~5]{rasmussen2006gaussian} \\ 
+      Hyperparameter-Sensitivität \parencite[Kap.~5]{rasmussen2006gaussian}
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
-      Unsicherheitsbestimmung über CI \\ 
-      Einfluss von Vertrauensregionen
+      Unsicherheitsbestimmung über CI \parencite[S.~63–65]{shafer2008tutorial} \\ 
+      Einfluss von Vertrauensregionen \parencite{vovk2005algorithmic}
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
       Evidenzparameter \(\nu\), \(\alpha\), \(\beta\) \\ 
       steuern Unsicherheitsanteile.
     \end{tabular} \\
     \hline
+
     \textbf{C} & 
     \begin{tabular}[c]{@{}l@{}} 
-      Bayessche Inferenz zur UQ \\ 
-      MC-Simulation mit Dropout
+      Bayessche Inferenz zur UQ \parencite[S.~41–42]{gal2016uncertainty} \\ 
+      MC-Simulation mit Dropout \parencite{blundell2015weight}
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
-      Ensemble zur UQ \\ 
-      Vertrauensregionen, CI-Analyse
+      Ensemble zur UQ \parencite{angelopoulos2021gentle} \\ 
+      Vertrauensregionen, CI-Analyse \parencite{shafer2008tutorial}
     \end{tabular} &
     \begin{tabular}[c]{@{}l@{}} 
       Keine Sampling-Approximation nötig \\ 
       KL-Regularisierung steuert Evidenz
     \end{tabular} \\
     \hline
+
   \end{tabularx}
   \caption{A6 Übersicht der UQ-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction} und \gls{Evidenzbasierte neuronale Netze}}
   \label{tab:chapter6r91_clean}
 \end{table}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % A6 **/assets/repos/BA__U-i-mlb-Sm-f-d-s-V-a-S__tex/prototypes/prototype_s9-02-07-25/*.py
@@ -2441,15 +2434,15 @@ Das Signifikanzniveau $\alpha$ bestimmt bei \gls{Conformal Prediction} die Breit
 
 \paragraph{Vergleichende Auswertung Modelle \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction}, \gls{Evidenzbasierte neuronale Netze}}
 
-Die drei Tabellen zeigen die Sensitivitätsanalysen für \gls{Evidenzbasierte neuronale Netze}, \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction} unter Variation ihrer jeweiligen Steuerungsgrößen (\(\nu\), Dropout-Rate, \(\alpha\)). Als gemeinsame Kennzahlen wurden die mittlere Gesamtvarianz \(\overline{u(y)^2}\), die mittlere aleatorische Varianz \(\overline{u_{\text{aleatorisch}}^2}\), die mittlere epistemische Varianz \(\overline{u_{\text{epistemisch}}^2}\), daneben der RMSE sowie der \emph{Relative Uncertainty Index} (RUI) ausgewertet.  
+Die drei Tabellen zeigen die Sensitivitätsanalysen für \gls{Evidenzbasierte neuronale Netze}, \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction} unter Variation ihrer jeweiligen Steuerungsgrößen (\(\nu\), Dropout-Rate, \(\alpha\)). Als gemeinsame Kennzahlen wurden die mittlere Gesamtvarianz \(\overline{\sigma(y)^2}\), die mittlere aleatorische Varianz \(\overline{\sigma_{\text{aleatorisch}}^2}\), die mittlere epistemische Varianz \(\overline{\sigma_{\text{epistemisch}}^2}\), daneben der RMSE sowie der \gls{relativeuncertaintyindex} ausgewertet.  
 
-Im direkten Vergleich zeigen \gls{Evidenzbasierte neuronale Netze} insgesamt höhere Varianzen, z.\,B. bis \(\overline{u(y)^2} \approx 1.6\), während der RMSE relativ stabil bei etwa \(155\) liegt. Die Zerlegung der Unsicherheit zeigt bei \gls{Evidenzbasierte neuronale Netze} für kleine \(\nu\) etwa gleiche Anteile zwischen \(\overline{u_{\text{aleatorisch}}^2}\) und \(\overline{u_{\text{epistemisch}}^2}\). Mit steigender Evidenz \(\nu\) sinkt \(\overline{u_{\text{epistemisch}}^2}\) deutlich, wodurch sich der Anteil der Unsicherheit zunehmend auf die aleatorische Komponente verlagert. Dies verdeutlicht, dass zu geringe \(\nu\)-Werte eine Overconfidence verhindern können, da das Modell dann größere epistemische Unsicherheit zulässt.  
+Im direkten Vergleich zeigen \gls{Evidenzbasierte neuronale Netze} insgesamt höhere Varianzen, z.\,B. bis \(\overline{\sigma(y)^2} \approx 1.6\), während der RMSE relativ stabil bei etwa \(155\) liegt. Die Zerlegung der Unsicherheit zeigt bei \gls{Evidenzbasierte neuronale Netze} für kleine \(\nu\) etwa gleiche Anteile zwischen \(\overline{\sigma_{\text{aleatorisch}}^2}\) und \(\overline{\sigma_{\text{epistemisch}}^2}\). Mit steigender Evidenz \(\nu\) sinkt \(\overline{\sigma_{\text{epistemisch}}^2}\) deutlich, wodurch sich der Anteil der Unsicherheit zunehmend auf die aleatorische Komponente verlagert. Dies verdeutlicht, dass zu geringe \(\nu\)-Werte eine \textit{Overconfidence} verhindern können, da das Modell dann größere epistemische Unsicherheit zulässt.  
 
-Die \gls{Bayesianische neuronale Netze} liefern deutlich kleinere Varianzen, teilweise unter \(\overline{u(y)^2} < 0.02\), bei gleichzeitig wesentlich niedrigerem RMSE zwischen \(6\) und \(9\). Höhere Dropout-Raten führen jedoch zu steigenden Werten sowohl für \(\overline{u_{\text{epistemisch}}^2}\) als auch für \(\overline{u_{\text{aleatorisch}}^2}\), was auf zunehmende Unsicherheitsstreuung hinweist. Allerdings kann ein zu niedriges Dropout-Raten-Niveau bei \gls{Bayesianische neuronale Netze}s Overconfidence fördern, da epistemische Unsicherheit dann unterrepräsentiert bleibt.  
+Die \gls{Bayesianische neuronale Netze} liefern deutlich kleinere Varianzen, teilweise unter \(\overline{\sigma(y)^2} < 0.02\), bei gleichzeitig wesentlich niedrigerem RMSE zwischen \(6\) und \(9\). Höhere Dropout-Raten führen jedoch zu steigenden Werten sowohl für \(\overline{\sigma_{\text{epistemisch}}^2}\) als auch für \(\overline{\sigma_{\text{aleatorisch}}^2}\), was auf zunehmende Unsicherheitsstreuung hinweist. Allerdings kann ein zu niedriges Dropout-Raten-Niveau bei \gls{Bayesianische neuronale Netze}s \textit{Overconfidence} fördern, da epistemische Unsicherheit dann unterrepräsentiert bleibt.  
 
-\gls{Conformal Prediction} liefert über alle \(\alpha\)-Level hinweg konstante mittlere Varianzwerte, da der zugrundeliegende Random-Forest-Fit unverändert bleibt. Hier beträgt \(\overline{u(y)^2} \approx 0.57\), zusammengesetzt aus einer moderaten epistemischen Varianz \(\overline{u_{\text{epistemisch}}^2} \approx 0.36\) und einer geringeren aleatorischen Komponente \(\overline{u_{\text{aleatorisch}}^2} \approx 0.21\). Die RUI-Werte liegen bei \gls{Conformal Prediction} mit ca. \(1.9\) deutlich höher, was eine relativ große Unsicherheitsbreite im Verhältnis zum RMSE (hier \(< 0.4\)) reflektiert. Durch die direkte Intervallberechnung schützt \gls{Conformal Prediction} per Konstruktion stärker gegen Overconfidence, bleibt jedoch konservativer.  
+\gls{Conformal Prediction} liefert über alle \(\alpha\)-Level hinweg konstante mittlere Varianzwerte, da der zugrundeliegende Random-Forest-Fit unverändert bleibt. Hier beträgt \(\overline{\sigma(y)^2} \approx 0.57\), zusammengesetzt aus einer moderaten epistemischen Varianz \(\overline{\sigma_{\text{epistemisch}}^2} \approx 0.36\) und einer geringeren aleatorischen Komponente \(\overline{\sigma_{\text{aleatorisch}}^2} \approx 0.21\). Die \gls{relativeuncertaintyindex}-Werte liegen bei \gls{Conformal Prediction} mit ca. \(1.9\) deutlich höher, was eine relativ große Unsicherheitsbreite im Verhältnis zum RMSE (hier \(< 0.4\)) reflektiert. Durch die direkte Intervallberechnung schützt \gls{Conformal Prediction} per Konstruktion stärker gegen \textit{Overconfidence}, bleibt jedoch konservativer.  
 
-Insgesamt zeigen die Modelle unterschiedliche Profile: \gls{Evidenzbasierte neuronale Netze} weist die höchsten Unsicherheitsniveaus bei konstant hohem RMSE auf. \gls{Bayesianische neuronale Netze} erzielt geringere Fehler und niedrigere Unsicherheiten, reagiert aber sensibel auf die gewählte Dropout-Rate. \gls{Conformal Prediction} liefert stabile, aber eher breite Intervalle und sichert robuste Kalibrierung. Die Kennzahlen \(\overline{u(y)^2}\), \(\overline{u_{\text{aleatorisch}}^2}\), \(\overline{u_{\text{epistemisch}}^2}\), RMSE und RUI erlauben eine methodenübergreifende Bewertung der Unsicherheiten und helfen, Overconfidence frühzeitig zu erkennen.
+Insgesamt zeigen die Modelle unterschiedliche Profile: Erstens, \gls{Evidenzbasierte neuronale Netze} weisen die höchsten Unsicherheitsniveaus bei konstant hohem RMSE auf. Zweitens, \gls{Bayesianische neuronale Netze} erzielen geringere Fehler und niedrigere Unsicherheiten, doch reagieren sensibel auf die gewählte Dropout-Rate. Drittens, \gls{Conformal Prediction} liefert stabile, eher breite Intervalle und sichert robuste Kalibrierung. Zusammenfassend erlauben die Kennzahlen \(\overline{\sigma(y)^2}\), \(\overline{\sigma_{\text{aleatorisch}}^2}\), \(\overline{\sigma_{\text{epistemisch}}^2}\), RMSE und \gls{relativeuncertaintyindex} eine methodenübergreifende Bewertung der Unsicherheiten und helfen wie grundlegend aufgezeigt \textit{Overconfidence} frühzeitig zu erkennen.
 
 
 
@@ -2461,36 +2454,19 @@ Insgesamt zeigen die Modelle unterschiedliche Profile: \gls{Evidenzbasierte neur
 \textbf{Methode} & \hspace{0.0em}\textbf{Sensitivitätsaspekte} \\
 \hline
 \multirow{1}{*}{\textbf{\gls{Bayesianische neuronale Netze}}} &
-Breitere Posterior bei schwachen Priors; stärkere \gls{epistemische Epistemische Unsicherheit}. Höhere Dropout-Rate \(\rightarrow\) erhöht \gls{epistemische Epistemische Unsicherheit}. \\
+Breitere Posterior bei schwachen Priors; stärkere \gls{Epistemische Unsicherheit}. Höhere Dropout-Rate \(\rightarrow\) erhöht \gls{Epistemische Unsicherheit}. \\
 \hline
 \multirow{2}{*}{\textbf{\gls{Conformal Prediction}}} &
 \gls{Conformal Prediction}-Breite steigt bei höherem Konfidenzniveau; kleinere Calibration-Sets führen zu unsteten \gls{Conformal Prediction}s. Coverage sinkt bei zu engen Regionen; Intervallbreite steigt bei höherem \(\alpha\). Heteroskedastische Daten erzeugen stark variierende \gls{Conformal Prediction}-Breiten. \\
 \hline
 \multirow{2}{*}{\textbf{\gls{Evidenzbasierte neuronale Netze}}} &
-Hohe \gls{epistemische Epistemische Unsicherheit} bei kleinen \(\nu\)-Werten. Niedrige \(\nu\) \(\rightarrow\) mehr epistemische Varianz. Größere Datenmengen reduzieren Unsicherheit. Zu starke KL-Regularisierung reduziert Modellvertrauen übermäßig. \\
+Hohe \gls{Epistemische Unsicherheit} bei kleinen \(\nu\)-Werten. Niedrige \(\nu\) \(\rightarrow\) mehr epistemische Varianz. Größere Datenmengen reduzieren Unsicherheit. Zu starke KL-Regularisierung reduziert Modellvertrauen übermäßig. \\
 \hline
 \end{tabularx}
 \caption{A6 Zusammenfassung Sensitivität UQ-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction}, \gls{Evidenzbasierte neuronale Netze}}
 \label{tab:sensitivity_r9_transposed}
 \end{table}
 
-
-
-\footnote{%
-\begin{minipage}[t]{\textwidth}
-\scriptsize
-\textbf{Quellen zu Tab. \ref{tab:chapter6r91}:}\\[0.5em]
-\textbf{\gls{Bayesianische neuronale Netze}}\\
-A (Modelldefinition): \parencite[Kap.~3]{blundell2015weight}; \parencite[S.~40–42]{gal2016uncertainty} \\
-B (Parameterbereich): \parencite[S.~448–450]{mackay1992practical}; \parencite[Kap.~5]{rasmussen2006gaussian} \\
-C (Durchführung): \parencite[S.~41–42]{gal2016uncertainty}; \parencite{blundell2015weight} \\[0.5em]
-
-\textbf{\gls{Conformal Prediction}}\\
-A (Modelldefinition): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tutorial} \\
-B (Parameterbereich): \parencite[S.~63–65]{shafer2008tutorial}; \parencite{vovk2005algorithmic} \\
-C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tutorial}
-\end{minipage}%
-}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2505,6 +2481,8 @@ C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tuto
 ~\nocite{Fisher1936}
 ~\nocite{Cortez2009}
 ~\nocite{Gains2024}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Software 
@@ -2532,6 +2510,8 @@ C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tuto
 ~\nocite{TorchvisionDevelopers.2024}
 ~\nocite{XlrdDevelopers.2024}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Repos
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
@@ -2541,5 +2521,7 @@ C (Durchführung): \parencite{angelopoulos2021gentle}; \parencite{shafer2008tuto
 ~\nocite{sensoy2018evidential}
 ~\nocite{nmavani2025}
 ~\nocite{windler2025}
+
+
 
 \end{otherlanguage}

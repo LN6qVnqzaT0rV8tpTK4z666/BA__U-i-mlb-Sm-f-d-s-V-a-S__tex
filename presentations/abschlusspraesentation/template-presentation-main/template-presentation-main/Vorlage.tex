@@ -1,0 +1,449 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENTCLASS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,a4paper,aspectratio=169]{beamer}
+\usetheme[noheadline,footlinesection,footlineauthor,footlinenumber]{UniBremen}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage[european]{circuitikz}
+\usepackage{multimedia}
+\usepackage{svg}
+\usetikzlibrary{positioning}
+\usepackage{varwidth}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\insertbetreuer}{M.Sc. Ricardo Bosold \\ M.Sc. Daniel Autenrieth}
+\newcommand{\insertgutachter}{Prof. Dr.-Ing. Kai Michels \\ Dr.-Ing. Dennis Pierl}
+
+\newcommand{\currenttocsectionnumber}{\showtocsectionnumber}
+\newcommand{\showtocsectionnumber}{\inserttocsectionnumber}
+\newcommand{\hidetocsectionnumber}{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TEMPLATES: HEADER 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\defbeamertemplate{frametitle}{with AE}{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=+60pt,yshift=-0.05\paperwidth] at (current page.north west) 
+      {\includegraphics[width=0.13\paperwidth]{logo/UHB_Logo_4c.pdf}};
+    \node[xshift=-60pt,yshift=-0.05\paperwidth] at (current page.north east)
+    {
+      \begin{tikzpicture}[remember picture, overlay]
+        \node (logo1) {\includegraphics[width=0.13\paperwidth]{logo/iat_logo_de.pdf}};
+        \node[below=-8pt of logo1, xshift=-3.5pt] 
+          {\includegraphics[width=0.14\paperwidth]{img/aelogodeblack.pdf}};
+      \end{tikzpicture}
+    };
+    \node[name=frametitle,xshift=0.4\paperwidth,yshift=-0.11\paperwidth] at (current page.north west){};
+    \node [below of= frametitle,node distance=0pt,align=flush left]{\Umbruchframetitle{\usebeamerfont{frametitle}\usebeamercolor[fg]{title}\insertframetitle}};
+    \filldraw [fill=UHBDarkRed, draw=UHBDarkRed] (current page.south east) rectangle ++(-\paperwidth,22pt);
+    \filldraw [fill=UHBRed, draw=UHBRed] (current page.south east) rectangle ++(-0.66\paperwidth,22pt);
+  \end{tikzpicture}
+}
+
+
+\defbeamertemplate{frametitle}{without AE}{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[xshift=+60pt,yshift=-0.05\paperwidth] at (current page.north west) 
+      {\includegraphics[width=0.13\paperwidth]{logo/UHB_Logo_4c.pdf}};
+    \node[xshift=-60pt,yshift=-0.05\paperwidth] at (current page.north east)
+      {\includegraphics[width=0.13\paperwidth]{logo/iat_logo_de.pdf}};
+    \node[name=frametitle,xshift=0.4\paperwidth,yshift=-0.11\paperwidth] at (current page.north west){};
+    \node [below of= frametitle,node distance=0pt,align=flush left]{\Umbruchframetitle{\usebeamerfont{frametitle}\usebeamercolor[fg]{title}\insertframetitle}};
+    \filldraw [fill=UHBDarkRed, draw=UHBDarkRed] (current page.south east) rectangle ++(-\paperwidth,22pt);
+    \filldraw [fill=UHBRed, draw=UHBRed] (current page.south east) rectangle ++(-0.66\paperwidth,22pt);
+  \end{tikzpicture}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TEMPLATES: HEADER END
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[My Short Title]{BA: U-i-mlb-Sm-f-d-s-V-a-S}
+\subtitle{Unsicherheiten in machine-learning-basierten Surrogatmodellen \\ für die szenariobasierte Validierung autonomer Systeme}
+\author[Marten Windler]{Marten Windler}
+%\institute[Bremen University]{Institut für Automatisierungstechnik \\ Universität Bremen}
+\date{Bremen \\ 11.08.2025}
+
+\institutelogo{\href{http://www.iat.uni-bremen.de/}{%
+    \includegraphics[scale=0.13]{logo/iat_logo.pdf}}}
+
+\tikzstyle{block} = [draw, rectangle, minimum height=1em, minimum width=\textwidth]
+\tikzstyle{block2} = [draw, rectangle, minimum height=1em, minimum width=0.78\textwidth]
+
+\newcommand\Umbruch[2][\textwidth]{\begin{varwidth}{#1}\centering#2\end{varwidth}}
+\newcommand\Umbruchframetitle[2][0.78\textwidth]{\begin{varwidth}{#1}#2\end{varwidth}}
+
+
+
+
+\setbeamertemplate{title page}{
+	\begin{tikzpicture}[remember picture,overlay]
+	\filldraw [fill=UHBDarkRed, draw=UHBDarkRed] (current page.south east) rectangle ++(-\paperwidth,22pt);
+	\filldraw [fill=UHBRed, draw=UHBRed] (current page.south east) rectangle ++(-0.66\paperwidth,22pt);
+	\node[xshift=+65pt,yshift=-0.07\paperwidth] at (current page.north west) {\includegraphics[width=0.2\paperwidth]{logo/UHB_Logo_4c.pdf}};
+	\node[xshift=-65pt,yshift=-0.07\paperwidth] at (current page.north east) {\includegraphics[width=0.2\paperwidth]{logo/iat_logo_de.pdf}};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}[remember picture,overlay]
+	\node [name=title,yshift=2cm] at (current page.center) {\Umbruch{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}};
+	
+  %\node [above=0.33cm of title](institute){\Umbruch{\usebeamerfont{institute}\insertinstitute}};
+
+
+	\node [below=0.25cm of title](subtitle){\Umbruch{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}};
+	\node [below=0.25cm of subtitle](date){\Umbruch{\usebeamerfont{date}\insertdate}};
+
+
+	%\node [below=0.25cm of date](author){\Umbruch{\usebeamerfont{author}\insertauthor}};
+
+  \node [below=0.25cm of date](author) {
+		\begin{varwidth}{\textwidth}
+      \hspace*{0.8cm}
+			\begin{minipage}[t]{0.45\textwidth}
+				\raggedright
+				\small
+				\usebeamerfont{author}
+				\textbf{Student:}\\
+				\insertauthor
+			\end{minipage}
+			\hfill
+			\begin{minipage}[t]{0.45\textwidth}
+				\raggedright
+				\small
+				\usebeamerfont{author}
+				%\textbf{Gutachter:}\\
+				%\insertgutachter
+        \rule{0pt}{0pt}
+			\end{minipage}
+		\end{varwidth}
+	};
+
+
+	\node [below=0.25cm of author](supervisors) {
+		\begin{varwidth}{\textwidth}
+      \hspace*{0.8cm}
+			\begin{minipage}[t]{0.45\textwidth}
+				\raggedright
+				\small
+				\usebeamerfont{author}
+				\textbf{Betreuer:}\\
+				\insertbetreuer
+			\end{minipage}
+			\hfill
+			\begin{minipage}[t]{0.45\textwidth}
+				\raggedright
+				\small
+				\usebeamerfont{author}
+				\textbf{Gutachter:}\\
+				\insertgutachter
+			\end{minipage}
+		\end{varwidth}
+	};
+	\end{tikzpicture}
+}
+
+
+\setbeamertemplate{frametitle}{
+  \begin{tikzpicture}[remember picture,overlay]
+  \node[xshift=+60pt,yshift=-0.05\paperwidth] at (current page.north west) {\includegraphics[width=0.13\paperwidth]{logo/UHB_Logo_4c.pdf}};
+  %\node[xshift=-60pt,yshift=-0.05\paperwidth] at (current page.north east) {\includegraphics[width=0.13\paperwidth]{logo/iat_logo_de.pdf}};
+  \node[xshift=-60pt,yshift=-0.05\paperwidth] at (current page.north east)
+      {
+        \begin{tikzpicture}[remember picture, overlay]
+          \node (logo1) {\includegraphics[width=0.13\paperwidth]{logo/iat_logo_de.pdf}};
+          \node[below=-8.2pt of logo1, xshift=-3.5pt] 
+            {\includegraphics[width=0.14\paperwidth]{img/aelogodeblack.pdf}};
+        \end{tikzpicture}
+      };
+
+  \node[name=frametitle,xshift=0.4\paperwidth,yshift=-0.11\paperwidth] at (current page.north west){};
+  \node [below of= frametitle,node distance=0pt,align=flush left]{\Umbruchframetitle{\usebeamerfont{frametitle}\usebeamercolor[fg]{title}\insertframetitle}};
+  \filldraw [fill=UHBDarkRed, draw=UHBDarkRed] (current page.south east) rectangle ++(-\paperwidth,22pt);
+  \filldraw [fill=UHBRed, draw=UHBRed] (current page.south east) rectangle ++(-0.66\paperwidth,22pt);
+  \end{tikzpicture}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TOC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{frametitle}[without AE]
+
+\begin{frame}[noframenumbering]
+\maketitle
+\thispagestyle{empty}
+\end{frame}
+
+{
+% define custom bullet for sections
+\setbeamertemplate{section in toc item}{
+  \raisebox{-0.18em}{%
+    \tikz \node[
+      fill=gray,
+      text=white,
+      inner sep=2pt,
+      font=\bfseries
+    ] {\inserttocsectionnumber};
+  }
+}
+
+\setbeamertemplate{subsection in toc item}{
+  \raisebox{-0.18em}{%
+    \tikz \node[
+      fill=gray!70,
+      text=white,
+      inner sep=1.5pt,
+      font=\scriptsize\bfseries
+    ] {\inserttocsubsectionnumber};
+  }
+}
+
+\setbeamertemplate{section in toc}{
+  \leavevmode
+  \begin{beamercolorbox}[ht=1.5ex,leftskip=1.5ex]{section in toc}
+    \usebeamertemplate{section in toc item}\hspace*{0.75em}%
+    \inserttocsection
+  \end{beamercolorbox}
+  \vspace{10pt}
+}
+
+\setbeamertemplate{subsection in toc}{
+  \leavevmode
+  \begin{beamercolorbox}[ht=1.2ex,leftskip=3ex]{subsection in toc}
+    \usebeamertemplate{subsection in toc item}\hspace*{0.75em}%
+    \inserttocsubsection
+  \end{beamercolorbox}
+  \vspace{5pt}
+}
+
+{
+  \setbeamertemplate{footline}{}
+  \begin{frame}[noframenumbering]{Inhaltsverzeichnis}
+    \vspace{33pt}
+    \begin{columns}
+        \begin{column}{0.48\textwidth}
+            \tableofcontents[sections={1-3}]
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \tableofcontents[sections={4-6}]
+        \end{column}
+    \end{columns}
+  \end{frame}
+}
+}
+
+
+\setcounter{framenumber}{0}  % <<< reset slide numbers here
+\setbeamertemplate{frametitle}[with AE]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INTRO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Einleitung}
+{
+\setbeamercolor{progress bar filled}{fg=white}
+\setbeamercolor{progress bar empty}{fg=red}
+\setbeamertemplate{background}{
+    % background image
+    \includegraphics[width=\paperwidth,height=\paperheight]{img/placeholder.jpg}
+
+    \begin{tikzpicture}[remember picture, overlay]
+      % white header rectangle
+      \fill [white] (current page.north west) rectangle
+                    ([yshift=-2cm] current page.north east);
+      
+      % UHB logo (left)
+      \node[xshift=+30pt, yshift=-0.25cm, anchor=north west] at (current page.north west)
+        {\includegraphics[width=0.13\paperwidth]{logo/UHB_Logo_4c.pdf}};
+        
+      % IAT logo (right)
+      \node[xshift=-60pt,yshift=-0.05\paperwidth] at (current page.north east)
+      {
+        \begin{tikzpicture}[remember picture, overlay]
+          \node (logo1) {\includegraphics[width=0.13\paperwidth]{logo/iat_logo_de.pdf}};
+          \node[below=-4pt of logo1, xshift=-3.5pt] 
+            {\includegraphics[width=0.14\paperwidth]{img/aelogodeblack.pdf}};
+        \end{tikzpicture}
+      };
+
+      
+      % white rectangle for chapter display footer
+      \fill [white]
+        (current page.south west) rectangle
+        ([yshift=1.125cm] current page.south east);
+        
+      % empty node purely for layout
+      \node[anchor=west, xshift=0.5cm, yshift=1.25cm, text=black, font=\bfseries\normalsize]
+        at (current page.south west)
+        {};
+
+      % bright red full-width footer rectangle
+      \fill [UHBRed] (current page.south west) rectangle
+                     ([yshift=22pt] current page.south east);
+      
+      % dark red shorter rectangle on top
+      \fill [UHBDarkRed] (current page.south west) rectangle
+                         ([xshift=0.33\paperwidth,yshift=22pt] current page.south west);
+    \end{tikzpicture}
+}
+
+\begin{frame}
+
+% --- Title block in a vbox ---
+\vbox{
+  \vspace*{-3.5cm}
+  {\usebeamercolor[fg]{title}
+    \Large \bfseries
+    Einleitung
+  }
+}
+
+% vertical space between blocks
+\vskip 1cm
+
+% --- Text block in a vbox ---
+\vbox{
+  \vspace*{2.2cm}
+  {\color{white}
+    \normalsize
+    Autonome Systeme können nur mit präzisen Modell-Unsicherheiten validiert werden. \\
+    Im Projekt VaMai sind Surrogatmodelle der Schlüssel, dies effizient umzusetzen.\\
+  }
+}
+
+\end{frame}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CHAPTER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[| 1: Theo. Grundl., St. d. Technik]{Theo. Grundl., Stand der Technik}
+\begin{frame}{Theoretische Grundlagen, Stand der Technik}
+  \begin{itemize}
+    \item \textbf{R1} Welche auf \gls{machinelearning} basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
+    \item \textbf{R2} Welche \textit{allgemeinen} und \textit{modellspezifischen} Faktoren beeinflussen das Lernen von Unsicherheiten in \gls{machinelearning}-Modellen?
+    \item \textbf{R3} Wie können diese Einflussfaktoren abgeschwächt werden, um die Unsicherheitsabschätzung zu verbessern?
+    \item \textbf{R4} Inwieweit kann \gls{machinelearning}-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
+    \end{itemize}
+\end{frame}
+
+
+
+\section[| 2: Methodik]{Methodik}
+\begin{frame}{Methodik}
+	\begin{itemize}
+	\item En he kunn dat was ik heel, Harr-ik un he Dat schickt, he kann in sien se hett sük, he hett sük he sitt al weer achter 't, dat he steiht vör ’t Fenster to brillen In Düüstern sünd all Katten he ’t Wat man neet in de Kopp hett, mutt man in.
+	\end{itemize}
+\end{frame}
+
+
+
+\section[| 3: Ergebnisse]{Ergebnisse}
+\begin{frame}{Ergebnisse}
+	\begin{itemize}
+	\item Reproduktion Benchmark Amini 2020
+	\item EDNN BNN Vergleich: Visueller Varianzablgeich epistemisch, aleatorisch
+	% \item Datenpipeline Eigenentwicklung
+	\item EDNN BNN Accuracy
+	\end{itemize}
+\end{frame}
+
+
+
+\section[| 4: Diskussion]{Diskussion}
+
+\begin{frame}{Diskussion}
+	\begin{itemize}
+		\item Fokus: Aussagekraft modellierter Unsicherheiten, Kalibrierung und Verhalten des Evidential Deep Networks (EDN) im Vergleich zu Baselines
+		\item Evidentielles Deep Learning zeigt Schwächen bei der Darstellung epistemischer Unsicherheit, insbesondere der Varianz \parencite{Jurgens.}
+		\item Gängige Metriken überschätzen oft Modellleistung, da Unsicherheiten unzureichend berücksichtigt werden \parencite{Herd04082024}
+		% \item Einführung des Begriffs Meta-Unsicherheit: Aggregation verschiedener Unsicherheitsquellen für globale Vertrauensbewertung
+		% \item Einflussgrößen Meta-Unsicherheit:
+		% \begin{itemize}
+		% 	\item lokale Evidenz (\(\alpha^{-1}\)) und Vorhersagefehler \(\left| y - \mu \right|\)
+		% 	\item Verteilung epistemischer Varianz im Eingaberaum
+		% 	\item strukturelle Muster (Cluster, Sprünge)
+		% 	\item Metriken wie Jensen-Shannon-Divergenz
+		% \end{itemize}
+		% \item Meta-Unsicherheit liefert zusätzlichen Beitrag zur Vertrauensbewertung in sicherheitskritischen Anwendungen
+	\end{itemize}
+\end{frame}
+
+
+
+\section[| 5: Fazit, Ausblick]{Fazit und Ausblick}
+
+\begin{frame}{Fazit und Ausblick}
+	\begin{itemize}
+		\item Evidenzbasiertes Verfahren für UQ in ML-Surrogatmodellen umgesetzt
+		\item EDN lernt und trennt AC und EC direkt aus Daten → differenzierbare, kalibrierbare und visuell interpretierbare Unsicherheiten
+		%\item Entwicklung eines Meta-Unsicherheitsmaßes zur Bewertung der Vertrauenswürdigkeit kompletter Szenarien
+		%\item Potenzial für:
+		%\begin{itemize}
+		%	\item Entwicklung von EDL-Meta-Modellen zur Aggregation von Unsicherheiten und Ableitung adaptiver Steuersignale
+		%	\item Integration in Echtzeit-Validierung, z. B. MPC oder szenariobasierte Testframeworks
+		%	\item Transfer auf andere technische Domänen wie autonome Fahrzeuge, Robotik, Prozessüberwachung
+		%\end{itemize}
+		%\item Kombination aus modellierter Unsicherheit und mathematischer Interpretierbarkeit liefert Grundlage für robuste, erklärbare und vertrauenswürdige KI-Systeme
+	\end{itemize}
+\end{frame}
+
+
+
+\section[| 6: Kontakt]{Kontakt}
+
+\begin{frame}{Kontakt}
+	\begin{itemize}
+		\item \textbf{Name:} Marten Windler
+		\item \textbf{Studiengang:} B.Sc. Systems Engineering
+		\item \textbf{Hochschule:} Universität Bremen
+		\item \textbf{E-Mail:} \texttt{windler@uni-bremen.de}
+		\item \textbf{Thema:} Unsicherheiten in machine-learning-basierten Surrogatmodellen für die szenariobasierte Validierung autonomer Systeme
+	\end{itemize}
+	\vspace{0.66em}
+	\centering
+	\textit{Vielen Dank für Ihre Aufmerksamkeit!}
+\end{frame}
+
+
+
+
+\end{document}

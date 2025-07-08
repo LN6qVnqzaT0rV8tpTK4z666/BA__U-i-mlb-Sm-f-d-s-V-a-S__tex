@@ -1,0 +1,144 @@
+\documentclass[10pt,a4paper,aspectratio=169]{beamer}
+%\usetheme[noheadline,footlinesection,footlineauthor,footlinenumber]{UniBremen}
+
+\usetheme[noheadline,footlinesection,footlineauthor,footlinenumber]{UniBremen}
+
+%\definecolor{iatrot}{RGB}{203,1,1}  % IAT-Rot
+%\colorlet{uniblau}{iatrot}         % used for titles, structure
+%\setbeamercolor{structure}{fg=uniblau}%fg=beamer@blendedblue
+%\usepackage{fancyheadings}
+
+%%%%%%%%%%%%%
+% If other Logos should be implemented, Copy and Paste the Linewhere IAT-Logo is added, and incraese the X-Offset until it fits
+%%%%%%%%%%%%%
+
+\usepackage[european]{circuitikz}
+\usetikzlibrary{positioning}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage[ngerman]{babel}
+%--- DOKUMENTEIGENSCHAFTEN UND KONFIGURATION ----------------------------------
+
+% Titel (mit Kurztitel und Untertitel)
+\title[My Short Title]{Dieser Titel geht nur über eine Zeile}
+\subtitle{Das ist ein Untertitel}
+
+% Autoren
+\author[Autor]
+{Autor}
+
+% Institutsangaben
+\institute[Bremen University]{
+	Institut für Automatisierungstechnik \\
+	Universität Bremen 
+}
+
+% Datum
+\date{Bremen \\ \today}
+
+% Institutslogo & Partnerlogos
+\institutelogo{\href{http://www.iat.uni-bremen.de/}{%
+%		\pgfimage[height=5\baselineskip]{logo/iat_logo.pdf}}%
+	 \includegraphics[scale=0.13]{logo/iat_logo.pdf}}
+}
+%\partnerlogo{\pgfimage[height=2.0\baselineskip]{logo/logo_ant}}
+%\secondarypartnerlogo{\pgfimage[height=2\baselineskip]{logo/logo_dfg}}
+\tikzstyle{block} = [draw, rectangle, 
+    minimum height=1em, minimum width=\textwidth]
+\tikzstyle{block2} = [draw, rectangle, 
+    minimum height=1em, minimum width=0.78\textwidth]
+        
+\usepackage{varwidth}  
+\newcommand\Umbruch[2][\textwidth]{\begin{varwidth}{#1}\centering#2\end{varwidth}} 
+\newcommand\Umbruchframetitle[2][0.78\textwidth]{\begin{varwidth}{#1}#2\end{varwidth}} 
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Titelseite
+\setbeamertemplate{title page}
+{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kopf der Titelseite und Logos	
+\begin{tikzpicture}[remember picture,overlay]%[remember picture,overlay]	
+\filldraw [fill=UHBDarkRed, draw=UHBDarkRed] (current page.south east) rectangle ++(-\paperwidth,22pt);
+\filldraw [fill=UHBRed, draw=UHBRed] (current page.south east) rectangle ++(-0.66\paperwidth,22pt);
+\node[xshift=+65pt,yshift=-0.07\paperwidth] at (current page.north west) {\includegraphics[width=0.2\paperwidth]{logo/UHB_Logo_4c.pdf}};
+\node[xshift=-65pt,yshift=-0.07\paperwidth] at (current page.north east) {\includegraphics[width=0.2\paperwidth]{logo/iat_logo_de.pdf}};
+\end{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Beschriftungen auf Titelseite
+\begin{tikzpicture}[remember picture,overlay]
+% Titel
+\node [name=title,yshift=1cm] at (current page.center) {		
+\Umbruch{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}};
+% Institut
+\node [above=0.5cm of title](institute){
+\Umbruch{\usebeamerfont{institute}\insertinstitute}};
+%% Untertitel
+\node [below=0.5cm of title](subtitle){
+\Umbruch{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}};
+%% Datum
+\node[below=0.5cm of subtitle](date){
+\Umbruch{\usebeamerfont{date}\insertdate}};
+%% Autor
+\node[below=0.5cm of date](author){
+\Umbruch{\usebeamerfont{author}\insertauthor}};
+\end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%%%%% Foliendesign
+\setbeamertemplate{frametitle}{
+%\begin{tikzpicture}[remember picture,overlay]
+%\filldraw [fill=UHBRedLight, draw=UHBRedLight] (current page.north west) rectangle ++(\paperwidth,-47pt);	
+%\end{tikzpicture}
+\begin{tikzpicture}[remember picture,overlay]	
+%\filldraw [fill=UHBRed, draw=UHBRed] (current page.north west) rectangle ++(\paperwidth,-8pt);
+%\filldraw [fill=UHBRed, draw=UHBRed] (current page.north west) rectangle ++(.75\paperwidth,-15pt);
+%\filldraw [fill=UHBRed, draw=UHBRed] (current page.north west) rectangle ++(\paperwidth-80pt,-15pt);
+\node[xshift=+60pt,yshift=-0.05\paperwidth] at (current page.north west) {\includegraphics[width=0.13\paperwidth]{logo/UHB_Logo_4c.pdf}};
+\node[xshift=-60pt,yshift=-0.05\paperwidth] at (current page.north east) {\includegraphics[width=0.13\paperwidth]{logo/iat_logo_de.pdf}};
+
+%%%%%%%%%%%%%%%%%%%% Folienüberschrift
+\node[name=frametitle,xshift=0.4\paperwidth,yshift=-0.11\paperwidth] at (current page.north west){};
+%\node[name=frametitle,xshift=135pt,yshift=-15pt] at (current page.north west){};
+\node [below of= frametitle,node distance=0pt,align=flush left]{		
+\Umbruchframetitle{\usebeamerfont{frametitle}\usebeamercolor[fg]{title}\insertframetitle}};
+\filldraw [fill=UHBDarkRed, draw=UHBDarkRed] (current page.south east) rectangle ++(-\paperwidth,22pt);
+\filldraw [fill=UHBRed, draw=UHBRed] (current page.south east) rectangle ++(-0.66\paperwidth,22pt);
+\end{tikzpicture}}
+
+
+%%%%%%%%%%%%%%%%%%%% Ab hier beginnt die Präsentation
+\begin{document}
+\begin{frame}
+\maketitle
+\thispagestyle{empty}
+\end{frame}
+
+\begin{frame}{Inhaltsverzeichnis}
+\tableofcontents
+\end{frame}
+\section{Einleitung}
+\begin{frame}{Einleitung}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\end{frame}
+\section[Kapitel 1]{Kapitel 1}
+\begin{frame}{Folientitel über maximal! eine Zeile}
+	Inhalt von Kapitel 1
+\end{frame}
+
+\section[Kapitel 2]{Kapitel 2}
+\begin{frame}{Noch ein weiterer Titel}
+\begin{itemize}
+\item test
+\item test
+\item test
+\item test
+\item test
+\end{itemize}	
+\end{frame}
+
+\begin{frame}{\ }
+	Inhalt von Kapitel 2
+\end{frame}
+\end{document}

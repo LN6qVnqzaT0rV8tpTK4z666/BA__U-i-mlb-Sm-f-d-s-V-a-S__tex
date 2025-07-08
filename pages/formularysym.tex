@@ -1,0 +1,33 @@
+\newpage
+
+% Apply custom geometry for a single page
+\newgeometry{left=1cm,right=1cm,top=2cm,bottom=1.5cm}
+
+\begin{formelsammlung}
+
+  \section*{Formelzeichen}
+
+  \begin{mdframed}[style=exercise]
+    \begin{tabularx}{\textwidth}{>{$}l<{$} X}
+        \toprule
+        \textbf{Symbol} & \textbf{Bedeutung} \\
+        \midrule
+        \alpha & Evidenzparameter (Shape) der evidentiellen Verteilung \\
+        \beta & Skalenparameter der evidentiellen Verteilung \\
+        v & Varianzbezogener Parameter in Evidential Regression \\
+        \mu & Erwartungswert der Vorhersage \\
+        \sigma_{\text{aleatorisch}}^2 & Aleatorische Varianz (Datenrauschen) \\
+        \sigma_{\text{epistemisch}}^2 & Epistemische Varianz (Modellunsicherheit) \\
+        \hat{y} & Vorhersagewert des Modells \\
+        y & Beobachteter Wert \\
+        \text{NLL} & Negative Log-Likelihood \\
+        \text{KL}(P \,\|\, Q) & Kullback-Leibler-Divergenz zwischen Verteilungen \( P \) und \( Q \) \\
+        \text{RUI} & Relative Uncertainty Index \\
+        \bottomrule
+    \end{tabularx}
+  \end{mdframed}
+
+\end{formelsammlung}
+
+% Restore the original geometry for subsequent pages
+\restoregeometry

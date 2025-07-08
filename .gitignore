@@ -32,6 +32,13 @@
 #**/**/presentations/*
 **/**/presentations/abschlusspraesentation/*
 !**/**/presentations/abschlusspraesentation/.gitkeep
+!**/**/presentations/abschlusspraesentation/
+!**/**/presentations/abschlusspraesentation/template-presentation-main/
+!**/**/presentations/abschlusspraesentation/template-presentation-main/template-presentation-main/
+**/**/presentations/abschlusspraesentation/template-presentation-main/template-presentation-main/*
+!**/**/presentations/abschlusspraesentation/template-presentation-main/template-presentation-main/.gitignore
+!**/**/presentations/abschlusspraesentation/template-presentation-main/template-presentation-main/Vorlage_copy.tex
+!**/**/presentations/abschlusspraesentation/template-presentation-main/template-presentation-main/Vorlage.tex
 **/**/prototypes/**/**/
 **/**/template-report-main/**/**/
 #
