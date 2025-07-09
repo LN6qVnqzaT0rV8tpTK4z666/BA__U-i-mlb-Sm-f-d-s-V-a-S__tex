@@ -123,13 +123,13 @@ Eine Schicht in einem \gls{neuronalesnetzwerk} besteht aus:
 
 \section*{DNN – Deep Neural Network}
 
-Ein \textbf{Deep Neural Network (\gls{DeepNeuralNetwork})} erweitert ein \gls{neuronalesnetzwerk} um mehrere Schichten. Dies erhöht die Tiefe des Netzwerks:
+Ein \textbf{Deep Neural Network (\gls{DeepNeuralNetwork})} erweitert ein \gls{neuronalesnetzwerk} um mehrere versteckte Schichten, Hidden Layer. Dies erhöht die Tiefe des Netzwerks:
 
 \[
 f(x) = \sigma_L\left(W_L \cdot \sigma_{L-1}\left(\ldots \sigma_1\left(W_1 \cdot x + b_1\right) \ldots \right) + b_L\right)
 \]
 
-Neben der linearen Transformation erlaubt ein \gls{DeepNeuralNetwork} durch das Propagieren über mehrere Schichten die Modellierung komplexer Nichtlinearitäten und somit ein tieferes Lernen relevanter Merkmale.
+Neben der linearen Transformation erlaubt ein \gls{DeepNeuralNetwork} durch das Propagieren über mehrere versteckte Schichten die Modellierung komplexer Nichtlinearitäten und somit ein tieferes Lernen relevanter Merkmale.
 
 \section*{BNN – Bayesian Neural Network}
 
@@ -143,7 +143,7 @@ Dadurch wird die \textbf{\gls{Epistemische Unsicherheit}} über die Posterior-Ve
 
 \section*{\gls{Evidenzbasierte neuronale Netze} – Evidential Deep Neural Network}
 
-Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $e$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite \gls{MonteCarloSampling}-Strategie notwendig ist, um \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} zu bestimmen.
+Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $E$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite \gls{MonteCarloSampling}-Strategie notwendig ist, um \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} zu bestimmen.
 
 \subsubsection*{Parameterbedeutung:}
 \begin{itemize}
