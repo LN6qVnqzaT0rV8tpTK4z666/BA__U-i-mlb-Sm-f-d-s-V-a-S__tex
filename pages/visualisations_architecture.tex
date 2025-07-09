@@ -1,0 +1,205 @@
+%  \newpage
+
+\chapter*{Visualisierungen Architekturen}
+% \label{chap:visualisierungen_architectures}
+
+\phantomsection
+
+
+
+% \needspace{10\baselineskip}
+\subsection*{\gls{Evidenzbasierte neuronale Netze} Regression nach Amini \parencite{amini2020deep}}
+
+\par\noindent\\
+
+\scalebox{0.8}{
+    \begin{tikzpicture}[
+        node distance=1.5cm and 2.5cm,
+        every node/.style={font=\sffamily},
+        layer/.style={rectangle, draw, minimum width=2.5cm, minimum height=1cm, align=center},
+        arrow/.style={->, thick}
+    ]
+
+    \node[layer, fill=blue!10] (input) {Eingang \\ $\mathbf{x} \in \mathbb{R}^d$};
+
+    \node[layer, fill=green!15, below=of input] (hidden1) {Verborgene Schicht 1 \\ Vollständig verbunden \\ $n_1$ Neuronen};
+
+    \node[layer, fill=green!15, below=of hidden1] (hidden2) {Verborgene Schicht 2 \\ Vollständig verbunden \\ $n_2$ Neuronen};
+
+    \node[layer, fill=orange!20, below=of hidden2] (output) {Ausgabeschicht \\ Vollständig verbunden \\ 4 Neuronen};
+
+    \node[layer, fill=yellow!15, below=of output] (evidential) {Evidenz-Parameter \\ $\gamma$, $v$, $\alpha$, $\beta$};
+
+    \node[layer, fill=red!15, below=of evidential] (predictive) {Vorhersage \\ Mittelwert $\hat{y}$ \\ Varianz $\hat{\sigma}^2$};
+
+    \draw[arrow] (input) -- (hidden1);
+    \draw[arrow] (hidden1) -- (hidden2);
+    \draw[arrow] (hidden2) -- (output);
+    \draw[arrow] (output) -- (evidential);
+    \draw[arrow] (evidential) -- (predictive);
+
+    \node[align=center, right=1.5cm of output] (params) {
+        \begin{tabular}{l}
+        $\gamma$: Schätzwert für den Mittelwert \\
+        $v$: Stärke der Evidenz \\
+        $\alpha, \beta$: Form-/Skalenparameter \\
+        der Varianzverteilung
+        \end{tabular}
+    };
+\end{tikzpicture}
+}
+
+\newpage
+
+
+
+% \needspace{10\baselineskip}
+\subsection*{\gls{Evidenzbasierte neuronale Netze} Klassifikation nach Amini \parencite{amini2020deep}}
+
+\par\noindent\\
+
+\scalebox{0.8}{
+    \begin{tikzpicture}[
+        node distance=1.5cm and 2.5cm,
+        every node/.style={font=\sffamily},
+        layer/.style={rectangle, draw, minimum width=3.0cm, minimum height=1.2cm, align=center},
+        arrow/.style={->, thick}
+    ]
+
+    % Nodes
+    \node[layer, fill=blue!10] (input) {Eingang \\ Bild $\mathbf{x} \in \mathbb{R}^{H \times W \times C}$};
+
+    \node[layer, fill=green!15, below=of input] (conv1) {CNN-Basis-Netz \\ z. B. ResNet-50};
+
+    \node[layer, fill=orange!20, below=of conv1] (evidential) {Ausgabe-Schicht \\ Vollständig verbunden \\ Ausgabe $\boldsymbol{\alpha}$};
+
+    \node[layer, fill=yellow!15, below=of evidential] (predictive) {Vorhersageverteilung \\ Dirichlet \\ $\mathbb{E}[\text{Dir}(\boldsymbol{\alpha})]$};
+
+    % Connections
+    \draw[arrow] (input) -- (conv1);
+    \draw[arrow] (conv1) -- (evidential);
+    \draw[arrow] (evidential) -- (predictive);
+
+    % Legend box
+    \node[align=left, right=2.5cm of evidential] (legend) {
+        \begin{tabular}{@{}l@{}}
+        \textbf{Details:} \\
+        - $\boldsymbol{\alpha}$: Dirichlet-Parameter für jede Klasse \\
+        - Vorhersagewahrscheinlichkeit: \\
+        \quad $\hat{p}_c = \frac{\alpha_c}{\sum_j \alpha_j}$ \\
+        - Unsicherheit aus Dirichlet-Varianz ableitbar
+        \end{tabular}
+    };
+
+    \end{tikzpicture}
+}
+
+\newpage
+
+
+
+% \needspace{10\baselineskip}
+\subsection*{\gls{Bayesianische neuronale Netze} \gls{svi} nach Pyro \parencite{PyroPplDevelopers.2024}}
+
+\par\noindent\\
+
+\scalebox{0.8}{
+    \begin{tikzpicture}[
+        node distance=1.5cm and 2.5cm,
+        every node/.style={font=\sffamily},
+        layer/.style={rectangle, draw, minimum width=2.8cm, minimum height=1.2cm, align=center},
+        arrow/.style={->, thick}
+    ]
+
+    % Nodes
+    \node[layer, fill=blue!10] (input) {Eingang \\ $\mathbf{x} \in \mathbb{R}^d$};
+
+    \node[layer, fill=green!15, below=of input] (hidden1) {Verborgene Schicht 1 \\ Vollständig verbunden \\ $n_1$ Neuronen \\ \textbf{Gewichte:} $\mu_1, \sigma_1$};
+
+    \node[layer, fill=green!15, below=of hidden1] (hidden2) {Verborgene Schicht 2 \\ Vollständig verbunden \\ $n_2$ Neuronen \\ \textbf{Gewichte:} $\mu_2, \sigma_2$};
+
+    \node[layer, fill=orange!20, below=of hidden2] (output) {Ausgabeschicht \\ Vollständig verbunden \\ $n_\text{out}$ Neuronen \\ \textbf{Gewichte:} $\mu_\text{out}, \sigma_\text{out}$};
+
+    \node[layer, fill=yellow!15, below=of output] (predictive) {Vorhersageverteilung \\ $p(y \mid \mathbf{x})$ \\ z. B. Normalverteilung $(\hat{y}, \hat{\sigma}^2)$};
+
+    \node[layer, fill=red!10, right=4cm of hidden2] (elbo) {SVI \\ ELBO-Optimierung \\ \small KL-Divergenz zwischen \\ approximierter und \\ echter Posterior-Verteilung minimieren};
+
+    % Connections
+    \draw[arrow] (input) -- (hidden1);
+    \draw[arrow] (hidden1) -- (hidden2);
+    \draw[arrow] (hidden2) -- (output);
+    \draw[arrow] (output) -- (predictive);
+
+    \draw[arrow] (hidden1.east) -- ++(1,0) |- (elbo.west);
+    \draw[arrow] (hidden2.east) -- ++(1,0) |- (elbo.west);
+    \draw[arrow] (output.east) -- ++(1,0) |- (elbo.west);
+
+    % Optional: Legende
+    %\node[align=left, below=of predictive] (legend) {
+    %    \begin{tabular}{@{}l@{}}
+    %    \textbf{Wichtige Konzepte:} \\
+    %    - Jedes Gewicht $\theta$ besitzt Variationsparameter $(\mu, \sigma)$ \\
+    %    - Im Forward-Pass werden Gewichte aus $q(\theta)$ gezogen \\
+    %    - SVI minimiert die ELBO: \\
+    %    \quad $\mathrm{ELBO} = \mathbb{E}_{q} [ \log p(y|\theta,x) ] - \mathrm{KL}(q(\theta)\,||\,p(\theta))$
+    %    \end{tabular}
+    %};
+
+    \end{tikzpicture}
+}
+
+
+
+\newpage
+
+%\needspace{10\baselineskip}
+\subsection*{\gls{Bayesianische neuronale Netze} \gls{hmc} nach Pyro \parencite{PyroPplDevelopers.2024}}
+
+\par\noindent\\
+
+\scalebox{0.8}{
+    \begin{tikzpicture}[
+        node distance=1.5cm and 2.5cm,
+        every node/.style={font=\sffamily},
+        layer/.style={rectangle, draw, minimum width=2.8cm, minimum height=1.2cm, align=center},
+        arrow/.style={->, thick}
+    ]
+
+    % Nodes
+    \node[layer, fill=blue!10] (input) {Eingang \\ $\mathbf{x} \in \mathbb{R}^d$};
+
+    \node[layer, fill=green!15, below=of input] (hidden1) {Verborgene Schicht 1 \\ Vollständig verbunden \\ $n_1$ Neuronen};
+
+    \node[layer, fill=green!15, below=of hidden1] (hidden2) {Verborgene Schicht 2 \\ Vollständig verbunden \\ $n_2$ Neuronen};
+
+    \node[layer, fill=orange!20, below=of hidden2] (output) {Ausgabeschicht \\ Vollständig verbunden \\ $n_\text{out}$ Neuronen};
+
+    \node[layer, fill=yellow!15, below=of output] (predictive) {Vorhersageverteilung \\ $p(y \mid \mathbf{x})$};
+
+    % HMC box
+    \node[layer, fill=red!15, right=4cm of hidden2] (hmc) {HMC-Sampling \\ Erzeuge Gewichtssamples \\ $\theta^{(1)}, \theta^{(2)}, \dots, \theta^{(S)}$};
+
+    % Connections
+    \draw[arrow] (input) -- (hidden1);
+    \draw[arrow] (hidden1) -- (hidden2);
+    \draw[arrow] (hidden2) -- (output);
+    \draw[arrow] (output) -- (predictive);
+
+    % HMC arrows
+    \draw[arrow] (hmc.west) -- ++(-1,0) |- (hidden1.east);
+    \draw[arrow] (hmc.west) -- ++(-1,0) |- (hidden2.east);
+    \draw[arrow] (hmc.west) -- ++(-1,0) |- (output.east);
+
+    % Optional: Legende
+    %\node[align=left, below=of predictive] (legend) {
+    %    \begin{tabular}{@{}l@{}}
+    %    \textbf{Wichtige Konzepte:} \\
+    %    - HMC zieht Samples aus der wahren Posterior-Verteilung $p(\theta \mid D)$ \\
+    %    - Jeder Forward-Pass nutzt eine gesampelte Menge an Gewichten \\
+    %    - Vorhersagemittel: $\hat{y} = \frac{1}{S} \sum_s y^{(s)}$ \\
+    %    - Vorhersage-Varianz spiegelt Gewichtsunsicherheit wider
+    %    \end{tabular}
+    %};
+
+    \end{tikzpicture}
+}
