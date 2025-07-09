@@ -1218,7 +1218,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
     \hline
     \textbf{\gls{Bayesianische neuronale Netze}} & \hspace{0.6em}\textbf{Modellspezifische Faktoren} & \hspace{0.6em}\textbf{Quellen} \\ \hline
 
-    \multirow{4}{*}{1. Prior-Verteilungen} &
+    \multirow{6}{*}{1. Prior-Verteilungen} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Wahl der Prioren beeinflusst die Unsicherheit
       \item Beeinflusst die Vorhersagegenauigkeit
@@ -1227,7 +1227,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
       \item \parencite[Kap.~2.3]{gal2016uncertainty}
     \end{itemize} \\ \hline
 
-    \multirow{4}{*}{2. Likelihood-Funktion} &
+    \multirow{6}{*}{2. Likelihood-Funktion} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Bestimmt, wie Unsicherheit in den Beobachtungen modelliert wird
       \item Beispielsweise durch Gaussian-Verteilungen
@@ -1236,7 +1236,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
       \item \parencite[Kap.~3]{blundell2015weight}
     \end{itemize} \\ \hline
 
-    \multirow{4}{*}{3. Posterior Approximation} &
+    \multirow{6}{*}{3. Posterior Approximation} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \gls{Markov Chain Monte Carlo} oder \gls{variationalinference} werden genutzt
       \item Schätzt den Posterior und die Unsicherheit
@@ -1245,7 +1245,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
       \item \parencite[S.~40–41]{gal2016uncertainty}
     \end{itemize} \\ \hline
 
-    \multirow{4}{*}{4. Regularisierung} &
+    \multirow{5}{*}{4. Regularisierung} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Hilft, Overfitting zu vermeiden
       \item Unterstützt die Kontrolle der Unsicherheit
@@ -1263,7 +1263,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
       \item \parencite[Kap.~7.4]{rasmussen2006gaussian}
     \end{itemize} \\ \hline
 
-    \multirow{4}{*}{6. Datenqualität} &
+    \multirow{6}{*}{6. Datenqualität} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Schlechte Datenqualität erhöht die Unsicherheit
       \item Gute Qualität kann Unsicherheit verringern
@@ -1293,39 +1293,39 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
   \begin{tabularx}{\textwidth}{|l|X|X|}
     \hline
     \textbf{\gls{Evidenzbasierte neuronale Netze}} & \hspace{0.6em}\textbf{Modellspezifische Faktoren} & \hspace{0.6em}\textbf{Quellen} \\ \hline
-    \multirow{2}{*}{1. Prior-Funktion} & Beeinflusst, wie Unsicherheit über Daten und Parameter modelliert wird. &
+    \multirow{3}{*}{1. Prior-Funktion} & Beeinflusst, wie Unsicherheit über Daten und Parameter modelliert wird. &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite{sensoy2018evidential}
     \end{itemize} \\ \hline
-    \multirow{2}{*}{2. Evidenzfunktion} & Modelliert Unsicherheit mit Evidenzparametern wie \( \alpha \), \( \beta \), und \( v \). &
+    \multirow{3}{*}{2. Evidenzfunktion} & Modelliert Unsicherheit mit Evidenzparametern wie \( \alpha \), \( \beta \), und \( v \). &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite[S.~2–3]{sensoy2018evidential}
     \end{itemize} \\ \hline
-    \multirow{2}{*}{3. Posterior Approximation} & Näherung der Posterior-Verteilung zur Unsicherheitsbestimmung. &
+    \multirow{3}{*}{3. Posterior Approximation} & Näherung der Posterior-Verteilung zur Unsicherheitsbestimmung. &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite[S.~4]{sensoy2018evidential}
     \end{itemize} \\ \hline
-    \multirow{2}{*}{4. Evidenz Optimierung} & Optimierung der Evidenzparameter während des Trainings. &
+    \multirow{3}{*}{4. Evidenz Optimierung} & Optimierung der Evidenzparameter während des Trainings. &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite[S.~5]{sensoy2018evidential}
     \end{itemize} \\ \hline
-    \multirow{2}{*}{5. Evidenzbasierte Regularisierung} & Regularisiert Evidenzparameter, um Overfitting zu vermeiden. &
+    \multirow{3}{*}{5. Evidenzbasierte Regularisierung} & Regularisiert Evidenzparameter, um Overfitting zu vermeiden. &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite[S.~6]{sensoy2018evidential}
     \end{itemize} \\ \hline
-    \multirow{2}{*}{6. Multimodalität} & Modelliert mehrere konkurrierende Unsicherheitsvorhersagen gleichzeitig. &
+    \multirow{3}{*}{6. Multimodalität} & Modelliert mehrere konkurrierende Unsicherheitsvorhersagen gleichzeitig. &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite[S.~6–7]{sensoy2018evidential}
     \end{itemize} \\ \hline
-    \multirow{2}{*}{7. Dateninhärente Unsicherheit} & Unsicherheit, die direkt aus den Daten selbst resultiert. &
+    \multirow{3}{*}{7. Dateninhärente Unsicherheit} & Unsicherheit, die direkt aus den Daten selbst resultiert. &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite{kendall2017uncertainties}
     \end{itemize} \\ \hline
-    \multirow{2}{*}{8. Datenqualität} & Schlechte Datenqualität erhöht die Unsicherheit im Modell. &
+    \multirow{3}{*}{8. Datenqualität} & Schlechte Datenqualität erhöht die Unsicherheit im Modell. &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite{kendall2017uncertainties}
     \end{itemize} \\ \hline
-    \multirow{2}{*}{9. Netzwerktiefe} & Die Tiefe beeinflusst die Fähigkeit, Unsicherheit zu erfassen. &
+    \multirow{3}{*}{9. Netzwerktiefe} & Die Tiefe beeinflusst die Fähigkeit, Unsicherheit zu erfassen. &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item \parencite[S.~6]{sensoy2018evidential}
     \end{itemize} \\ \hline
@@ -1353,7 +1353,7 @@ Wie kann man \textit{allgemeine Faktoren} beim Lernen von Unsicherheiten in \gls
   \begin{tabularx}{\textwidth}{|l|X|X|}
     \hline
     \textbf{Unsicherheitsdimensionen} & \hspace{0.6em}\textbf{Mögliche Abschwächung} & \hspace{0.6em}\textbf{Quellen} \\ \hline
-    \multirow{2}{*}{1. Lokalisierung im System} &
+    \multirow{5}{*}{1. Lokalisierung im System} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Verbesserung der Modellgenauigkeit und der Ressourcennutzung durch gezielte Datensammlung und Modellanpassung.
     \end{itemize}
@@ -1362,7 +1362,7 @@ Wie kann man \textit{allgemeine Faktoren} beim Lernen von Unsicherheiten in \gls
       \item \parencite[S.~47–52]{AndreasKreutz2022}
     \end{itemize} \\ \hline
     
-    \multirow{2}{*}{2. Natur} &
+    \multirow{4}{*}{2. Natur} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Einsatz von hybriden Modellen, die sowohl \gls{Epistemische Unsicherheit} als auch \gls{Aleatorische Unsicherheit} modellieren können.
     \end{itemize}
@@ -1371,7 +1371,7 @@ Wie kann man \textit{allgemeine Faktoren} beim Lernen von Unsicherheiten in \gls
       \item \parencite[S.~6–9]{perdikaris2017nonlinear}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{3. Grad der Unsicherheit} &
+    \multirow{5}{*}{3. Grad der Unsicherheit} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Erhöhung des Modellspezifikationsgrades, z. B. durch Mehrfachmodellierung und Unsicherheitsquantifizierung.
     \end{itemize}
@@ -1380,7 +1380,7 @@ Wie kann man \textit{allgemeine Faktoren} beim Lernen von Unsicherheiten in \gls
       \item \parencite[S.~3]{ovadia2019can}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{4. Entstehungszeit} &
+    \multirow{5}{*}{4. Entstehungszeit} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Frühzeitige Einbindung von Unsicherheitsmodellierung in die Anforderungsdefinition und Entwicklungszeit.
     \end{itemize}
@@ -1405,7 +1405,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
     \hline
     \textbf{Modellspezifische Faktoren} & \hspace{0.6em}\textbf{Abschwächung der Unsicherheitsabschätzung} & \hspace{0.6em}\textbf{Quellen} \\ \hline
 
-    \multirow{2}{*}{1. Prior-Verteilungen} &
+    \multirow{3}{*}{1. Prior-Verteilungen} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Auswahl robusterer Priors und Anpassung der Priors an die Daten.
     \end{itemize}
@@ -1414,7 +1414,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[Kap.~2.3]{gal2016uncertainty}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{2. Likelihood-Funktion} &
+    \multirow{3}{*}{2. Likelihood-Funktion} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Optimierung der Likelihood-Modelle, z. B. durch mehrdimensionale Likelihoods.
     \end{itemize}
@@ -1423,7 +1423,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[Kap.~3]{blundell2015weight}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{3. Posterior Approximation} &
+    \multirow{3}{*}{3. Posterior Approximation} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Verwendung effizienter Verfahren wie Variational Inference.
     \end{itemize}
@@ -1432,7 +1432,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[S.~40–41]{gal2016uncertainty}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{4. Regularisierung} &
+    \multirow{3}{*}{4. Regularisierung} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Anwendung stärkerer Regularisierungstechniken.
     \end{itemize}
@@ -1441,7 +1441,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[S.~41–42]{gal2016uncertainty}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{5. Bayesische Optimierung} &
+    \multirow{3}{*}{5. Bayesische Optimierung} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Optimierung von Hyperparametern unter Unsicherheit.
     \end{itemize}
@@ -1450,7 +1450,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[Kap.~7.4]{rasmussen2006gaussian}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{6. Datenqualität} &
+    \multirow{3}{*}{6. Datenqualität} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Verbesserung der Datenqualität durch Bereinigung.
     \end{itemize}
@@ -1459,7 +1459,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[S.~16]{bishop2006pattern}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{7. Maßstab} &
+    \multirow{3}{*}{7. Maßstab} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Skalierung der Modelle auf größere Datenmengen.
     \end{itemize}
@@ -1481,7 +1481,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
     \hline
     \textbf{Modellspezifische Faktoren} & \hspace{0.6em}\textbf{Abschwächung der Unsicherheitsabschätzung} & \hspace{0.6em}\textbf{Quellen} \\ \hline
 
-    \multirow{2}{*}{1. Prior-Funktion} &
+    \multirow{4}{*}{1. Prior-Funktion} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Verwendung flexibler Prior-Funktionen, die an die Daten angepasst sind.
     \end{itemize}
@@ -1490,7 +1490,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite{sensoy2018evidential}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{2. Evidenzfunktion} &
+    \multirow{4}{*}{2. Evidenzfunktion} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Einsatz multimodaler Evidenzfunktionen.
     \end{itemize}
@@ -1499,7 +1499,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[S.~3–4]{sensoy2018evidential}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{3. Posterior Approximation} &
+    \multirow{3}{*}{3. Posterior Approximation} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Nutzung präziser Näherungsverfahren wie MCMC.
     \end{itemize}
@@ -1508,7 +1508,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[S.~4]{sensoy2018evidential}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{4. Evidenz Optimierung} &
+    \multirow{5}{*}{4. Evidenz Optimierung} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Optimierung der Evidenzparameter zur Vermeidung hoher Unsicherheit.
     \end{itemize}
@@ -1517,7 +1517,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[S.~5]{sensoy2018evidential}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{5. Evidenzbasierte Regularisierung} &
+    \multirow{3}{*}{5. Evidenzbasierte Regularisierung} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Stärkere Regularisierung der Evidenzparameter.
     \end{itemize}
@@ -1526,7 +1526,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[S.~6]{sensoy2018evidential}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{6. Multimodalität} &
+    \multirow{3}{*}{6. Multimodalität} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Einbindung multimodaler Modelle zur Abbildung verschiedener Unsicherheitsquellen.
     \end{itemize}
@@ -1535,7 +1535,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite[S.~6–7]{sensoy2018evidential}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{7. Dateninhärente Unsicherheit} &
+    \multirow{3}{*}{7. Dateninhärente Unsicherheit} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Reduktion des Rauschens in den Daten.
     \end{itemize}
@@ -1544,7 +1544,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite{kendall2017uncertainties}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{8. Datenqualität} &
+    \multirow{4}{*}{8. Datenqualität} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Verbesserung der Datenqualität durch Datenaugmentation.
     \end{itemize}
@@ -1553,7 +1553,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
       \item \parencite{kendall2017uncertainties}
     \end{itemize} \\ \hline
 
-    \multirow{2}{*}{9. Netzwerktiefe} &
+    \multirow{4}{*}{9. Netzwerktiefe} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
       \item Anpassung der Netzwerktiefe an die Komplexität der Aufgabe.
     \end{itemize}
@@ -1760,14 +1760,216 @@ Für die Literaturübersicht wurde ein Fragenkatalog generiert, der mit seinen S
 Mit den \textbf{A1} \textit{Scopes der Fragen der Literaturübersicht zu \gls{EvidentialDeepLearning}} wurden folgende 
 \textbf{A1} \textit{Scopes der Antworten der Literaturübersicht zu \gls{EvidentialDeepLearning}} mit zugehörigen Quellen definiert. 
 
-\begin{table}[htbp]
-\centering
-\footnotesize
-\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|X|l|}
-\hline
-\textbf{Scope} & \textbf{Beschreibung} & \textbf{Quelle} \\ \hline
+% \begin{table}[htbp]
+% \centering
+% \footnotesize
+% \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|X|l|}
+% \hline
+% \textbf{Scope} & \textbf{Beschreibung} & \textbf{Quelle} \\ \hline
 
-\multirow{2}{*}{1.1.}\label{sec:edlscopesMathematischeFormulierungenVonEDLTab2} &
+% \multirow{2}{*}{1.1.}\label{sec:edlscopesMathematischeFormulierungenVonEDLTab2} &
+% \href{https://arxiv.org/abs/1806.01768}{Sensoy et al. (2018): Evidential Deep Learning to Quantify Classification Uncertainty} \newline
+% \href{https://proceedings.mlr.press/v202/pandey23a/pandey23a.pdf}{Sensoy et al. (2023): Evidential Deep Learning: Theory and Practice}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{sensoy2018evidential} \\
+% \cite{sensoy2023tutorial}
+% \end{tabular} \\ \hline
+
+% \multirow{1}{*}{1.2.}\label{sec:edlscopesVerbindungZuSubjectiveLogicTab2} &
+% \href{https://doi.org/10.1007/978-3-319-42337-1}{Jøsang (2016): Subjective Logic}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{josang2016subjective}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{1.3.}\label{sec:edlscopesUnterschiedeZuBayesianDeepLearningTab2} &
+% \href{https://arxiv.org/abs/1703.04977}{Kendall \& Gal (2017): What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?} \newline
+% \href{https://arxiv.org/abs/2306.10174}{Peters et al. (2023): On the Mathematical Consistency of Evidential Learning}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{kendall2017uncertainties} \\
+% \cite{peters2023consistency}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{2.1.}\label{sec:edlscopesNetzarchitekturenFuerEvidentialDeepLearningTab2} &
+% \href{https://arxiv.org/abs/1910.02600}{Amini et al. (2020): Deep Evidential Regression} \newline
+% \href{https://arxiv.org/abs/2404.11806}{Tian et al. (2024): Evidential Graph Neural Networks}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{amini2020deep} \\
+% \cite{tian2024egnn}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{2.2.}\label{sec:edlscopesModifikationAnKlassischenCNNRNNTransformersTab2} &
+% \href{https://arxiv.org/abs/2003.02037}{Sensoy et al. (2020): Uncertainty-Aware Deep Classification} \newline
+% Bohlke et al. (2023): Evidential Vision Transformers
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{sensoy2020uncertainty} \\
+% \cite{bohlke2023evidentialvit}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{2.3.}\label{sec:edlscopesIntegrationEvidenziellerLayerTab2} &
+% \href{https://arxiv.org/abs/2205.14871}{Zhou et al. (2022): Evidential Transformer Networks} \newline
+% Bohlke et al. (2023): Evidential Vision Transformers
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{zhou2022evidential} \\
+% \cite{bohlke2023evidentialvit}
+% \end{tabular} \\ \hline
+
+% \multirow{1}{*}{3.1.}\label{sec:edlscopesEvidentialLossVSStandardCrossEntropyTab2} &
+% \href{https://arxiv.org/abs/1806.01768}{Sensoy et al. (2018): Evidential Loss Function (Evidential Deep Learning)}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{sensoy2018evidential}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{3.2.}\label{sec:edlscopesKLRegularisierungTab2} &
+% \href{https://arxiv.org/abs/2003.02037}{Sensoy et al. (2020): KL-Regularization in Evidential Networks} \newline
+% \href{https://arxiv.org/abs/2307.08743}{Amini et al. (2023): Improved KL Regularization for Evidential Regression}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{sensoy2020uncertainty} \\
+% \cite{amini2023kl}
+% \end{tabular} \\ \hline
+
+% \multirow{1}{*}{3.3.}\label{sec:edlscopesUmgangMitFehlerhaftenLabelsTab2} &
+% \href{https://arxiv.org/abs/1802.04865}{Dhamija et al. (2018): Reducing Model Confidence for Out-of-Distribution Detection}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{dhamija2018reducing}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{4.1.}\label{sec:edlscopesEpistemischeVSAleatorischeUnsicherheitTab2} &
+% \href{https://arxiv.org/abs/1703.04977}{Kendall \& Gal (2017): Aleatoric and Epistemic Uncertainty} \newline
+% Tran et al. (2023): Separating Aleatoric and Epistemic Uncertainty in Evidential Models
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{kendall2017uncertainties} \\
+% \cite{tran2023separating}
+% \end{tabular} \\ \hline
+
+% \multirow{1}{*}{4.2.}\label{sec:edlscopesInterpretationEvidenziellerParameterTab2} &
+% \href{https://arxiv.org/abs/1910.02600}{Amini et al. (2020): Interpreting evidential parameters in regression tasks}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{amini2020deep}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{5.1.}\label{sec:edlscopesTypsischeDatensätzeTab2} &
+% \href{https://arxiv.org/abs/1910.02600}{Amini et al. (2020): Evaluation on MNIST, CIFAR-10, OOD} \newline
+% Bohlke et al. (2023): Evaluation on CIFAR-100C, ImageNet-O
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{amini2020deep} \\
+% \cite{bohlke2023evidentialvit}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{5.2.}\label{sec:edlscopesVergleichZuBayesianNNundEnsemblesTab2} &
+% \href{https://arxiv.org/abs/1612.01474}{Lakshminarayanan et al. (2017): Deep Ensembles as Baseline for Uncertainty} \newline
+% Tran et al. (2023): Comparative Benchmarks
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{lakshminarayanan2017simple} \\
+% \cite{tran2023separating}
+% \end{tabular} \\ \hline
+
+% \multirow{1}{*}{6.1.}\label{sec:edlscopesAutonomesFahrenTab2} &
+% \href{https://arxiv.org/abs/2210.10992}{Feng et al. (2022): Evidential Uncertainty in Autonomous Driving}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{feng2022review}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{6.2.}\label{sec:edlscopesIndustieVierNullTab2} &
+% \href{https://doi.org/10.1109/TII.2022.3190238}{Wang et al. (2022): Uncertainty Modeling in Industrial AI} \newline
+% Gupta et al. (2023): Evidential Learning for Industrial Predictive Maintenance \newline
+% Chen et al. (2024): Uncertainty Estimation in Vision-Language Models
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{wang2022uncertainty} \\
+% \cite{gupta2023industrialedl} \\
+% \cite{chen2024vlm}
+% \end{tabular} \\ \hline
+
+% \multirow{1}{*}{7.1.}\label{sec:edlscopesBayesianNeuralNetworksTab2} &
+% \href{https://arxiv.org/abs/1506.02142}{Gal \& Ghahramani (2016): Dropout as Bayesian Approximation}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{gal2016dropout}
+% \end{tabular} \\ \hline
+
+% \multirow{1}{*}{7.2.}\label{sec:edlscopesDeepEnsemblesTab2} &
+% \href{https://arxiv.org/abs/1612.01474}{Lakshminarayanan et al. (2017): Deep Ensembles}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{lakshminarayanan2017simple}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{7.3.}\label{sec:edlscopesDeterministischeMethodenMitCalibrationTab2} &
+% \href{https://arxiv.org/abs/1706.04599}{Guo et al. (2017): On Calibration of Modern Neural Networks} \newline
+% Tran et al. (2023): Comparison of calibration in evidential vs. deterministic methods
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{guo2017calibration} \\
+% \cite{tran2023separating}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{8.1.}\label{sec:edlscopesTrainingsstabilitaetTab2} &
+% \href{https://arxiv.org/abs/2003.02037}{Sensoy et al. (2020): Training stability in evidential networks} \newline
+% \href{https://arxiv.org/abs/2306.10174}{Peters et al. (2023): Loss function degeneracies}
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{sensoy2020uncertainty} \\
+% \cite{peters2023consistency}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{8.2.}\label{sec:edlscopesOverconfidenceProblemeTab2} &
+% \href{https://arxiv.org/abs/1802.04865}{Dhamija et al. (2018): Overconfidence in neural networks} \newline
+% Chen et al. (2024): Overconfidence in multimodal evidential learning
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{dhamija2018reducing} \\
+% \cite{chen2024vlm}
+% \end{tabular} \\ \hline
+
+% \multirow{2}{*}{8.3.}\label{sec:edlscopesSkalierbarkeitGrosseModelleTab2} &
+% \href{https://arxiv.org/abs/2205.14871}{Zhou et al. (2022): Scalability of evidential transformers} \newline
+% Bohlke et al. (2023): Scalability challenges in large Vision Transformers
+% &
+% \begin{tabular}[t]{@{}l@{}}
+% \cite{zhou2022evidential} \\
+% \cite{bohlke2023evidentialvit}
+% \end{tabular} \\ \hline
+
+% \end{tabularx}
+% \caption{A1 Scopes der Antworten der Literaturübersicht zu \gls{EvidentialDeepLearning} mit aktuellen Quellen (2016–2025)}
+% \label{tab:edl_scopes_sources_updated}
+% \end{table}
+
+\begin{footnotesize}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.8cm}|p{11.8cm}|p{0.8cm}|}
+\hline
+\textbf{Scope} & \textbf{Beschreibung} & \textbf{Quelle} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Scope} & \textbf{Beschreibung} & \textbf{Quelle} \\
+\hline
+\endhead
+
+\hline
+\multicolumn{3}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+
+\endlastfoot
+
+% --- Table Content Starts Here ---
+
+\multirow{2}{*}{1.1.} &
 \href{https://arxiv.org/abs/1806.01768}{Sensoy et al. (2018): Evidential Deep Learning to Quantify Classification Uncertainty} \newline
 \href{https://proceedings.mlr.press/v202/pandey23a/pandey23a.pdf}{Sensoy et al. (2023): Evidential Deep Learning: Theory and Practice}
 &
@@ -1776,14 +1978,12 @@ Mit den \textbf{A1} \textit{Scopes der Fragen der Literaturübersicht zu \gls{Ev
 \cite{sensoy2023tutorial}
 \end{tabular} \\ \hline
 
-\multirow{1}{*}{1.2.}\label{sec:edlscopesVerbindungZuSubjectiveLogicTab2} &
+1.2. &
 \href{https://doi.org/10.1007/978-3-319-42337-1}{Jøsang (2016): Subjective Logic}
 &
-\begin{tabular}[t]{@{}l@{}}
-\cite{josang2016subjective}
-\end{tabular} \\ \hline
+\cite{josang2016subjective} \\ \hline
 
-\multirow{2}{*}{1.3.}\label{sec:edlscopesUnterschiedeZuBayesianDeepLearningTab2} &
+\multirow{2}{*}{1.3.} &
 \href{https://arxiv.org/abs/1703.04977}{Kendall \& Gal (2017): What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?} \newline
 \href{https://arxiv.org/abs/2306.10174}{Peters et al. (2023): On the Mathematical Consistency of Evidential Learning}
 &
@@ -1792,7 +1992,7 @@ Mit den \textbf{A1} \textit{Scopes der Fragen der Literaturübersicht zu \gls{Ev
 \cite{peters2023consistency}
 \end{tabular} \\ \hline
 
-\multirow{2}{*}{2.1.}\label{sec:edlscopesNetzarchitekturenFuerEvidentialDeepLearningTab2} &
+\multirow{2}{*}{2.1.} &
 \href{https://arxiv.org/abs/1910.02600}{Amini et al. (2020): Deep Evidential Regression} \newline
 \href{https://arxiv.org/abs/2404.11806}{Tian et al. (2024): Evidential Graph Neural Networks}
 &
@@ -1801,7 +2001,7 @@ Mit den \textbf{A1} \textit{Scopes der Fragen der Literaturübersicht zu \gls{Ev
 \cite{tian2024egnn}
 \end{tabular} \\ \hline
 
-\multirow{2}{*}{2.2.}\label{sec:edlscopesModifikationAnKlassischenCNNRNNTransformersTab2} &
+\multirow{2}{*}{2.2.} &
 \href{https://arxiv.org/abs/2003.02037}{Sensoy et al. (2020): Uncertainty-Aware Deep Classification} \newline
 Bohlke et al. (2023): Evidential Vision Transformers
 &
@@ -1810,7 +2010,7 @@ Bohlke et al. (2023): Evidential Vision Transformers
 \cite{bohlke2023evidentialvit}
 \end{tabular} \\ \hline
 
-\multirow{2}{*}{2.3.}\label{sec:edlscopesIntegrationEvidenziellerLayerTab2} &
+\multirow{2}{*}{2.3.} &
 \href{https://arxiv.org/abs/2205.14871}{Zhou et al. (2022): Evidential Transformer Networks} \newline
 Bohlke et al. (2023): Evidential Vision Transformers
 &
@@ -1819,14 +2019,12 @@ Bohlke et al. (2023): Evidential Vision Transformers
 \cite{bohlke2023evidentialvit}
 \end{tabular} \\ \hline
 
-\multirow{1}{*}{3.1.}\label{sec:edlscopesEvidentialLossVSStandardCrossEntropyTab2} &
+3.1. &
 \href{https://arxiv.org/abs/1806.01768}{Sensoy et al. (2018): Evidential Loss Function (Evidential Deep Learning)}
 &
-\begin{tabular}[t]{@{}l@{}}
-\cite{sensoy2018evidential}
-\end{tabular} \\ \hline
+\cite{sensoy2018evidential} \\ \hline
 
-\multirow{2}{*}{3.2.}\label{sec:edlscopesKLRegularisierungTab2} &
+\multirow{2}{*}{3.2.} &
 \href{https://arxiv.org/abs/2003.02037}{Sensoy et al. (2020): KL-Regularization in Evidential Networks} \newline
 \href{https://arxiv.org/abs/2307.08743}{Amini et al. (2023): Improved KL Regularization for Evidential Regression}
 &
@@ -1835,14 +2033,12 @@ Bohlke et al. (2023): Evidential Vision Transformers
 \cite{amini2023kl}
 \end{tabular} \\ \hline
 
-\multirow{1}{*}{3.3.}\label{sec:edlscopesUmgangMitFehlerhaftenLabelsTab2} &
+3.3. &
 \href{https://arxiv.org/abs/1802.04865}{Dhamija et al. (2018): Reducing Model Confidence for Out-of-Distribution Detection}
 &
-\begin{tabular}[t]{@{}l@{}}
-\cite{dhamija2018reducing}
-\end{tabular} \\ \hline
+\cite{dhamija2018reducing} \\ \hline
 
-\multirow{2}{*}{4.1.}\label{sec:edlscopesEpistemischeVSAleatorischeUnsicherheitTab2} &
+\multirow{2}{*}{4.1.} &
 \href{https://arxiv.org/abs/1703.04977}{Kendall \& Gal (2017): Aleatoric and Epistemic Uncertainty} \newline
 Tran et al. (2023): Separating Aleatoric and Epistemic Uncertainty in Evidential Models
 &
@@ -1851,14 +2047,12 @@ Tran et al. (2023): Separating Aleatoric and Epistemic Uncertainty in Evidential
 \cite{tran2023separating}
 \end{tabular} \\ \hline
 
-\multirow{1}{*}{4.2.}\label{sec:edlscopesInterpretationEvidenziellerParameterTab2} &
+4.2. &
 \href{https://arxiv.org/abs/1910.02600}{Amini et al. (2020): Interpreting evidential parameters in regression tasks}
 &
-\begin{tabular}[t]{@{}l@{}}
-\cite{amini2020deep}
-\end{tabular} \\ \hline
+\cite{amini2020deep} \\ \hline
 
-\multirow{2}{*}{5.1.}\label{sec:edlscopesTypsischeDatensätzeTab2} &
+\multirow{2}{*}{5.1.} &
 \href{https://arxiv.org/abs/1910.02600}{Amini et al. (2020): Evaluation on MNIST, CIFAR-10, OOD} \newline
 Bohlke et al. (2023): Evaluation on CIFAR-100C, ImageNet-O
 &
@@ -1867,7 +2061,7 @@ Bohlke et al. (2023): Evaluation on CIFAR-100C, ImageNet-O
 \cite{bohlke2023evidentialvit}
 \end{tabular} \\ \hline
 
-\multirow{2}{*}{5.2.}\label{sec:edlscopesVergleichZuBayesianNNundEnsemblesTab2} &
+\multirow{2}{*}{5.2.} &
 \href{https://arxiv.org/abs/1612.01474}{Lakshminarayanan et al. (2017): Deep Ensembles as Baseline for Uncertainty} \newline
 Tran et al. (2023): Comparative Benchmarks
 &
@@ -1876,14 +2070,12 @@ Tran et al. (2023): Comparative Benchmarks
 \cite{tran2023separating}
 \end{tabular} \\ \hline
 
-\multirow{1}{*}{6.1.}\label{sec:edlscopesAutonomesFahrenTab2} &
+6.1. &
 \href{https://arxiv.org/abs/2210.10992}{Feng et al. (2022): Evidential Uncertainty in Autonomous Driving}
 &
-\begin{tabular}[t]{@{}l@{}}
-\cite{feng2022review}
-\end{tabular} \\ \hline
+\cite{feng2022review} \\ \hline
 
-\multirow{2}{*}{6.2.}\label{sec:edlscopesIndustieVierNullTab2} &
+\multirow{3}{*}{6.2.} &
 \href{https://doi.org/10.1109/TII.2022.3190238}{Wang et al. (2022): Uncertainty Modeling in Industrial AI} \newline
 Gupta et al. (2023): Evidential Learning for Industrial Predictive Maintenance \newline
 Chen et al. (2024): Uncertainty Estimation in Vision-Language Models
@@ -1894,21 +2086,17 @@ Chen et al. (2024): Uncertainty Estimation in Vision-Language Models
 \cite{chen2024vlm}
 \end{tabular} \\ \hline
 
-\multirow{1}{*}{7.1.}\label{sec:edlscopesBayesianNeuralNetworksTab2} &
+7.1. &
 \href{https://arxiv.org/abs/1506.02142}{Gal \& Ghahramani (2016): Dropout as Bayesian Approximation}
 &
-\begin{tabular}[t]{@{}l@{}}
-\cite{gal2016dropout}
-\end{tabular} \\ \hline
+\cite{gal2016dropout} \\ \hline
 
-\multirow{1}{*}{7.2.}\label{sec:edlscopesDeepEnsemblesTab2} &
+7.2. &
 \href{https://arxiv.org/abs/1612.01474}{Lakshminarayanan et al. (2017): Deep Ensembles}
 &
-\begin{tabular}[t]{@{}l@{}}
-\cite{lakshminarayanan2017simple}
-\end{tabular} \\ \hline
+\cite{lakshminarayanan2017simple} \\ \hline
 
-\multirow{2}{*}{7.3.}\label{sec:edlscopesDeterministischeMethodenMitCalibrationTab2} &
+\multirow{2}{*}{7.3.} &
 \href{https://arxiv.org/abs/1706.04599}{Guo et al. (2017): On Calibration of Modern Neural Networks} \newline
 Tran et al. (2023): Comparison of calibration in evidential vs. deterministic methods
 &
@@ -1917,7 +2105,7 @@ Tran et al. (2023): Comparison of calibration in evidential vs. deterministic me
 \cite{tran2023separating}
 \end{tabular} \\ \hline
 
-\multirow{2}{*}{8.1.}\label{sec:edlscopesTrainingsstabilitaetTab2} &
+\multirow{2}{*}{8.1.} &
 \href{https://arxiv.org/abs/2003.02037}{Sensoy et al. (2020): Training stability in evidential networks} \newline
 \href{https://arxiv.org/abs/2306.10174}{Peters et al. (2023): Loss function degeneracies}
 &
@@ -1926,7 +2114,7 @@ Tran et al. (2023): Comparison of calibration in evidential vs. deterministic me
 \cite{peters2023consistency}
 \end{tabular} \\ \hline
 
-\multirow{2}{*}{8.2.}\label{sec:edlscopesOverconfidenceProblemeTab2} &
+\multirow{2}{*}{8.2.} &
 \href{https://arxiv.org/abs/1802.04865}{Dhamija et al. (2018): Overconfidence in neural networks} \newline
 Chen et al. (2024): Overconfidence in multimodal evidential learning
 &
@@ -1935,7 +2123,7 @@ Chen et al. (2024): Overconfidence in multimodal evidential learning
 \cite{chen2024vlm}
 \end{tabular} \\ \hline
 
-\multirow{2}{*}{8.3.}\label{sec:edlscopesSkalierbarkeitGrosseModelleTab2} &
+\multirow{2}{*}{8.3.} &
 \href{https://arxiv.org/abs/2205.14871}{Zhou et al. (2022): Scalability of evidential transformers} \newline
 Bohlke et al. (2023): Scalability challenges in large Vision Transformers
 &
@@ -1944,11 +2132,11 @@ Bohlke et al. (2023): Scalability challenges in large Vision Transformers
 \cite{bohlke2023evidentialvit}
 \end{tabular} \\ \hline
 
-\end{tabularx}
 \caption{A1 Scopes der Antworten der Literaturübersicht zu \gls{EvidentialDeepLearning} mit aktuellen Quellen (2016–2025)}
 \label{tab:edl_scopes_sources_updated}
-\end{table}
 
+\end{longtable}
+\end{footnotesize}
 
 Hochwertige, zentrale Umfragen sind \parencite{Ulmer2023}, \parencite{Gawlikowski2023}. 
 Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der Realdaten ist im Anhang \ref{sec:enn_gum_derivation}.
@@ -1969,20 +2157,20 @@ Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der
     & \hspace{0.6em}\textbf{Datenbasierte Metriken} & \hspace{0.6em}\textbf{Modellbasierte Metriken} \\
     \hline
 
-    \multirow{2}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
+    \multirow{10}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
     \parbox[t]{\linewidth}{
       \begin{itemize}[topsep=0em, itemsep=0.4em, leftmargin=*, label={}]
         \item Standardabweichung des Rauschens:
         
         \( \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} \)
         
-        \parencite[S.~28–30]{bishop2006pattern}
+        \begin{scriptsize}\textit{Quelle:} \parencite[S.~28–30]{bishop2006pattern}\end{scriptsize}
         
         \item Varianz der Residuen:
         
         \( \text{Var} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \)
         
-        \parencite[S.~28–30]{bishop2006pattern}
+        \begin{scriptsize}\textit{Quelle:} \parencite[S.~28–30]{bishop2006pattern}\end{scriptsize}
       \end{itemize}
     }
     &
@@ -1992,25 +2180,25 @@ Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der
         
         \( p(\theta \mid \mathcal{D}) \)
         
-        \parencite[Kap.~2]{rasmussen2006gaussian}
+        \begin{scriptsize}\textit{Quelle:} \parencite[Kap.~2]{rasmussen2006gaussian}\end{scriptsize}
         
         \item Kreuzvalidierung:
         
         Bewertung auf Trainings- und Testdaten
         
-        \parencite{blundell2015weight}
+        \begin{scriptsize}\textit{Quelle:} \parencite{blundell2015weight}\end{scriptsize}
       \end{itemize}
     }
     \\ \hline
 
-    \multirow{2}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
+    \multirow{10}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
     \parbox[t]{\linewidth}{
       \begin{itemize}[topsep=0em, itemsep=0.4em, leftmargin=*, label={}]
         \item Fehleranalyse auf Testdaten:
         
         \( \text{Fehler} = \sum_{i=1}^{n} |y_i - \hat{y}_i| \)
         
-        \parencite[S.~30–32]{bishop2006pattern}
+        \begin{scriptsize}\textit{Quelle:} \parencite[S.~30–32]{bishop2006pattern}\end{scriptsize}
       \end{itemize}
     }
     &
@@ -2020,13 +2208,13 @@ Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der
         
         \( \hat{y} \pm z \cdot \sigma \)
         
-        \parencite[S.~40–42]{gal2016uncertainty}
+        \begin{scriptsize}\textit{Quelle:} \parencite[S.~40–42]{gal2016uncertainty}\end{scriptsize}
         
         \item Entropie der Posterior-Verteilung:
         
         \( H(p) = - \sum_{i} p(x_i) \log(p(x_i)) \)
         
-        \parencite{sensoy2018evidential}
+        \begin{scriptsize}\textit{Quelle:} \parencite{sensoy2018evidential}\end{scriptsize}
       \end{itemize}
     }
     \\ \hline
@@ -2088,9 +2276,9 @@ Als Beispiel-Domäne zum Vergleich der modellspezifischen und anwendungsspezifis
 		& \hspace{0.6em}\textbf{Anwendungsspezifische Metriken} \\
 		\hline
 		
-		\multirow{8}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
+		\multirow{14}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
 		
-		\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+		\begin{itemize}[topsep=0em, itemsep=0.125em, leftmargin=*, label={}]
 			\item \texttt{RMSE:} Abweichung zwischen vorhergesagten und tatsächlichen Sensordaten (z. B. Positionen von Objekten) \par
 			\begin{scriptsize}\textit{Quelle:} \parencite[S.~224–226]{bishop2006pattern}\end{scriptsize}
 			
@@ -2102,7 +2290,7 @@ Als Beispiel-Domäne zum Vergleich der modellspezifischen und anwendungsspezifis
 		\end{itemize}
 		&
 		
-		\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+		\begin{itemize}[topsep=0em, itemsep=0.125em, leftmargin=*, label={}]
 			\item \texttt{Accuracy:} Korrektheit der Objekterkennung (z. B. Fußgänger erkannt/nicht erkannt) \par
 			\begin{scriptsize}\textit{Quelle:} \parencite[S.~40–42]{bishop2006pattern}\end{scriptsize}
 			
@@ -2115,9 +2303,9 @@ Als Beispiel-Domäne zum Vergleich der modellspezifischen und anwendungsspezifis
 		\\
 		\hline
 		
-		\multirow{8}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
+		\multirow{12}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
 		
-		\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+		\begin{itemize}[topsep=0em, itemsep=0.125em, leftmargin=*, label={}]
 			\item \texttt{$\mathcal{L}(\theta)$:} Loss-Funktion inkl. Unsicherheitsanteile (z. B. evidentieller Loss) \par
 			\begin{scriptsize}\textit{Quelle:} \parencite{sensoy2018evidential}\end{scriptsize}
 			
@@ -2129,7 +2317,7 @@ Als Beispiel-Domäne zum Vergleich der modellspezifischen und anwendungsspezifis
 		\end{itemize}
 		&
 		
-		\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+		\begin{itemize}[topsep=0em, itemsep=0.125em, leftmargin=*, label={}]
 			\item \texttt{Fehler $\epsilon$:} Abweichung von vorhergesagten zu tatsächlichen Sicherheitsabständen \par
 			\begin{scriptsize}\textit{Quelle:} \parencite[S.~233–235]{bishop2006pattern}\end{scriptsize}
 			
@@ -2159,7 +2347,7 @@ Als Beispiel-Domäne zum Vergleich der modellspezifischen und anwendungsspezifis
 \par\noindent\\
 
 % A4 Untersuchung:
-Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI) \parencite{nmavani2025}. Für \gls{Conformal Prediction} wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch Vorhersageintervalle mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
+Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI) \parencite{nmavani2025}. Für \gls{Conformal Prediction} wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch \gls{confidenceinterval} mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
 
 \begin{table}[htbp]
   \centering
@@ -2172,8 +2360,8 @@ Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale
   \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
     \item RMSE, MAE der Punktvorhersagen
     \item \gls{calibrationerror}
-    \item Coverage-Rate der Vorhersageintervalle
-    \item Durchschnittliche Breite der Vorhersageintervalle
+    \item Coverage-Rate der \gls{confidenceinterval}
+    \item Durchschnittliche Breite der \gls{confidenceinterval}
     \item Rechenzeit für Training und Vorhersage
   \end{itemize}
   \\ \hline
@@ -2196,58 +2384,72 @@ Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  A5 /assets/repos/BA__U-i-mlb-Sm-f-d-s-V-a-S__tex/prototypes/prototype_s8-02-07-25/prototype_s8-02-07-25.py
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %  A5 /assets/repos/BA__U-i-mlb-Sm-f-d-s-V-a-S__tex/prototypes/prototype_s8-02-07-25/prototype_s8-02-07-25.py
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% A5 Vergleich
+% % A5 Vergleich
 
-\begin{table}[!htpb]
-  \centering
-  \footnotesize
-  \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|X|X|}
-    \hline
-      & \hspace{0.6em}\textbf{\gls{Bayesianische neuronale Netze}} & \hspace{0.6em}\textbf{\gls{Conformal Prediction}} \\
-    \hline
+% \begin{table}[!htpb]
+%   \centering
+%   \footnotesize
+%   \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|X|X|}
+%     \hline
+%       & \hspace{0.6em}\textbf{\gls{Bayesianische neuronale Netze}} & \hspace{0.6em}\textbf{\gls{Conformal Prediction}} \\
+%     \hline
 
-    \multirow{6}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
+%     \multirow{6}{*}{\textbf{\gls{Aleatorische Unsicherheit}}} &
 
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Posterior-Verteilung \( p(\theta \mid \mathcal{D}) \) \parencite[Kap.~3]{blundell2015weight}
-      \item Unsicherheitsquantifizierung über Modellparameter auf Trainingsdaten \parencite[S.~40–42]{gal2016uncertainty}
-      \item MC Dropout \parencite[S.~40–42]{gal2016uncertainty}
-    \end{itemize}
-    &
+%     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+%       \item Posterior-Verteilung \\
+%       \( p(\theta \mid \mathcal{D}) \) \\
+%       \parencite[Kap.~3]{blundell2015weight}
+%       \item Unsicherheitsquantifizierung über Modellparameter auf Trainingsdaten \\
+%       \parencite[S.~40–42]{gal2016uncertainty}
+%       \item MC Dropout \\
+%       \parencite[S.~40–42]{gal2016uncertainty}
+%     \end{itemize}
+%     &
 
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Konfidenzintervall \( \hat{y} \pm z \cdot \sigma \) \parencite[S.~4–5]{vovk2005algorithmic}
-      \item Unsicherheitsquantifizierung durch Konfidenzintervalle \parencite{angelopoulos2021gentle}
-      \item Ensemble-Methoden \parencite{angelopoulos2021gentle}
-    \end{itemize}
-    \\
-    \hline
+%     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+%       \item Konfidenzintervall \\
+%       \( \hat{y} \pm z \cdot \sigma \) \\
+%       \parencite[S.~4–5]{vovk2005algorithmic}
+%       \item Unsicherheitsquantifizierung durch Konfidenzintervalle \\
+%       \parencite{angelopoulos2021gentle}
+%       \item Ensemble-Methoden \\
+%       \parencite{angelopoulos2021gentle}
+%     \end{itemize}
+%     \\
+%     \hline
 
-    \multirow{6}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
+%     \multirow{6}{*}{\textbf{\gls{Epistemische Unsicherheit}}} &
 
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Bayesianische Unsicherheit \( p(\theta \mid \mathcal{D}) \) \parencite[S.~40–42]{gal2016uncertainty}
-      \item \gls{bayesianischeinferenz}: Unsicherheitsquantifizierung über bay. Modellparameter \parencite{mackay1992practical}
-      \item \gls{variationalinference}: Posterior-Approximation \parencite[S.~40–42]{gal2016uncertainty}
-    \end{itemize}
-    &
+%     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+%       \item Bayesianische Unsicherheit \\ 
+%       \( p(\theta \mid \mathcal{D}) \) \\ 
+%       \parencite[S.~40–42]{gal2016uncertainty}
+%       \item \gls{bayesianischeinferenz}: Unsicherheitsquantifizierung über bay. Modellparameter \\ \parencite{mackay1992practical}
+%       \item \gls{variationalinference}: Posterior-Approximation \\ 
+%       \parencite[S.~40–42]{gal2016uncertainty}
+%     \end{itemize}
+%     &
 
-    \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
-      \item Vertrauensregionen \parencite{angelopoulos2021gentle}
-      \item Prädiktive Unsicherheitsquantifizierung durch Konfidenzintervalle \parencite[S.~63–65]{shafer2008tutorial}
-      \item GPR: UQ-Ansatz mit Kernel-Methoden und Training \parencite{rasmussen2006gaussian}
-    \end{itemize}
-    \\
-    \hline
+%     \begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+%       \item Vertrauensregionen \\ 
+%       \parencite{angelopoulos2021gentle}
+%       \item Prädiktive Unsicherheitsquantifizierung durch Konfidenzintervalle \\ 
+%       \parencite[S.~63–65]{shafer2008tutorial}
+%       \item GPR: UQ-Ansatz mit Kernel-Methoden und Training \\ 
+%       \parencite{rasmussen2006gaussian}
+%     \end{itemize}
+%     \\
+%     \hline
 
-  \end{tabularx}
-  \caption{A5 Vergleich der UQ-Ansätze für \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}}
-  \label{tab:chapter6r81}
-\end{table}
+%   \end{tabularx}
+%   \caption{A5 Vergleich der UQ-Ansätze für \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}}
+%   \label{tab:chapter6r81}
+% \end{table}
 
 
 
@@ -2268,7 +2470,7 @@ Der Vergleichs-Score wird berechnet als:
   \footnotesize
   \begin{tabularx}{\textwidth}{|>{\arraybackslash}X|X|X|X|X|X|X|}
   \hline
-  \textbf{Methode} & \textbf{RMSE} & \textbf{MAE} & \textbf{Coverage} & \textbf{\gls{calibrationerror}} & \textbf{Mean Interval Width} & \textbf{Score} \\
+  \textbf{Methode} & \textbf{RMSE} & \textbf{MAE} & \textbf{Coverage} & \textbf{\gls{calibrationerror}} & \textbf{\gls{meanconfidenceintervalwidth}} & \textbf{Score} \\
   \hline
   \gls{Bayesianische neuronale Netze} \gls{hmc} & 6.845 & 5.697 & 0.010 & 0.990 & 2.404 & 1.3988 \\
   \hline
@@ -2284,7 +2486,7 @@ Der Vergleichs-Score wird berechnet als:
 
 
 % \par\noindent\\
-\paragraph{Interpretation der Ergebnisse}\par
+\paragraph{Interpretation der Ergebnisse}\par\noindent\\
 
 1. \textbf{\gls{Bayesianische neuronale Netze} \gls{hmc}}: Liefert moderaten Fehler (RMSE $\approx$ 6{,}8), geringe \gls{Epistemische Unsicherheit}, aber extrem geringe Coverage. Die Unsicherheitsintervalle decken die wahren Werte kaum ab, was ein Overconfidence-Problem zeigt.\\
 2. \textbf{\gls{Bayesianische neuronale Netze} \gls{svi}}: Scheitert deutlich. Sehr hoher RMSE ($\approx$ 1367) und große epistemische Varianz deuten auf Instabilität oder falsche Konvergenz hin.\\
@@ -2301,7 +2503,7 @@ Der Vergleichs-Score wird berechnet als:
 \textbf{A6} Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
 \par\noindent\\
 
-A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neuronale Netze} ausgeführt werden, um den theoretischer Modellparameter-Einfluss auf die Unsicherheitsabschätzung zu quantifizieren. Variiert werden die Evidenzparameter $\nu$ sowie Trainingsdatengröße für geringen Analyseaufwand.
+A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neuronale Netze} ausgeführt werden, um den theoretischen Modellparameter-Einfluss auf die \gls{uncertaintyquantification} zu quantifizieren. Variiert werden die Evidenzparameter $\nu$ sowie Trainingsdatengröße $N_train$ für geringen Analyseaufwand.
 
 % Untersuchung - Most Minimal Sensitivitäts-Analyse: 
 % S1: Modelldefinition: 
@@ -2313,61 +2515,120 @@ A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neu
 \begin{table}[!htpb]
   \centering
   \footnotesize
-  \begin{tabularx}{\textwidth}{|l|X|X|X|}
+  \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|X|X|X|}
     \hline
-    & \textbf{BNN} & \textbf{CP} & \textbf{ENN} \\
-    \hline
-
-    \textbf{A} & 
-    \begin{tabular}[c]{@{}l@{}} 
-      Post. \( p(\theta \mid \mathcal{D}) \) \parencite[Kap.~3]{blundell2015weight} \\ 
-      UQ über Modellparameter \parencite[S.~40–42]{gal2016uncertainty} \\ 
-      MC Dropout \parencite[S.~40–42]{gal2016uncertainty}
-    \end{tabular} &
-    \begin{tabular}[c]{@{}l@{}} 
-      CI \( \hat{y} \pm z \cdot \sigma \) \parencite[S.~4–5]{vovk2005algorithmic} \\ 
-      UQ durch Konfidenzintervalle \parencite{angelopoulos2021gentle} \\ 
-      Ensemble \parencite{angelopoulos2021gentle}
-    \end{tabular} &
-    \begin{tabular}[c]{@{}l@{}} 
-      Predictive Distr. \( p(y \mid \mu, \alpha, \beta, \nu) \) \\ 
-      Evidenzparameter
-    \end{tabular} \\
+    & \hspace{0.6em}\textbf{BNN} 
+    & \hspace{0.6em}\textbf{CP} 
+    & \hspace{0.6em}\textbf{ENN} \\
     \hline
 
-    \textbf{B} & 
-    \begin{tabular}[c]{@{}l@{}} 
-      Modellparameter: Gewichte \( w_i \) \parencite[S.~448–450]{mackay1992practical} \\ 
-      Einfluss von Prioren \parencite[Kap.~5]{rasmussen2006gaussian} \\ 
-      Hyperparameter-Sensitivität \parencite[Kap.~5]{rasmussen2006gaussian}
-    \end{tabular} &
-    \begin{tabular}[c]{@{}l@{}} 
-      Unsicherheitsbestimmung über CI \parencite[S.~63–65]{shafer2008tutorial} \\ 
-      Einfluss von Vertrauensregionen \parencite{vovk2005algorithmic}
-    \end{tabular} &
-    \begin{tabular}[c]{@{}l@{}} 
-      Evidenzparameter \(\nu\), \(\alpha\), \(\beta\) \\ 
-      steuern Unsicherheitsanteile.
-    \end{tabular} \\
+    \multirow{7}{*}{\textbf{A}} & 
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item Post. \( p(\theta \mid \mathcal{D}) \) \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[Kap.~3]{blundell2015weight}\end{scriptsize}
+        \item \gls{uncertaintyquantification} ü. Modellparameter \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[S.~40–42]{gal2016uncertainty}\end{scriptsize}
+        \item MC Dropout \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[S.~40–42]{gal2016uncertainty}\end{scriptsize}
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} &
+
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item CI \( \hat{y} \pm z \cdot \sigma \) \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[S.~4–5]{vovk2005algorithmic}\end{scriptsize}
+        \item \gls{uncertaintyquantification} ü. Konfidenzintervalle \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*{angelopoulos2021gentle}\end{scriptsize}
+        \item Ensemble \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*{angelopoulos2021gentle}\end{scriptsize}
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} &
+
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item Prediktive Vert. \( p(y \mid \mu, \alpha, \beta, \nu) \)
+        \item Evidenzparameter \( \nu, \alpha, \beta \)
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} \\
     \hline
 
-    \textbf{C} & 
-    \begin{tabular}[c]{@{}l@{}} 
-      Bayessche Inferenz zur UQ \parencite[S.~41–42]{gal2016uncertainty} \\ 
-      MC-Simulation mit Dropout \parencite{blundell2015weight}
-    \end{tabular} &
-    \begin{tabular}[c]{@{}l@{}} 
-      Ensemble zur UQ \parencite{angelopoulos2021gentle} \\ 
-      Vertrauensregionen, CI-Analyse \parencite{shafer2008tutorial}
-    \end{tabular} &
-    \begin{tabular}[c]{@{}l@{}} 
-      Keine Sampling-Approximation nötig \\ 
-      KL-Regularisierung steuert Evidenz
-    \end{tabular} \\
+    \multirow{7}{*}{\textbf{B}} & 
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item Modellparameter: Gewichte \( w_i \) \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[S.~448–450]{mackay1992practical}\end{scriptsize}
+        \item Einfluss von Prioren \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[Kap.~5]{rasmussen2006gaussian}\end{scriptsize}
+        \item Hyperparameter-Sensitivität \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[Kap.~5]{rasmussen2006gaussian}\end{scriptsize}
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} &
+
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item \gls{uncertaintyquantification} über CI \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[S.~63–65]{shafer2008tutorial}\end{scriptsize}
+        \item Einfluss von \gls{confidenceregion} \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*{vovk2005algorithmic}\end{scriptsize}
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} &
+
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item Evidenzparameter \( \nu, \alpha, \beta \)
+        \item steuern Unsicherheitsanteile.
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} \\
+    \hline
+
+    \multirow{5}{*}{\textbf{C}} & 
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item Bayessche Inferenz zur \gls{uncertaintyquantification} \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*[S.~41–42]{gal2016uncertainty}\end{scriptsize}
+        \item MC-Simulation mit Dropout \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*{blundell2015weight}\end{scriptsize}
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} &
+
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item Ensemble zur \gls{uncertaintyquantification} \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*{angelopoulos2021gentle}\end{scriptsize}
+        \item \gls{confidenceregion}, \gls{confidenceinterval}-Analyse \par
+        \begin{scriptsize}\textit{Quelle:} \parencite*{shafer2008tutorial}\end{scriptsize}
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} &
+
+    \begin{minipage}[t]{\linewidth}
+    \vspace{0.3em}
+    \begin{itemize}[leftmargin=*, label={}, itemsep=0.125em, topsep=0em, parsep=0em]
+        \item Keine Sampling-Approx. nötig
+        \item \gls{kullbackleibler}-Regularisierung steuert \( E \)
+    \end{itemize}
+    \vspace{0.3em}
+    \end{minipage} \\
     \hline
 
   \end{tabularx}
-  \caption{A6 Übersicht der UQ-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction} und \gls{Evidenzbasierte neuronale Netze}}
+  \caption{A6 Übersicht der \gls{uncertaintyquantification}-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction} und \gls{Evidenzbasierte neuronale Netze}}
   \label{tab:chapter6r91_clean}
 \end{table}
 
@@ -2488,23 +2749,44 @@ Insgesamt zeigen die Modelle unterschiedliche Profile: Erstens, \gls{Evidenzbasi
 \begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabularx}{\textwidth}{|l|X|}
+\begin{tabularx}{\textwidth}{|c|X|}
 \hline
-\textbf{Methode} & \hspace{0.0em}\textbf{Sensitivitätsaspekte} \\
+\textbf{Methode} & \hspace{0.5em}\textbf{Sensitivitätsaspekte} \\
 \hline
-\multirow{1}{*}{\textbf{\gls{Bayesianische neuronale Netze}}} &
-Breitere Posterior bei schwachen Priors; stärkere \gls{Epistemische Unsicherheit}. Höhere Dropout-Rate \(\rightarrow\) erhöht \gls{Epistemische Unsicherheit}. \\
+
+\multirow{4}{*}{\centering \textbf{\gls{Bayesianische neuronale Netze}}} &
+\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+    \item Breitere Posterior bei schwachen Priors; stärkere \gls{Epistemische Unsicherheit}.
+    \item Höhere Dropout-Rate \(\rightarrow\) erhöht \gls{Epistemische Unsicherheit}.
+\end{itemize}
+\\
 \hline
-\multirow{2}{*}{\textbf{\gls{Conformal Prediction}}} &
-\gls{Conformal Prediction}-Breite steigt bei höherem Konfidenzniveau; kleinere Calibration-Sets führen zu unsteten \gls{Conformal Prediction}s. Coverage sinkt bei zu engen Regionen; Intervallbreite steigt bei höherem \(\alpha\). Heteroskedastische Daten erzeugen stark variierende \gls{Conformal Prediction}-Breiten. \\
+
+\multirow{6}{*}{\centering \textbf{\gls{Conformal Prediction}}} &
+\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+    \item \gls{Conformal Prediction}-Breite steigt bei höherem Konfidenzniveau.
+    \item Kleinere Calibration-Sets führen zu unsteten \gls{Conformal Prediction}s.
+    \item Coverage sinkt bei zu engen Regionen; Intervallbreite steigt bei höherem \(\alpha\).
+    \item Heteroskedastische Daten erzeugen stark variierende \gls{Conformal Prediction}-Breiten.
+\end{itemize}
+\\
 \hline
-\multirow{2}{*}{\textbf{\gls{Evidenzbasierte neuronale Netze}}} &
-Hohe \gls{Epistemische Unsicherheit} bei kleinen \(\nu\)-Werten. Niedrige \(\nu\) \(\rightarrow\) mehr epistemische Varianz. Größere Datenmengen reduzieren Unsicherheit. Zu starke KL-Regularisierung reduziert Modellvertrauen übermäßig. \\
+
+\multirow{6}{*}{\centering \textbf{\gls{Evidenzbasierte neuronale Netze}}} &
+\begin{itemize}[topsep=0em, itemsep=0em, leftmargin=*, label={}]
+    \item Hohe \gls{Epistemische Unsicherheit} bei kleinen \(\nu\)-Werten.
+    \item Niedrige \(\nu\) \(\rightarrow\) mehr epistemische Varianz.
+    \item Größere Datenmengen reduzieren Unsicherheit.
+    \item Zu starke KL-Regularisierung reduziert Modellvertrauen übermäßig.
+\end{itemize}
+\\
 \hline
+
 \end{tabularx}
 \caption{A6 Zusammenfassung Sensitivität UQ-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction}, \gls{Evidenzbasierte neuronale Netze}}
 \label{tab:sensitivity_r9_transposed}
 \end{table}
+
 
 
 
@@ -2553,7 +2835,7 @@ Hohe \gls{Epistemische Unsicherheit} bei kleinen \(\nu\)-Werten. Niedrige \(\nu\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Repos
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ~\nocite{amini2020deep}
 ~\nocite{amini2020deepfork}

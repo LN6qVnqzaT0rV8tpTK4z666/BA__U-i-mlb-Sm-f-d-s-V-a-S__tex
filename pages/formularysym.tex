@@ -13,11 +13,13 @@
 \midrule
 \alpha_{1} & Signifikanzniveau in \gls{Conformal Prediction}, steuert die Breite der Konfidenzintervalle & [–] \\
 \alpha_{2} & Evidenzparameter (Shape) der evidentiellen Verteilung & [–] \\
-\beta & Skalenparameter der evidentiellen Verteilung & [–] \\
+\alpha & Formparameter der NIG-Verteilung, verknüpft mit epistemischer Evidenz & [–] \\
+\beta & Skalenparameter der Varianz in der NIG-Verteilung, verknüpft mit aleatorischer Evidenz & [–] \\
 \nu & Evidenzparameter in evidenzbasierten Netzen; steuert die Gewichtung zwischen epistemischer und aleatorischer Unsicherheit & [–] \\
 p_{\text{dropout}} & Dropout-Rate im \gls{Bayesianische neuronale Netze}, beeinflusst die epistemische Unsicherheit & [–] \\
-v & Varianzbezogener Parameter in Evidential Regression & [–] \\
-\mu & Erwartungswert der Vorhersage & [wie Zielgröße] \\
+v & Skalenparameter (inverse Varianz) in evidenzbasierten Netzen, modelliert die Konfidenz & [–] \\
+\mu & Erwartungswert der Zielgröße (z.\,B. Position, Fehlermaß) & [wie Zielgröße] \\
+E = \alpha - 1 & Gesamt-Evidenz, als Vertrauensmaß des Modells & [–] \\
 \hat{y} & Vorhersagewert des Modells & [wie Zielgröße] \\
 y & Beobachteter (tatsächlicher) Wert & [wie Zielgröße] \\
 \bar{\sigma}^2_{\text{total}} & Mittlere Gesamtvarianz (Summe aus epistemischer und aleatorischer Varianz) & [(wie Zielgröße)$^2$] \\
@@ -28,9 +30,20 @@ y & Beobachteter (tatsächlicher) Wert & [wie Zielgröße] \\
 \sigma_{\text{total}}^2 & Gesamtvarianz & [(wie Zielgröße)$^2$] \\
 \text{RMSE} & Root Mean Squared Error (Wurzel der mittleren quadratischen Abweichung) & [wie Zielgröße] \\
 \text{MAE} & Mean Absolute Error (Mittlerer absoluter Fehler) & [wie Zielgröße] \\
+\text{ECE} & Expected Calibration Error, Maß für Kalibrierungsfehler & [–] \\
 \text{Coverage} & Abdeckungswahrscheinlichkeit der Unsicherheitsintervalle & [–] \\
 \text{Calibration Error} & Maß für die Diskrepanz zwischen prognostizierter Konfidenz und tatsächlicher Trefferquote & [–] \\
-\text{Mean Interval Width} & Mittlere Breite der berechneten Unsicherheitsintervalle & [wie Zielgröße] \\
+\text{MCIW} & Mean Confidence Interval Width (mittlere Breite der Konfidenzintervalle) & [wie Zielgröße] \\
+\text{IntervalWidth} & Mittlere Breite des Unsicherheitsintervalls für eine Vorhersage & [wie Zielgröße] \\
+\text{Runtime} & Zeitaufwand für die Berechnung einer Vorhersage oder für ein Modelltraining & [s] \\
+w_{\text{err}} & Gewichtungsfaktor für RMSE im Score & [–] \\
+w_{\text{ECE}} & Gewichtungsfaktor für ECE im Score & [–] \\
+w_{\text{width}} & Gewichtungsfaktor für die mittlere Intervallbreite im Score & [–] \\
+w_{\text{runtime}} & Gewichtungsfaktor für Laufzeit im Score & [–] \\
+\text{Norm}_{\text{RMSE}} & Normalisierungsfaktor für RMSE im Score & [wie Zielgröße] \\
+\text{Norm}_{\text{ECE}} & Normalisierungsfaktor für ECE im Score & [–] \\
+\text{Norm}_{\text{Width}} & Normalisierungsfaktor für Intervallbreite im Score & [wie Zielgröße] \\
+\text{Norm}_{\text{Runtime}} & Normalisierungsfaktor für Laufzeit im Score & [s] \\
 \text{Score} & Aggregiertes Maß für die Gesamtperformance eines Modells & [–] \\
 \text{RUI} & Relative Uncertainty Index, relatives Maß für Unsicherheitsbreite im Verhältnis zum Fehlermaß & [–] \\
 \text{NLL} & Negative Log-Likelihood & [–] \\
