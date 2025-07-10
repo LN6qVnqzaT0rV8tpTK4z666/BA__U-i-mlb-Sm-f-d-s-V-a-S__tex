@@ -46,21 +46,29 @@ Für den Einsatz solcher AUVs kommen unsicherheitsbehaftete Verfahren zum Einsat
 
 \section{Unsicherheitsbehaftete Verfahren im \gls{machinelearning}-Kontext}
 
-In der Unsicherheitsquantifizierung werden im \gls{machinelearning}-Kontext unter anderem zwei Arten unterschieden (vgl. Hullermeier et al. ~\parencite{Hullermeier2021}):
+In der \textit{Unsicherheitsquantifizierung} (\gls{uncertaintyquantification}) werden im \gls{machinelearning}-Kontext unter anderem zwei Arten unterschieden (vgl. Hullermeier et al. ~\parencite{Hullermeier2021}):
 
 \begin{itemize}
-  \item \textbf{\gls{Aleatorische Unsicherheit}:} zufallsbedingte Unsicherheit, z.\,B.\ durch Sensordatenrauschen; nicht reduzierbar durch zusätzliche Daten.
-  \item \textbf{\gls{Epistemische Unsicherheit}:} modellbedingte Unsicherheit aufgrund unzureichender Daten oder Modellstruktur; potenziell reduzierbar.
+  \item \textbf{\gls{Epistemische Unsicherheit}:} \textit{modellbedingte} Unsicherheit aufgrund unzureichender Daten oder Modellstruktur; potenziell reduzierbar.
+  \item \textbf{\gls{Aleatorische Unsicherheit}:} \textit{zufallsbedingte} Unsicherheit, z.\,B.\ durch Sensordatenrauschen; nicht reduzierbar durch zusätzliche Daten.
 \end{itemize}
+
+Die \gls{Aleatorische Unsicherheit} kann weiter in \textit{homoskedastische} Unsicherheit, das heißt Unsicherheit, die für verschiedene Eingaben konstant bleibt, und \textit{heteroskedastische} Unsicherheit unterteilt werden. Heteroskedastische Unsicherheit hängt von den Eingaben in das Modell ab, wobei einige Eingaben potenziell verrauschtere Ausgaben haben als andere (vgl. Kendall et al. ~\parencite[S. 2, Z. 1-5]{kendall2017}).
 
 % \noindent
 % Typische Metriken zur Quantifizierung von \gls{Aleatorische Unsicherheit} sind z.\,B.\ RMSE, MAE, CRPS, NLL, PICP oder MPIW. Für EC werden u.\,a.\ KL-Divergenz, OOD-Scores, Unsicherheitsintervalle oder Modellentropien verwendet.
 
 \section{Zusammenhang und steuerbare Unsicherheiten}
 
-Literaturquellen wie Hoarau et al. ~\parencite{ArthurHoarau2025} beschreiben eine dynamische Beziehung zwischen \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit}. Neuere Arbeiten gehen davon aus, dass diese Unsicherheiten, insbesondere im Zusammenspiel mit evidenzbasierten Verfahren, unter bestimmten Bedingungen gezielt beeinflussbar beziehungsweise steuerbar sind.
+Quellen wie Hoarau et al. 2025 beschreiben eine dynamische Beziehung zwischen \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} bei Untersuchung zusammenhängender Modalitäten ~\parencite[S. 2, Z.]{ArthurHoarau2025} in Regression. Neuere Arbeiten gehen davon aus, dass diese Unsicherheiten, insbesondere im Zusammenspiel mit evidenzbasierten Verfahren, unter bestimmten Bedingungen gezielt beeinflussbar beziehungsweise steuerbar sind (vgl. Hoarau et al. ~\parencite[S. 2, Z. 43-45]{ArthurHoarau2025}): 
+
+\begin{quote}
+“These findings indicate that both aleatoric and epistemic uncertainty can be influenced and reduced through targeted acquisition strategies, particularly in evidence-based modeling frameworks.” 
+\end{quote}
 
 \section{Schlussfolgerung}
-
 Die steigende Bedeutung verlässlicher Unsicherheitsanalysen in autonomen, sicherheitskritischen Systemen motiviert die vertiefte Untersuchung \gls{machinelearning}-Verfahren unter Unsicherheitsgesichtspunkten. Ziel ist es, Modelle nicht nur leistungsfähig, sondern auch vertrauenswürdig und erklärbar zu gestalten.
+
+
+
 \end{otherlanguage}
