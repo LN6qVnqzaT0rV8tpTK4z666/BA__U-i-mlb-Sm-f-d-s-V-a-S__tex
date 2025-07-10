@@ -230,6 +230,7 @@
 % Filter nach keyword (optional, falls nicht `category`)
 \defbibfilter{beitragfilter}{keyword=beitrag}
 \defbibfilter{bswfilter}{keyword=buchsammelwerk}
+\defbibfilter{bmfilter}{keyword=buchmonographie}
 \defbibfilter{datensatzfilter}{keyword=dataset}
 \defbibfilter{internetdokumentfilter}{keyword=internetdokument}
 \defbibfilter{zeitschriftenaufsatzfilter}{keyword=zeitschriftenaufsatz}
@@ -247,6 +248,13 @@
 \section*{Buch (Sammelwerk)}
 \printbibliography[
 	filter=bswfilter, 
+	heading=none, 
+	sorting=nyt
+]
+
+\section*{Buch (Monographie)}
+\printbibliography[
+	filter=bmfilter, 
 	heading=none, 
 	sorting=nyt
 ]
