@@ -1590,21 +1590,25 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
 
 \textbf{Model Evidentielles Wissen}
 
-Ein in der Literatur üblicher Ansatz ist das Trainineren von \gls{Evidenzbasierte neuronale Netze} auf Evidentiellem Wissen zur Optimierung des Wissens in der Anwendungsdomäne. Manchingals Grafiken liefern die Übersicht für in VaMai in betracht gezogenen \gls{uncertaintyquantification}-Techniken in R.4.1, R.4.2 . Dabei können insbesondere die Wahrscheinlichkeitsräume mittels Jøsang (2016): Subjective Logic \gls{josang2016subjective} umfassend eingeordnet werden und liefern in der Modellierung auch die Grundlage um Ulmer einzuordnen. 
+Ein in der Literatur üblicher Ansatz ist das Trainineren von \gls{Evidenzbasierte neuronale Netze} auf Evidentiellem Wissen zur Optimierung dessen in der Anwendungsdomäne. Manchingals Grafiken liefern die Übersicht für in VaMai in betracht gezogenen \gls{uncertaintyquantification}-Techniken in R.4.1, R.4.2 . Dabei können insbesondere die Wahrscheinlichkeitsräume mittels Jøsangs Subjektiver Logik (\gls{subjectivelogic}) umfassend definiert werden \parencite{josang2016subjective}. 
 
 \begin{quote}
-  Difference to traditional bayesian theory; aleatoric, epistemic is explicit in subjective logic
+  Difference to [\dots] bayesian theory [is] \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} is \textit{explicit} in subjective logic [...]. 
 \end{quote}
 
-Jøsang liefert den Zusammenhang für \gls{Bayesianische neuronale Netze} ~\parencite[vgl. S.42]{josang2016subjective}. Er soll hier auch für \gls{EvidentialDeepLearning} gewählt werden. Jøsang erweitert \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} als Unsicherheiten erster Ordnung zu Unsicherheiten zweiter Ordnung \glqq Aleatorischic Opinion \grqq (\gls{aleatoricopinion}), \glqq Epistemic Opinion \grqq (\gls{epistemicopinion}) (vgl. Jøsang ~\parencite[S.22, Z.10-16; S.22 Z. 17-26; S.23, Z. 5-; S.23 Z.9-12]{josang2016subjective}). \par\noindent\\
+Jøsang liefert den Zusammenhang für \gls{Bayesianische neuronale Netze} ~\parencite[vgl. S.42]{josang2016subjective}. Er soll hier auch für \gls{EvidentialDeepLearning} gewählt werden. Jøsang erweitert \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} als Unsicherheiten erster Ordnung zu Unsicherheiten zweiter Ordnung \glqq Aleatoric Opinion \grqq (\gls{aleatoricopinion}), \glqq Epistemic Opinion \grqq (\gls{epistemicopinion}) (vgl. Jøsang ~\parencite[S.22, Z.10-16; S.22 Z. 17-26; S.23, Z. 5-; S.23 Z.9-12]{josang2016subjective}). \par\noindent\\
 
-Subjektive Logik gibt eine klare Hierarchie für \gls{Evidenzbasierte neuronale Netze} zur Eingrenzung von \glqq Zero Evidence Regions \grqq unabhängig von gewählten und der Literatur stark individualisierten und variierenden Loss-Functions. Jøsang füllt damit, \glqq [the] missing uniform definition of what is not known\grqq ~\parencite[vgl. S.42]{josang2016subjective} für \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. 
+\gls{subjectivelogic} gibt eine klare Vergleichbarkeits-Hierarchie zur Mengenmodellierung für Zwischenzustände zur Unwissenheit trotz Evidenz für \gls{Evidenzbasierte neuronale Netze} zur Eingrenzung von \glqq Zero Evidence Regions \grqq ~\parencite[vgl. S.50]{josang2016subjective} unabhängig von gewählten in der Literatur stark individualisierten und variierenden Loss-Functions (vgl. Ulmer et al. \parencite{Ulmer2023}). Für VaMai interessant sind die Limitierungen evidentiellen Wissens in der Visualisierung vom binomiellen zum multinomiellen Modell, die Zuordnung dieser zu Dirichlet PDF's erster Ordnung und schließlich zweiter Ordnung in der Hyperebene zum Erarbeiten einer Meta-Unsicherheit \gls[S.39, 3.6.1 \glqq hyper-opionon representation\grqq, \glqq hyper-opinion and dirichlet HPDF \grqq]{subjectivelogic} in der Szenario-Beobachtung ~\parencite[S.39, Tabelle 3.3]{josang2016subjective}. 
+
+Jøsang füllt damit, \glqq [the] missing uniform definition of what is not known\grqq ~\parencite[vgl. S.42]{josang2016subjective} für \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. Unabhängig von Jøsangs Logik wird deutlich wie der Wahrscheinlichkeitsraum explizit evidentiell ausmodelliert, und damit über jedwede Metrik und Räume \textit{qualitativ} vergleichbar gemacht werden kann.
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x3.png}
   \caption{R4.1 \glqq Epistemic Learning\grqq nach Manchingal et al. 2025}
 \end{figure}
+
+% Als Methodenbaustein soll \textit{epistemic learning} nach Manchingal eingeführt werden. R4.1 
 
 \begin{figure}[!ht]
   \centering
