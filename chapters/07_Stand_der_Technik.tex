@@ -1590,7 +1590,15 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
 
 \textbf{Model Evidentielles Wissen}
 
-Ein in der Literatur üblicher Ansatz ist das Trainineren von \gls{Evidenzbasierte neuronale Netze} auf Evidentiellem Wissen. 
+Ein in der Literatur üblicher Ansatz ist das Trainineren von \gls{Evidenzbasierte neuronale Netze} auf Evidentiellem Wissen zur Optimierung des Wissens in der Anwendungsdomäne. Manchingals Grafiken liefern die Übersicht für in VaMai in betracht gezogenen \gls{uncertaintyquantification}-Techniken in R.4.1, R.4.2 . Dabei können insbesondere die Wahrscheinlichkeitsräume mittels Jøsang (2016): Subjective Logic \gls{josang2016subjective} umfassend eingeordnet werden und liefern in der Modellierung auch die Grundlage um Ulmer einzuordnen. 
+
+\begin{quote}
+  Difference to traditional bayesian theory; aleatoric, epistemic is explicit in subjective logic
+\end{quote}
+
+Jøsang liefert den Zusammenhang für \gls{Bayesianische neuronale Netze} ~\parencite[vgl. S.42]{josang2016subjective}. Er soll hier auch für \gls{EvidentialDeepLearning} gewählt werden. Jøsang erweitert \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} als Unsicherheiten erster Ordnung zu Unsicherheiten zweiter Ordnung \glqq Aleatorischic Opinion \grqq (\gls{aleatoricopinion}), \glqq Epistemic Opinion \grqq (\gls{epistemicopinion}) (vgl. Jøsang ~\parencite[S.22, Z.10-16; S.22 Z. 17-26; S.23, Z. 5-; S.23 Z.9-12]{josang2016subjective}). \par\noindent\\
+
+Subjektive Logik gibt eine klare Hierarchie für \gls{Evidenzbasierte neuronale Netze} zur Eingrenzung von \glqq Zero Evidence Regions \grqq unabhängig von gewählten und der Literatur stark individualisierten und variierenden Loss-Functions. Jøsang füllt damit, \glqq [the] missing uniform definition of what is not known\grqq ~\parencite[vgl. S.42]{josang2016subjective} für \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. 
 
 \begin{figure}[!ht]
   \centering
@@ -1603,6 +1611,8 @@ Ein in der Literatur üblicher Ansatz ist das Trainineren von \gls{Evidenzbasier
   \includegraphics[width=\textwidth]{../figures/x2.png}
   \caption{R4.2 \glqq Major approaches to uncertainty in AI\grqq nach Manchingal et al. 2025}
 \end{figure}
+
+% Subjective Logic Session 10.07.2025 Theoretischer Unterbau zur Interpretierbarkeit so knapp wie möglich
 
 
 \textbf{Model Evidentielles Nicht-Wissen}
@@ -1617,6 +1627,7 @@ Ein Ansatz, \gls{Evidenzbasierte neuronale Netze} auf Nicht-Wissen zu trainieren
 
 Dies verhindert überhöhte Evidenzwerte bei unbekannten Inputs. Bei Regression kann analog die Varianz gezielt maximiert werden, indem $\alpha$ und $\beta$ auf niedrige Werte gesetzt werden. So lernt das \gls{Evidenzbasierte neuronale Netze}, Nicht-Wissen explizit durch geringe Evidenz und hohe Unsicherheit auszudrücken (vgl. Manchingal et al. (MC25)).
 
+% Subjective Logic Session 10.07.2025 Theoretischer Unterbau zur Interpretierbarkeit so knapp wie möglich
 
 % Die spezifischen Aufgaben dieser Arbeit umfassen:
 
@@ -1715,11 +1726,11 @@ Für die Literaturübersicht wurde ein Fragenkatalog generiert, der mit seinen S
 
 \multirow{3}{*}{1. Theoretische Grundlagen}\label{sec:edlscopesTheoretischeGrundlagenTab1} &
 1.1. Mathematische Formulierung von \gls{EvidentialDeepLearning}\label{sec:edlscopesMathematischeFormulierungenVonEDLTab1} \newline
-1.2. Verbindung zu Subjective Logic\label{sec:edlscopesVerbindungZuSubjectiveLogicTab1} \newline
+1.2. Verbindung zu Subjektiver Logik nach Jøsang\label{sec:edlscopesVerbindungZuSubjectiveLogicTab1} \newline
 1.3. Unterschiede zu Bayesian Deep Learning\label{sec:edlscopesUnterschiedeZuBayesianDeepLearningTab1} \\ \hline
 
 \multirow{3}{*}{2. Architekturen}\label{sec:edlscopesArchitekturenTab1} &
-2.1. Netzarchitekturen für Evidential Learning\label{sec:edlscopesNetzarchitekturenFuerEvidentialDeepLearningTab1} \newline
+2.1. Netzarchitekturen für \gls{EvidentialDeepLearning}\label{sec:edlscopesNetzarchitekturenFuerEvidentialDeepLearningTab1} \newline
 2.2. Modifikationen an klassischen CNNs, RNNs, Transformers\label{sec:edlscopesModifikationAnKlassischenCNNRNNTransformersTab1} \newline
 2.3. Integration evidenzieller Layer\label{sec:edlscopesIntegrationEvidenziellerLayerTab1} \\ \hline
 
