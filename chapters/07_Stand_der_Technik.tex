@@ -1603,7 +1603,7 @@ Jøsang liefert den Zusammenhang für \gls{Bayesianische neuronale Netze} ~\pare
 Jøsang füllt damit, \glqq [the] missing uniform definition of what is not known\grqq ~\parencite[vgl. S.42]{josang2016subjective} für \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. Unabhängig von Jøsangs Logik wird deutlich wie der Wahrscheinlichkeitsraum explizit evidentiell ausmodelliert, und damit über jedwede Metrik und Räume \textit{qualitativ} vergleichbar gemacht werden kann.  
 
 Die Wahl der Logik für propabilistische Funktionen, die Glauben ausdrücken sollen, ist in der wissenschafltichen Literatur bis heute umstritten in Orientierung an erstens Bayes und zweitens Dempster Shafers Theorie \parencite{bayes1763essay, dempster1967upper, shafer1976mathematical}
-. Probabilistische Mengenmodellierung als konvexe Menge von Wahrscheinlichkeitsverteilungen der Statistik (\gls{statisticallearningtheory}) dient als \gls{machinelearning}-Grundlage (vgl. \parencite{caprio2024credal}), wobei Caprio et al. kürzliche Annahmen zur \textit{Domain Generalization} (\gls{domaingeneralization}) sowie \textit{Ground Truth} (\gls{GroundTruth}) verdeutlicht. Ebenso wird dort der VaMai begleitende Konflikt zwischen \textit{Domain Knowledge} (\gls{domainknowledge}) und \gls{domaingeneralization} aufgezeigt. Aktuell höchstes Ziel ist die autonome zeitkontinuierliche Akquise neuer Domänen eines aufgesetzten Systems. VaMai verfolgt Aspekte der \gls{domaingeneralization} in erstens hohen Dimensionalitäten, zweitens Generifizierbarkeit, drittens Modellagnostizität, sowie viertens Generalisierbarkeit über Benchmarks zur Validierung über die freie Wahl von Datensätzen mit dem Ausgangspunkt von Aminis Deep Evidential Regression (vgl. ~\parencite{amini2020deep}).
+. Probabilistische Mengenmodellierung als konvexe Menge von Wahrscheinlichkeitsverteilungen der Statistik (\gls{statisticallearningtheory}) dient als \gls{machinelearning}-Grundlage (vgl. \parencite{caprio2024credal}). Wobei Caprio et al. kürzliche Annahmen zur \textit{Domain Generalization} (\gls{domaingeneralization}) sowie \textit{Ground Truth} (\gls{GroundTruth}) verdeutlicht. Ebenso wird dort der VaMai begleitende Konflikt zwischen \textit{Domain Knowledge} (\gls{domainknowledge}) und \gls{domaingeneralization} aufgezeigt. Aktuell höchstes Ziel ist die autonome zeitkontinuierliche Akquise neuer Domänen eines aufgesetzten Systems. VaMai verfolgt Aspekte der \gls{domaingeneralization} in erstens hohen Dimensionalitäten, zweitens Generifizierbarkeit, drittens Modellagnostizität, sowie viertens Generalisierbarkeit über Benchmarks zur Validierung über die freie Wahl von Datensätzen mit dem Ausgangspunkt von Aminis Deep Evidential Regression (vgl. ~\parencite{amini2020deep}).
 
 Hullermeier et al. 2024 zeigen dabei dahinterliegende probabilistische Mengenmodellierung \parencite{javanmardi2024conformalized} in der Anwendung auf für Evidentielle Klassifikation, Denoeux für Evidentielle Regression \parencite{denoeux2022evidential}, jeweils in Bezug auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit}. In evidentieller Klassifikation äußert sich \gls{Aleatorische Unsicherheit} in der gleichmäßigen, flachen Verteilung der Massenfunktion auf die Klassen, \gls{Epistemische Unsicherheit} in einer hohen Masse auf der Vereinigungsmenge aller Klassen (auf Unbestimmtheit, Ignoranz), was auf mangelndes Wissen des Modells hindeutet. In Evidentieller Regression äußert sich \gls{Aleatorische Unsicherheit} in der Breite der Vorhersage-Intervalle, \gls{Epistemische Unsicherheit} in der Streuung oder \glqq Unsicherheit der Unsicherheiten \grqq, also darin, wie sicher das Modell selbst über seine Unsicherheitsangaben ist. Im Gegensatz zur evidenzbasierten Klassifikation ist evidenzbasierte Regression methodenunabhängig stets mit einer epistemischen Unsicherheit verbunden, die aus der Diskretisierung des kontinuierlichen Signals und der jeweiligen Modellannahme des Autors resultiert. Amini zeigt diese Zusammenhänge kompakt: \glqq Die evidenzbasierte Regression
 lernt gleichzeitig ein kontinuierliches Ziel mit aleatorischer
@@ -1617,7 +1617,30 @@ wird das Netz so trainiert, dass es die Parameter [ $(\alpha, \beta, \sigma, \nu
 \end{figure}
 
 % Grafik erläutern, beginnend mit Datum.
-% Als weiterer Methodenbaustein soll \textit{epistemic learning} nach Manchingal eingeführt werden. R4.1 stellt dies gegenüber dem konventionellem Lernprozess. Ein Datensatz (Abb. \glqq Training set \grqq) $\mathcal{D} = \{ (\mathbf{x}_i, y_i) \}_{i=1}^N$ trägt nach Manchingal implizit die Kosten 
+Als weiterer Methodenbaustein soll \textit{epistemic learning} nach Manchingal eingeführt werden. R4.1 stellt dies gegenüber dem konventionellem Lernprozess. Ein Datensatz (Abb. \glqq Training set \grqq) $\mathcal{D} = \{ (\mathbf{x}_i, y_i) \}_{i=1}^N$ trägt nach Manchingal implizit die Kosten zum Erhalt der \gls{machinelearning} Label-Information des Datensatzes als Akquisitions-Funktion. Nicht jeder Datenpunkt bringt demnach denselben Informationsgewinn. Die \glqq Datum \grqq-Punkte stehen für unbeschriftete Datenbeispiele. Ihre Position in einem Diagramm würde zeigen, wie nützlich im Sinne der Reduktion \gls{Epistemische Unsicherheit} und wie kostenintensiv es wäre, gerade diese Punkte zu labeln, um das Vertrauen im Modell gezielt zu steigern. Das Label-Kosten-Verhältnis ist für Klassifikation sowie Regression gültig. 
+
+\begin{align*}
+\text{Acquisition}(x)
+&:=
+\left.
+\frac{
+I\bigl(y ; \theta \mid \mathcal{D}, x \bigr)
+}{
+c(x)
+}
+\right|_{\text{\gls{Bayesianische neuronale Netze}}}
+\\[2ex]
+&:=
+\left.
+\frac{
+\mathrm{Var}\left[ \mu \mid x \right]
+}{
+c(x)
+}
+\right|_{\text{\gls{Evidenzbasierte neuronale Netze}}}
+\end{align*}
+
+Es ergibt sich im Active Learning allgemein nach Kosten-Nutzen-Rechnung mit Informationsgewinn als wählbare Unsicherheitsgröße - hier Information Gain für \gls{Bayesianische neuronale Netze}, Varianz für \gls{Evidenzbasierte neuronale Netze} - des jeweiligen Modells pro Kosten wie Houlsby für \gls{Bayesianische neuronale Netze} aufzeigt (vgl. Houlby ~\parencite[]{houlsby2011bayesian}).
 
 \begin{figure}[!ht]
   \centering
