@@ -1673,9 +1673,9 @@ Abschließend für Evidentielles Wissen im Modell sollen nach R4.3 die Hauptans�
 
 
 
-\textbf{Modell Evidentielles Nicht-Wissen}
+\textbf{Modell evidenzielles Nicht-Wissen}
 
-Ein Ansatz, \gls{Evidenzbasierte neuronale Netze} auf Nicht-Wissen zu trainieren, besteht darin, das Modell so zu konditionieren, dass es bei unbekannten Eingaben geringe Evidenz liefert. Dazu werden \gls{Out-of-Distribution}-Beispiele im Training eingebunden und die Loss-Funktion um einen Term erweitert, der die Evidenzverteilung in Richtung einer Uniform-Verteilung drängt:
+Während das vorige Kapitel evidenzielles Wissen behandelt, soll dieser Abschnitt komplementär die Modellierung expliziten Nicht-Wissens für \gls{Evidenzbasierte neuronale Netze}, insbesondere für Eingaben außerhalb des Trainingsbereichs, behandeln. Diese Technik adressiert primär \gls{Epistemische Unsicherheit}, indem das Modell gezielt darauf trainiert wird, bei unbekannten Eingaben geringe Evidenz auszugeben. Dazu werden \gls{Out-of-Distribution}-Beispiele in das Training integriert und die Loss-Funktion um eine \gls{kullbackleibler}-Divergenz ergänzt, welche die evidenzielle Dirichlet-Verteilung möglichst nahe an eine uniforme Verteilung bringt (vgl. \parencite[S.3, Z.22-28]{malinin2019uncertainty}, \parencite[S.4, Z.10-16]{amini2020deep}, \parencite[S.4, Z.5-15]{ovadia2019can}):
 
 \begin{equation}
 \text{Loss}_{\text{total}} 
@@ -1683,9 +1683,9 @@ Ein Ansatz, \gls{Evidenzbasierte neuronale Netze} auf Nicht-Wissen zu trainieren
 + \lambda \cdot \text{KL}\bigl(\text{Dir}(\boldsymbol{\alpha}) \,\|\, \text{Uniform}\bigr).
 \end{equation}
 
-Dies verhindert überhöhte Evidenzwerte bei unbekannten Inputs. Bei Regression kann analog die Varianz gezielt maximiert werden, indem $\alpha$ und $\beta$ auf niedrige Werte gesetzt werden. So lernt das \gls{Evidenzbasierte neuronale Netze}, Nicht-Wissen explizit durch geringe Evidenz und hohe Unsicherheit auszudrücken (vgl. Manchingal et al. (MC25)).
+Dadurch wird verhindert, dass das Modell bei unbekannten Eingaben fälschlich hohe Evidenzwerte signalisiert, obwohl es in diesen Regionen unsicher ist. Bei Regression kann analog die Varianz gezielt maximiert werden, indem \(\alpha\) und \(\beta\) auf niedrige Werte gesetzt werden. So lernt das \gls{Evidenzbasierte neuronale Netze}, Nicht-Wissen explizit durch geringe Evidenz und hohe Unsicherheit auszudrücken. Dieses Konzept steht in engem Zusammenhang mit Jøsangs \glqq epistemic opinion\grqq{}, die bei fehlender Evidenz eine gleichmäßige Unwissenheitsverteilung ausdrückt \parencite[S. 22]{josang2016subjective}. Die explizite Modellierung evidenziellen Nicht-Wissens bietet so die Möglichkeit Modelle robuster gegen unbekannte Situationen zu machen. Die Praxis liefert dafür Benchmarkmethoden wie CleverHans zur Simulation eines \glqq Angriffs\grqq auf das Modell mit fälschlichen Angaben (vgl. Papernot et al. ~\parencite{papernot2016cleverhans}).
 
-% Subjective Logic Session 10.07.2025 Theoretischer Unterbau zur Interpretierbarkeit so knapp wie möglich
+
 
 % Die spezifischen Aufgaben dieser Arbeit umfassen:
 
