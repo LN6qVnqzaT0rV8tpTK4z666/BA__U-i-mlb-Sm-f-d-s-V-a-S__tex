@@ -1640,13 +1640,15 @@ c(x)
 \right|_{\text{\gls{Evidenzbasierte neuronale Netze}}}
 \end{align*}
 
-Es ergibt sich im Active Learning allgemein nach Kosten-Nutzen-Rechnung mit Informationsgewinn als wählbare Unsicherheitsgröße - hier Information Gain für \gls{Bayesianische neuronale Netze}, Varianz für \gls{Evidenzbasierte neuronale Netze} - des jeweiligen Modells pro Kosten wie Houlsby für \gls{Bayesianische neuronale Netze} aufzeigt (vgl. Houlby ~\parencite[]{houlsby2011bayesian}).
+Es ergibt sich im Active Learning allgemein nach Kosten-Nutzen-Rechnung mit Informationsgewinn als wählbare Unsicherheitsgröße - hier Information Gain für \gls{Bayesianische neuronale Netze}, Varianz für \gls{Evidenzbasierte neuronale Netze} - des jeweiligen Modells pro Kosten wie Houlsby für \gls{Bayesianische neuronale Netze} aufzeigt (vgl. Houlby ~\parencite[]{houlsby2011bayesian}). 
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x3.png}
   \caption{R4.2 \glqq Epistemic Learning\grqq nach Manchingal et al. 2025}
 \end{figure}
+
+Akquisitions-kriterienbasiert wählt evidentielles Lernen Punkte niedriger Kosten, hohen Nutzens gewählter Unsicherheitsgröße und nicht nur unsichere Punkte wie im klassischen \gls{machinelearning}-Prozess. Kanten \glqq Learning, Epistemic Learning \grqq der Grafik repräsentieren das Zuordnen eines Punktes aus dem Datenset in den jeweiligen Modellraum. Flächen der jeweiligen Dimension markieren die mit der Unsicherheit assozieerten Sigma-Bereiche im epistemischen Modell im Gegensatz zur klassischen Punktdarstellung. In der Grafik Punkt zu Flächen, allgemein der Dimensions-Unterschied ist ebenso im Ziel- oder Parameterraum vorhanden. Das klassiche Modell liefert hier eine propabilistische Punktvorhersage im $n$-Simplex der Mannigfaltigkeit der Verteilungen über den Ziel- oder Parameterraum. Das epistemische liefert einen Unterraum im $n$-Simplex der Mannigfaltigkeit der Verteilungen als probabilistische Fläche $n$-ter Dimension.
 
 \begin{figure}[!ht]
   \centering
