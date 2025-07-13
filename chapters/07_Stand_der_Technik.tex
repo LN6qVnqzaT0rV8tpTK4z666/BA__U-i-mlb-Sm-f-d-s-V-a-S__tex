@@ -1588,7 +1588,7 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
 \pagebreak
 
 
-\textbf{Model Evidentielles Wissen}
+\textbf{Modell Evidentielles Wissen}
 
 Ein in der Literatur üblicher Ansatz ist das Trainieren von \gls{Evidenzbasierte neuronale Netze} auf Evidentiellem Wissen zur Optimierung dessen in der Anwendungsdomäne. Manchingals Grafiken liefern die Übersicht für in VaMai in betracht gezogenen \gls{uncertaintyquantification}-Techniken in R.4.1, R.4.2, R.4.3 . Dabei können insbesondere die Wahrscheinlichkeitsräume mittels Jøsangs Subjektiver Logik (\gls{subjectivelogic}) umfassend definiert werden. 
 
@@ -1648,7 +1648,7 @@ Es ergibt sich im Active Learning allgemein nach Kosten-Nutzen-Rechnung mit Info
   \caption{R4.2 \glqq Epistemic Learning\grqq nach Manchingal et al. 2025}
 \end{figure}
 
-Akquisitions-kriterienbasiert wählt evidentielles Lernen Punkte niedriger Kosten, hohen Nutzens gewählter Unsicherheitsgröße und nicht nur unsichere Punkte wie im klassischen \gls{machinelearning}-Prozess. Kanten \glqq Learning, Epistemic Learning \grqq der Grafik repräsentieren das Zuordnen eines Punktes aus dem Datenset in den jeweiligen Modellraum. Flächen der jeweiligen Dimension markieren die mit der Unsicherheit assozieerten Sigma-Bereiche im epistemischen Modell im Gegensatz zur klassischen Punktdarstellung. In der Grafik Punkt zu Flächen, allgemein der Dimensions-Unterschied ist ebenso im Ziel- oder Parameterraum vorhanden. Das klassiche Modell liefert hier eine propabilistische Punktvorhersage im $n$-Simplex der Mannigfaltigkeit der Verteilungen über den Ziel- oder Parameterraum. Das epistemische liefert einen Unterraum im $n$-Simplex der Mannigfaltigkeit der Verteilungen als probabilistische Fläche $n$-ter Dimension.
+Akquisitions-kriterienbasiert wählt evidentielles Lernen Punkte niedriger Kosten, hohen Nutzens gewählter Unsicherheitsgröße und nicht nur unsichere Punkte wie im klassischen \gls{machinelearning}-Prozess. Kanten \glqq Learning, Epistemic Learning \grqq der Grafik repräsentieren das Zuordnen eines Punktes aus dem Datenset in den jeweiligen Modellraum. Flächen der jeweiligen Dimension markieren die mit der Unsicherheit assoziierten Sigma-Bereiche im epistemischen Modell im Gegensatz zur klassischen Punktdarstellung. In der Grafik Punkt zu Flächen, allgemein der Dimensions-Unterschied ist ebenso im Ziel- oder Parameterraum vorhanden. Das klassiche Modell liefert hier eine propabilistische Punktvorhersage im $n$-Simplex der Mannigfaltigkeit der Verteilungen über den Ziel- oder Parameterraum. Das epistemische liefert einen Unterraum im $n$-Simplex der Mannigfaltigkeit der Verteilungen als probabilistische Fläche $n$-ter Dimension, der über Jøsangs \gls{subjectivelogic} ausdefiniert werden kann.
 
 \begin{figure}[!ht]
   \centering
@@ -1656,10 +1656,24 @@ Akquisitions-kriterienbasiert wählt evidentielles Lernen Punkte niedriger Koste
   \caption{R4.3 \glqq Major approaches to uncertainty in AI\grqq nach Manchingal et al. 2025}
 \end{figure}
 
-% Subjective Logic Session 10.07.2025 Theoretischer Unterbau zur Interpretierbarkeit so knapp wie möglich
+Abschließend für Evidentielles Wissen im Modell sollen nach R4.3 die Hauptansätze nach Manchingal zur \gls{uncertaintyquantification} zusammengefasst werden wie sie auch in VaMai in Betracht gezogen werden.
+
+\paragraph{Frequentistisch:} Modelliert nur \gls{Aleatorische Unsicherheit}. Keine \gls{Epistemische Unsicherheit} enthalten. Ergebnis sind Punkt-, Intervallschätzungen wie 
+\(\hat{y} \pm \text{CI}\). Beispiel ist die klassische Regression.
+
+\paragraph{Bayesisch:} Modelliert \gls{Epistemische Unsicherheit} über Wahrscheinlichkeitsverteilungen auf Parametern \(\theta\). Ergebnis: posterior 
+\(p(\theta \mid \mathcal{D})\). Beispiel sind \gls{Bayesianische neuronale Netze}, Dropout.
+
+\paragraph{Evidentiell:} Modelliert \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} über Hyper-Verteilungen wie Dirichlet, Normal-Inverse-Gamma. Ergebnis sind  Hyperparameter \((\alpha, \beta, \nu, \sigma)\). Die Meta-Unsicherheit ist über Varianz der Hyperparameter messbar.
+
+\paragraph{Plausibilitätsmengen:} Modelliert \gls{Epistemische Unsicherheit} als konvexe Mengen von Wahrscheinlichkeitsverteilungen. Ergebnis ist  
+\(\mathcal{P} = \{ P \in \text{probabilities} : \text{constraints} \}\). Erlaubt Meta-Unsicherheit darüber, welche Verteilungen plausibel sind.
+
+\par\noindent\\
 
 
-\textbf{Model Evidentielles Nicht-Wissen}
+
+\textbf{Modell Evidentielles Nicht-Wissen}
 
 Ein Ansatz, \gls{Evidenzbasierte neuronale Netze} auf Nicht-Wissen zu trainieren, besteht darin, das Modell so zu konditionieren, dass es bei unbekannten Eingaben geringe Evidenz liefert. Dazu werden \gls{Out-of-Distribution}-Beispiele im Training eingebunden und die Loss-Funktion um einen Term erweitert, der die Evidenzverteilung in Richtung einer Uniform-Verteilung drängt:
 
