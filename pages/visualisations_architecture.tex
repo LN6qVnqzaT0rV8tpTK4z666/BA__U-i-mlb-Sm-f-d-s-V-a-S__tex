@@ -203,3 +203,98 @@
 
     \end{tikzpicture}
 }
+
+
+
+
+
+
+% ================================
+% Fragen zur Konstruktion der Netze
+% ================================
+
+% --------------------------------
+% Allgemein – für alle Modelle
+% --------------------------------
+% Wie groß ist der Input-Dimensionalitätsbereich (z. B. Bildgrößen, Featureanzahl)?
+% Welche Aktivierungsfunktionen werden in den Schichten verwendet?
+% Wird Dropout oder eine andere Regularisierung genutzt?
+% Gibt es Batch Normalization oder Layer Normalization?
+% Welche Verlustfunktion wird optimiert?
+% Wie wird die Unsicherheit in der Vorhersage quantifiziert?
+% Wie werden Hyperparameter (z. B. Schichtbreiten) gewählt?
+% Gibt es Einschränkungen bei der Modellgröße (Speicher, Rechenzeit)?
+% Wie robust ist das Modell gegen Ausreißer in den Daten?
+% Wie verhält sich das Modell bei kleinen Datensätzen?
+% Welche Optimizer werden verwendet (Adam, SGD, etc.)?
+% Wie wird Early Stopping gehandhabt?
+% Welche Metriken werden für die Evaluation genutzt?
+
+% --------------------------------
+% Evidenzbasierte neuronale Netze – Regression
+% --------------------------------
+% Wie groß sind n_1 und n_2 typischerweise?
+% Welche Aktivierungsfunktion wird in hidden layers verwendet?
+% Warum genau vier Neuronen in der Ausgabeschicht?
+% Was bedeuten die vier Evidenz-Parameter (γ, v, α, β) genau?
+% Welches Loss wird verwendet, um die Evidenzparameter zu lernen?
+% Wie wird sichergestellt, dass die Evidenzparameter positiv bleiben?
+% Gibt es Einschränkungen, wann evidenzbasierte Regression sinnvoll ist?
+% Wie wird die finale Vorhersage (ŷ, σ̂^2) berechnet?
+% Werden diese Modelle auch bei Klassifikationsaufgaben eingesetzt?
+% Lässt sich das Modell gut kalibrieren?
+
+% --------------------------------
+% Evidenzbasierte neuronale Netze – Klassifikation
+% --------------------------------
+% Warum wird hier ein CNN-Feature-Extractor (z. B. ResNet-50) verwendet?
+% Kann man andere Backbones statt ResNet nutzen?
+% Wie viele Klassen werden unterstützt?
+% Was ist der Vorteil der Dirichlet-Verteilung gegenüber einer normalen Softmax-Ausgabe?
+% Wodurch entstehen hohe oder niedrige Dirichlet-Parameter α?
+% Wie wird die Unsicherheit aus der Dirichlet-Verteilung genau berechnet?
+% Welche Loss-Funktion wird zum Lernen der Dirichlet-Parameter genutzt?
+% Gibt es spezielle Regularisierungen für evidenzbasierte Klassifikation?
+% Funktioniert das Modell auch für unbalancierte Klassen?
+% Wie verhält sich das Modell bei Out-of-Distribution (OOD)-Daten?
+
+% --------------------------------
+% Bayesianische neuronale Netze – SVI
+% --------------------------------
+% Welche Verteilung wird für die Gewichte angenommen (z. B. Normalverteilung)?
+% Wie werden die Variationsparameter (μ, σ) initialisiert?
+% Wie werden Samples aus den Gewichtsposteriors im Forward-Pass gezogen?
+% Wie groß ist die Anzahl der Samples pro Forward-Pass?
+% Wie empfindlich ist das Training gegenüber der Wahl der ELBO-Gewichtung?
+% Wie lange dauert das Training im Vergleich zu klassischen Netzen?
+% Gibt es eine Trade-off zwischen Genauigkeit und Unsicherheitsquantifizierung?
+% Welche Priorverteilungen werden auf die Gewichte gelegt?
+% Welche Einschränkungen hat SVI bei sehr tiefen Netzen?
+% Wie skaliert SVI bei großen Datensätzen?
+
+% --------------------------------
+% Bayesianische neuronale Netze – HMC
+% --------------------------------
+% Wie viele Samples θ^{(s)} werden typischerweise gezogen?
+% Wie lange dauert das Sampling pro Gewicht?
+% Welche Priors werden auf die Gewichte gelegt?
+% Wie oft muss HMC „warm up“ laufen?
+% Wird No-U-Turn-Sampling (NUTS) oder klassisches HMC verwendet?
+% Ist HMC praktikabel für große Netze (z. B. ResNet-50)?
+% Welche Metriken zeigen die Konvergenz der Samples an?
+% Wofür werden die Gewichts-Samples später verwendet (z. B. Ensemble-Vorhersagen)?
+% Wie wird die Vorhersage-Varianz berechnet?
+% Wie verhält sich HMC bei großen Datensätzen?
+% Gibt es GPU-beschleunigte Implementierungen für HMC?
+% Warum wählt man HMC statt SVI?
+
+% --------------------------------
+% Vergleichende Fragen
+% --------------------------------
+% Wann ist evidenzbasiertes Modellieren besser geeignet als Bayes’sche Verfahren?
+% Welche Methode liefert bessere Unsicherheitsabschätzungen?
+% Sind evidenzbasierte Netze effizienter als Bayes’sche?
+% Lässt sich ein evidenzbasiertes Netz auch Bayes’sch interpretieren?
+% Welche Methode skaliert besser auf große Netze?
+% Gibt es Benchmarks zum Vergleich (Accuracy vs. Calibration vs. Speed)?
+% Welche Methode ist interpretierbarer?
