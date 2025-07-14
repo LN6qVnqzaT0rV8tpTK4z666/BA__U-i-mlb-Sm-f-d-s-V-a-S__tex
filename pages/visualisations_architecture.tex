@@ -10,9 +10,12 @@
 % \needspace{10\baselineskip}
 \subsection*{\gls{Evidenzbasierte neuronale Netze} Regression nach Amini \parencite{amini2020deep}}
 
-\par\noindent\\
+% \par\noindent\\
 
-\scalebox{0.8}{
+\begin{center}
+\begin{minipage}[t]{0.47\textwidth}
+\centering
+\adjustbox{valign=t, scale=0.7}{
     \begin{tikzpicture}[
         node distance=1.5cm and 2.5cm,
         every node/.style={font=\sffamily},
@@ -38,16 +41,41 @@
     \draw[arrow] (output) -- (evidential);
     \draw[arrow] (evidential) -- (predictive);
 
-    \node[align=center, right=1.5cm of output] (params) {
-        \begin{tabular}{l}
-        $\gamma$: Schätzwert für den Mittelwert \\
-        $v$: Stärke der Evidenz \\
-        $\alpha, \beta$: Form-/Skalenparameter \\
-        der Varianzverteilung
-        \end{tabular}
-    };
-\end{tikzpicture}
+    \end{tikzpicture}
 }
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\raggedright
+\small
+\textbf{Details:} \\[6pt]
+\textbf{Input:} \\
+$d$: Eingabedimension \\[4pt]
+
+\textbf{Hidden Layers:} \\
+$n_1$: Neuronen in Layer 1 \\
+$n_2$: Neuronen in Layer 2 \\
+Akt. Funktion: z.\,B. ReLU, Tanh \\
+Dropout-Rate (falls genutzt) \\[4pt]
+
+\textbf{Output Layer:} \\
+4 Neuronen (für Evidenz-Parameter) \\[4pt]
+
+\textbf{Evidenz-Parameter:} \\
+$\gamma$: Schätzwert für Mittelwert \\
+$v$: Stärke der Evidenz \\
+$\alpha$: Formparameter der Varianzverteilung \\
+$\beta$: Skalenparameter der Varianzverteilung \\[4pt]
+
+\textbf{Loss:} \\
+Negative Log-Likelihood + \\
+Evidenz-Regularizer \\
+Regularisierungsgewicht $\lambda$ \\[4pt]
+
+\textbf{Optimizer:} \\
+z.\,B. Adam, Lernrate
+\end{minipage}
+\end{center}
 
 \newpage
 
@@ -58,7 +86,10 @@
 
 \par\noindent\\
 
-\scalebox{0.8}{
+\begin{center}
+\begin{minipage}[t]{0.47\textwidth}
+\centering
+\adjustbox{valign=t, scale=0.8}{
     \begin{tikzpicture}[
         node distance=1.5cm and 2.5cm,
         every node/.style={font=\sffamily},
@@ -80,19 +111,51 @@
     \draw[arrow] (conv1) -- (evidential);
     \draw[arrow] (evidential) -- (predictive);
 
-    % Legend box
-    \node[align=left, right=2.5cm of evidential] (legend) {
-        \begin{tabular}{@{}l@{}}
-        \textbf{Details:} \\
-        - $\boldsymbol{\alpha}$: Dirichlet-Parameter für jede Klasse \\
-        - Vorhersagewahrscheinlichkeit: \\
-        \quad $\hat{p}_c = \frac{\alpha_c}{\sum_j \alpha_j}$ \\
-        - Unsicherheit aus Dirichlet-Varianz ableitbar
-        \end{tabular}
-    };
-
     \end{tikzpicture}
 }
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\raggedright
+\small
+\textbf{Details:} \\[6pt]
+
+\textbf{Input:} \\
+$H, W$: Bildhöhe und -breite \\
+$C$: Anzahl Kanäle (z. B. RGB = 3) \\[4pt]
+
+\textbf{CNN-Backbone:} \\
+Architektur: z. B. ResNet-50 \\
+Anzahl Convolutional Blocks \\
+Kernelgrößen, Filteranzahl \\
+Pooling-Typ (z. B. MaxPooling) \\
+Pretrained (ja/nein) \\[4pt]
+
+\textbf{Fully Connected Layer:} \\
+Größe der FC-Schicht \\
+Aktivierungsfunktion (z. B. ReLU) \\[4pt]
+
+\textbf{Output:} \\
+$\boldsymbol{\alpha}$: Dirichlet-Parameter pro Klasse \\
+Anzahl Klassen $K$ \\[4pt]
+
+\textbf{Vorhersage:} \\
+Erwartungswert: \\
+$\hat{p}_c = \dfrac{\alpha_c}{\sum_j \alpha_j}$ \\[4pt]
+
+\textbf{Unsicherheitsmaße:} \\
+Varianz aus Dirichlet berechenbar \\
+Epistemische Unsicherheit sichtbar \\[4pt]
+
+\textbf{Loss:} \\
+Expected MSE Loss \\
++ KL-Regularizer \\
+Regularisierungsgewicht $\lambda$ \\[4pt]
+
+\textbf{Optimizer:} \\
+z. B. Adam, Lernrate
+\end{minipage}
+\end{center}
 
 \newpage
 
@@ -135,15 +198,15 @@
     \draw[arrow] (output.east) -- ++(1,0) |- (elbo.west);
 
     % Optional: Legende
-    %\node[align=left, below=of predictive] (legend) {
-    %    \begin{tabular}{@{}l@{}}
-    %    \textbf{Wichtige Konzepte:} \\
-    %    - Jedes Gewicht $\theta$ besitzt Variationsparameter $(\mu, \sigma)$ \\
-    %    - Im Forward-Pass werden Gewichte aus $q(\theta)$ gezogen \\
-    %    - SVI minimiert die ELBO: \\
-    %    \quad $\mathrm{ELBO} = \mathbb{E}_{q} [ \log p(y|\theta,x) ] - \mathrm{KL}(q(\theta)\,||\,p(\theta))$
-    %    \end{tabular}
-    %};
+    \node[align=left, below=of predictive] (legend) {
+       \begin{tabular}{@{}l@{}}
+       \textbf{Wichtige Konzepte:} \\
+       - Jedes Gewicht $\theta$ besitzt Variationsparameter $(\mu, \sigma)$ \\
+       - Im Forward-Pass werden Gewichte aus $q(\theta)$ gezogen \\
+       - SVI minimiert die ELBO: \\
+       \quad $\mathrm{ELBO} = \mathbb{E}_{q} [ \log p(y|\theta,x) ] - \mathrm{KL}(q(\theta)\,||\,p(\theta))$
+       \end{tabular}
+    };
 
     \end{tikzpicture}
 }
@@ -191,15 +254,15 @@
     \draw[arrow] (hmc.west) -- ++(-1,0) |- (output.east);
 
     % Optional: Legende
-    %\node[align=left, below=of predictive] (legend) {
-    %    \begin{tabular}{@{}l@{}}
-    %    \textbf{Wichtige Konzepte:} \\
-    %    - HMC zieht Samples aus der wahren Posterior-Verteilung $p(\theta \mid D)$ \\
-    %    - Jeder Forward-Pass nutzt eine gesampelte Menge an Gewichten \\
-    %    - Vorhersagemittel: $\hat{y} = \frac{1}{S} \sum_s y^{(s)}$ \\
-    %    - Vorhersage-Varianz spiegelt Gewichtsunsicherheit wider
-    %    \end{tabular}
-    %};
+    \node[align=left, below=of predictive] (legend) {
+       \begin{tabular}{@{}l@{}}
+       \textbf{Wichtige Konzepte:} \\
+       - HMC zieht Samples aus der wahren Posterior-Verteilung $p(\theta \mid D)$ \\
+       - Jeder Forward-Pass nutzt eine gesampelte Menge an Gewichten \\
+       - Vorhersagemittel: $\hat{y} = \frac{1}{S} \sum_s y^{(s)}$ \\
+       - Vorhersage-Varianz spiegelt Gewichtsunsicherheit wider
+       \end{tabular}
+    };
 
     \end{tikzpicture}
 }
@@ -254,12 +317,14 @@
 
 
 
-
 % Welche Aktivierungsfunktionen werden in den Schichten verwendet?
 
-Verstecke Schichten: Amini 2020 rectified linear unit ReLU-Aktivierungsfunktion \parencit[S.2]]{amini2020deep}
-
-Ausgabeschicht (Evidenzparameter): 
+% → Amini et al. (2020) verwenden:
+%   • Hidden Layers: ReLU‑Aktivierung (z. B. „ReLU“) (Seite 2, oben) 
+%   • Ausgabeschicht:
+%       – Softplus für v, α, β (gewährleistet Positivität)
+%       – Linear für γ (Mittelwertschätzer)
+%   → Quelle: Deep Evidential Regression, Abschnitt 2.2, S. 2 :contentReference[oaicite:10]{index=10}
 
 
 
