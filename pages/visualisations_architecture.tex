@@ -217,84 +217,1317 @@
 % Allgemein – für alle Modelle
 % --------------------------------
 % Wie groß ist der Input-Dimensionalitätsbereich (z. B. Bildgrößen, Featureanzahl)?
+
+% Allgemeine Formeln zur Berechnung der Input-Dimension:
+%
+% Tabellendaten (Vektoren):
+%   Input-Dimension = d
+%   (d = Anzahl der Features)
+%
+% Bilder:
+%   Input-Dimension = H × W × C
+%   H = Höhe, W = Breite, C = Kanäle
+%   Mit Batch:
+%     Input-Dimension = B × C × H × W
+%
+% Zeitreihen:
+%   Input-Dimension = T × d
+%   T = Anzahl Zeitschritte, d = Features pro Schritt
+%
+% Videos:
+%   Input-Dimension = F × H × W × C
+%   F = Anzahl Frames
+%
+% Texte (z. B. NLP-Embeddings):
+%   Input-Dimension = L × e
+%   L = Sequenzlänge, e = Embedding-Dimension
+%
+% Generell:
+%   Input-Dimension = Produkt aller Achsen-Dimensionen
+%   z. B. ∏_{i=1}^k d_i
+%
+% Für einzelne Samples:
+%   Input-Dimension pro Sample = d_sample
+%
+% Für Batches:
+%   Input-Dimension Batch = B × d_sample
+
+
+
+
 % Welche Aktivierungsfunktionen werden in den Schichten verwendet?
+
+Verstecke Schichten: Amini 2020 rectified linear unit ReLU-Aktivierungsfunktion \parencit[S.2]]{amini2020deep}
+
+Ausgabeschicht (Evidenzparameter): 
+
+
+
 % Wird Dropout oder eine andere Regularisierung genutzt?
+
+% → Amini et al. (2020):
+%   • MLP‑Regression: Kein Dropout. Es wird statt dessen ein
+%     evidenzbasierter Regularizer L_R (→ Gleichung 12) eingesetzt
+%     (S. 3–4, Abschnitt 3.3) :contentReference[oaicite:8]{index=8}.
+%   • CNN‑Depth‑Estimation (NYUv2): Spatial Dropout mit p=0.1 über die
+%     Convolutional-Blöcke, verwendet in Baseline‑Experimenten (Supplement S3.2) :contentReference[oaicite:9]{index=9}.
+
+
+
 % Gibt es Batch Normalization oder Layer Normalization?
+
+% → Amini et al. (2020) erwähnen weder BatchNorm noch LayerNorm
+%   im evidenzbasierten Modell explizit.
+%   - MLP-Regression (S. 6, linke Spalte): nur Fully Connected Layers mit ReLU,
+%     keine BatchNorm oder LayerNorm genannt.
+%   - CNN-Depth Estimation nutzt ResNet-50, aber keine zusätzlichen
+%     Normalization Layers werden eingeführt oder angepasst.
+%   → Keine explizite Verwendung von BatchNorm oder LayerNorm im Paper.
+
+
+
 % Welche Verlustfunktion wird optimiert?
+
+% → Amini et al. (2020) optimieren eine kombinierte Loss:
+%   • Negative Log-Likelihood (NLL) der Student’s-T-Verteilung:
+%     L_NLL^{(i)} = - log [ Gamma(...) / Gamma(...) ... ]
+%     (siehe Gleichung (11), S. 4)
+%   • Evidenz-Regularizer:
+%     L_R^{(i)} = | y_i - γ_i | * (2 v_i + α_i)
+%     (siehe Gleichung (12), S. 4)
+%   → Gesamter Loss:
+%     L^{(i)} = L_NLL^{(i)} + λ ⋅ L_R^{(i)}
+%     (Gleichung (13), S. 4)
+%   → Quelle: Amini et al. (2020), S. 4, rechte Spalte.
+
+
+
 % Wie wird die Unsicherheit in der Vorhersage quantifiziert?
+
+% → Amini et al. (2020) modellieren die Unsicherheit via Student’s-T-Verteilung.
+%   • Aleatorische Unsicherheit:
+%       Var_aleatorisch(y) = β / (α - 1)
+%       (S. 4, unter Gleichung (10))
+%   • Epistemische Unsicherheit:
+%       Var_epistemisch(y) = β / [ v ⋅ (α - 1) ]
+%       (S. 4, unter Gleichung (10))
+%   • Gesamt-Unsicherheit:
+%       σ̂² = β / (α - 1) ⋅ (1 + 1/v)
+%       (Gleichung (10), S. 4)
+% → Quelle: Amini et al. (2020), S. 4.
+
+
+
 % Wie werden Hyperparameter (z. B. Schichtbreiten) gewählt?
+
+% → Amini et al. (2020):
+%   • Für UCI-Regression:
+%       - MLP mit 3 Hidden Layers, je 50 Neuronen
+%         (S. 6, linke Spalte, Abschnitt 5.3)
+%   • Für CNN (Depth Estimation):
+%       - ResNet-50 unverändert übernommen
+%         (S. 6, rechte Spalte, Abschnitt 5.4)
+%   • Regularisierungsgewicht λ:
+%       - Grid-Search aus {0.01, 0.1, 1, 10}
+%         (S. 6, linke Spalte)
+%   • Optimizer:
+%       - Adam
+% → Quelle: Amini et al. (2020), S. 6.
+
+
+
 % Gibt es Einschränkungen bei der Modellgröße (Speicher, Rechenzeit)?
+
+% → Amini et al. (2020) nennen keine expliziten Limits.
+%   Implizite Einschränkungen:
+%     • Ausgabeschicht liefert 4 Parameter (γ, v, α, β) pro Zielwert,
+%       wodurch die Output-Dimension größer wird (S. 3, Gleichung (8)).
+%     • Verlustfunktion (Student’s-T) ist komplexer als MSE:
+%         enthält Gamma-Funktionen und Logarithmen (S. 4, Gleichung (11)).
+%     • Kein Monte Carlo Sampling nötig → schneller als BNNs (S. 2, rechte Spalte).
+%     • Bei großen Netzen (z. B. ResNet-50 für Depth Estimation) kann
+%       der Speicherbedarf deutlich steigen (S. 6, rechte Spalte).
+% → Quelle: Amini et al. (2020).
+
+
+
 % Wie robust ist das Modell gegen Ausreißer in den Daten?
+
+% → Amini et al. (2020) erhöhen die Robustheit durch:
+%   • Student’s-T-Verteilung statt Normalverteilung:
+%       - schwerere Tails → weniger empfindlich gegenüber Outliers
+%       (S. 3, Abschnitt 3.2, Gleichung (9))
+%   • Evidenz-Regularizer:
+%       L_R = | y_i – γ_i | ⋅ (2 v_i + α_i)
+%       → verhindert hohe Evidenz bei großen Fehlern
+%       (S. 4, Gleichung (12))
+%   • Experimente zeigen Robustheit in 1D Regression
+%       (Abbildung 2, S. 5)
+% → Quelle: Amini et al. (2020)
+
+
+
 % Wie verhält sich das Modell bei kleinen Datensätzen?
+
+% → Amini et al. (2020):
+%   • Modell zeigt hohe epistemische Unsicherheit, wenn wenig Daten vorhanden sind
+%     (S. 2, rechte Spalte)
+%   • Regularizer verhindert hohe Evidenz bei wenig Daten:
+%       L_R = | y_i – γ_i | ⋅ (2 v_i + α_i)
+%       (S. 4, Gleichung (12))
+%   • Experimente auf kleinen UCI-Datensätzen zeigen gute Kalibrierung,
+%     z. B. Yacht (nur 308 Datenpunkte)
+%     (S. 6, Tabelle 1)
+%   → Allerdings keine Tests auf extrem kleinen Datensätzen (<100 Samples).
+% → Quelle: Amini et al. (2020)
+
+
+
 % Welche Optimizer werden verwendet (Adam, SGD, etc.)?
+
+% → Amini et al. (2020) nutzen Adam:
+%   • UCI Regression:
+%       - Adam Optimizer mit Learning Rate 1e-3
+%         (S. 6, linke Spalte)
+%   • CNN (NYUv2 Depth Estimation):
+%       - ebenfalls Adam, Lernrate nicht explizit genannt
+%         (S. 6, rechte Spalte)
+% → Keine anderen Optimizer wie SGD erwähnt.
+% → Quelle: Amini et al. (2020)
+
+
+
 % Wie wird Early Stopping gehandhabt?
+
+% → Amini et al. (2020) erwähnen Early Stopping nicht explizit.
+%   • Für UCI Regression:
+%       - Training über feste 1.000 Epochen
+%         (S. 6, linke Spalte)
+%   • Für CNN (NYUv2 Depth Estimation):
+%       - keine Angabe zu Early Stopping
+%   → Es scheint kein dynamisches Stoppen (z. B. basierend auf Validierungsverlust)
+%     verwendet zu werden.
+% → Quelle: Amini et al. (2020)
+
+
+
 % Welche Metriken werden für die Evaluation genutzt?
+
+% → Amini et al. (2020) verwenden verschiedene Metriken:
+%   • RMSE:
+%       - Standard-Metrik für Regression
+%       - S. 6, Tabelle 1
+%   • Negative Log-Likelihood (NLL):
+%       - bewertet probabilistische Vorhersagen
+%       - S. 6, Tabelle 1
+%   • MAE:
+%       - für Depth Estimation (NYUv2)
+%       - S. 6, rechte Spalte
+%   • Log-Probability:
+%       - für Depth Estimation
+%       - S. 6, rechte Spalte
+%   • Visuelle Unsicherheitsplots:
+%       - Mean ± 2σ-Bänder bei 1D Regression
+%       - S. 5, Abbildung 2
+%   → Keine expliziten Calibration-Metriken (z. B. ECE) genannt.
+% → Quelle: Amini et al. (2020)
+
+
 
 % --------------------------------
 % Evidenzbasierte neuronale Netze – Regression
 % --------------------------------
 % Wie groß sind n_1 und n_2 typischerweise?
+
+% → Amini et al. (2020) verwenden für UCI Regression:
+%   • Fully Connected Network mit 3 Hidden Layers,
+%     jede Layer mit 50 Neuronen
+%     (S. 6, linke Spalte, Abschnitt 5.3)
+%   → Für n_1 und n_2 gilt also:
+%       n_1 = 50
+%       n_2 = 50
+%   • Für CNN-Experimente (z. B. NYUv2) werden andere Architekturen
+%     genutzt (ResNet-50) → keine festen n_1/n_2.
+% → Quelle: Amini et al. (2020)
+
+
+
 % Welche Aktivierungsfunktion wird in hidden layers verwendet?
+
+% → Amini et al. (2020) nutzen ReLU:
+%   • Für UCI Regression:
+%       - Fully Connected Layers mit ReLU
+%         (S. 6, linke Spalte)
+%   • Für CNN (NYUv2):
+%       - ResNet-50 wird unverändert übernommen,
+%         standardmäßig mit ReLU nach Conv-Layers
+%         (S. 6, rechte Spalte)
+% → Quelle: Amini et al. (2020)
+
+
+
 % Warum genau vier Neuronen in der Ausgabeschicht?
+
+% → Amini et al. (2020) geben vier Parameter aus:
+%     γ     = Schätzung des Mittelwerts von y
+%     v     = Stärke der Evidenz
+%     α, β  = Parameter der Varianzverteilung
+%   → Diese vier Werte definieren die hierarchische
+%     Student’s-T-Verteilung, die sowohl
+%     aleatorische als auch epistemische Unsicherheit
+%     modelliert.
+%   → Ohne alle vier Parameter wäre keine vollständige
+%     Unsicherheitsmodellierung möglich.
+% → Quelle: Amini et al. (2020), S. 3–4, Gleichungen (8)–(10)
+
+
+
 % Was bedeuten die vier Evidenz-Parameter (γ, v, α, β) genau?
+
+% → Amini et al. (2020):
+%   • γ:
+%       - Erwartungswert (Mittelwert) der Zielvariablen y
+%         (S. 3, Gleichung (8))
+%   • v:
+%       - Stärke der Evidenz (Anzahl virtueller Beobachtungen)
+%         → höheres v = geringere epistemische Unsicherheit
+%         (S. 3, rechte Spalte)
+%   • α:
+%       - Formparameter der Gamma-Verteilung für die Varianz
+%         → steuert Sicherheit in der Varianzschätzung
+%         (S. 3, Gleichung (9))
+%   • β:
+%       - Skalenparameter der Gamma-Verteilung
+%         → beeinflusst die Breite der Varianzverteilung
+%         (S. 3, Gleichung (9))
+%   → Alle vier Parameter definieren die hierarchische Student’s-T-Verteilung.
+%     Predictive variance:
+%       σ̂² = β / (α - 1) ⋅ (1 + 1/v)
+%       (S. 4, Gleichung (10))
+% → Quelle: Amini et al. (2020)
+
+
+
 % Welches Loss wird verwendet, um die Evidenzparameter zu lernen?
+
+% → Amini et al. (2020) kombinieren zwei Komponenten:
+%   • Negative Log-Likelihood (NLL) der Student’s-T-Verteilung:
+%       L_NLL = –log [ ... ] (S. 4, Gleichung (11))
+%   • Evidenz-Regularizer:
+%       L_R = |y – γ| ⋅ (2 v + α) (S. 4, Gleichung (12))
+%   • Gesamt-Loss:
+%       L = L_NLL + λ ⋅ L_R (S. 4, Gleichung (13))
+%   → Der Regularizer verhindert überhöhte Evidenz bei großen Fehlern.
+% → Quelle: Amini et al. (2020)
+
+
+
 % Wie wird sichergestellt, dass die Evidenzparameter positiv bleiben?
+
+% Wie wird sichergestellt, dass die Evidenzparameter positiv bleiben?
+% → Amini et al. (2020) verwenden Softplus-Aktivierung:
+%     Softplus(z) = log(1 + e^{z})
+%   • Für v, α und β:
+%       → Softplus garantiert Positivität
+%       (S. 3, rechte Spalte)
+%   • Für γ:
+%       → keine Einschränkung, linearer Output erlaubt auch negative Werte
+% → Quelle: Amini et al. (2020)
+
+
+
 % Gibt es Einschränkungen, wann evidenzbasierte Regression sinnvoll ist?
+
+% → Amini et al. (2020) nennen keine harten Limits,
+%   aber es gelten implizite Einschränkungen:
+%   • Nur für kontinuierliche Regressionsziele geeignet,
+%     nicht für reine Klassifikation.
+%   • Sehr kleine Datensätze → hohe Unsicherheit,
+%     ggf. wenig praxistauglich.
+%   • Modell nimmt Student’s-T-Verteilung an;
+%     bei stark anderen Daten evtl. unpassend.
+%   • Speicherbedarf ↑ bei hochdimensionalen Outputs
+%     (z. B. Pixelweise Regression).
+%   • Keine garantierte perfekte Kalibrierung.
+% → Quelle: Amini et al. (2020)
+
+
+
 % Wie wird die finale Vorhersage (ŷ, σ̂^2) berechnet?
+
+% → Amini et al. (2020):
+%   • Mittelwert:
+%       ŷ = γ
+%       (S. 3, Gleichung (8))
+%   • Varianz:
+%       σ̂² = β / (α – 1) ⋅ (1 + 1/v)
+%       (S. 4, Gleichung (10))
+%     → setzt sich zusammen aus:
+%         – aleatorischer Varianz: β / (α – 1)
+%         – epistemischer Varianz: β / [v ⋅ (α – 1)]
+%   → Alle Parameter stammen direkt aus der Netzwerkausgabe.
+% → Quelle: Amini et al. (2020)
+
+
+
 % Werden diese Modelle auch bei Klassifikationsaufgaben eingesetzt?
+
+% → Ja, evidenzbasierte Modelle werden auch für Klassifikation genutzt.
+%   • Amini et al. (2020) behandeln in diesem Paper Regression,
+%     verweisen aber auf evidenzbasierte Klassifikation.
+%     (S. 2, rechte Spalte)
+%   • Für Klassifikation:
+%       - Dirichlet-Verteilung statt Student’s-T
+%       - Ausgabe: α-Parameter für jede Klasse
+%       → modelliert Unsicherheit in Klassifikationsaufgaben.
+%   → Prinzip bleibt gleich: Modellierung der Evidenz
+%     zur Quantifizierung epistemischer Unsicherheit.
+% → Quelle: Amini et al. (2020)
+
+
+
 % Lässt sich das Modell gut kalibrieren?
+
+% → Amini et al. (2020):
+%   • Modell liefert laut Autoren gut kalibrierte Unsicherheiten,
+%     ohne Sampling.
+%     (S. 2, rechte Spalte)
+%   • Hierarchische Student’s-T-Verteilung ermöglicht Unterscheidung
+%     zwischen aleatorischer und epistemischer Unsicherheit.
+%   • Evidenz-Regularizer verhindert Überkonfidenz bei großen Fehlern
+%     (S. 4, Gleichung (12))
+%   • Keine expliziten Calibration Scores (z. B. ECE) angegeben.
+%   • Abbildung 2 (S. 5) zeigt breite Unsicherheitsbänder
+%     → deutet auf gute Kalibrierung hin.
+% → Quelle: Amini et al. (2020)
+
+
 
 % --------------------------------
 % Evidenzbasierte neuronale Netze – Klassifikation
 % --------------------------------
 % Warum wird hier ein CNN-Feature-Extractor (z. B. ResNet-50) verwendet?
+
+% → In evidenzbasierter Klassifikation wird ein CNN genutzt, weil:
+%   • CNNs lernen räumliche Strukturen in Bildern
+%     → wichtig für Klassifikation.
+%   • Reduzierung der Eingabedimension
+%     → weniger Parameter, effizienter.
+%   • Transfer Learning möglich:
+%     vortrainierte Backbones (z. B. ResNet-50) liefern
+%     gute Features, sparen Training.
+%   • CNN lässt sich gut mit evidenzbasierten Köpfen
+%     kombinieren, die Dirichlet-Parameter ausgeben.
+% → Quelle: Amini et al. (2020), S. 2 (indirekt) und ICML 2020 Workshop Paper.
+
+
+
 % Kann man andere Backbones statt ResNet nutzen?
+
+% → Ja, evidenzbasierte Klassifikation ist flexibel:
+%   • Amini et al. (2020) sagen explizit, dass ihre Methode
+%     auf beliebige Feature-Extractor aufgesetzt werden kann.
+%     (S. 2, rechte Spalte)
+%   • Mögliche Alternativen:
+%       - VGG, DenseNet, EfficientNet, ViT, MobileNet usw.
+%   • Einzige Voraussetzung:
+%       - Anpassung der Fully Connected evidenzbasierten
+%         Ausgabeschicht an die Feature-Dimension des gewählten Backbones.
+% → Quelle: Amini et al. (2020)
+
+
+
 % Wie viele Klassen werden unterstützt?
+
+% → Amini et al. (2020) legen keine feste Grenze fest.
+%   • Jede Klasse erhält einen Evidenz-Parameter α_k.
+%   • Die Ausgabeschicht hat K Neuronen für K Klassen.
+%   • Prinzipiell beliebig viele Klassen möglich.
+%   • Praktische Einschränkungen:
+%       - Speicherbedarf ↑ bei vielen Klassen
+%       - Training wird langsamer
+%   → Beispiel: ImageNet mit 1000 Klassen wäre möglich.
+% → Quelle: Amini et al. (2020), S. 2 (indirekt)
+
+
+
 % Was ist der Vorteil der Dirichlet-Verteilung gegenüber einer normalen Softmax-Ausgabe?
+
+% → Vorteile der Dirichlet-Verteilung:
+%   • Modelliert epistemische Unsicherheit explizit:
+%       - kleine α-Werte → hohe Unsicherheit
+%       - große α-Werte → hohe Sicherheit
+%   • Softmax liefert nur Punktvorhersagen ohne Unsicherheitsinformation.
+%   • Erwartungswert der Dirichlet-Verteilung entspricht Softmax:
+%       p̂_k = α_k / ∑_j α_j
+%   • Dirichlet erlaubt robustes Verhalten bei Out-of-Distribution-Daten.
+%   • Bessere Kalibrierung möglich.
+% → Quelle: Amini et al. (2020), S. 2 (indirekt) und ICML 2020 Workshop Paper
+
+
+
 % Wodurch entstehen hohe oder niedrige Dirichlet-Parameter α?
+
+% → Amini et al. (2020):
+%   • Hohe α-Werte:
+%       - Modell ist sicher, Muster klar erkennbar.
+%       - Viele „virtuelle Beobachtungen“ für eine Klasse.
+%   • Niedrige α-Werte:
+%       - Modell ist unsicher, Input ambig oder OOD.
+%       - Dirichlet-Verteilung wird flach → hohe epistemische Unsicherheit.
+%   • Zusammenhang:
+%       α_k = Softplus(f_k(x)) + 1
+%       → hohe Logits → hohe α-Werte.
+%   • Summe der α-Werte = Gesamt-Evidenz.
+% → Quelle: Amini et al. (2020), S. 2 (indirekt), und ICML 2020 Workshop Paper.
+
+
+
 % Wie wird die Unsicherheit aus der Dirichlet-Verteilung genau berechnet?
+
+% → Amini et al. (2020):
+%   • Erwartungswert der Klassenwahrscheinlichkeit:
+%       p̂_k = α_k / ∑_j α_j
+%   • Varianz der Klassenwahrscheinlichkeit:
+%       Var(p_k) = [α_k ⋅ (S – α_k)] / [S² ⋅ (S + 1)]
+%       mit S = ∑_j α_j
+%   • Gesamt-Unsicherheit oft als Summe der Varianzen
+%       oder über Entropy berechnet.
+%   • Geringes S → hohe epistemische Unsicherheit.
+% → Quelle: Amini et al. (2020), S. 2 (indirekt), und ICML 2020 Workshop Paper.
+
+
+
 % Welche Loss-Funktion wird zum Lernen der Dirichlet-Parameter genutzt?
+
+% → Amini et al. (2020) nutzen eine Evidential Loss:
+%   • Expected MSE:
+%       L_MSE = ∑_k (y_k – α_k / S)²
+%       mit S = ∑_j α_j
+%   • KL-Regularizer:
+%       L_KL = KL[ Dir(α) || Dir(1) ]
+%       → verhindert Überkonfidenz bei Unsicherheit.
+%   • Gesamt-Loss:
+%       L = L_MSE + λ ⋅ L_KL
+%   → Vorteil gegenüber Cross-Entropy:
+%       - modelliert epistemische Unsicherheit explizit.
+% → Quelle: Amini et al. (ICML 2020 Workshop Paper)
+
+
+
 % Gibt es spezielle Regularisierungen für evidenzbasierte Klassifikation?
+
+% → Ja, Amini et al. (2020) nutzen spezielle Regularisierungen:
+%   • KL-Regularizer:
+%       L_KL = KL[ Dir(α) || Dir(1) ]
+%       → verhindert ungerechtfertigt hohe Evidenz
+%         und Überkonfidenz.
+%   • Expected MSE Loss wirkt ebenfalls regulierend,
+%     da große Fehler zu weniger Evidenz führen.
+%   • L2-Regularisierung optional, aber nicht evidenzspezifisch.
+% → Quelle: Amini et al. (ICML 2020 Workshop Paper)
+
+
+
 % Funktioniert das Modell auch für unbalancierte Klassen?
+
+% Funktioniert das Modell auch für unbalancierte Klassen?
+% → Ja, evidenzbasierte Klassifikation funktioniert grundsätzlich auch
+%   bei unbalancierten Klassen:
+%   • Geringe Evidenz bei seltenen Klassen führt zu hoher
+%     epistemischer Unsicherheit → Modell bleibt vorsichtig.
+%   • KL-Regularizer verhindert Überkonfidenz.
+%   • Allerdings keine explizite Berücksichtigung von
+%     Class Imbalance (z. B. keine Class Weights in der Loss).
+%   → Praktischer Workaround:
+%       Class Weights in die MSE-Loss integrieren.
+% → Quelle: Amini et al. (ICML 2020 Workshop Paper, indirekt)
+
+
+
 % Wie verhält sich das Modell bei Out-of-Distribution (OOD)-Daten?
+
+% → Amini et al. (2020):
+%   • Bei OOD-Daten liefert das Modell niedrige α-Werte:
+%       → geringe Gesamtevidenz S → hohe epistemische Unsicherheit.
+%   • Die Dirichlet-Verteilung wird flach:
+%       - keine dominierende Klasse
+%       - Modell signalisiert „weiß es nicht“
+%   • KL-Regularizer zwingt das Modell bei OOD-Daten nahe an
+%     eine uniforme Dirichlet-Verteilung → verhindert falsche Sicherheit.
+%   • Experimente zeigen:
+%       - OOD-Samples → geringe Evidenz, hohe Entropie.
+% → Quelle: Amini et al. (ICML 2020 Workshop Paper)
+
+
 
 % --------------------------------
 % Bayesianische neuronale Netze – SVI
 % --------------------------------
 % Welche Verteilung wird für die Gewichte angenommen (z. B. Normalverteilung)?
+
+% In Bayesianischen neuronalen Netzen, die mit Stochastic Variational Inference (SVI) trainiert werden, 
+% nimmt man häufig eine Normalverteilung für die Gewichte an:
+%
+% w ~ N(μ, σ²)
+%
+% wobei μ und σ Variationalparameter sind, die gelernt werden.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1615, Equation (3).
+
+
+
 % Wie werden die Variationsparameter (μ, σ) initialisiert?
+%
+% Üblicherweise wird μ (der Mittelwert) ähnlich wie in klassischen Netzen initialisiert,
+% z. B. nach He- oder Xavier-Initialisierung, oft aber einfach mit kleinen Zufallswerten nahe 0.
+%
+% Für σ (bzw. oft log(σ)) wird häufig ein kleiner Wert gewählt, z. B. log(σ) = -5,
+% damit die anfängliche Varianz klein ist und das Netz sich zunächst ähnlich
+% wie ein deterministisches Netz verhält.
+%
+% Beispiel (Blundell et al., 2015):
+%   μ ~ N(0, 0.1²)
+%   log(σ) = -5
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1616.
+
+
+
 % Wie werden Samples aus den Gewichtsposteriors im Forward-Pass gezogen?
+%
+% Samples aus dem Posterior der Gewichte werden meist per Reparametrisierungstrick gezogen:
+%
+%     w = μ + σ * ε
+%
+% wobei ε ~ N(0, 1) standardnormal verteilt ist.
+%
+% Das ermöglicht, Gradienten durch das Sampling hindurch zu berechnen,
+% was für das Training mit Stochastic Variational Inference entscheidend ist.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1616, Equation (5).
+
+
+
 % Wie groß ist die Anzahl der Samples pro Forward-Pass?
+
+% Üblicherweise wird pro Forward-Pass nur ein Sample aus dem Posterior gezogen
+% (also 1 Sample pro Mini-Batch), um Rechenaufwand zu sparen.
+%
+% Mehrere Samples pro Forward-Pass (z. B. 5 oder 10) können genutzt werden,
+% um die Schätzung der Loss-Funktion (ELBO) zu stabilisieren,
+% erhöhen aber die Rechenzeit.
+%
+% In Blundell et al. (2015) wurde meist 1 Sample pro Forward-Pass verwendet.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1617.
+
+
+
 % Wie empfindlich ist das Training gegenüber der Wahl der ELBO-Gewichtung?
+
+% Die ELBO setzt sich zusammen aus:
+%    - Likelihood-Term (Datenanpassung)
+%    - KL-Divergenz-Term (Regularisierung der Gewichtsverteilung)
+%
+% Die Gewichtung des KL-Terms (oft mit Faktor β skaliert) beeinflusst stark,
+% wie stark das Modell Unsicherheit abbildet:
+%
+%    - Zu niedriges β → Modell ignoriert die Unsicherheit (übermäßiges Overfitting)
+%    - Zu hohes β → Modell wird zu stark regularisiert, lernt kaum die Daten
+%
+% Das Training ist daher empfindlich gegenüber der Wahl von β,
+% weshalb in der Praxis oft β-Annealing (langsames Hochfahren von β) genutzt wird.
+%
+% Beispiel:
+%    β ∈ [0.01, 1.0], oft heuristisch gewählt.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1617-1618.
+% Higgins, Irina, et al. "beta-VAE: Learning Basic Visual Concepts with a Constrained Variational Framework."
+% ICLR, 2017.
+
+
+
 % Wie lange dauert das Training im Vergleich zu klassischen Netzen?
+
+% Das Training Bayesianischer neuronaler Netze ist meist deutlich langsamer
+% als bei klassischen Netzen, weil:
+%
+%   - Für jedes Gewicht zusätzlich μ und σ gelernt werden müssen.
+%   - Sampling im Forward-Pass (Reparametrisierung) nötig ist.
+%   - Die KL-Divergenz in die Loss-Funktion eingeht und berechnet werden muss.
+%
+% In Blundell et al. (2015) lag der Trainingsaufwand bei ca. dem 2- bis 3-fachen
+% eines klassischen Netzes gleicher Größe.
+%
+% Bei größeren Netzen kann der Faktor auch höher liegen, besonders wenn
+% mehrere Samples pro Forward-Pass genutzt werden.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1618
+
+
+
 % Gibt es eine Trade-off zwischen Genauigkeit und Unsicherheitsquantifizierung?
+
+% Gibt es einen Trade-off zwischen Genauigkeit und Unsicherheitsquantifizierung?
+%
+% Ja, es gibt oft einen Trade-off:
+%
+%   - Modelle mit starker Regularisierung (hohem KL-Gewicht) bilden Unsicherheit besser ab,
+%     können aber an Vorhersagegenauigkeit verlieren.
+%
+%   - Modelle mit schwacher Regularisierung (niedrigem KL-Gewicht) erreichen oft höhere Genauigkeit,
+%     neigen aber zu übermäßig selbstsicheren Vorhersagen und schlechterer Unsicherheitsabschätzung.
+%
+% Ziel ist ein Gleichgewicht:
+%   - Hohe Genauigkeit bei gleichzeitig sinnvoller Quantifizierung von Unsicherheit.
+%
+% Dieser Trade-off hängt stark von der Wahl des ELBO-Gewichts (z. B. β) ab.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1618.
+% Kendall, Alex, and Yarin Gal. "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?"
+% NeurIPS, 2017.
+
+
+
 % Welche Priorverteilungen werden auf die Gewichte gelegt?
+%
+% Häufig verwendete Priorverteilungen für die Gewichte sind:
+%
+%   - Standard-Normalverteilung:
+%         w ~ N(0, 1)
+%
+%   - Normalverteilungen mit kleinerer Varianz, z. B.:
+%         w ~ N(0, 0.1²)
+%
+%   - Laplace-Verteilung (fördert Sparsity):
+%         p(w) ∝ exp(-λ |w|)
+%
+%   - Mixture-of-Gaussians (ermöglicht komplexere Posterior-Formen):
+%         p(w) = π * N(0, σ₁²) + (1-π) * N(0, σ₂²)
+%
+% Die Wahl der Prior hat großen Einfluss auf Regularisierung und Unsicherheitsmodellierung.
+% Standard ist meist die Normalverteilung.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1616.
+% Molchanov, Dmitry, et al. "Variational Dropout Sparsifies Deep Neural Networks."
+% ICML, 2017.
+
+
+
 % Welche Einschränkungen hat SVI bei sehr tiefen Netzen?
+%
+% SVI hat bei sehr tiefen Netzen folgende Einschränkungen:
+%
+%   - Hoher Speicherverbrauch, da pro Gewicht μ und σ gespeichert werden müssen.
+%   - Längere Trainingszeit wegen Sampling und KL-Berechnungen in jeder Schicht.
+%   - Instabilität durch hohe Varianz der Gradienten (insbesondere bei vielen Layern).
+%   - Mean-Field-Approximation oft zu simpel, um komplexe Korrelationen
+%     in tiefen Netzen gut abzubilden.
+%
+% In der Praxis wird SVI bei tiefen Netzen daher selten unverändert eingesetzt,
+% sondern oft kombiniert mit sparsamen Parametrisierungen oder speziellen Architekturen.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% ICML, 2015, p. 1618-1619.
+% Louizos, Christos, et al. "Multiplicative Normalizing Flows for Variational Bayesian Neural Networks."
+% ICML, 2017.
+
+
+
 % Wie skaliert SVI bei großen Datensätzen?
+%
+% SVI ist prinzipiell gut skalierbar, weil:
+%
+%   - Die ELBO (Loss-Funktion) lässt sich stochastisch schätzen,
+%     d.h. Berechnungen erfolgen auf Mini-Batches statt auf dem gesamten Datensatz.
+%
+%   - Die KL-Divergenz ist unabhängig von der Batch-Größe und verursacht
+%     daher keine zusätzlichen Kosten pro Datenpunkt.
+%
+% Einschränkungen:
+%   - Sampling in jedem Forward-Pass erhöht die Rechenzeit gegenüber klassischen Netzen.
+%   - Sehr große Netze (viele Parameter) verursachen hohen Speicherbedarf,
+%     da μ und σ für jedes Gewicht gespeichert werden müssen.
+%
+% Insgesamt skaliert SVI bei großen Datensätzen besser als klassische
+% MCMC-Methoden, ist aber langsamer als deterministische Netze.
+%
+% Quelle:
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% ICML, 2015, p. 1615-1616.
+% Kingma, Diederik P., and Max Welling. "Auto-Encoding Variational Bayes."
+% ICLR, 2014.
+
+
 
 % --------------------------------
 % Bayesianische neuronale Netze – HMC
 % --------------------------------
 % Wie viele Samples θ^{(s)} werden typischerweise gezogen?
+%
+% Bei Hamiltonian Monte Carlo (HMC) hängt die Anzahl der gezogenen Samples stark
+% von der Netzwerkgröße und vom gewünschten Konfidenzniveau ab.
+%
+% Typisch sind:
+%    - Einige hundert bis wenige tausend Samples (z. B. 500 – 5000),
+%      um eine stabile Schätzung der Posterior-Verteilung zu erhalten.
+%
+% Allerdings:
+%    - Hohe Rechenkosten pro Sample → HMC ist bei großen Netzen oft nicht praktikabel.
+%    - Oft wird zusätzlich „Burn-in“ verworfen (z. B. die ersten 10-50 % der Samples).
+%
+% Beispiel aus Literatur:
+%    Neal (1996) nutzte 500 – 1000 Posterior-Samples in kleinen Netzen.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996, p. 67-68.
+
+
+
 % Wie lange dauert das Sampling pro Gewicht?
+%
+% Das Sampling eines einzelnen Gewichts (bzw. eines kompletten Parametervektors)
+% bei HMC ist relativ teuer, weil:
+%
+%   - Für jeden Sample mehrere Leapfrog-Schritte nötig sind,
+%     um die Hamiltonsche Dynamik zu simulieren.
+%
+%   - Jeder Leapfrog-Schritt eine komplette Forward- und Backward-Pass
+%     durch das Netz benötigt (Gradientenberechnung).
+%
+% In kleinen Netzen kann ein Sample wenige Sekunden dauern,
+% bei großen Netzen auch Minuten pro Sample.
+%
+% Beispiel aus Neal (1996):
+%    - Für kleine Netze (~100 Gewichte) lagen die Sampling-Zeiten
+%      bei mehreren Sekunden pro Sample.
+%
+% Fazit:
+% HMC ist sehr präzise, aber extrem rechenaufwendig und skaliert schlecht
+% bei großen Netzen.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996, p. 70-71.
+
+
+
 % Welche Priors werden auf die Gewichte gelegt?
+%
+% In Bayesianischen neuronalen Netzen mit HMC werden typischerweise folgende Priors genutzt:
+%
+%   - Normalverteilung (am häufigsten):
+%         w ~ N(0, σ²)
+%     → Fördert kleine Gewichte und wirkt regularisierend.
+%
+%   - Laplace-Verteilung:
+%         p(w) ∝ exp(-λ |w|)
+%     → Fördert Sparsity (viele Gewichte nahe 0).
+%
+%   - Hierarchische Priors:
+%         Z. B. σ selbst als Zufallsvariable (Automatic Relevance Determination, ARD).
+%
+% Standard in vielen Arbeiten (z. B. Neal, 1996) ist die Standard-Normalverteilung:
+%         w ~ N(0, 1)
+%
+% Die Wahl des Priors beeinflusst die Regularisierung und die Glattheit
+% der gelernten Funktionen erheblich.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996, p. 32-35.
+
+
+
 % Wie oft muss HMC „warm up“ laufen?
+%
+% HMC benötigt eine Warm-up-Phase (auch Burn-in genannt), um:
+%   - die Schrittweite (Step Size) zu justieren
+%   - die Mass Matrix an die Posterior-Geometrie anzupassen
+%
+% Üblich:
+%   - ca. 10 % bis 50 % der geplanten Samples werden als Warm-up verworfen.
+%   - Beispiel:
+%         Bei 2000 Samples → oft 500–1000 Warm-up-Samples.
+%
+% Zu wenig Warm-up kann schlechte Durchmischung und unzuverlässige Posterior-Samples verursachen.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996, p. 69-70.
+% Betancourt, Michael. "A Conceptual Introduction to Hamiltonian Monte Carlo."
+% arXiv:1701.02434,  2017.
+
+
+
 % Wird No-U-Turn-Sampling (NUTS) oder klassisches HMC verwendet?
+%
+% Beides ist möglich, aber:
+%
+%   - Klassisches HMC:
+%       • feste Anzahl Leapfrog-Schritte
+%       • feste Schrittweite (Step Size)
+%       → erfordert manuelle Abstimmung der Parameter
+%
+%   - No-U-Turn Sampler (NUTS):
+%       • bestimmt automatisch die Trajektorienlänge,
+%       • passt die Schrittweite adaptiv an.
+%       → braucht weniger Hand-Tuning und liefert oft effizientere Samples.
+%
+% Bei modernen Anwendungen (z. B. Stan, PyMC) wird meist NUTS verwendet,
+% weil es stabiler und oft schneller konvergiert.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996.
+% Hoffman, Matthew D., and Andrew Gelman. "The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo."
+% JMLR, 2014.
+
+
+
 % Ist HMC praktikabel für große Netze (z. B. ResNet-50)?
+%
+% HMC ist für große Netze wie ResNet-50 in der Praxis kaum einsetzbar, weil:
+%
+%   - Extrem hoher Rechenaufwand:
+%         Jeder HMC-Schritt benötigt mehrere Forward- und Backward-Passes.
+%
+%   - Hoher Speicherbedarf:
+%         Für jeden Sample muss der gesamte Parametervektor bewegt werden.
+%
+%   - Schlechte Skalierung:
+%         Die Anzahl Dimensionen (Gewichte) liegt bei ResNet-50 bei mehreren Millionen,
+%         was die Effizienz von HMC stark reduziert.
+%
+%   - Lange Sampling-Zeiten:
+%         Ein einziges Sample kann Minuten bis Stunden dauern.
+%
+% Fazit:
+%   → HMC liefert sehr präzise Posterior-Samples,
+%      ist aber für große Netze praktisch nicht skalierbar.
+%   → Daher werden bei großen Netzen meist Variationsmethoden (z. B. SVI) bevorzugt.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996.
+% Betancourt, Michael. "A Conceptual Introduction to Hamiltonian Monte Carlo."
+% arXiv:1701.02434, 2017.
+
+
+
 % Welche Metriken zeigen die Konvergenz der Samples an?
+%
+% Um die Konvergenz der HMC-Samples zu prüfen, nutzt man u. a.:
+%
+%   - R̂ (Potential Scale Reduction Factor, Gelman-Rubin-Diagnose):
+%         • Soll nahe 1 liegen (z. B. R̂ < 1.1).
+%         • Zeigt an, ob mehrere Ketten auf dieselbe Verteilung konvergieren.
+%
+%   - Effective Sample Size (ESS):
+%         • Gibt an, wie viele unabhängige Samples effektiv vorliegen.
+%         • Niedriger ESS → hohe Autokorrelation → schlechte Durchmischung.
+%
+%   - Trace Plots:
+%         • Visuelle Kontrolle, ob Ketten stabil um einen konstanten Mittelwert oszillieren.
+%
+%   - Autokorrelationsplots:
+%         • Zeigen, wie stark die Samples voneinander abhängig sind.
+%
+% Diese Metriken sind entscheidend, um sicherzustellen,
+% dass die Posterior-Samples tatsächlich die Zielverteilung repräsentieren.
+%
+% Quelle:
+% Gelman, Andrew, et al. "Bayesian Data Analysis."
+% CRC Press, 2013, Chapter 11.
+% Betancourt, Michael. "A Conceptual Introduction to Hamiltonian Monte Carlo."
+% arXiv:1701.02434,  2017.
+
+
+
 % Wofür werden die Gewichts-Samples später verwendet (z. B. Ensemble-Vorhersagen)?
+%
+% Die gezogenen Gewichts-Samples werden genutzt für:
+%
+%   - Bayesian Model Averaging:
+%         • Für jede Vorhersage werden mehrere Gewichtssamples genutzt,
+%           deren Vorhersagen gemittelt werden.
+%         • Liefert robustere und stabilere Vorhersagen.
+%
+%   - Unsicherheitsquantifizierung:
+%         • Die Streuung der Vorhersagen über die Samples
+%           zeigt epistemische Unsicherheit an.
+%
+%   - Posterior-Analysen:
+%         • Untersuchung der Gewichtsverteilungen zur Interpretation des Modells.
+%
+% Praktisch ergibt sich eine Art „Bayesian Ensemble“:
+%     → Die Vorhersage ist ein Mittel über viele Netzwerke,
+%        die alle aus dem Posterior gezogen wurden.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996, p. 75-76.
+% Gal, Yarin. "Uncertainty in Deep Learning." PhD thesis, University of Cambridge, 2016.
+
+
+
 % Wie wird die Vorhersage-Varianz berechnet?
+%
+% Die Vorhersage-Varianz setzt sich zusammen aus:
+%
+%   - Epistemische Unsicherheit:
+%         • Streuung der Vorhersagen über verschiedene Gewichtssamples.
+%         • Berechnet als Varianz der Mittelwerte:
+%
+%           Var_epistemic(y) ≈ (1/S) * Σ_{s=1}^S (f(x; θ^{(s)}) - μ_pred)^2
+%
+%         wobei:
+%            • f(x; θ^{(s)}) = Vorhersage mit Sample θ^{(s)}
+%            • μ_pred = Mittelwert der Vorhersagen
+%
+%   - Aleatorische Unsicherheit:
+%         • Wenn das Modell zusätzlich eine Datenrauschen-Varianz σ² ausgibt,
+%           wird diese zu Var_epistemic addiert.
+%
+% Gesamte Vorhersage-Varianz:
+%
+%     Var_total(y) = Var_epistemic(y) + E[σ²(x)]
+%
+% Damit lässt sich abschätzen, wie sicher das Modell bei der Vorhersage ist.
+%
+% Quelle:
+% Gal, Yarin. "Uncertainty in Deep Learning." PhD thesis, University of Cambridge, 2016.
+% Kendall, Alex, and Yarin Gal. "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?"
+% NeurIPS, 2017.
+
+
+
 % Wie verhält sich HMC bei großen Datensätzen?
+%
+% Klassisches HMC skaliert schlecht bei großen Datensätzen, weil:
+%
+%   - Jeder HMC-Schritt Gradienten über den gesamten Datensatz benötigt
+%     → keine Mini-Batches möglich.
+%
+%   - Speicher- und Rechenkosten stark ansteigen.
+%
+% Folge:
+%   - Lange Laufzeiten (Stunden bis Tage bei großen Datenmengen).
+%   - Praktisch oft unbrauchbar für große Datasets.
+%
+% Alternative:
+%   - Stochastic Gradient HMC (SGHMC), das Mini-Batches nutzt,
+%     skaliert besser, ist aber nur eine Approximation.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996.
+% Chen, Tianqi, et al. "Stochastic Gradient Hamiltonian Monte Carlo."
+% ICML, 2014.
+
+
+
 % Gibt es GPU-beschleunigte Implementierungen für HMC?
+%
+% Ja, es gibt GPU-beschleunigte Implementierungen für HMC, z. B.:
+%
+%   - Pyro (basierend auf PyTorch)
+%       • bietet HMC und NUTS mit GPU-Support.
+%
+%   - NumPyro (basierend auf JAX)
+%       • sehr schnelle HMC- und NUTS-Implementierung auf GPU und TPU.
+%
+%   - TensorFlow Probability
+%       • unterstützt HMC mit GPU-Beschleunigung.
+%
+% Einschränkungen:
+%   - Hoher Speicherbedarf bleibt bestehen, vor allem bei großen Netzen.
+%   - Klassisches HMC bleibt für große Datensätze schwer skalierbar,
+%     auch mit GPU.
+%
+% Fazit:
+% → GPU kann HMC erheblich beschleunigen,
+%    löst aber nicht alle Skalierungsprobleme bei großen Netzen.
+%
+% Quelle:
+% Phan, Du et al. "Composable Effects for Flexible and Accelerated Probabilistic Programming in NumPyro."
+% ICML, 2019.
+% Tran, Dustin et al. "Simple, Scalable Adaptations of Hamiltonian Monte Carlo for Probabilistic Programming."
+% ICML, 2017.
+
+
+
 % Warum wählt man HMC statt SVI?
+%
+% HMC wird statt SVI gewählt, wenn:
+%
+%   - Höhere Genauigkeit gewünscht ist:
+%         • HMC liefert Samples direkt aus dem exakten Posterior
+%           (keine Variational Approximation).
+%
+%   - Komplexe Posteriorformen vorhanden sind:
+%         • HMC kann multimodale oder stark korrelierte Posterior-Verteilungen
+%           besser erfassen als einfache Variational-Methoden (z. B. Mean-Field).
+%
+%   - Fokus auf Unsicherheitsquantifizierung liegt:
+%         • HMC liefert präzisere Unsicherheitsmaße, da keine
+%           approximierende Verteilungsfamilie einschränkt.
+%
+% Nachteile gegenüber SVI:
+%   - HMC ist wesentlich langsamer.
+%   - Skaliert schlecht bei großen Datensätzen oder großen Netzen.
+%
+% Fazit:
+% → HMC wird bevorzugt, wenn Präzision wichtiger ist als Geschwindigkeit.
+%
+% Quelle:
+% Neal, Radford M. "Bayesian Learning for Neural Networks."
+% Springer, 1996.
+% Betancourt, Michael. "A Conceptual Introduction to Hamiltonian Monte Carlo."
+% arXiv:1701.02434, 2017.
+
+
 
 % --------------------------------
 % Vergleichende Fragen
 % --------------------------------
 % Wann ist evidenzbasiertes Modellieren besser geeignet als Bayes’sche Verfahren?
+%
+% Evidenzbasiertes (frequentistisches) Modellieren ist oft besser geeignet, wenn:
+%
+%   - Datenmenge sehr groß ist:
+%         • Punkt-Schätzer (z. B. Maximum Likelihood) liefern oft schon präzise Ergebnisse.
+%         • Bayesianische Methoden sind rechnerisch teurer und nicht zwingend genauer.
+%
+%   - Rechenzeit kritisch ist:
+%         • Frequentistische Verfahren sind meist schneller trainierbar.
+%
+%   - Nur Punktvorhersage benötigt wird:
+%         • Kein Bedarf an Unsicherheitsquantifizierung.
+%
+%   - Einfache Modelle oder Standardanwendungen vorliegen:
+%         • Z. B. klassische lineare Modelle oder kleine Netze,
+%           bei denen Bayes oft keinen signifikanten Vorteil bringt.
+%
+% Bayes’sche Verfahren sind hingegen vorteilhaft:
+%   - Bei kleinen Datensätzen (bessere Regularisierung durch Priorwissen).
+%   - Wenn Unsicherheiten explizit quantifiziert werden müssen.
+%   - Bei komplexen Modellen mit hoher Varianz.
+%
+% Quelle:
+% Gelman, Andrew, et al. "Bayesian Data Analysis."
+% CRC Press, 2013.
+% Bishop, Christopher M. "Pattern Recognition and Machine Learning."
+% Springer, 2006.
+
+
+
 % Welche Methode liefert bessere Unsicherheitsabschätzungen?
+%
+% Bayes’sche Verfahren liefern in der Regel bessere Unsicherheitsabschätzungen, weil:
+%
+%   - Sie die gesamte Posterior-Verteilung der Modellparameter berücksichtigen,
+%     statt nur Punkt-Schätzungen wie im frequentistischen Ansatz.
+%
+%   - Epistemische Unsicherheit (Modell-Unsicherheit) wird explizit modelliert,
+%     nicht nur aleatorische Unsicherheit (Datenrauschen).
+%
+% Frequentistische Verfahren:
+%   - Können Unsicherheiten nur indirekt über Standardfehler oder
+%     Bootstrap-Verfahren schätzen.
+%   - Diese Schätzungen sind oft weniger präzise oder schwieriger
+%     zu interpretieren bei komplexen Modellen.
+%
+% Fazit:
+% → Für präzise Unsicherheitsabschätzungen sind bayes’sche Verfahren überlegen,
+%    insbesondere bei kleinen Datenmengen oder komplexen Modellen.
+%
+% Quelle:
+% Gelman, Andrew, et al. "Bayesian Data Analysis."
+% CRC Press, 2013.
+% Bishop, Christopher M. "Pattern Recognition and Machine Learning."
+% Springer, 2006.
+
+
+
 % Sind evidenzbasierte Netze effizienter als Bayes’sche?
+%
+% Ja, evidenzbasierte (frequentistische) Netze sind in der Regel effizienter, weil:
+%
+%   - Kein Sampling nötig ist:
+%         • Training basiert auf Punkt-Schätzern (z. B. Maximum Likelihood).
+%         • Deutlich schnellere Forward- und Backward-Pässe.
+%
+%   - Geringerer Speicherbedarf:
+%         • Es werden keine zusätzlichen Variablen wie μ und σ pro Gewicht gespeichert.
+%
+%   - Einfachere Implementierung:
+%         • Keine komplexen Loss-Funktionen wie ELBO oder KL-Divergenzen notwendig.
+%
+% Bayes’sche Netze sind dagegen rechenintensiver:
+%   - Sampling oder komplexe Approximationen erhöhen die Trainingszeit.
+%   - Speicherbedarf wächst, da Posterior-Parameter gespeichert werden müssen.
+%
+% Fazit:
+% → Evidenzbasierte Netze sind effizienter in Training und Inferenz,
+%    liefern aber keine umfassende Unsicherheitsquantifizierung.
+%
+% Quelle:
+% Bishop, Christopher M. "Pattern Recognition and Machine Learning."
+% Springer, 2006.
+% Gal, Yarin. "Uncertainty in Deep Learning." PhD thesis, University of Cambridge, 2016.
+
+
+
 % Lässt sich ein evidenzbasiertes Netz auch Bayes’sch interpretieren?
+%
+% Ja, viele evidenzbasierte Netze lassen sich auch Bayes’sch interpretieren:
+%
+%   - Maximum Likelihood entspricht Bayes ohne Prior
+%         • Wenn kein Prior genutzt wird, ist ML ein Spezialfall
+%           des bayes’schen Lernens mit einem flachen Prior.
+%
+%   - Regularisierung als Prior:
+%         • L2-Regularisierung ↔ Gaussian-Prior auf die Gewichte:
+%
+%             L2:   λ * ||w||²  ↔  w ~ N(0, σ²)
+%
+%   - Dropout als Approximation:
+%         • Dropout kann als bayes’sche Approximation interpretiert werden
+%           (Gal, 2016).
+%
+% Allerdings:
+%   - Ein evidenzbasiertes Netz liefert nur Punkt-Schätzungen,
+%     keine vollständige Posterior-Verteilung.
+%
+% Fazit:
+% → Viele Aspekte evidenzbasierter Netze lassen sich bayes’sch deuten,
+%    liefern aber keine vollständige bayes’sche Unsicherheitsquantifizierung.
+%
+% Quelle:
+% Bishop, Christopher M. "Pattern Recognition and Machine Learning."
+% Springer, 2006.
+% Gal, Yarin. "Uncertainty in Deep Learning." PhD thesis, University of Cambridge, 2016.
+
+
+
 % Welche Methode skaliert besser auf große Netze?
+%
+% Evidenzbasierte (frequentistische) Netze skalieren deutlich besser auf große Netze, weil:
+%
+%   - Kein Sampling nötig ist:
+%         • Training besteht nur aus Forward- und Backward-Pässen.
+%
+%   - Speicherbedarf geringer:
+%         • Es werden keine zusätzlichen Variablen (z. B. Posterior-Parameter)
+%           für jedes Gewicht gespeichert.
+%
+%   - Geringerer Rechenaufwand:
+%         • Keine aufwendigen KL-Berechnungen oder Sampling-Prozesse.
+%
+% Bayes’sche Verfahren skalieren schlechter:
+%   - Variational Inference (z. B. SVI) skaliert besser als HMC,
+%     bleibt aber langsamer als frequentistisches Training.
+%   - HMC ist für große Netze (z. B. ResNet-50) praktisch nicht einsetzbar.
+%
+% Fazit:
+% → Frequentistische Netze skalieren besser bei großen Architekturen
+%    und großen Datensätzen, sind aber eingeschränkt bei der Unsicherheitsquantifizierung.
+%
+% Quelle:
+% Bishop, Christopher M. "Pattern Recognition and Machine Learning."
+% Springer, 2006.
+% Blundell, Charles, et al. "Weight Uncertainty in Neural Networks."
+% ICML, 2015.
+
+
+
 % Gibt es Benchmarks zum Vergleich (Accuracy vs. Calibration vs. Speed)?
+
+% Ja, es gibt mehrere Benchmarks, die Bayesianische Netze mit
+% evidenzbasierten Netzen vergleichen, z. B.:
+%
+%   - Gal, Yarin (2016):
+%         • Vergleich von Bayes-Dropout vs. klassischen Netzen
+%         • Metriken: Accuracy, Calibration Error, Predictive Entropy
+%
+%   - Ovadia et al. (2019):
+%         • Große Benchmark-Studie (ImageNet, CIFAR-100, etc.)
+%         • Vergleicht:
+%             - Evidenzbasierte Netze
+%             - Bayesianische Methoden (z. B. SVI, MC Dropout)
+%             - Deep Ensembles
+%         • Metriken:
+%             - Accuracy
+%             - Expected Calibration Error (ECE)
+%             - Negative Log-Likelihood (NLL)
+%             - Inference Time
+%
+% Ergebnisse:
+%   - Bayesianische Methoden oft besser kalibriert (niedrigere ECE).
+%   - Deep Ensembles oft ähnlich gut oder besser in Accuracy
+%     bei guter Calibration.
+%   - Frequentistische Netze am schnellsten, aber oft schlechter
+%     in Calibration.
+%
+% Fazit:
+% → Kein klarer Sieger – Trade-off zwischen Genauigkeit,
+%    Unsicherheitsqualität und Geschwindigkeit.
+%
+% Quelle:
+% Gal, Yarin. "Uncertainty in Deep Learning." PhD thesis, 2016.
+% Ovadia, Yaniv, et al. "Can You Trust Your Model's Uncertainty?"
+% NeurIPS, 2019.
+
+
+
 % Welche Methode ist interpretierbarer?
+%
+% Bayes’sche Verfahren gelten oft als interpretierbarer, weil:
+%
+%   - Sie liefern Posterior-Verteilungen:
+%         • Zeigen an, wie sicher das Modell über die Parameter ist.
+%         • Erlauben, Unsicherheiten direkt zu quantifizieren.
+%
+%   - Gewichtsverteilungen geben Einblick:
+%         • Man kann sehen, welche Gewichte stark schwanken
+%           → Hinweis auf weniger relevante Features.
+%
+% Frequentistische Netze:
+%   - Bieten meist nur Punkt-Schätzungen.
+%   - Interpretationen stützen sich auf:
+%         • Gewichtswerte
+%         • Feature-Importance
+%         • Sensitivitätsanalysen
+%     → liefern aber keine direkte Unsicherheitsverteilung.
+%
+% Fazit:
+% → Bayes’sche Netze sind interpretierbarer in Bezug auf Unsicherheiten.
+% → Frequentistische Netze können einfacher interpretierbar sein,
+%    wenn nur Gewichte oder Aktivierungen betrachtet werden.
+%
+% Quelle:
+% Gal, Yarin. "Uncertainty in Deep Learning." PhD thesis, 2016.
+% Bishop, Christopher M. "Pattern Recognition and Machine Learning."
+% Springer, 2006.
+
+
