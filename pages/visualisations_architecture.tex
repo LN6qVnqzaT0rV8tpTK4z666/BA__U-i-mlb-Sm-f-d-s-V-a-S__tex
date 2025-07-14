@@ -161,74 +161,29 @@ z. B. Adam, Lernrate
 
 
 
-% \needspace{10\baselineskip}
+%\needspace{10\baselineskip}
 \subsection*{\gls{Bayesianische neuronale Netze} \gls{svi} nach Pyro \parencite{PyroPplDevelopers.2024}}
 
 \par\noindent\\
 
-\scalebox{0.8}{
+\begin{center}
+\begin{minipage}[t]{0.47\textwidth}
+\centering
+\adjustbox{valign=t, scale=0.8}{
     \begin{tikzpicture}[
-        node distance=1.5cm and 2.5cm,
+        node distance=1.2cm and 2.5cm,
         every node/.style={font=\sffamily},
-        layer/.style={rectangle, draw, minimum width=2.8cm, minimum height=1.2cm, align=center},
+        layer/.style={
+            rectangle, 
+            draw, 
+            minimum width=3.0cm, 
+            minimum height=1.2cm, 
+            align=center
+        },
         arrow/.style={->, thick}
     ]
 
-    % Nodes
-    \node[layer, fill=blue!10] (input) {Eingang \\ $\mathbf{x} \in \mathbb{R}^d$};
-
-    \node[layer, fill=green!15, below=of input] (hidden1) {Verborgene Schicht 1 \\ Vollständig verbunden \\ $n_1$ Neuronen \\ \textbf{Gewichte:} $\mu_1, \sigma_1$};
-
-    \node[layer, fill=green!15, below=of hidden1] (hidden2) {Verborgene Schicht 2 \\ Vollständig verbunden \\ $n_2$ Neuronen \\ \textbf{Gewichte:} $\mu_2, \sigma_2$};
-
-    \node[layer, fill=orange!20, below=of hidden2] (output) {Ausgabeschicht \\ Vollständig verbunden \\ $n_\text{out}$ Neuronen \\ \textbf{Gewichte:} $\mu_\text{out}, \sigma_\text{out}$};
-
-    \node[layer, fill=yellow!15, below=of output] (predictive) {Vorhersageverteilung \\ $p(y \mid \mathbf{x})$ \\ z. B. Normalverteilung $(\hat{y}, \hat{\sigma}^2)$};
-
-    \node[layer, fill=red!10, right=4cm of hidden2] (elbo) {SVI \\ ELBO-Optimierung \\ \small KL-Divergenz zwischen \\ approximierter und \\ echter Posterior-Verteilung minimieren};
-
-    % Connections
-    \draw[arrow] (input) -- (hidden1);
-    \draw[arrow] (hidden1) -- (hidden2);
-    \draw[arrow] (hidden2) -- (output);
-    \draw[arrow] (output) -- (predictive);
-
-    \draw[arrow] (hidden1.east) -- ++(1,0) |- (elbo.west);
-    \draw[arrow] (hidden2.east) -- ++(1,0) |- (elbo.west);
-    \draw[arrow] (output.east) -- ++(1,0) |- (elbo.west);
-
-    % Optional: Legende
-    \node[align=left, below=of predictive] (legend) {
-       \begin{tabular}{@{}l@{}}
-       \textbf{Wichtige Konzepte:} \\
-       - Jedes Gewicht $\theta$ besitzt Variationsparameter $(\mu, \sigma)$ \\
-       - Im Forward-Pass werden Gewichte aus $q(\theta)$ gezogen \\
-       - SVI minimiert die ELBO: \\
-       \quad $\mathrm{ELBO} = \mathbb{E}_{q} [ \log p(y|\theta,x) ] - \mathrm{KL}(q(\theta)\,||\,p(\theta))$
-       \end{tabular}
-    };
-
-    \end{tikzpicture}
-}
-
-
-
-\newpage
-
-%\needspace{10\baselineskip}
-\subsection*{\gls{Bayesianische neuronale Netze} \gls{hmc} nach Pyro \parencite{PyroPplDevelopers.2024}}
-
-\par\noindent\\
-
-\scalebox{0.8}{
-    \begin{tikzpicture}[
-        node distance=1.5cm and 2.5cm,
-        every node/.style={font=\sffamily},
-        layer/.style={rectangle, draw, minimum width=2.8cm, minimum height=1.2cm, align=center},
-        arrow/.style={->, thick}
-    ]
-
-    % Nodes
+    % Network flow nodes
     \node[layer, fill=blue!10] (input) {Eingang \\ $\mathbf{x} \in \mathbb{R}^d$};
 
     \node[layer, fill=green!15, below=of input] (hidden1) {Verborgene Schicht 1 \\ Vollständig verbunden \\ $n_1$ Neuronen};
@@ -239,36 +194,197 @@ z. B. Adam, Lernrate
 
     \node[layer, fill=yellow!15, below=of output] (predictive) {Vorhersageverteilung \\ $p(y \mid \mathbf{x})$};
 
-    % HMC box
-    \node[layer, fill=red!15, right=4cm of hidden2] (hmc) {HMC-Sampling \\ Erzeuge Gewichtssamples \\ $\theta^{(1)}, \theta^{(2)}, \dots, \theta^{(S)}$};
+    % SVI box below everything
+    \node[layer, fill=red!15, below=2.5cm of predictive] (svi) {Variationsparameter \\ $\mu, \sigma$ für alle \\ Netzwerkgewichte};
 
-    % Connections
+    % Network flow arrows
     \draw[arrow] (input) -- (hidden1);
     \draw[arrow] (hidden1) -- (hidden2);
     \draw[arrow] (hidden2) -- (output);
     \draw[arrow] (output) -- (predictive);
 
-    % HMC arrows
-    \draw[arrow] (hmc.west) -- ++(-1,0) |- (hidden1.east);
-    \draw[arrow] (hmc.west) -- ++(-1,0) |- (hidden2.east);
-    \draw[arrow] (hmc.west) -- ++(-1,0) |- (output.east);
+    % Bus routing from SVI box
+    % Step 1: left horizontal from SVI
+    \coordinate (bus_left) at ([xshift=-0.9cm] svi.west);
+    \draw[arrow] (svi.west) -- (bus_left);
 
-    % Optional: Legende
-    \node[align=left, below=of predictive] (legend) {
-       \begin{tabular}{@{}l@{}}
-       \textbf{Wichtige Konzepte:} \\
-       - HMC zieht Samples aus der wahren Posterior-Verteilung $p(\theta \mid D)$ \\
-       - Jeder Forward-Pass nutzt eine gesampelte Menge an Gewichten \\
-       - Vorhersagemittel: $\hat{y} = \frac{1}{S} \sum_s y^{(s)}$ \\
-       - Vorhersage-Varianz spiegelt Gewichtsunsicherheit wider
-       \end{tabular}
-    };
+    % Step 2: vertical bus upwards only as high as hidden1
+    \coordinate (bus_top) at ([xshift=-0.7cm] hidden1.west);
+    \draw[arrow] (bus_left) -- (bus_top);
+
+    % Horizontal lines directly to target boxes at correct Y
+    % Hidden1
+    \coordinate (target1) at ([xshift=0cm] hidden1.west);
+    \draw[arrow] (bus_top |- target1) -- (target1);
+    \draw[arrow] (target1) -- (hidden1.west);
+
+    % Hidden2
+    \coordinate (target2) at ([xshift=0cm] hidden2.west);
+    \draw[arrow] (bus_top |- target2) -- (target2);
+    \draw[arrow] (target2) -- (hidden2.west);
+
+    % Output
+    \coordinate (target3) at ([xshift=0cm] output.west);
+    \draw[arrow] (bus_top |- target3) -- (target3);
+    \draw[arrow] (target3) -- (output.west);
 
     \end{tikzpicture}
 }
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\raggedright
+\small
+\textbf{Details:} \\[6pt]
+
+\textbf{Input:} \\
+$d$: Eingabedimension \\[4pt]
+
+\textbf{Hidden Layers:} \\
+$n_1$: Neuronen in Layer 1 \\
+$n_2$: Neuronen in Layer 2 \\
+Aktivierungsfunktion: z. B. ReLU, Tanh \\
+Dropout-Rate (falls genutzt) \\[4pt]
+
+\textbf{Output Layer:} \\
+$n_\text{out}$ Neuronen \\
+Aktivierungsfunktion (z. B. linear, softmax) \\[4pt]
+
+\textbf{Variationsparameter (SVI):} \\
+Jedes Gewicht $\theta$ hat Variationsparameter \\
+$\mu$, $\sigma$ \\
+Samples $\theta^{(s)} \sim q(\theta)$ \\
+ELBO-Optimierung \\
+KL-Divergenz zur Prior \\[4pt]
+
+\textbf{Vorhersage:} \\
+$\hat{y} = \frac{1}{S} \sum_s y^{(s)}$ \\
+Vorhersage-Varianz reflektiert Gewichtsunsicherheit \\[4pt]
+
+\textbf{Loss:} \\
+z. B. Mean Squared Error \\
+Negative Log-Likelihood \\[4pt]
+
+\textbf{Optimizer:} \\
+z. B. Adam, Lernrate
+\end{minipage}
+\end{center}
 
 
 
+
+\newpage
+
+%\needspace{10\baselineskip}
+\subsection*{\gls{Bayesianische neuronale Netze} \gls{hmc} nach Pyro \parencite{PyroPplDevelopers.2024}}
+
+\par\noindent\\
+
+\begin{center}
+\begin{minipage}[t]{0.47\textwidth}
+\centering
+\adjustbox{valign=t, scale=0.8}{
+    \begin{tikzpicture}[
+        node distance=1.2cm and 2.5cm,
+        every node/.style={font=\sffamily},
+        layer/.style={
+            rectangle, 
+            draw, 
+            minimum width=3.0cm, 
+            minimum height=1.2cm, 
+            align=center
+        },
+        arrow/.style={->, thick}
+    ]
+
+    % Network flow nodes
+    \node[layer, fill=blue!10] (input) {Eingang \\ $\mathbf{x} \in \mathbb{R}^d$};
+
+    \node[layer, fill=green!15, below=of input] (hidden1) {Verborgene Schicht 1 \\ Vollständig verbunden \\ $n_1$ Neuronen};
+
+    \node[layer, fill=green!15, below=of hidden1] (hidden2) {Verborgene Schicht 2 \\ Vollständig verbunden \\ $n_2$ Neuronen};
+
+    \node[layer, fill=orange!20, below=of hidden2] (output) {Ausgabeschicht \\ Vollständig verbunden \\ $n_\text{out}$ Neuronen};
+
+    \node[layer, fill=yellow!15, below=of output] (predictive) {Vorhersageverteilung \\ $p(y \mid \mathbf{x})$};
+
+    % HMC box below everything
+    \node[layer, fill=red!15, below=2.5cm of predictive] (hmc) {HMC-Sampling \\ Erzeuge Gewichtssamples \\ $\theta^{(1)}, \theta^{(2)}, \dots, \theta^{(S)}$};
+
+    % Network flow arrows
+    \draw[arrow] (input) -- (hidden1);
+    \draw[arrow] (hidden1) -- (hidden2);
+    \draw[arrow] (hidden2) -- (output);
+    \draw[arrow] (output) -- (predictive);
+
+    % Bus routing from HMC box
+    % Step 1: left horizontal from HMC
+    \coordinate (bus_left) at ([xshift=-0.4cm] hmc.west);
+    \draw[arrow] (hmc.west) -- (bus_left);
+
+    % Step 2: vertical bus upwards to align with input
+    \coordinate (bus_top) at ([xshift=-0.7cm] hidden1.west);
+    \draw[arrow] (bus_left) -- (bus_top);
+
+    % Horizontal lines directly to target boxes at correct Y
+    % Hidden1
+    \coordinate (target1) at ([xshift=0cm] hidden1.west);
+    \draw[arrow] (bus_top |- target1) -- (target1);
+    \draw[arrow] (target1) -- (hidden1.west);
+
+    % Hidden2
+    \coordinate (target2) at ([xshift=0cm] hidden2.west);
+    \draw[arrow] (bus_top |- target2) -- (target2);
+    \draw[arrow] (target2) -- (hidden2.west);
+
+    % Output
+    \coordinate (target3) at ([xshift=0cm] output.west);
+    \draw[arrow] (bus_top |- target3) -- (target3);
+    \draw[arrow] (target3) -- (output.west);
+
+    \end{tikzpicture}
+}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\raggedright
+\small
+\textbf{Details:} \\[6pt]
+
+\textbf{Input:} \\
+$d$: Eingabedimension \\[4pt]
+
+\textbf{Hidden Layers:} \\
+$n_1$: Neuronen in Layer 1 \\
+$n_2$: Neuronen in Layer 2 \\
+Aktivierungsfunktion: z. B. ReLU, Tanh \\
+Dropout-Rate (falls genutzt) \\[4pt]
+
+\textbf{Output Layer:} \\
+$n_\text{out}$ Neuronen \\
+Aktivierungsfunktion (z. B. linear, softmax) \\[4pt]
+
+\textbf{HMC-Sampling:} \\
+Samples $\theta^{(s)}$ aus $p(\theta \mid D)$ \\
+Anzahl Samples $S$ \\
+Leapfrog-Schritte \\
+Schrittweite \\
+Akzeptanzrate \\[4pt]
+
+\textbf{Vorhersage:} \\
+Vorhersagemittel: \\
+$\hat{y} = \dfrac{1}{S} \sum_{s} y^{(s)}$ \\
+Vorhersage-Varianz reflektiert \\
+Gewichtsunsicherheit \\[4pt]
+
+\textbf{Loss:} \\
+z. B. Mean Squared Error \\ 
+Negative Log-Likelihood \\[4pt]
+
+\textbf{Optimizer:} \\
+z. B. Adam, Lernrate
+\end{minipage}
+\end{center}
 
 
 
@@ -943,8 +1059,6 @@ z. B. Adam, Lernrate
 % Proceedings of the 32nd International Conference on Machine Learning (ICML), 2015, p. 1618
 
 
-
-% Gibt es eine Trade-off zwischen Genauigkeit und Unsicherheitsquantifizierung?
 
 % Gibt es einen Trade-off zwischen Genauigkeit und Unsicherheitsquantifizierung?
 %
