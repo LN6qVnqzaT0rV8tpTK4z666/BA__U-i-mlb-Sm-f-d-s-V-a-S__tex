@@ -190,6 +190,52 @@ BNN Accuracy & & & & & & & \\
 % \end{table}
 
 
+\subsection*{VaMai - Kritikalitätsraum - Validierung}
+
+Vamai verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung. Umgangssprachlich möchte man den Raum so gut abdecken, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt. 
+
+Zeige, dass durch die gewählte Methode (z.\,B. Evidential Deep Learning und Unsicherheitsaggregation) die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
+
+$
+\mathbb{P}\bigl(\exists\, x \in \Omega \setminus \widehat{\Omega}_k : \text{Kritikalität}(x) > \tau \bigr) < \varepsilon.
+$
+
+Das heißt, die Wahrscheinlichkeit, dass irgendwo im Raum $\Omega$ noch ein Punkt existiert, dessen Kritikalität den Schwellenwert überschreitet, aber nicht durch diese Methode erkannt wurde, ist hinreichend klein (z.\,B. unter 5\,\% mit $\mu \pm 2\sigma$).
+
+$
+\Omega \subset \mathbb{R}^{n}
+$
+
+ist der gesamte Zustands- oder Szenarienraum.
+
+$
+\Omega_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}
+$
+
+ist der echte Kritikalitätsraum.
+
+$
+\widehat{\Omega}_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}
+$
+
+ist der durch die Methode erkannte Kritikalitätsraum.
+
+$
+\varepsilon \in (0,1)
+$
+
+ist das akzeptierte Fehlerniveau.
+
+Zu beweisen ist:
+
+$
+\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \emptyset \bigr) \le \varepsilon.
+$
+
+% Dazu soll wie 
+
+
+
 \section{}
 
 Abschließend sollen nach A7 die wichtigsten Ansätze und Ergebnisse der Arbeit in einem kurzen Jupyter Notebook zusammenfasst werden. 
