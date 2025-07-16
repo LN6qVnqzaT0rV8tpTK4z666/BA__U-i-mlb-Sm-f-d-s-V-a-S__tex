@@ -192,47 +192,39 @@ BNN Accuracy & & & & & & & \\
 
 \subsection*{VaMai - Kritikalitätsraum - Validierung}
 
-Vamai verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung. Umgangssprachlich möchte man den Raum so gut abdecken, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt. 
+Vamai verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung. Umgangssprachlich möchte man den Raum so gut abdecken, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt: Zeige, dass durch die gewählte Methode (z.\,B. Evidential Deep Learning und Unsicherheitsaggregation) die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
 
-Zeige, dass durch die gewählte Methode (z.\,B. Evidential Deep Learning und Unsicherheitsaggregation) die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
+\[ 
+\mathbb{P}\bigl(\exists\, x \in \Omega \setminus \widehat{\Omega}_k : \text{Kritikalität}(x) > \tau \bigr) < \varepsilon. 
+\]
 
-$
-\mathbb{P}\bigl(\exists\, x \in \Omega \setminus \widehat{\Omega}_k : \text{Kritikalität}(x) > \tau \bigr) < \varepsilon.
-$
+Das heißt, die Wahrscheinlichkeit, dass irgendwo im Raum $\Omega$ noch ein Punkt existiert, dessen Kritikalität den Schwellenwert überschreitet, aber nicht durch diese Methode erkannt wurde, ist hinreichend klein (z.\,B. unter 5\,\% mit $\mu \pm 2\sigma$). $\Omega \subset \mathbb{R}^{n}$ ist der gesamte Zustands- oder Szenarienraum. $\Omega_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}$ ist der echte Kritikalitätsraum. $\widehat{\Omega}_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}$ ist der durch die Methode erkannte Kritikalitätsraum. $\varepsilon \in (0,1)$ ist das akzeptierte Fehlerniveau.
 
-Das heißt, die Wahrscheinlichkeit, dass irgendwo im Raum $\Omega$ noch ein Punkt existiert, dessen Kritikalität den Schwellenwert überschreitet, aber nicht durch diese Methode erkannt wurde, ist hinreichend klein (z.\,B. unter 5\,\% mit $\mu \pm 2\sigma$).
+Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \emptyset \bigr) \le \varepsilon.$ Dazu wird folgende Vorgehensweise in Betracht gezogen: 
 
-$
-\Omega \subset \mathbb{R}^{n}
-$
+% enger formalisierbar, siehe Notizen
 
-ist der gesamte Zustands- oder Szenarienraum.
+\begin{enumerate}
+  \item Unsicherheitsmodellierung mittels Evidential Deep Learning
+  \begin{itemize}
+    \item Liefert für jeden Punkt $x \in \Omega$ eine Wahrscheinlichkeitsverteilung mit Varianz $\mathrm{Var}(x) = \sigma^{2}_{\text{epistemisch}} + \sigma^{2}_{\text{aleatorisch}}$.
+    \item Kritikalität ist Funktion der Größe $k(x)$.
+  \end{itemize}
+  \item Sampling- / Klassifikationsabdeckung
+  \begin{itemize}
+    \item Raum $\Omega$ wurde mit Dichte $\delta$-gesampled (zum Beispiel mittels Gitter, Trajektorien, Pfaden).
+    \item Wenn $\forall x \in \Omgea$ ein Sample $x' \in \widehat{\Omega}_k$ mit $\lVert x - x' \rVert \le \delta'$ existiert, gilt \glqq dichte Abdeckung \grqq.
+  \end{itemize}
+  \item Uniforme Konvergenz / PAC-ähnliche Argumentation
+  \begin{itemize}
+    \item Zeige, dass mit Vorhersagewahrscheinlichkeit, Unsicherheitsabschätzung mittels Methodik mit zunehmender Samplezahl $N$ gegen den wahren Kritikalitätsraum konvergiert. 
+    \[
+    \mathbb{P}\bigl( \sup_{x \in \Omega} \bigl\lvert f(x) - \widehat{k}(x) \bigr\rvert \ge \eta \bigr) \le \varepsilon.
+    \]
+    \item Wenn $\widehat{k(x)} \approx k(x)$ auf ganz $\Omega$, gilt auch $\widehat{\Omega}_{k} \approx \Omega_{k}$. Es folgt, dass die Wahrscheinlichkeit einen echten Kritikalitätsraum \textit{nicht} zu erkennen kleiner als $\epsilon$ ist.
+  \end{itemize}
 
-$
-\Omega_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}
-$
-
-ist der echte Kritikalitätsraum.
-
-$
-\widehat{\Omega}_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}
-$
-
-ist der durch die Methode erkannte Kritikalitätsraum.
-
-$
-\varepsilon \in (0,1)
-$
-
-ist das akzeptierte Fehlerniveau.
-
-Zu beweisen ist:
-
-$
-\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \emptyset \bigr) \le \varepsilon.
-$
-
-% Dazu soll wie 
+\end{enumerate}
 
 
 
