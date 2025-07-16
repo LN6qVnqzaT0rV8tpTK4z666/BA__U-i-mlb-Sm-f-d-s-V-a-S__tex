@@ -190,7 +190,7 @@ BNN Accuracy & & & & & & & \\
 % \end{table}
 
 
-\subsection*{VaMai - Kritikalitätsraum - Validierung}
+\subsection*{VaMai - Kritikalitätsraum - Validierung - Annahmen}
 
 Vamai verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung. Umgangssprachlich möchte man den Raum so gut abdecken, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt: Zeige, dass durch die gewählte Methode (z.\,B. Evidential Deep Learning und Unsicherheitsaggregation) die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
 
@@ -212,7 +212,7 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
   \end{itemize}
   \item Sampling- / Klassifikationsabdeckung
   \begin{itemize}
-    \item Raum $\Omega$ wurde mit Dichte $\delta$-gesampled (zum Beispiel mittels Gitter, Trajektorien, Pfaden).
+    \item Raum $\Omega$ wurde mit Dichte $\delta$-gesampled (zum Beispiel mittels Gitter, Trajektorien, Pfaden) von VaMai Projektteilnehmer B.Sc. Pascal Imholze mit dem Ziel einer möglichst hohen Abdeckung.
     \item Wenn $\forall x \in \Omgea$ ein Sample $x' \in \widehat{\Omega}_k$ mit $\lVert x - x' \rVert \le \delta'$ existiert, gilt \glqq dichte Abdeckung \grqq.
   \end{itemize}
   \item Uniforme Konvergenz / PAC-ähnliche Argumentation
@@ -226,7 +226,15 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
 
 \end{enumerate}
 
+\subsection*{VaMai - Kritikalitätsraum - Validierung - Experiment}
 
+Herr Autenrieths Kritikalitätsraum-Software wurden eingebunden in die bisherige Eigenentwicklung. Die Umgebung liefert einen Raum in dem beispielhafte Signalumgebungen 
+% evtl. formalisieren.
+zusammengesetzt werden können. Er ist bereits grundlegend unsicherheitsbehaftbar. Zuerst wurde eine Visualisierung nach Amini Deep Evidential Regression 2020 ergänzt. Als nächstes wurde ein \gls{EvidentialDeepLearning}-Training unter Aminis vorhandenen bereits optimierten Modellen (siehe Rekonstruktion Aminis Ergebnisse) in den Hauptablauf integriert. 
+
+% Das Model x liefert unter y folgendes Ergebnis 
+
+% Ergebnisbilder.
 
 \section{}
 
