@@ -232,6 +232,20 @@ Herr Autenrieths Kritikalitätsraum-Software wurden eingebunden in die bisherige
 % evtl. formalisieren.
 zusammengesetzt werden können. Er ist bereits grundlegend unsicherheitsbehaftbar. Zuerst wurde eine Visualisierung nach Amini Deep Evidential Regression 2020 ergänzt. Als nächstes wurde ein \gls{EvidentialDeepLearning}-Training unter Aminis vorhandenen bereits optimierten Modellen (siehe Rekonstruktion Aminis Ergebnisse) in den Hauptablauf integriert. 
 
+Die synthetischen Daten ersetzen in diesem Fall reale Messungen, Simulationsergebnisse $\{ x_{i}, y_{i} \}$. $x_{i}$ ist ein Eingabepunkt der als kleinste Einheit bereits als Szenario im Parameterraum zählen kann. $y_{i}$ liefert die Kritikalität in diesem Punkt. Das \gls{EvidentialDeepLearning}-Modell beantwortet die Frage, mit welcher Unsicherheit es glaube, dass $y$ an einem neuen Punkt läge. 
+
+Das evidentielle Modell nach Amini ordnet das als $y \sim \mathcal{N}(\mu, \sigma^2)$ zu. $\mu$, $\sigma^2$ kennt das Modell nicht aus Vorwissen. Es nimmt stattdessen an, erstens $\mu$ ist unsicherheitsbehaftet, damit folgt $\mu \sim \mathcal{N}(\gamma, \sigma^{2} / \lambda)$. Zweitens $\sigma^{2}$ ist unsicherheitsbehaftet, damit folgt $\sigma^{2} \sim \mathcal{NIG}(\alpha, \beta)$. So sucht das Modell $p(y|\gamma,\lambda,\alpha,\beta)$. Die Daten liefern die Evidenz als Ergebnis. Das \gls{EvidentialDeepLearning}-Modell schätzt direkt die Hyperparameter ausgehend von den Eingaben $x$, $f(x) \rightarrow \{ \gamma(x), \lambda(x), \alpha(x), \beta(x) \}$. Es ergibt sich für jeden Punkt $x$ eine bedingte Unsicherheitsverteilung für $y$. Amini verdeutlicht dies kompakt in Gleichungen (3), (4), (5), Abbildung R.4.4 (vgl. Amini 2020 \parencite{amini2020}). 
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\textwidth]{../figures/x4.png}
+  \caption{R4.4 Angen. Grund-Verteilung auf unbek. Daten für \gls{EvidentialDeepLearning}-Modell n. Amini 2020}
+\end{figure}
+
+
+
+% Der Grundgedanke: Wahrscheinlichkeitsmodell
+
 % Das Model x liefert unter y folgendes Ergebnis 
 
 % Ergebnisbilder.
