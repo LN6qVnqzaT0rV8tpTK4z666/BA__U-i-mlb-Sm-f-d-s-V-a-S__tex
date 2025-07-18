@@ -212,12 +212,13 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
   \end{itemize}
   \item Sampling- / Klassifikationsabdeckung
   \begin{itemize}
-    \item Raum $\Omega$ wurde mit Dichte $\delta$-gesampled (zum Beispiel mittels Gitter, Trajektorien, Pfaden) von VaMai Projektteilnehmer B.Sc. Pascal Imholze mit dem Ziel einer möglichst hohen Abdeckung.
+    \item Raum $\Omega$ wurde mit Dichte $\delta$ gesampled (zum Beispiel mittels Gitter, Trajektorien, Pfaden) von VaMai Projektteilnehmer B.Sc. Pascal Imholze mit dem Ziel einer möglichst hohen Abdeckung.
     \item Wenn $\forall x \in \Omgea$ ein Sample $x' \in \widehat{\Omega}_k$ mit $\lVert x - x' \rVert \le \delta'$ existiert, gilt \glqq dichte Abdeckung \grqq.
+    \item Generell ist in Hinblick auf in VaMai abgezielte Methoden wie \glq Few Shot Learning \grqq von Herr Mavani mit Sampleumfängen $n \in [20, 30], n \in \mathbb{N}$ zu beachten, dass der zentrale Grenzwertsatz der auch die \gls{EvidentialDeepLearning} später erläuterte Student-t-Verteilung betrifft, nach Faustformel ab einem Stichprobenumfang $n \geq 30$ gültig ist. % Quelle GUM
   \end{itemize}
   \item Uniforme Konvergenz / PAC-ähnliche Argumentation
   \begin{itemize}
-    \item Zeige, dass mit Vorhersagewahrscheinlichkeit, Unsicherheitsabschätzung mittels Methodik mit zunehmender Samplezahl $N$ gegen den wahren Kritikalitätsraum konvergiert. 
+    \item Zeige, dass mit Vorhersagewahrscheinlichkeit, Unsicherheitsabschätzung die Methodik mit zunehmender Samplezahl $N$ gegen den wahren Kritikalitätsraum konvergiert. 
     \[
     \mathbb{P}\bigl( \sup_{x \in \Omega} \bigl\lvert f(x) - \widehat{k}(x) \bigr\rvert \ge \eta \bigr) \le \varepsilon.
     \]
@@ -228,7 +229,7 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
 
 \subsection*{VaMai - Kritikalitätsraum - Validierung - Experiment}
 
-Herr Autenrieths Kritikalitätsraum-Software wurden eingebunden in die bisherige Eigenentwicklung. Die Umgebung liefert einen Raum in dem beispielhafte Signalumgebungen 
+Herr Autenrieths Kritikalitätsraum-Software wurde eingebunden in die bisherige Eigenentwicklung. Die Umgebung liefert einen Raum in dem beispielhafte Signalumgebungen 
 % evtl. formalisieren.
 zusammengesetzt werden können. Er ist bereits grundlegend unsicherheitsbehaftbar. Zuerst wurde eine Visualisierung nach Amini Deep Evidential Regression 2020 ergänzt. Als nächstes wurde ein \gls{EvidentialDeepLearning}-Training unter Aminis vorhandenen bereits optimierten Modellen (siehe Rekonstruktion Aminis Ergebnisse) in den Hauptablauf integriert. 
 
@@ -242,9 +243,83 @@ Die synthetischen Daten ersetzen in diesem Fall reale Messungen, Simulationserge
 
 Das evidentielle Modell nach Amini ordnet das als $y \sim \mathcal{N}(\mu, \sigma^2)$ zu. $\mu$, $\sigma^2$ kennt das Modell nicht aus Vorwissen. Es nimmt stattdessen an, erstens $\mu$ ist unsicherheitsbehaftet, damit folgt $\mu \sim \mathcal{N}(\gamma, \sigma^{2} / \lambda)$. Zweitens $\sigma^{2}$ ist unsicherheitsbehaftet, damit folgt $\sigma^{2} \sim \mathcal{NIG}(\alpha, \beta)$. So sucht das Modell $p(y|\gamma,\lambda,\alpha,\beta)$. Die Daten liefern die Evidenz als Ergebnis. Das \gls{EvidentialDeepLearning}-Modell schätzt direkt die Hyperparameter ausgehend von den Eingaben $x$, $f(x) \rightarrow \{ \gamma(x), \lambda(x), \alpha(x), \beta(x) \}$. Es ergibt sich für jeden Punkt $x$ eine bedingte Unsicherheitsverteilung für $y$. Amini verdeutlicht dies kompakt in Gleichungen (3), (4), (5), Abbildung R.4.4 (vgl. Amini 2020 \parencite{amini2020}). 
 
-Ergebende Unsicherheitsmasse ist Student-t-verteilt (vgl. Gleichungen (6), (7)), damit ist Mittelwert, Skalierung, Freiheitsgrad bekannt. Wie in R4.4 visualisiert die Zusammensetzung der Student-t-Verteilung, in \glqq niedriger \grqq und \glqq höherer \grqq Ordnung. Erste vom Modell geschätze Wahrscheinlichkeitsmasse um einen Schätzwert ergibt sich aus Gleichung 4 ohne Regularisierung in R4.4. platikurtisch hellblau. Regularisierungsbedingungen formen die Verteilung unter Evidenz-Kriterien leptokurtisch dunkelblau. Machine-Learning-basiert regularisieren Loss-Funktion nach dem Min-Max-Prinzip angenommene Fehler- gegen Zielgrößen, hier durch Amini beschränkt Varianz gegenüber Evidenz (vgl. Gleichung (8), (9), (10) unter (5)). 
+Ergebende Unsicherheitsmasse ist Student-t-verteilt (vgl. Gleichungen (6), (7)), damit ist Mittelwert, Skalierung, Freiheitsgrad bekannt. Wie in R4.4 visualisiert die Zusammensetzung der Student-t-Verteilung, in \glqq niedriger \grqq und \glqq höherer \grqq Ordnung. Erste vom Modell geschätze Wahrscheinlichkeitsmasse um einen Schätzwert ergibt sich aus Gleichung 4 ohne Regularisierung in R4.4. platikurtisch hellblau. Regularisierungsbedingungen formen die Verteilung unter Evidenz-Kriterien leptokurtisch dunkelblau. Machine-Learning-basiert regularisieren Loss-Funktion nach dem Min-Max-Prinzip angenommene Fehler- gegen Zielgrößen, hier durch Amini beschränkt Varianz gegenüber Evidenz (vgl. Gleichung (8), (9), (10) unter (5)). Amini wählt die Kullback-Leibler-Divergenz als Maß für die Ausgangs- zur Optimalverteilung. Überlässt dabei jedoch ein Detail dem geneigten Leser, dessen Behandlung im Stand der Technik mittels Josangs \gls{subjectivelogic} aufgezeigt wurde.
 
-% Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äquivalent zu Aminis Modell R.4.4 refaktorisiert. Noise-Klasse eingebundenl, Determinismus für Zufallsgeneration überschrieben. 
+\begin{quote}
+  Unfortunately, the KL between any NIG and the zero evidence NIG prior is undefined.
+\end{quote}
+
+Herr Autenrieths Kritikalitätsräume erlauben folgende Parametrisierung: 
+
+\begin{itemize}
+  \item \textbf{Gaussverteilung:}
+    \[
+    f(\mathbf{x}) = A \cdot \exp\left(-\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right)
+    \]
+    \text{mit}:
+    \begin{itemize}
+      \item $\boldsymbol{\mu} \in \mathbb{R}^d$: Mittelwert
+      \item $\mathbf{\Sigma} = \mathrm{diag}(\boldsymbol{\sigma}^2)$ mit $\boldsymbol{\sigma} \in \mathbb{R}_{>0}^d$: Standardabweichungen
+      \item $A > 0$: maximale Amplitude (optional)
+      \item \text{range\_factor} $\in \mathbb{R}_{>0}$: Ausdehnung (optional)
+      \item \text{active\_dims}: aktive Eingabedimensionen $\subseteq \{1, \dots, D\}$
+    \end{itemize}
+
+  \item \textbf{Statischer Hyperwürfel:}
+    \[
+    f(\mathbf{x}) =
+    \begin{cases}
+      c, & \text{wenn } \mathbf{x} \in \prod_{i=1}^d [a_i, b_i] \\
+      0, & \text{sonst}
+    \end{cases}
+    \]
+    \text{mit:}
+    \begin{itemize}
+      \item $[a_i, b_i]$: Begrenzung pro Dimension
+      \item $c \in \mathbb{R}$: Konstanter Wert
+    \end{itemize}
+
+  \item \textbf{Rampe:}
+    \[
+    f(\mathbf{x}) = \mathrm{clip}\left( \sum_{i=1}^d \alpha_i x_i, \text{min}, \text{max} \right)
+    \]
+    \text{mit:}
+    \begin{itemize}
+      \item $\boldsymbol{\alpha} \in \mathbb{R}^d$: Koeffizienten
+      \item \text{bounds}: $[a_i, b_i]$ für jede aktive Dimension
+      \item \text{min\_value}, \text{max\_value}: Begrenzung des Funktionswerts
+    \end{itemize}
+
+  \item \textbf{Rauschen:}
+    \[
+    f(\mathbf{x}) = A + \mathcal{N}(0, \sigma^2)
+    \]
+    \text{mit:}
+    \begin{itemize}
+      \item $A$: Basiswert der Amplitude
+      \item $\sigma$: Standardabweichung des Rauschens (optional)
+      \item \text{seed}: zufallsbasierte Reproduzierbarkeit (optional)
+    \end{itemize}
+
+  \item \textbf{Sinus:}
+    \[
+    f(\mathbf{x}) = \sum_{i=1}^{n} A_i \cdot \sin(2\pi f_i \cdot \mathbf{w}_i^\top \mathbf{x} + \phi_i) + \text{offset}
+    \]
+    \text{mit:}
+    \begin{itemize}
+      \item $A_i$: Amplitude
+      \item $f_i$: Frequenz
+      \item $\mathbf{w}_i \in \mathbb{R}^d$: Gewichtungsvektoren
+      \item $\phi_i$: Phase (optional)
+      \item \text{offset}: Verschiebung nach oben/unten (optional)
+      \item \text{minimum\_value}: untere Schranke (optional)
+      \item \text{bounds}: Definitionsbereich (optional)
+      \item \text{active\_dims}: aktive Eingabedimensionen $\subseteq \{1, \dots, D\}$
+    \end{itemize}
+\end{itemize}
+
+
+% Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äquivalent zu Aminis Modell R.4.4 refaktorisiert indem Aminis Evidential Deep Learning Repository wegen fehlender Projektstruktur direkt integriert wird. Vorhandene Noise-Klasse wird eingebunden, Determinismus für Zufallsgeneration überschrieben. Visuali 
 
 % Ergebnisbilder.
 
