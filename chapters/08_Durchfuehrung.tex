@@ -319,7 +319,18 @@ Herr Autenrieths Kritikalitätsräume erlauben folgende Parametrisierung:
 \end{itemize}
 
 
-% Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äquivalent zu Aminis Modell R.4.4 refaktorisiert indem Aminis Evidential Deep Learning Repository wegen fehlender Projektstruktur direkt integriert wird. Vorhandene Noise-Klasse wird eingebunden, Determinismus für Zufallsgeneration überschrieben. Visuali 
+Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äquivalent zu Aminis Modell R.4.4 refaktorisiert indem Aminis Evidential Deep Learning Repository wegen fehlender Projektstruktur direkt integriert wird. Visualisiert wird zunächst die dem Modell unbekannte ursprüngliche Unsicherheit mit der das Signal belegt ist, die aleatorische, epistemische Varianz, sowie eine Gesamtansicht mit dem ursprünglich gesampelten Kritikalitätsraum. Das VaMai Standardbeispiel liefert dazu ein Rampen-, Gauss- und multinomielles Gausssignal in einer Domäne 10 LE x 10 LE x 2 LE. Die Ausgabe des unoptimierten Modells trennt zwar \gls{Epistemische Unsicherheit} und \gls{Aleatorische Unsicherheit}. Die Gesamtunsicherheitsmasse des Modells kommt der wahren unterliegenden Unsicherheit ungenügend nach. Es soll als visueller Ausgangspunkt weiterverwendet werden. Die Parametrisierung wurde zwecks UI-Optimierung für kurze Ladezeit verwendet.
+
+\paragraph{Konfiguration \glqq Prototyping \grqq} Feedforward-Netzwerk mit einer versteckten Schicht (\texttt{Dense(64, relu)}), Ausgangslayer \texttt{DenseNormalGamma}. Optimierer: Adam, Lernrate: $1\cdot10^{-3}$. Verlustfunktion: \texttt{EvidentialRegression} mit Regularisierung \texttt{coeff=1e-2}. Trainingsdauer: 100 Epochen. Trainingsdaten: Latin Hypercube Sampling (101 Samples), Rauschen: Gauß-verteiltes Rauschen mit $\sigma = 0{,}01$. Evaluation mittels RMSE auf Testdaten (80/20 Split), 5 Wiederholungen. Ausgaben: $\gamma$, $\nu$, $\alpha$, $\beta$ zur Berechnung von aleatorischer und epistemischer Varianz.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../figures/durchfuehrung_1.png}
+  \caption{R Grundl. Ausgangs-UI Kritikalität, Varianz total, aleat., epist.}
+\end{figure}
+
+Als nächtes wird vorhandene Noise-Klasse eingebunden, Determinismus für Zufallsgeneration überschrieben, um auf allen Signalklassen aleatorische Varianz zu erhalten. 
+
 
 % Ergebnisbilder.
 
