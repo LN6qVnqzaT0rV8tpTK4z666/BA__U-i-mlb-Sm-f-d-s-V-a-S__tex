@@ -325,11 +325,150 @@ Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äqui
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.5\textwidth]{../figures/durchfuehrung_1.png}
+  \includegraphics[width=0.8\textwidth]{../figures/y1.png}
   \caption{R Grundl. Ausgangs-UI Kritikalität, Varianz total, aleat., epist.}
 \end{figure}
 
-Als nächtes wird vorhandene Noise-Klasse eingebunden, Determinismus für Zufallsgeneration überschrieben, um auf allen Signalklassen aleatorische Varianz zu erhalten. 
+Vereinfacht man die Signal-Parametrisierung zunächst stark zu einer Gauss-Funktion in einer Domäne 10 LE x 10 LE x 1 LE
+
+\[
+f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(y - \mu_y)^2}{2\sigma_y^2} \right) \right)
+\]
+
+\[
+\text{mit:} \quad \mu_x = 5,\quad \mu_y = 5,\quad \sigma_x = 1,\quad \sigma_y = 1,\quad A = 1
+\]
+
+\[
+\Rightarrow \quad f(x, y) = \exp\left( -\frac{(x - 5)^2 + (y - 5)^2}{2} \right)
+\]
+
+, wählt die unter Amini vorgeschlagene Trainings-Parametrisierung für komplexere Fälle mit zwei vollverbundenen Schichten, 128 Neuronen, 2000 Epochen, jeweils als Trainingskonfiguration 2 statt, einer vollverbundenen Schicht, 64 Neuronen, 500 Epochen als Trainingskonfiguration 1 erhält man folgende zielführende Dynamik bereits ohne größere Störfunktion. 
+
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit} Zu sehen ist, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Underfit für ein einfaches Signal durch die Anzahl gewählter Epochen, Layer, Anzahl Neuronen äußert. Visuell ist es insbesondere durch ein Austreten aus der ursprünglichen Signalform erkennbar. Das Ergebnis der Trainingskonfiguration 2 ist eine minimale wellenförmige Gesamtunsicherheitsmasse diagonal unter der Gesamtzahl der Samples, die durch den ganzen Raum von den Minima über das Maxima des ursprünglichen Signals gesetzt wird. Es wird deutlich, dass Aminis Vorschlag der Trainingskonfiguration 2 für zweidimensionale Fälle im dreidimensionalen Fall mindestens durch Trainingskonfiguration 1 ersetzt werden sollte, um Ergebnisse zu erhalten, welche dem Original-Signal als Ground Truth in der Verteilung nahe kommen. Unter der Trainingskonfiguration 1 lässt sich behaupten, dass vorliegendes einfaches Gauss-Signal durch die erkannten Unsicherheiten in seiner Originalform annähernd bestimmt werden kann. Zwei Schichten, 128 Neuronen werden in recherchierter Literatur für komplexe Fälle erwähnt. % Quelle
+
+% \begin{figure}[!ht]
+%   \centering
+%   \begin{subfigure}[t]{0.31\textwidth}
+%     \centering
+%     \includegraphics[width=\textwidth]{../figures/y21.png}
+%     \caption{Konfiguration 1, Original-Signal als Wert der Kritikalitätsfunktion k(..) als \gls{GroundTruth}}
+%     \label{fig:bild21}
+%   \end{subfigure}
+%   \hfill
+%   \begin{subfigure}[t]{0.31\textwidth}
+%     \centering
+%     \includegraphics[width=\textwidth]{../figures/y22.png}
+%     \caption{Konfiguration 1, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+%     \label{fig:bild22}
+%   \end{subfigure}
+%   \hfill
+%   \begin{subfigure}[t]{0.31\textwidth}
+%     \centering
+%     \includegraphics[width=\textwidth]{../figures/y23.png}
+%     \caption{Konfiguration 1, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+%     \label{fig:bild23}
+%   \end{subfigure}
+%   \label{fig:three_subfigures1}
+% \end{figure}
+
+\begin{figure}[!ht]
+  \centering
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y21.png}
+    \caption{Konfiguration 1, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+    \label{fig:bild21}
+  \end{subfigure}
+
+  \vspace{0.5em}  % Kleiner Abstand zwischen den Bildern
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y22.png}
+    \caption{Konfiguration 1, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+    \label{fig:bild22}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y23.png}
+    \caption{Konfiguration 1, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \label{fig:bild23}
+  \end{subfigure}
+
+  \caption{Vergleich von GroundTruth, aleatorischer und epistemischer Unsicherheit unter Konfiguration 1}
+  \label{fig:three_subfigures1}
+\end{figure}
+
+
+
+% \begin{figure}[!ht]
+%   \centering
+%   \begin{subfigure}[t]{0.31\textwidth}
+%     \centering
+%     \includegraphics[width=\textwidth]{../figures/y31.png}
+%     \caption{Konfiguration 2, Original-Signal als Wert der Kritikalitätsfunktion k(..) als \gls{GroundTruth}}
+%     \label{fig:bild31}
+%   \end{subfigure}
+%   \hfill
+%   \begin{subfigure}[t]{0.31\textwidth}
+%     \centering
+%     \includegraphics[width=\textwidth]{../figures/y32.png}
+%     \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+%     \label{fig:bild32}
+%   \end{subfigure}
+%   \hfill
+%   \begin{subfigure}[t]{0.31\textwidth}
+%     \centering
+%     \includegraphics[width=\textwidth]{../figures/y33.png}
+%     \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+%     \label{fig:bild33}
+%   \end{subfigure}
+%   \label{fig:three_subfigures2}
+% \end{figure}
+
+\begin{figure}[!ht]
+  \centering
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y31.png}
+    \caption{Konfiguration 2, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+    \label{fig:bild31}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y32.png}
+    \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+    \label{fig:bild32}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y33.png}
+    \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \label{fig:bild33}
+  \end{subfigure}
+
+  \caption{Vergleich von GroundTruth, aleatorischer und epistemischer Unsicherheit unter Konfiguration 2}
+  \label{fig:three_subfigures2}
+\end{figure}
+
+
+
+% \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit} 
+
+
+% Als nächtes wird vorhandene Noise-Klasse eingebunden, Determinismus für Zufallsgeneration überschrieben, um auf allen Signalklassen größere aleatorische Varianz durch Störfunktion zu erhalten. 
 
 
 % Ergebnisbilder.
