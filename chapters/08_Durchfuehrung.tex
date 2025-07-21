@@ -343,9 +343,9 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
 \Rightarrow \quad f(x, y) = \exp\left( -\frac{(x - 5)^2 + (y - 5)^2}{2} \right)
 \]
 
-, wählt die unter Amini vorgeschlagene Trainings-Parametrisierung für komplexere Fälle mit zwei vollverbundenen Schichten, 128 Neuronen, 2000 Epochen, jeweils als Trainingskonfiguration 2 statt, einer vollverbundenen Schicht, 64 Neuronen, 500 Epochen als Trainingskonfiguration 1 erhält man folgende zielführende Dynamik bereits ohne größere Störfunktion. 
+, wählt die unter Amini vorgeschlagene Trainings-Parametrisierung für komplexere Fälle mit zwei vollverbundenen Schichten, 128 Neuronen, 2000 Epochen, jeweils als Trainingskonfiguration 2 statt einer vollverbundenen Schicht, 64 Neuronen, 500 Epochen als Trainingskonfiguration 1, erhält man folgende zielführende Dynamik bereits ohne größere Störfunktion. 
 
-\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit} Zu sehen ist, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Underfit für ein einfaches Signal durch die Anzahl gewählter Epochen, Layer, Anzahl Neuronen äußert. Visuell ist es insbesondere durch ein Austreten aus der ursprünglichen Signalform erkennbar. Das Ergebnis der Trainingskonfiguration 2 ist eine minimale wellenförmige Gesamtunsicherheitsmasse diagonal unter der Gesamtzahl der Samples, die durch den ganzen Raum von den Minima über das Maxima des ursprünglichen Signals gesetzt wird. Es wird deutlich, dass Aminis Vorschlag der Trainingskonfiguration 2 für zweidimensionale Fälle im dreidimensionalen Fall mindestens durch Trainingskonfiguration 1 ersetzt werden sollte, um Ergebnisse zu erhalten, welche dem Original-Signal als Ground Truth in der Verteilung nahe kommen. Unter der Trainingskonfiguration 1 lässt sich behaupten, dass vorliegendes einfaches Gauss-Signal durch die erkannten Unsicherheiten in seiner Originalform annähernd bestimmt werden kann. Zwei Schichten, 128 Neuronen werden in recherchierter Literatur für komplexe Fälle erwähnt. % Quelle
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit} Zu sehen ist, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Underfit für ein einfaches Signal durch die Anzahl gewählter Epochen, Layer, Anzahl Neuronen äußert. Visuell ist es insbesondere durch ein Austreten aus der ursprünglichen Signalform erkennbar. Das Ergebnis der Trainingskonfiguration 2 ist eine minimale wellenförmige Gesamtunsicherheitsmasse diagonal unter der Gesamtzahl der Samples, die durch den ganzen Raum von den Minima über das Maxima des ursprünglichen Signals gesetzt wird. Es wird deutlich, dass Aminis Vorschlag der Trainingskonfiguration 2 für zweidimensionale Fälle im dreidimensionalen Fall mindestens durch Trainingskonfiguration 1 ersetzt werden sollte, um Ergebnisse zu erhalten, welche dem Original-Signal als Ground Truth in der Verteilung nahe kommen. Unter der Trainingskonfiguration 1 lässt sich behaupten, dass vorliegendes einfaches Gauss-Signal durch die erkannten Unsicherheiten in seiner Originalform annähernd bestimmt werden kann. Zwei Schichten, 128 Neuronen werden in recherchierter Literatur für komplexe Fälle erwähnt. % Quelle
 
 % \begin{figure}[!ht]
 %   \centering
@@ -400,7 +400,7 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
     \label{fig:bild23}
   \end{subfigure}
 
-  \caption{Vergleich von GroundTruth, aleatorischer und epistemischer Unsicherheit unter Konfiguration 1}
+  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 1}
   \label{fig:three_subfigures1}
 \end{figure}
 
@@ -459,13 +459,53 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
     \label{fig:bild33}
   \end{subfigure}
 
-  \caption{Vergleich von GroundTruth, aleatorischer und epistemischer Unsicherheit unter Konfiguration 2}
+  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 2}
   \label{fig:three_subfigures2}
 \end{figure}
 
+\paragraph{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 2} 
 
 
-% \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit} 
+
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit} Zu sehen ist, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Overfit für ein einfaches Signal durch die doppelte Anzahl gewählter Epochen bei gleicher Anzahl Layer, Anzahl Neuronen wie im Fit-Szenario äußert. Visuell ist es insbesondere durch ein Austreten der epistemischen Varianz aus der ursprünglichen Signalform erkennbar. Das Ergebnis beruht auf der Trainingskonfiguration 1 mit doppelter Epochenzahl von viertausend. Es wird visuell deutlich, dass die Ground Truth der epistemischen Varianz im Original-Signal, welche durch die Obergrenze bei eins limitiert ist, durch einen Overfit überkonfident auf 1,4 approximiert wird. Der vorhandene Sample-Punkt auf der Spitze des Gauss-Signals als gesampletes Maximum des Original-Signals wird überschritten. Eine optimale Epochenzahl für einen Fit für das einzelne 3D-Gauss-Signal lässt sich so auf den Bereich zwischen 2000 und 4000 Epochen mindestens aus diesen Try-And-Error-Versuchen eingrenzen.
+
+
+
+\begin{figure}[!ht]
+  \centering
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y41.png}
+    \caption{Konfiguration 3, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+    \label{fig:bild31}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y42.png}
+    \caption{Konfiguration 3, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+    \label{fig:bild32}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y43.png}
+    \caption{Konfiguration 3, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \label{fig:bild33}
+  \end{subfigure}
+
+  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 3}
+  \label{fig:three_subfigures3}
+\end{figure}
+
+
+% Quelle
+
 
 
 % Als nächtes wird vorhandene Noise-Klasse eingebunden, Determinismus für Zufallsgeneration überschrieben, um auf allen Signalklassen größere aleatorische Varianz durch Störfunktion zu erhalten. 
