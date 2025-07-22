@@ -504,14 +504,109 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
 \end{figure}
 
 
-% Quelle
+
+\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit} 
+
+Folgendes Multi-3D-Signal zweier bereits mit Unsicherheit belegter Gauss-Signale 
+
+\[
+F(x, y) = 2 \cdot \exp\left( -\frac{(x - 9)^2}{2 \cdot 1^2} - \frac{(y - 5)^2}{2 \cdot 1^2} \right) + \exp\left( -\frac{(x - 2)^2}{2 \cdot 0.5^2} - \frac{(y - 2)^2}{2 \cdot 0.5^2} \right) + \exp\left( -\frac{(x - 7)^2}{2 \cdot 1^2} - \frac{(y - 7)^2}{2 \cdot 1^2} \right)
+\]
+
+erzielte auf bisheriger Grundlage mit folgenden Parametrisierungen Underfits. 
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Schichten} & \textbf{Neuronen pro Schicht} & \textbf{Epochen} \\
+\hline
+4 & 128 & 8000 \\
+2 & 256 & 4000 \\
+2 & 256 & 2000 \\
+\hline
+\end{tabular}
+\caption{Vergleich von Netzwerkarchitekturen und Trainingsparametern}
+\end{table}
+
+Zu beobachten ist, dass eine Erhöhung der Schicht- und Neuronen-Anzahl im 3D-Fall dazu beiträgt das größte Teil-Signal präziser auf dem Domänenboden abzubilden bis es die Originalposition des größten Teil-Signals erreicht. Jedoch fällt das Volumen zu flach aus. Eine weitere Beobachtung ist, dass Aminis Regressionsansatz bei mehreren Signalformen in der Domäne, im Volumen die Gesamtunsicherheitsmasse der aleatorischen und epistemischen Varianz aller auftretenden Signale erfasst. Ergänzend dazu orientiert sich die Position der erfassten Gesamtunsicherheitsmasse jedoch im ersten Fall an der größten Dichte von Maximalwerten der auftretenden Signal-Formen. 
+
+Wählt man schließlich der ursprünglichen Parametrisierung von Amini entgegenkommend
+
+2 Schichten, 64 Neuronen, 2000 Epochen 
+
+kommt man zum besten gemittelten Ergebnis aus der aleatorischen und epistemischen Varianz zwischen den beiden verwendeten Signalen. 
+
+Für weitere Schritte wird das wie folgt interpretiert. Im Projekt VaMai möchte man die alaotrische und epistemische Varianz pro Signal präzsiser erfassen, sodass eben geschilderte Beobachtungen nicht hinreichend sind. 
+
+Lösungsansätze könnten beispielsweise das Eingrenzen von Signal-Positionen in der Domäne durch eine beliebige Abtastung sein. Das abgetastete Teilvolumen wird dann vom Evidentiellen Netzwerk auf seine Teilunsicherheiten untersucht. Das Ergebnis setzt man additiv zusammen. 
+
+Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherheitsmassen als auch die Volumen der Teil-Unsicherheitsmassen in Bezug auf die als Boden angesehene Fläche der verglichenen Dimensionen korrekt bestimmen lassen. 
+
+
+
+\begin{figure}[!ht]
+  \centering
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y51.png}
+    \caption{Konfiguration 4, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+    \label{fig:bild31}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y52.png}
+    \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+    \label{fig:bild32}
+  \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y53.png}
+    \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \label{fig:bild33}
+  \end{subfigure}
+
+  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 4}
+  \label{fig:three_subfigures3}
+\end{figure}
+
+
+
+\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Overfit} 
+
+Es wurde im Zeitrahmen unter im letzten Paragraphen erwähnter Parametrisierung kein offensichtlicher Overfit erzielt, der alle Signal-Klassen visuell detailgetreu abbildet. Interpretiert wird, dass das größte Teil-Signal in Originalposition des größten Teil-Signals auf dem Domänenboden der verglichenen Dimensionen als erste Beobachtung des letzten Pargraphen unter der hohen Schicht-, Neuronen-, Epochenzahl aus der letzten Tabelle den Overfit von Aminis Regressionsansatz bei mehreren 3D-Signalen abbildet.  
 
 
 
 % Als nächtes wird vorhandene Noise-Klasse eingebunden, Determinismus für Zufallsgeneration überschrieben, um auf allen Signalklassen größere aleatorische Varianz durch Störfunktion zu erhalten. 
 
+% \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Störfunktion} 
 
-% Ergebnisbilder.
+
+
+
+% \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit mit Störfunktion}
+
+
+
+
+% \paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Störfunktion} 
+
+
+
+
+% \paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Overfit mit Störfunktion} 
+
+
+
+
 
 
 
