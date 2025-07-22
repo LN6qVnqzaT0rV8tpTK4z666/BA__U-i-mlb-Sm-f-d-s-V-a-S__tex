@@ -319,7 +319,8 @@ Herr Autenrieths Kritikalitätsräume erlauben folgende Parametrisierung:
 \end{itemize}
 
 
-Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äquivalent zu Aminis Modell R.4.4 refaktorisiert indem Aminis Evidential Deep Learning Repository wegen fehlender Projektstruktur direkt integriert wird. Visualisiert wird zunächst die dem Modell unbekannte ursprüngliche Unsicherheit mit der das Signal belegt ist, die aleatorische, epistemische Varianz, sowie eine Gesamtansicht mit dem ursprünglich gesampelten Kritikalitätsraum. Das VaMai Standardbeispiel liefert dazu ein Rampen-, Gauss- und multinomielles Gausssignal in einer Domäne 10 LE x 10 LE x 2 LE. Die Ausgabe des unoptimierten Modells trennt zwar \gls{Epistemische Unsicherheit} und \gls{Aleatorische Unsicherheit}. Die Gesamtunsicherheitsmasse des Modells kommt der wahren unterliegenden Unsicherheit ungenügend nach. Es soll als visueller Ausgangspunkt weiterverwendet werden. Die Parametrisierung wurde zwecks UI-Optimierung für kurze Ladezeit verwendet.
+
+Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äquivalent zu Aminis Modell R.4.4 refaktorisiert indem Aminis Evidential Deep Learning Repository wegen fehlender Projektstruktur direkt integriert wird. Visualisiert wird zunächst die dem Modell unbekannte ursprüngliche Unsicherheit mit der das Signal belegt ist, die aleatorische, epistemische Varianz, sowie eine Gesamtansicht mit dem ursprünglich gesampelten Kritikalitätsraum. Das VaMai Standardbeispiel liefert dazu ein Rampen-, Gauss- und multinomielles Gausssignal in einer Domäne 10 LE x 10 LE x 2 LE. Die Ausgabe des unoptimierten Modells trennt zwar \gls{Epistemische Unsicherheit} und \gls{Aleatorische Unsicherheit}. Doch die Gesamtunsicherheitsmasse des Modells kommt der wahren unterliegenden Unsicherheit ungenügend nach. Es soll als visueller Ausgangspunkt weiterverwendet werden. Die Parametrisierung wurde zwecks UI-Optimierung für kurze Ladezeit verwendet.
 
 \paragraph{Konfiguration \glqq Prototyping \grqq} Feedforward-Netzwerk mit einer versteckten Schicht (\texttt{Dense(64, relu)}), Ausgangslayer \texttt{DenseNormalGamma}. Optimierer: Adam, Lernrate: $1\cdot10^{-3}$. Verlustfunktion: \texttt{EvidentialRegression} mit Regularisierung \texttt{coeff=1e-2}. Trainingsdauer: 100 Epochen. Trainingsdaten: Latin Hypercube Sampling (101 Samples), Rauschen: Gauß-verteiltes Rauschen mit $\sigma = 0{,}01$. Evaluation mittels RMSE auf Testdaten (80/20 Split), 5 Wiederholungen. Ausgaben: $\gamma$, $\nu$, $\alpha$, $\beta$ zur Berechnung von aleatorischer und epistemischer Varianz.
 
@@ -344,6 +345,8 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
 \]
 
 , wählt die unter Amini vorgeschlagene Trainings-Parametrisierung für komplexere Fälle mit zwei vollverbundenen Schichten, 128 Neuronen, 2000 Epochen, jeweils als Trainingskonfiguration 2 statt einer vollverbundenen Schicht, 64 Neuronen, 500 Epochen als Trainingskonfiguration 1, erhält man folgende zielführende Dynamik bereits ohne größere Störfunktion. 
+
+
 
 \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit} Zu sehen ist, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Underfit für ein einfaches Signal durch die Anzahl gewählter Epochen, Layer, Anzahl Neuronen äußert. Visuell ist es insbesondere durch ein Austreten aus der ursprünglichen Signalform erkennbar. Das Ergebnis der Trainingskonfiguration 2 ist eine minimale wellenförmige Gesamtunsicherheitsmasse diagonal unter der Gesamtzahl der Samples, die durch den ganzen Raum von den Minima über das Maxima des ursprünglichen Signals gesetzt wird. Es wird deutlich, dass Aminis Vorschlag der Trainingskonfiguration 2 für zweidimensionale Fälle im dreidimensionalen Fall mindestens durch Trainingskonfiguration 1 ersetzt werden sollte, um Ergebnisse zu erhalten, welche dem Original-Signal als Ground Truth in der Verteilung nahe kommen. Unter der Trainingskonfiguration 1 lässt sich behaupten, dass vorliegendes einfaches Gauss-Signal durch die erkannten Unsicherheiten in seiner Originalform annähernd bestimmt werden kann. Zwei Schichten, 128 Neuronen werden in recherchierter Literatur für komplexe Fälle erwähnt. % Quelle
 
@@ -537,7 +540,7 @@ Wählt man schließlich der ursprünglichen Parametrisierung von Amini entgegenk
 
 kommt man zum besten gemittelten Ergebnis aus der aleatorischen und epistemischen Varianz zwischen den beiden verwendeten Signalen. 
 
-Für weitere Schritte wird das wie folgt interpretiert. Im Projekt VaMai möchte man die alaotrische und epistemische Varianz pro Signal präzsiser erfassen, sodass eben geschilderte Beobachtungen nicht hinreichend sind. 
+Für weitere Schritte wird das wie folgt interpretiert. Im Projekt VaMai möchte man die aleatorische und epistemische Varianz pro Signal präziser erfassen, sodass eben geschilderte Beobachtungen nicht hinreichend sind. 
 
 Lösungsansätze könnten beispielsweise das Eingrenzen von Signal-Positionen in der Domäne durch eine beliebige Abtastung sein. Das abgetastete Teilvolumen wird dann vom Evidentiellen Netzwerk auf seine Teilunsicherheiten untersucht. Das Ergebnis setzt man additiv zusammen. 
 
@@ -579,40 +582,35 @@ Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherhe
 
 
 
-\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Overfit} 
-
-Es wurde im Zeitrahmen unter im letzten Paragraphen erwähnter Parametrisierung kein offensichtlicher Overfit erzielt, der alle Signal-Klassen visuell detailgetreu abbildet. Interpretiert wird, dass das größte Teil-Signal in Originalposition des größten Teil-Signals auf dem Domänenboden der verglichenen Dimensionen als erste Beobachtung des letzten Pargraphen unter der hohen Schicht-, Neuronen-, Epochenzahl aus der letzten Tabelle den Overfit von Aminis Regressionsansatz bei mehreren 3D-Signalen abbildet.  
+\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Overfit} Es wurde im Zeitrahmen unter im letzten Paragraphen erwähnter Parametrisierung kein offensichtlicher Overfit erzielt, der alle Signal-Klassen visuell detailgetreu abbildet. Interpretiert wird, dass das größte Teil-Signal in Originalposition des größten Teil-Signals auf dem Domänenboden der verglichenen Dimensionen als erste Beobachtung des letzten Pargraphen unter der hohen Schicht-, Neuronen-, Epochenzahl aus der letzten Tabelle den Overfit von Aminis Regressionsansatz bei mehreren 3D-Signalen abbildet.  
 
 
 
-% Als nächtes wird vorhandene Noise-Klasse eingebunden, Determinismus für Zufallsgeneration überschrieben, um auf allen Signalklassen größere aleatorische Varianz durch Störfunktion zu erhalten. 
-
-% \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Störfunktion} 
+\paragraph{Störfunktion} Für stochastische Abweichungen wird in Herr Authenrieths Kritikalitätssoftware die Klasse Noise verwendet. Sie überlagert normalverteiltes Rauschen additiv auf Punktmengen oder Gitter. Die Initialisierung erfolgt über eine Amplitude \( a > 0 \), eine Standardabweichung \( \sigma > 0 \) und optional einen Seed zur Steuerung der Pseudozufallsquelle. Es gilt $\varepsilon \sim \mathcal{N}(0, \sigma^2), \tilde{\varepsilon} = a \cdot \varepsilon$. Die Zufallsgenerierung basiert auf \texttt{numpy.default\_rng} und erlaubt sowohl Determinismus als auch Nichtdeterminismus. Entsprechend VaMai wird im Folgenden gezielt letzteres berücksichtigt.
 
 
 
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Störfunktion} 
 
-% \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit mit Störfunktion}
-
-
-
-
-% \paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Störfunktion} 
+Grundlegend ergibt die Auswertung für das einzelne Guass-Signal \textit{mit} Störfunktion sehr ähnliche Dynamik im Ergebnis des \gls{Evidenzbasierte neuronale Netze} wie im ursprünglichen Abschnitt. Ein Underfit ergibt ebenfalls eine zu flache Unsicherheitsmasse mit überkonfidentem Zuwachs zur Domänengrenze. Eine zunehmende Störfunktions-Parametrisierung mit Amplitude von 0,01 zu 1, Standardabweichung konstant 1, ergibt zwei Effekte. Das Abflachen der vom \gls{Evidenzbasierte neuronale Netze} Gesamtunsicherheitsmasse mit der Tendenz zur Fit-Dynamik. Zweitens das Verrauschen der Gesamtunsicherheitsmasse. Das Verrauschen mit Amplitude 0,2 äußert sich in fleckweisen noch flacheren Volumenabschnitten, um die größte resultierende Gesamtunsicherheitsmasse in einem Abschnitt hoher Sample-Dichte. Interpretiert man weitere Lösungsansätze für dieses Verhalten, erlaubt die Differenz der Ergebnis-Massen eine eindeutige Filterung. Dabei kann erwartet werden, dass kleine Amplituden der Störfunktion durch einen Hochpassfilter, größere Amplituden durch einen Tiefpass, sowie Kombinationen durch Bandpass auf die abgezielte Unsicherheitsmasse gefiltert werden kann. In komplexeren Fällen der Überlagerung wäre ein Ansatz wieder eine ortsweise Abtastung der Signale und additive Kombination der Lösung. 
 
 
 
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit mit Störfunktion}
 
-% \paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Overfit mit Störfunktion} 
-
-
-
+Mit Störfunktion kann \textit{nicht} die selbe Overfit Dynamik wie im vorherigen Abschnitt zum einzelnen Gauss-Signal erzielt werden. Es verzögert sich \textit{nicht} lediglich durch die Epochenzahl. Bereits eine Amplitude von 0,2 sorgt bei im vorherigen Abschnitt verwendeter Epochenzahl von viertausend für gleich große um die wahr Unsicherheitsmasse äquidistant verteilte kleine Unsicherheitsmassen, in dem Fall drei, welche die Unsicherheit des Netzes ausdrücken. 
 
 
 
+\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Overfit mit Störfunktion} 
 
-\section{}
+Wie im vorherigen Abschnitt ohne Störfunktion verzerren sich die Einzel-Signal-Beobachtungen lediglich durch die vom Netz erfasste Gesamtunsicherheitsmasse mit abweichendem Volumen von der Erwartungshaltung einer hinreichend den ursprünglichen Signalformen entsprechenden.  Ebenso erhöht sich die Unsicherheit des Netzes wieder ausgedrückt, dadurch das die aus mehreren Signalformen zusammengesetzte Unsicherheitsmasse aufteilt wird auf die vom Netz äquidistant angelegten Teilvolumina um den Punkt der höchsten Signaldichte. Dies entspricht nicht der von VaMai geforderten Ähnlichkeit zu den ursprünglichen Signalformen. Außerdem erzielt es je nach Störfunktionsamplitude zu hohe oder niedrige Ergebnisse. 
 
-Abschließend sollen nach A7 die wichtigsten Ansätze und Ergebnisse der Arbeit in einem kurzen Jupyter Notebook zusammenfasst werden. 
+
+
+% \section{}
+
+% Abschließend sollen nach A7 die wichtigsten Ansätze und Ergebnisse der Arbeit in einem kurzen Jupyter Notebook zusammenfasst werden. 
 
 
 
