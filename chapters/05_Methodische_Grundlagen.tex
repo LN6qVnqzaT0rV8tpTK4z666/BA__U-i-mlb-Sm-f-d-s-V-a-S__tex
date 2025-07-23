@@ -89,8 +89,7 @@
 \begin{otherlanguage}{ngerman}
 \section{Machine Learning}
 
-Machine Learning (\gls{machinelearning}) bezeichnet die Klasse von Algorithmen \( f_{\theta} : \mathcal{X} \rightarrow \mathcal{Y} \), die aus Daten 
-\( \mathcal{D} = \{ (x_i, y_i) \}_{i=1}^{N} \) ein Modell \( f_{\theta} \) lernen, das Eingaben \( x \in \mathcal{X} \) Vorhersagen \( \hat{y} \in \mathcal{Y} \) zuordnet. Dies geschieht durch Optimierung der Parameter \( \theta \) mittels einer Fehlerfunktion \( \mathcal{L}_{\text{loss}}(y, \hat{y}) \).
+\gls{machinelearning} bezeichnet die Klasse von Algorithmen \( f_{\theta} : \mathcal{X} \rightarrow \mathcal{Y} \), die aus Daten \( \mathcal{D} = \{ (x_i, y_i) \}_{i=1}^{N} \) ein Modell \( f_{\theta} \) lernen, das Eingaben \( x \in \mathcal{X} \) Vorhersagen \( \hat{y} \in \mathcal{Y} \) zuordnet. Dies geschieht durch Optimierung der Parameter \( \theta \) mittels einer Fehlerfunktion \( \mathcal{L}_{\text{loss}}(y, \hat{y}) \).
 
 \subsection{Architekturen}
 
@@ -121,9 +120,9 @@ Eine Schicht in einem \gls{neuronalesnetzwerk} besteht aus:
 \end{enumerate}
 
 
-\section*{DNN – Deep Neural Network}
+\section*{DNN - Deep Neural Network}
 
-Ein \textbf{Deep Neural Network (\gls{DeepNeuralNetwork})} erweitert ein \gls{neuronalesnetzwerk} um mehrere versteckte Schichten, Hidden Layer. Dies erhöht die Tiefe des Netzwerks:
+Ein \textbf{Deep Neural Network (\gls{DeepNeuralNetwork})} erweitert ein \gls{neuronalesnetzwerk} um mehrere versteckte Schichten, Hidden Layer. Wobei $L$ die Tiefe des \gls{neuronalesnetzwerk} äquivalent ist zur Anzahl gewichteter Schichten des \gls{neuronalesnetzwerk}:
 
 \[
 f(x) = \sigma_L\left(W_L \cdot \sigma_{L-1}\left(\ldots \sigma_1\left(W_1 \cdot x + b_1\right) \ldots \right) + b_L\right)
@@ -131,7 +130,7 @@ f(x) = \sigma_L\left(W_L \cdot \sigma_{L-1}\left(\ldots \sigma_1\left(W_1 \cdot 
 
 Neben der linearen Transformation erlaubt ein \gls{DeepNeuralNetwork} durch das Propagieren über mehrere versteckte Schichten die Modellierung komplexer Nichtlinearitäten und somit ein tieferes Lernen relevanter Merkmale.
 
-\section*{BNN – Bayesian Neural Network}
+\section*{BNN - Bayesian Neural Network}
 
 Ein \textbf{Bayesian Neural Network (\gls{Bayesianische neuronale Netze})} modelliert die Gewichte $\boldsymbol{\theta}$ als Zufallsvariablen $p(\theta)$. Die Vorhersage entspricht dem Erwartungswert über alle möglichen Modelle:
 
@@ -141,9 +140,9 @@ p(y \mid x, D) = \int p(y \mid x, \theta) \cdot p(\theta \mid D) \, d\theta
 
 Dadurch wird die \textbf{\gls{Epistemische Unsicherheit}} über die Posterior-Verteilung der Gewichte quantifizierbar.
 
-\section*{\gls{Evidenzbasierte neuronale Netze} – Evidential Deep Neural Network}
+\section*{\gls{Evidenzbasierte neuronale Netze} - Evidential Deep Neural Network}
 
-Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $E$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite \gls{MonteCarloSampling}-Strategie notwendig ist, um \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} zu bestimmen.
+Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $E$, z.\,B. innerhalb einer Normal-Inversen-Gamma-Verteilung (\gls{noninversegammadistribution}) $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite \gls{MonteCarloSampling}-Strategie notwendig ist, um \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} zu bestimmen.
 
 \subsubsection*{Parameterbedeutung:}
 \begin{itemize}

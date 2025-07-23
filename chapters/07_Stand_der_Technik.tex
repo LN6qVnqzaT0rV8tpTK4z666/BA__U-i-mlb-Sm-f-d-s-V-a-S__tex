@@ -1062,7 +1062,7 @@
 % Bezug ML in szenariobasierter Validierung autonomer Systeme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Validierung autonomer Systeme setzt stark auf datenbasierte Modelle, um komplexe parametrisierte Situationen vorherzusagen, zum Beispiel im Verkehr. Das ingenieurstechnische Ersatzmodell als Surrogat soll Risiken bewerten und die Plausibilität von Szenarien prüfen, zum Beispiel wann eine Steuerung eine Situation vorhersagen soll. Dazu wird im folgenden Rahmen der Forschungsfragen und spezifischen Aufgaben erörtert. \par\noindent\\
+Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Validierung autonomer Systeme setzt stark auf datenbasierte Modelle, um komplexe parametrisierte Situationen vorherzusagen, zum Beispiel im Verkehr. Das ingenieurtechnische Ersatzmodell als Surrogat soll Risiken bewerten und die Plausibilität von Szenarien prüfen, zum Beispiel wann eine Steuerung eine Situation vorhersagen soll. Dazu wird im folgenden Rahmen der Forschungsfragen und spezifischen Aufgaben erörtert. \par\vspace{1\baselineskip}\noindent
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R1
@@ -1151,7 +1151,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textbf{R2} Welche \textit{allgemeinen} und \textit{modellspezifischen} Faktoren beeinflussen das Lernen von Unsicherheiten in \gls{machinelearning}-Modellen?
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 \textbf{R2.1} \textit{Allgemeine Faktoren} welche das Lernen von Unsicherheiten in \gls{machinelearning}-Modellen beeinflussen.
 
@@ -1343,7 +1343,7 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textbf{R3} Wie können diese Einflussfaktoren abgeschwächt werden, um die Unsicherheitsabschätzung zu verbessern?
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 Wie kann man \textit{allgemeine Faktoren} beim Lernen von Unsicherheiten in \gls{machinelearning}-Modellen abschwächen?
 
@@ -1373,7 +1373,7 @@ Wie kann man \textit{allgemeine Faktoren} beim Lernen von Unsicherheiten in \gls
 
     \multirow{5}{*}{3. Grad der Unsicherheit} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
-      \item Erhöhung des Modellspezifikationsgrades, z. B. durch Mehrfachmodellierung und Unsicherheitsquantifizierung.
+      \item Erhöhung des Modellspezifikationsgrades, zum Beispiel durch Mehrfachmodellierung und \gls{uncertaintyquantification}.
     \end{itemize}
     &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
@@ -1425,7 +1425,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
 
     \multirow{3}{*}{3. Posterior Approximation} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
-      \item Verwendung effizienter Verfahren wie Variational Inference.
+      \item Verwendung effizienter Verfahren wie \gls{variationalinference}.
     \end{itemize}
     &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
@@ -1501,7 +1501,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
 
     \multirow{3}{*}{3. Posterior Approximation} &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
-      \item Nutzung präziser Näherungsverfahren wie MCMC.
+      \item Nutzung präziser Näherungsverfahren wie \gls{Markov Chain Monte Carlo}.
     \end{itemize}
     &
     \begin{itemize}[leftmargin=*, topsep=0em, itemsep=0em, label={}]
@@ -1573,15 +1573,15 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
 % R4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textbf{R4} Inwieweit kann \gls{machinelearning}-basierte Unsicherheitsquantifizierung zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
-\par\noindent\\
+\textbf{R4} Inwieweit kann \gls{machinelearning}-basierte \gls{uncertaintyquantification} zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
+\par\vspace{1\baselineskip}\noindent
 
 % Beweis aus Herleitung wie das einander entsprechen kann.
 
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
-Lanini et. al liefern ein Framework zur Bewertung von R4 ~\parencite{Lanini2024} zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken. 
+Lanini et. al liefern ein Framework zur Bewertung von R4 zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken (vgl. Lanini et al. ~\parencite{Lanini2024}). 
 \newline
-Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische \gls{kuenstlicheintelligenz}. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden \parencite{manchingal2025}. 
+Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische \gls{kuenstlicheintelligenz}. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden (vgl. Manchingal et al. \parencite{manchingal2025}). 
 
 %TODO: Weiterführend argumentieren nach Feedback Daniel
 
@@ -1590,34 +1590,31 @@ Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. 
 
 \textbf{Modell Evidentielles Wissen}
 
-Ein in der Literatur üblicher Ansatz ist das Trainieren von \gls{Evidenzbasierte neuronale Netze} auf Evidentiellem Wissen zur Optimierung dessen in der Anwendungsdomäne. Manchingals Grafiken liefern die Übersicht für in VaMai in betracht gezogenen \gls{uncertaintyquantification}-Techniken in R.4.1, R.4.2, R.4.3 . Dabei können insbesondere die Wahrscheinlichkeitsräume mittels Jøsangs Subjektiver Logik (\gls{subjectivelogic}) umfassend definiert werden. 
+Ein in der Literatur üblicher Ansatz ist das Trainieren von \gls{Evidenzbasierte neuronale Netze} auf Evidentiellem Wissen zur Optimierung dessen in der Anwendungsdomäne. Manchingals Grafiken liefern die Übersicht für in VaMai in Betracht gezogene \gls{uncertaintyquantification}-Techniken in R.4.1, R.4.2, R.4.3. Dabei können insbesondere die Wahrscheinlichkeitsräume mittels Jøsangs Subjektiver Logik (\gls{subjectivelogic}) umfassend definiert werden. 
 
 \begin{quote}
-  Difference to [\dots] bayesian theory [is] \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} is \textit{explicit} in subjective logic [...] \parencite[vgl S. 42]{josang2016subjective}.
+  \glqq{}Difference to [\dots] bayesian theory [is] \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} is \textit{explicit} in \gls{subjectivelogic} [\dots].\grqq{}\par\vspace{0\baselineskip}\noindent
+  \parencite[{vgl. J\o{}sang S. 42, Z.38 ff.}]{josang2016subjective}
 \end{quote}
 
-Jøsang liefert den Zusammenhang für \gls{Bayesianische neuronale Netze} ~\parencite[vgl. S.42]{josang2016subjective}. Er soll hier auch für \gls{EvidentialDeepLearning} gewählt werden. Jøsang erweitert \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} als Unsicherheiten erster Ordnung zu Unsicherheiten zweiter Ordnung \glqq Aleatoric Opinion \grqq (\gls{aleatoricopinion}), \glqq Epistemic Opinion \grqq (\gls{epistemicopinion}) (vgl. Jøsang ~\parencite[S.22, Z.10-16; S.22 Z. 17-26; S.23, Z. 5-; S.23 Z.9-12]{josang2016subjective}). \par\noindent\\
+J\o{}sang liefert den Zusammenhang für \gls{Bayesianische neuronale Netze} (vgl. J\o{}sang ~\parencite[vgl. S.42]{josang2016subjective}). Er soll hier auch für \gls{EvidentialDeepLearning} gewählt werden. J\o{}sang erweitert \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} als Unsicherheiten erster Ordnung zu Unsicherheiten zweiter Ordnung \glqq Aleatoric Opinion \grqq (\gls{aleatoricopinion}), \glqq Epistemic Opinion \grqq (\gls{epistemicopinion}) (vgl. J\o{}sang ~\parencite[{S.22, Z.10-16; S.22 Z. 17-26; S.23, Z. 5-; S.23 Z.9-12}]{josang2016subjective}). \par\vspace{1\baselineskip}\noindent
 
-\gls{subjectivelogic} gibt eine klare Vergleichbarkeits-Hierarchie zur Mengenmodellierung für Zwischenzustände zur Unwissenheit trotz Evidenz für \gls{Evidenzbasierte neuronale Netze} zur Eingrenzung von \glqq Zero Evidence Regions \grqq ~\parencite[vgl. S.50]{josang2016subjective} unabhängig von gewählten in der Literatur stark individualisierten, variierenden Loss-Functions (vgl. Ulmer et al. \parencite{Ulmer2023}). Für VaMai interessant sind die Limitierungen evidentiellen Wissens in der Visualisierung vom binomiellen zum multinomiellen Modell, die Zuordnung dieser zu Dirichlet PDF's erster Ordnung und schließlich zweiter Ordnung in der Hyperebene zum Erarbeiten einer Meta-Unsicherheit \gls[S.39, 3.6.1 \glqq hyper-opinion representation\grqq, \glqq hyper-opinion and dirichlet HPDF \grqq]{subjectivelogic} in der Szenario-Beobachtung ~\parencite[S.39, Tabelle 3.3]{josang2016subjective}. 
+\gls{subjectivelogic} gibt eine klare Vergleichbarkeits-Hierarchie zur Mengenmodellierung für Zwischenzustände zur Unwissenheit trotz Evidenz für \gls{Evidenzbasierte neuronale Netze} zur Eingrenzung von \glqq Zero Evidence Regions \grqq{} (vgl. ~\parencite[{vgl. S.50}]{josang2016subjective}) unabhängig von gewählten in der Literatur stark individualisierten, variierenden Loss-Funktionen (vgl. Ulmer et al. \parencite{Ulmer2023}). Für VaMai interessant sind die Limitierungen evidentiellen Wissens in der Visualisierung vom binomiellen zum multinomiellen Modell, die Zuordnung dieser zu Dirichlet PDF's erster Ordnung und schließlich zweiter Ordnung in der Hyperebene zum Erarbeiten einer Meta-Unsicherheit \parencite[{S.39, 3.6.1 \glqq hyper-opinion representation\grqq, \glqq hyper-opinion and dirichlet HPDF \grqq}]{josang2016subjective} in der Szenario-Beobachtung \parencite[{S.39, Tabelle 3.3}]{josang2016subjective}. 
 
-Jøsang füllt damit, \glqq [the] missing uniform definition of what is not known\grqq ~\parencite[vgl. S.42]{josang2016subjective} für \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. Unabhängig von Jøsangs Logik wird deutlich wie der Wahrscheinlichkeitsraum explizit evidentiell ausmodelliert, und damit über jedwede Metrik und Räume \textit{qualitativ} vergleichbar gemacht werden kann.  
+J\o{}sang füllt damit, \glqq [the] missing uniform definition of what is not known\grqq ~\parencite[{vgl. S.42}]{josang2016subjective} für \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. Unabhängig von J\o{}sangs Logik wird deutlich wie der Wahrscheinlichkeitsraum explizit evidentiell ausmodelliert, und damit über jedwede Metrik und Räume \textit{qualitativ} vergleichbar gemacht werden kann.  
 
-Die Wahl der Logik für propabilistische Funktionen, die Glauben ausdrücken sollen, ist in der wissenschafltichen Literatur bis heute umstritten in Orientierung an erstens Bayes und zweitens Dempster Shafers Theorie \parencite{bayes1763essay, dempster1967upper, shafer1976mathematical}
-. Probabilistische Mengenmodellierung als konvexe Menge von Wahrscheinlichkeitsverteilungen der Statistik (\gls{statisticallearningtheory}) dient als \gls{machinelearning}-Grundlage (vgl. \parencite{caprio2024credal}). Wobei Caprio et al. kürzliche Annahmen zur \textit{Domain Generalization} (\gls{domaingeneralization}) sowie \textit{Ground Truth} (\gls{GroundTruth}) verdeutlicht. Ebenso wird dort der VaMai begleitende Konflikt zwischen \textit{Domain Knowledge} (\gls{domainknowledge}) und \gls{domaingeneralization} aufgezeigt. Aktuell höchstes Ziel ist die autonome zeitkontinuierliche Akquise neuer Domänen eines aufgesetzten Systems. VaMai verfolgt Aspekte der \gls{domaingeneralization} in erstens hohen Dimensionalitäten, zweitens Generifizierbarkeit, drittens Modellagnostizität, sowie viertens Generalisierbarkeit über Benchmarks zur Validierung über die freie Wahl von Datensätzen mit dem Ausgangspunkt von Aminis Deep Evidential Regression (vgl. ~\parencite{amini2020deep}).
+Die Wahl der Logik für propabilistische Funktionen, die Glauben ausdrücken sollen, ist in der wissenschafltichen Literatur bis heute umstritten in Orientierung an erstens Bayes und zweitens Dempster Shafers Theorie (vgl. Bayes, Dempster \parencite{bayes1763essay, dempster1967upper, shafer1976mathematical}. Probabilistische Mengenmodellierung als konvexe Menge von Wahrscheinlichkeitsverteilungen der Statistik (\gls{statisticallearningtheory}) dient als \gls{machinelearning}-Grundlage (vgl. Caprio et al. \parencite{caprio2024credal}). Wobei Caprio et al. kürzliche Annahmen zur \textit{Domain Generalization} (\gls{domaingeneralization}) sowie \textit{Ground Truth} (\gls{GroundTruth}) verdeutlicht. Ebenso wird dort der VaMai begleitende Konflikt zwischen \textit{Domain Knowledge} (\gls{domainknowledge}) und \gls{domaingeneralization} aufgezeigt. Aktuell höchstes Ziel ist die autonome zeitkontinuierliche Akquise neuer Domänen eines aufgesetzten Systems. VaMai verfolgt Aspekte der \gls{domaingeneralization} in erstens hohen Dimensionalitäten, zweitens Generifizierbarkeit, drittens Modellagnostizität, sowie viertens Generalisierbarkeit über Benchmarks zur Validierung über die freie Wahl von Datensätzen mit dem Ausgangspunkt von Aminis Deep Evidential Regression (vgl. Amini et al. ~\parencite{amini2020deep}).
 
-Hullermeier et al. 2024 zeigen dabei dahinterliegende probabilistische Mengenmodellierung \parencite{javanmardi2024conformalized} in der Anwendung auf für Evidentielle Klassifikation, Denoeux für Evidentielle Regression \parencite{denoeux2022evidential}, jeweils in Bezug auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit}. In evidentieller Klassifikation äußert sich \gls{Aleatorische Unsicherheit} in der gleichmäßigen, flachen Verteilung der Massenfunktion auf die Klassen, \gls{Epistemische Unsicherheit} in einer hohen Masse auf der Vereinigungsmenge aller Klassen (auf Unbestimmtheit, Ignoranz), was auf mangelndes Wissen des Modells hindeutet. In Evidentieller Regression äußert sich \gls{Aleatorische Unsicherheit} in der Breite der Vorhersage-Intervalle, \gls{Epistemische Unsicherheit} in der Streuung oder \glqq Unsicherheit der Unsicherheiten \grqq, also darin, wie sicher das Modell selbst über seine Unsicherheitsangaben ist. Im Gegensatz zur evidenzbasierten Klassifikation ist evidenzbasierte Regression methodenunabhängig stets mit einer epistemischen Unsicherheit verbunden, die aus der Diskretisierung des kontinuierlichen Signals und der jeweiligen Modellannahme des Autors resultiert. Amini zeigt diese Zusammenhänge kompakt: \glqq Die evidenzbasierte Regression
-lernt gleichzeitig ein kontinuierliches Ziel mit aleatorischer
-(Daten) und epistemischer (Modell) Unsicherheit. Bei einer Eingabe von
-wird das Netz so trainiert, dass es die Parameter [ $(\alpha, \beta, \sigma, \nu)$ ] einer Evidenzverteilung vorhersagt, die eine Wahrscheinlichkeitsverteilung höherer Ordnung [zur Zeit i.d.R. zweiter Ord.] über die einzelnen Likelihood-Parameter ($\mu$, $\sigma^{2}$) modelliert \grqq \parencite[S.1, Figure 1]{amini2020deep}.
+Hullermeier et al. zeigen dabei dahinterliegende probabilistische Mengenmodellierung (vgl. Hullermeier et al. \parencite{javanmardi2024conformalized}) in der Anwendung auf für Evidentielle Klassifikation, Denoeux für Evidentielle Regression (vgl. Denoeux \parencite{denoeux2022evidential}), jeweils in Bezug auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit}. In evidentieller Klassifikation äußert sich \gls{Aleatorische Unsicherheit} in der gleichmäßigen, flachen Verteilung der Massenfunktion auf die Klassen, \gls{Epistemische Unsicherheit} in einer hohen Masse auf der Vereinigungsmenge aller Klassen (auf Unbestimmtheit, Ignoranz), was auf mangelndes Wissen des Modells hindeutet. In Evidentieller Regression äußert sich \gls{Aleatorische Unsicherheit} in der Breite der Vorhersage-Intervalle, \gls{Epistemische Unsicherheit} in der Streuung oder \glqq{}Unsicherheit der Unsicherheiten\grqq{}, also darin, wie sicher das Modell selbst über seine Unsicherheitsangaben ist. Im Gegensatz zur evidenzbasierten Klassifikation ist evidenzbasierte Regression methodenunabhängig stets mit einer epistemischen Unsicherheit verbunden, die aus der Diskretisierung des kontinuierlichen Signals und der jeweiligen Modellannahme des Autors resultiert. Amini zeigt diese Zusammenhänge kompakt: \glqq Die evidenzbasierte Regression lernt gleichzeitig ein kontinuierliches Ziel mit aleatorischer (Daten) und epistemischer (Modell) Unsicherheit. Bei einer Eingabe wird das Netz so trainiert, dass es die Parameter [ $(\alpha, \beta, \sigma, \nu)$ ] einer Evidenzverteilung vorhersagt, die eine Wahrscheinlichkeitsverteilung höherer Ordnung [zur Zeit i.d.R. zweiter Ord.] über die einzelnen Likelihood-Parameter ($\mu$, $\sigma^{2}$) modelliert.\grqq{} (vgl. Amini et al. \parencite[{S.1, Abbildung 1}]{amini2020deep}).
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=0.5\textwidth]{../figures/x1.png}
-  \caption{R4.1 \glqq Evidential Deep Learning\grqq nach Amini et al. 2020}
+  \caption{R4.1 \glqq Evidential Deep Learning\grqq{} nach Amini et al. 2020}
 \end{figure}
 
 % Grafik erläutern, beginnend mit Datum.
-Als weiterer Methodenbaustein soll \textit{epistemic learning} nach Manchingal eingeführt werden. R4.1 stellt dies gegenüber dem konventionellem Lernprozess. Ein Datensatz (Abb. \glqq Training set \grqq) $\mathcal{D} = \{ (\mathbf{x}_i, y_i) \}_{i=1}^N$ trägt nach Manchingal implizit die Kosten zum Erhalt der \gls{machinelearning} Label-Information des Datensatzes als Akquisitions-Funktion. Nicht jeder Datenpunkt bringt demnach denselben Informationsgewinn. Die \glqq Datum \grqq-Punkte stehen für unbeschriftete Datenbeispiele. Ihre Position in einem Diagramm würde zeigen, wie nützlich im Sinne der Reduktion \gls{Epistemische Unsicherheit} und wie kostenintensiv es wäre, gerade diese Punkte zu labeln, um das Vertrauen im Modell gezielt zu steigern. Das Label-Kosten-Verhältnis ist für Klassifikation sowie Regression gültig. 
+Als weiterer Methodenbaustein soll \glqq{}\textit{epistemic learning}\grqq{} nach Manchingal eingeführt werden. R4.1 stellt dies gegenüber dem konventionellem Lernprozess. Ein Datensatz (in R.4.2 \glqq{}Training set\grqq{}) $\mathcal{D} = \{ (\mathbf{x}_i, y_i) \}_{i=1}^N$ trägt nach Manchingal implizit die Kosten zum Erhalt der \gls{machinelearning} Label-Information des Datensatzes als Akquisitions-Funktion. Nicht jeder Datenpunkt bringt demnach denselben Informationsgewinn. Die \glqq{}Datum\grqq{}-Punkte stehen für unbeschriftete Datenbeispiele. Ihre Position in einem Diagramm würde zeigen, wie nützlich im Sinne der Reduktion \gls{Epistemische Unsicherheit} und wie kostenintensiv es wäre, gerade diese Punkte zu labeln, um das Vertrauen im Modell gezielt zu steigern. Das Label-Kosten-Verhältnis ist für Klassifikation sowie Regression gültig. 
 
 \begin{align*}
 \text{Acquisition}(x)
@@ -1640,7 +1637,7 @@ c(x)
 \right|_{\text{\gls{Evidenzbasierte neuronale Netze}}}
 \end{align*}
 
-Es ergibt sich im Active Learning allgemein nach Kosten-Nutzen-Rechnung mit Informationsgewinn als wählbare Unsicherheitsgröße - hier Information Gain für \gls{Bayesianische neuronale Netze}, Varianz für \gls{Evidenzbasierte neuronale Netze} - des jeweiligen Modells pro Kosten wie Houlsby für \gls{Bayesianische neuronale Netze} aufzeigt (vgl. Houlby ~\parencite[]{houlsby2011bayesian}). 
+Es ergibt sich im Active Learning als \gls{machinelearning}-Untergebiet allgemein nach Kosten-Nutzen-Rechnung mit Informationsgewinn als wählbare Unsicherheitsgröße - hier Information Gain für \gls{Bayesianische neuronale Netze}, Varianz für \gls{Evidenzbasierte neuronale Netze} - des jeweiligen Modells pro Kosten wie Houlsby für \gls{Bayesianische neuronale Netze} aufzeigt (vgl. Houlsby ~\parencite[S.9 \glqq{}Bayesian active learning by disagreement (BALD)\grqq{}]{houlsby2011bayesian}). 
 
 \begin{figure}[!ht]
   \centering
@@ -1648,15 +1645,15 @@ Es ergibt sich im Active Learning allgemein nach Kosten-Nutzen-Rechnung mit Info
   \caption{R4.2 \glqq Epistemic Learning\grqq nach Manchingal et al. 2025}
 \end{figure}
 
-Akquisitions-kriterienbasiert wählt evidentielles Lernen Punkte niedriger Kosten, hohen Nutzens gewählter Unsicherheitsgröße und nicht nur unsichere Punkte wie im klassischen \gls{machinelearning}-Prozess. Kanten \glqq Learning, Epistemic Learning \grqq der Grafik repräsentieren das Zuordnen eines Punktes aus dem Datenset in den jeweiligen Modellraum. Flächen der jeweiligen Dimension markieren, die mit der Unsicherheit assoziierten Sigma-Bereiche im epistemischen Modell, im Gegensatz zur klassischen Punktdarstellung. In der Grafik Punkt zu Flächen, allgemein der Dimensions-Unterschied ist ebenso im Ziel- oder Parameterraum vorhanden. Das klassiche Modell liefert hier eine propabilistische Punktvorhersage im $n$-Simplex der Mannigfaltigkeit der Verteilungen über den Ziel- oder Parameterraum. Das epistemische liefert einen Unterraum im $n$-Simplex der Mannigfaltigkeit der Verteilungen als probabilistische Fläche $n$-ter Dimension, der über Jøsangs \gls{subjectivelogic} ausdefiniert werden kann.
+Akquisitions-kriterienbasiert wählt evidentielles Lernen Punkte niedriger Kosten, hohen Nutzens gewählter Unsicherheitsgröße und nicht nur unsichere Punkte wie im klassischen \gls{machinelearning}-Prozess. Kanten \glqq{}Learning\grqq{}, \glqq{}Epistemic Learning\grqq{} der Grafik R.4.2 repräsentieren das Zuordnen eines Punktes aus dem Datenset in den jeweiligen Modellraum. Flächen der jeweiligen Dimension markieren, die mit der Unsicherheit assoziierten Sigma-Bereiche im epistemischen Modell, im Gegensatz zur klassischen Punktdarstellung. In der Grafik Punkt zu Flächen, allgemein der Dimensions-Unterschied ist ebenso im Ziel- oder Parameterraum vorhanden. Das klassiche Modell liefert hier eine propabilistische Punktvorhersage im $n$-Simplex der Mannigfaltigkeit der Verteilungen über den Ziel- oder Parameterraum. Das epistemische Modell liefert einen Unterraum im $n$-Simplex der Mannigfaltigkeit der Verteilungen als probabilistische Fläche $n$-ter Dimension, der über Jøsangs \gls{subjectivelogic} ausdefiniert werden kann (vgl. Jøsang \parencite{subjectivelogic}).
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x2.png}
-  \caption{R4.3 \glqq Major approaches to uncertainty in AI\grqq nach Manchingal et al. 2025}
+  \caption{R4.3 \glqq{}Major approaches to uncertainty in AI\grqq{} nach Manchingal et al. 2025}
 \end{figure}
 
-Abschließend für Evidentielles Wissen im Modell sollen nach R4.3 die Hauptansätze nach Manchingal zur \gls{uncertaintyquantification} zusammengefasst werden wie sie auch in VaMai in Betracht gezogen werden.
+Abschließend für Evidentielles Wissen im Modell sollen nach R.4.3 die Hauptansätze nach Manchingal zur \gls{uncertaintyquantification} zusammengefasst werden wie sie auch in VaMai in Betracht gezogen werden.
 
 \paragraph{Frequentistisch:} Modelliert nur \gls{Aleatorische Unsicherheit}. Keine \gls{Epistemische Unsicherheit} enthalten. Ergebnis sind Punkt-, Intervallschätzungen wie 
 \(\hat{y} \pm \text{CI}\). Beispiel ist die klassische Regression.
@@ -1669,13 +1666,13 @@ Abschließend für Evidentielles Wissen im Modell sollen nach R4.3 die Hauptans�
 \paragraph{Plausibilitätsmengen:} Modelliert \gls{Epistemische Unsicherheit} als konvexe Mengen von Wahrscheinlichkeitsverteilungen. Ergebnis ist  
 \(\mathcal{P} = \{ P \in \text{probabilities} : \text{constraints} \}\). Erlaubt Meta-Unsicherheit darüber, welche Verteilungen plausibel sind.
 
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 
 
-\textbf{Modell evidenzielles Nicht-Wissen}
+\textbf{Modell evidentielles Nicht-Wissen}
 
-Während der vorige Abschnitt evidenzielles Wissen behandelt, soll dieser komplementär die Modellierung expliziten Nicht-Wissens für \gls{Evidenzbasierte neuronale Netze}, insbesondere für Eingaben außerhalb des Trainingsbereichs, behandeln. Diese Technik adressiert primär \gls{Epistemische Unsicherheit}, indem das Modell gezielt darauf trainiert wird, bei unbekannten Eingaben geringe Evidenz auszugeben. Dazu werden \gls{Out-of-Distribution}-Beispiele in das Training integriert und die Loss-Funktion um eine \gls{kullbackleibler}-Divergenz ergänzt, welche die evidenzielle Dirichlet-Verteilung möglichst nahe an eine uniforme Verteilung bringt (vgl. \parencite[S.3, Z.22-28]{malinin2019uncertainty}, \parencite[S.4, Z.10-16]{amini2020deep}, \parencite[S.4, Z.5-15]{ovadia2019can}):
+Während der vorige Abschnitt evidentielles Wissen behandelt, soll dieser komplementär die Modellierung expliziten Nicht-Wissens für \gls{Evidenzbasierte neuronale Netze}, insbesondere für Eingaben außerhalb des Trainingsbereichs, behandeln. Diese Technik adressiert primär \gls{Epistemische Unsicherheit}, indem das Modell gezielt darauf trainiert wird, bei unbekannten Eingaben geringe Evidenz auszugeben. Dazu werden \gls{Out-of-Distribution}-Beispiele in das Training integriert und die Loss-Funktion um eine \gls{kullbackleibler}-Divergenz ergänzt, welche die evidenzielle Dirichlet-Verteilung möglichst nahe an eine uniforme Verteilung bringt (vgl. Malinin et al. \parencite[S.3, Z.22-28]{malinin2019uncertainty}, Amini et al. \parencite[S.4, Z.10-16]{amini2020deep}, Ovadia et al. \parencite[S.4, Z.5-15]{ovadia2019can}):
 
 \begin{equation}
 \text{Loss}_{\text{total}} 
@@ -1683,7 +1680,7 @@ Während der vorige Abschnitt evidenzielles Wissen behandelt, soll dieser komple
 + \lambda \cdot \text{KL}\bigl(\text{Dir}(\boldsymbol{\alpha}) \,\|\, \text{Uniform}\bigr).
 \end{equation}
 
-Dadurch wird verhindert, dass das Modell bei unbekannten Eingaben fälschlich hohe Evidenzwerte signalisiert, obwohl es in diesen Regionen unsicher ist. Bei Regression kann analog die Varianz gezielt maximiert werden, indem \(\alpha\) und \(\beta\) auf niedrige Werte gesetzt werden. So lernt das \gls{Evidenzbasierte neuronale Netze}, Nicht-Wissen explizit durch geringe Evidenz und hohe Unsicherheit auszudrücken. Dieses Konzept steht in engem Zusammenhang mit Jøsangs \glqq epistemic opinion\grqq{}, die bei fehlender Evidenz eine gleichmäßige Unwissenheitsverteilung ausdrückt \parencite[S. 22]{josang2016subjective}. Die explizite Modellierung evidenziellen Nicht-Wissens bietet so die Möglichkeit Modelle robuster gegen unbekannte Situationen zu machen. Die Praxis liefert dafür Benchmarkmethoden wie CleverHans zur Simulation eines \glqq Angriffs\grqq auf das Modell mit fälschlichen Angaben (vgl. Papernot et al. ~\parencite{papernot2016cleverhans}).
+Dadurch wird verhindert, dass das Modell bei unbekannten Eingaben fälschlich hohe Evidenzwerte signalisiert, obwohl es in diesen Regionen unsicher ist. Bei Regression kann analog die Varianz gezielt maximiert werden, indem \(\alpha\) und \(\beta\) auf niedrige Werte gesetzt werden. So lernt das \gls{Evidenzbasierte neuronale Netze}, Nicht-Wissen explizit durch geringe Evidenz und hohe Unsicherheit auszudrücken. Dieses Konzept steht in engem Zusammenhang mit Jøsangs \glqq{}epistemic opinion\grqq{}, die bei fehlender Evidenz eine gleichmäßige Unwissenheitsverteilung ausdrückt (vgl. Jøsang \parencite[S. 22]{josang2016subjective}). Die explizite Modellierung evidenziellen Nicht-Wissens bietet so die Möglichkeit Modelle robuster gegen unbekannte Situationen zu machen. Die Praxis liefert dafür Benchmarkmethoden wie CleverHans zur Simulation eines \glqq{}Angriffs\grqq{} auf das Modell mit fälschlichen Angaben (vgl. Papernot et al. ~\parencite{papernot2016cleverhans}).
 
 
 
@@ -1696,7 +1693,7 @@ Dadurch wird verhindert, dass das Modell bei unbekannten Eingaben fälschlich ho
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textbf{A1} Durchführung einer umfassenden Literaturübersicht über UQ-Techniken in der \gls{machinelearning}-basierten Surrogatmodellierung.
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 Der Beitrag zur umfassenden Literaturübersicht über UQ-Techniken in der \gls{machinelearning}-basierten Surrogatmodellierung wird auf \gls{Evidenzbasierte neuronale Netze} eingegrenzt. In \gls{Evidenzbasierte neuronale Netze} soll zwischen \textit{In-} und \textit{Exklusionskriterien} unterschieden werden.
 
@@ -2302,7 +2299,7 @@ Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textbf{A3} Vergleich \textit{modellspezifischer} und \textit{anwendungsspezifischer} Bewertungsmetriken für die Quantifizierung von Unsicherheit.
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 % Beispiel-Anwendungsdomäne: [Beispiel-Domäne]
 Für den Vergleich werden Anwendungen im Ingenieurswesen vorgeschlagen: 
 
@@ -2413,7 +2410,7 @@ Als Beispiel-Domäne zum Vergleich der \textit{modellspezifischen} und \textit{a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textbf{A4} Untersuchung und Vergleich verschiedener \gls{uncertaintyquantification}-Ansätze für \gls{machinelearning}-basierte Surrogatmodelle, insbesondere \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction}.
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 % A4 Untersuchung:
 Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale Netze}s und \gls{Conformal Prediction} auf Grundlage identischer Modellarchitekturen und Datensätze durchgeführt. Für \gls{Bayesianische neuronale Netze}s werden die Implementierungen von Herrn Mavani in NumPyro/JAX genutzt (HMC und SVI) \parencite{nmavani2025}. Für \gls{Conformal Prediction} wird ein separates Skript erstellt, das auf denselben Netzen basiert, jedoch \gls{confidenceinterval} mittels Konformitäts-Quantilen auf einem Calibration-Set berechnet.
@@ -2571,8 +2568,8 @@ Der Vergleichs-Score wird berechnet als:
 
 
 
-% \par\noindent\\
-\paragraph{Interpretation der Ergebnisse}\par\noindent\\
+% \par\vspace{1\baselineskip}\noindent
+\paragraph{Interpretation der Ergebnisse}\par\vspace{1\baselineskip}\noindent
 
 1. \textbf{\gls{Bayesianische neuronale Netze} \gls{hmc}}: Liefert moderaten Fehler (RMSE $\approx$ 6{,}8), geringe \gls{Epistemische Unsicherheit}, aber extrem geringe Coverage. Die Unsicherheitsintervalle decken die wahren Werte kaum ab, was ein Overconfidence-Problem zeigt.\\
 2. \textbf{\gls{Bayesianische neuronale Netze} \gls{svi}}: Scheitert deutlich. Sehr hoher RMSE ($\approx$ 1367) und große epistemische Varianz deuten auf Instabilität oder falsche Konvergenz hin.\\
@@ -2587,7 +2584,7 @@ Der Vergleichs-Score wird berechnet als:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textbf{A6} Untersuchung des theoretischen Einflusses verschiedener Faktoren auf die Unsicherheitsschätzungen ausgewählter Modelle.
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neuronale Netze} ausgeführt werden, um den theoretischen Modellparameter-Einfluss auf die \gls{uncertaintyquantification} zu quantifizieren. Variiert werden die Evidenzparameter $\nu$ sowie Trainingsdatengröße $N_{train}$ für geringen Analyseaufwand.
 

@@ -33,7 +33,7 @@ $
 \end{noindentquote}
 Der Benchmark konnte in erster Konfiguration annähernd reproduziert werden. 
 \begin{noindentquote}
-  \footnotesize
+  \scriptsize
   \texttt{python3 neurips2020/run\_uci\_dataset\_tests.py --datasets boston concrete energy-efficiency kin8nm naval power-plant protein wine yacht --num-trials 1 --num-epochs 5}
 \end{noindentquote}
  mit Laufzeit von 9 Minuten 10.2 Sekunden $\leq$ 10 Minuten als \glqq Proof of concept\grqq. Die Konvergenz zu Aminis Werten ($\Delta (\text{RMSE}) = \left[ -0.5;\ -0.6 \right]$; $\Delta \text{NLL} = -0.08$) wird deutlich für die Konfiguration hinreichend umfangreicher Datensätze $\{\text{kin8nm}, \text{naval}, \text{protein} \}$. ~\ref{tab:comparison_ours_vs_amini_tabularx_v2} unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang. % Für den visuell Abgleich siehe Abschnitt~\ref{sec:visualisierungen_edl_amini2020_regression}
@@ -246,7 +246,7 @@ Das evidentielle Modell nach Amini ordnet das als $y \sim \mathcal{N}(\mu, \sigm
 Ergebende Unsicherheitsmasse ist Student-t-verteilt (vgl. Gleichungen (6), (7)), damit ist Mittelwert, Skalierung, Freiheitsgrad bekannt. Wie in R4.4 visualisiert die Zusammensetzung der Student-t-Verteilung, in \glqq niedriger \grqq und \glqq höherer \grqq Ordnung. Erste vom Modell geschätze Wahrscheinlichkeitsmasse um einen Schätzwert ergibt sich aus Gleichung 4 ohne Regularisierung in R4.4. platikurtisch hellblau. Regularisierungsbedingungen formen die Verteilung unter Evidenz-Kriterien leptokurtisch dunkelblau. Machine-Learning-basiert regularisieren Loss-Funktion nach dem Min-Max-Prinzip angenommene Fehler- gegen Zielgrößen, hier durch Amini beschränkt Varianz gegenüber Evidenz (vgl. Gleichung (8), (9), (10) unter (5)). Amini wählt die Kullback-Leibler-Divergenz als Maß für die Ausgangs- zur Optimalverteilung. Überlässt dabei jedoch ein Detail dem geneigten Leser, dessen Behandlung im Stand der Technik mittels Josangs \gls{subjectivelogic} aufgezeigt wurde.
 
 \begin{quote}
-  Unfortunately, the KL between any NIG and the zero evidence NIG prior is undefined.
+  \glqq{}[..] the KL between any NIG and the zero evidence NIG prior is undefined.\grqq{} \newline ~\parencite[{S. 5, \glqq Minimizing evidence on errors \grqq, Z. 6 ff.}]{amini2020deep}
 \end{quote}
 
 Herr Autenrieths Kritikalitätsräume erlauben folgende Parametrisierung: 
@@ -592,25 +592,37 @@ Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherhe
 
 \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Störfunktion} 
 
-Grundlegend ergibt die Auswertung für das einzelne Guass-Signal \textit{mit} Störfunktion sehr ähnliche Dynamik im Ergebnis des \gls{Evidenzbasierte neuronale Netze} wie im ursprünglichen Abschnitt. Ein Underfit ergibt ebenfalls eine zu flache Unsicherheitsmasse mit überkonfidentem Zuwachs zur Domänengrenze. Eine zunehmende Störfunktions-Parametrisierung mit Amplitude von 0,01 zu 1, Standardabweichung konstant 1, ergibt zwei Effekte. Das Abflachen der vom \gls{Evidenzbasierte neuronale Netze} Gesamtunsicherheitsmasse mit der Tendenz zur Fit-Dynamik. Zweitens das Verrauschen der Gesamtunsicherheitsmasse. Das Verrauschen mit Amplitude 0,2 äußert sich in fleckweisen noch flacheren Volumenabschnitten, um die größte resultierende Gesamtunsicherheitsmasse in einem Abschnitt hoher Sample-Dichte. Interpretiert man weitere Lösungsansätze für dieses Verhalten, erlaubt die Differenz der Ergebnis-Massen eine eindeutige Filterung. Dabei kann erwartet werden, dass kleine Amplituden der Störfunktion durch einen Hochpassfilter, größere Amplituden durch einen Tiefpass, sowie Kombinationen durch Bandpass auf die abgezielte Unsicherheitsmasse gefiltert werden kann. In komplexeren Fällen der Überlagerung wäre ein Ansatz wieder eine ortsweise Abtastung der Signale und additive Kombination der Lösung. 
+Grundlegend ergibt die Auswertung für das einzelne Guass-Signal \textit{mit} Störfunktion sehr ähnliche Dynamik im Ergebnis des \gls{Evidenzbasierte neuronale Netze} wie im ursprünglichen Abschnitt. Ein Underfit ergibt ebenfalls eine zu flache Unsicherheitsmasse mit überkonfidentem Zuwachs zur Domänengrenze. Eine zunehmende Störfunktions-Parametrisierung mit Amplitude von 0,01 zu 1, Standardabweichung konstant 1, ergibt zwei Effekte. Das Abflachen der vom \gls{Evidenzbasierte neuronale Netze} erfassten Gesamtunsicherheitsmasse mit der Tendenz zur Fit-Dynamik. Zweitens das Verrauschen der Gesamtunsicherheitsmasse. Das Verrauschen mit Amplitude 0,2 äußert sich in fleckweisen noch flacheren Volumenabschnitten, um die größte resultierende Gesamtunsicherheitsmasse in einem Abschnitt hoher Sample-Dichte. Interpretiert man weitere Lösungsansätze für dieses Verhalten, erlaubt die Differenz der Ergebnis-Massen eine eindeutige Filterung. Dabei kann erwartet werden, dass kleine Amplituden der Störfunktion durch einen Hochpassfilter, größere Amplituden durch einen Tiefpass, sowie Kombinationen durch Bandpass auf die abgezielte Unsicherheitsmasse gefiltert werden kann. In komplexeren Fällen der Überlagerung wäre ein Ansatz wieder eine ortsweise Abtastung der Signale und additive Kombination der Lösung. 
 
 
 
 \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit mit Störfunktion}
 
-Mit Störfunktion kann \textit{nicht} die selbe Overfit Dynamik wie im vorherigen Abschnitt zum einzelnen Gauss-Signal erzielt werden. Es verzögert sich \textit{nicht} lediglich durch die Epochenzahl. Bereits eine Amplitude von 0,2 sorgt bei im vorherigen Abschnitt verwendeter Epochenzahl von viertausend für gleich große um die wahr Unsicherheitsmasse äquidistant verteilte kleine Unsicherheitsmassen, in dem Fall drei, welche die Unsicherheit des Netzes ausdrücken. 
+Mit Störfunktion kann \textit{nicht} die selbe Overfit Dynamik wie im vorherigen Abschnitt zum einzelnen Gauss-Signal erzielt werden. Es verzögert sich \textit{nicht} lediglich durch die Epochenzahl. Bereits eine Amplitude von 0,2 sorgt bei im vorherigen Abschnitt verwendeter Epochenzahl von viertausend für gleich große um die wahre Unsicherheitsmasse äquidistant verteilte kleine Unsicherheitsmassen, in dem Fall drei, welche die Unsicherheit des Netzes ausdrücken. 
 
 
 
 \paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Overfit mit Störfunktion} 
 
-Wie im vorherigen Abschnitt ohne Störfunktion verzerren sich die Einzel-Signal-Beobachtungen lediglich durch die vom Netz erfasste Gesamtunsicherheitsmasse mit abweichendem Volumen von der Erwartungshaltung einer hinreichend den ursprünglichen Signalformen entsprechenden.  Ebenso erhöht sich die Unsicherheit des Netzes wieder ausgedrückt, dadurch das die aus mehreren Signalformen zusammengesetzte Unsicherheitsmasse aufteilt wird auf die vom Netz äquidistant angelegten Teilvolumina um den Punkt der höchsten Signaldichte. Dies entspricht nicht der von VaMai geforderten Ähnlichkeit zu den ursprünglichen Signalformen. Außerdem erzielt es je nach Störfunktionsamplitude zu hohe oder niedrige Ergebnisse. 
+Wie im vorherigen Abschnitt ohne Störfunktion verzerren sich die Einzel-Signal-Beobachtungen lediglich durch die vom Netz erfasste Gesamtunsicherheitsmasse mit abweichendem Volumen von der Erwartungshaltung einer hinreichend den ursprünglichen Signalformen entsprechenden.  Ebenso erhöht sich die Unsicherheit des Netzes wieder ausgedrückt, dadurch das die aus mehreren Signalformen zusammengesetzte Unsicherheitsmasse aufgeteilt wird, auf die vom Netz äquidistant angelegten Teilvolumina um den Punkt der höchsten Signaldichte. Dies entspricht nicht der von VaMai geforderten Ähnlichkeit zu den ursprünglichen Signalformen. Außerdem erzielt es je nach Störfunktionsamplitude zu hohe oder niedrige Ergebnisse. 
+
+
+% \paragraph{Vergleich \gls{Bayesianische neuronale Netze} - \gls{Evidenzbasierte neuronale Netze} nach Josang} Zum Schluss soll Herr Mavanis Ansatz für \gls{Bayesianische neuronale Netze} mit dem der \gls{Evidenzbasierte neuronale Netze} nach Ansatz von Josangs \gls{aleatoricopinion}, \gls{epistemicopinion} für vergleichende Meta-Unsicherheit beispielhaft in Herr Autenrieths Kritikalitätsraum implementiert werden. 
+
+
+% \paragraph{Hypernomiale Meinung}
+
+
+% \paragraph{Multinomiale Meinung}
+
+
+% \paragraph{Ergebnis}
 
 
 
-% \section{}
+\paragraph{Fazit der Durchführung} 
 
-% Abschließend sollen nach A7 die wichtigsten Ansätze und Ergebnisse der Arbeit in einem kurzen Jupyter Notebook zusammenfasst werden. 
+Gemäß A7 sollen abschließend die wichtigsten Ansätze und Ergebnisse der Arbeit in einem Jupyter Notebook zusammenfasst werden. Dies findet sich im Anhang. 
 
 
 
