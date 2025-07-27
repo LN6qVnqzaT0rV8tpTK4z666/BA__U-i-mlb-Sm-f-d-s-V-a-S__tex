@@ -615,32 +615,373 @@ Mit Störfunktion kann \textit{nicht} die selbe Overfit Dynamik wie im vorherige
 Wie im vorherigen Abschnitt ohne Störfunktion verzerren sich die Einzel-Signal-Beobachtungen lediglich durch die vom Netz erfasste Gesamtunsicherheitsmasse mit abweichendem Volumen von der Erwartungshaltung einer hinreichend den ursprünglichen Signalformen entsprechenden.  Ebenso erhöht sich die Unsicherheit des Netzes wieder ausgedrückt, dadurch das die aus mehreren Signalformen zusammengesetzte Unsicherheitsmasse aufgeteilt wird, auf die vom Netz äquidistant angelegten Teilvolumina um den Punkt der höchsten Signaldichte. Dies entspricht nicht der von VaMai geforderten Ähnlichkeit zu den ursprünglichen Signalformen. Außerdem erzielt es je nach Störfunktionsamplitude zu hohe oder niedrige Ergebnisse. 
 
 
-\paragraph{Vergleich \gls{Bayesianische neuronale Netze} - \gls{Evidenzbasierte neuronale Netze} nach Josang} Zum Schluss soll Herr Mavanis Ansatz für \gls{Bayesianische neuronale Netze} mit dem der \gls{Evidenzbasierte neuronale Netze} nach Ansatz von Josangs \gls{aleatoricopinion}, \gls{epistemicopinion} für vergleichende Meta-Unsicherheit beispielhaft in Herr Autenrieths Kritikalitätsraum implementiert werden. 
+
+\paragraph{Zwischenfazit der Durchführung - Über- und Unterkondidenz} Schwachstelle durchgeführter Experimente ist ein Über- und Unterschätzen von Grenzwerten in Abhängigkeit von der Hyperparameter-Wahl, sowie die nach oben ungebundene Loss-Funktion wie aufgezeigt im Paragraphen \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{}. Mittels Josangs subejctive Logic wurden erweiterte Parametrisierungen aufgezeigt, welche die Behandlung des Unterschätzens bis zur Definition von \glqq{}Zero Evidence Regions\grqq{} behandeln. Das Überschätzen ist hier, sowie in der Literatur im Fokus. Kritikalität in VaMai fordert das Einhalten der gegebener Signal-Grenzen unabdingbar ein. Ulmer et al. zeigen dafür in (28) unter (26) auf Oh und Shins Ansatz auf, die \glqq{}Negative Log Likelihood\grqq{} Loss-Funktion mit Regularisierung nach Aminis Regressionsansatz unter (27) um einen Dritt-Term zu Erweitern. Dazu wurden verantwortliche Parameter $\nu$, $\alpha$ in (26) von Oh und Shin explizit mittels partieller Differenziation gelöst, um mit (29) eine eindeutige analytische Obergrenze - unintuitiv - über eine Minimum-Funktion $U_{\nu,\alpha}=min(U_{\nu}, U_{\alpha})$ auf einem Mini-Batch aufzuzeigen (vgl. Ulmer et al. \parencite[S.17, Z. 20-25, S.18 Z. 1-8]{Ulmer2023}}). Die analytische Lösung von Oh und Shin lautet: 
+
+\[
+U_{\nu} = \frac{\beta(\nu + 1)}{\alpha \cdot \nu}\newline
+U_{\alpha} = \frac{2\cdot\beta\cdot(\nu + 1)}{\nu} \dot (exp(\Phi(\alpha + \frac{1}{2}) - \Psi(\alpha)) - 1))
+\]
+
+$\alpha$, $\beta$, $\nu$ sind wie folgt abhängig. $\beta$ gilt als frei definierbarer Skalenparameter mit in der Literatur häufig gewählter Belegung: 
+
+\[
+\beta = \begin{cases}
+1                                           & \text{unabhängig}, \\
+\beta_{0} \cdot (\alpha - 1)                & \text{abhängig von alpha}
+\end{cases}
+\]
+
+$\nu$ und $\alpha$ definieren die Loss-Begrenzung über die Fehlerwerte der Loss-Funktion mit einer lipschitz-stetigen Übergangsbedingung von quadratischer zu linearer Komponente wie im Anhang gezeigt. 
+
+\begin{equation}
+\mathcal{L}_{\mathrm{MSE}} = 
+\begin{cases}
+(y_{i} - \gamma)^{2})                                              & (y_{i} - \gamma)^{2} \le U_{\nu,\alpha}, \\
+2\dot\sqrt{U_{\nu, \alpha}}} \cdot \left| y_{i} - \gamma \right|   & (y_{i} - \gamma)^{2} \geq U_{\nu,\alpha} \text{otherwise}
+\end{cases}
+&\text{Übergangsbedingung:} \\
+&(y_i - \gamma)^2 = 2 \sqrt{U_{\nu,\alpha}} \cdot |y_i - \gamma| - U_{\nu,\alpha} \\
+&\text{Lösung: } |y_i - \gamma| = \sqrt{U_{\nu,\alpha}}
+\end{equation}
+
+Die Min-Funktion begrenzt den quadratischen Anteil der Steigung der Loss-Funktion, um genau den Teil, in dem er stärker steigt, als die lineare Funktion. 
+
+Herr Autenrieths Kritikalitäsraum ist mit einem oberen und unteren Schwellenwert für die Kritikalität behaftet, in den Beipsielen die zwei horizontalen Ebenen.
+
+\[
+C \colon \mathcal{X} \rightarrow [0,4, 0,6]
+\]
+
+$C$ soll die Loss-Regularisierung eingrenzen. Als Erweiterung von Oh und Shin, lässt sich eine zweite kritikalitätsabhängige Unsicherheitsgrenze einführen durch:
+
+\[
+U^*(x) := \min \left( U_\nu, U_\alpha, U_0 \cdot (1 - C(x)) \right)
+\]
+
+Dies erzwingt einen strengeren Übergang für die prädiktive Unsicherheit in hochkritischen Regionen des Eingaberaums, da erstens größere Fehler stärker bestraft werden. Zweitens, die Unsicherheit nicht skaliert werden kann, um den Fehler zu kompensieren. Drittens, epistemische und aleatorsiche Unsicherheit werden konservativer geschätzt, um den Fehler niedrig zu halten. Umgangssprachlich ließe sich das so zusammenfassen: Das Modell darf zwar seine Unsicherheit erhöhen. Aber nur, wenn der Punkt nicht kritisch ist. In sicherheitsrelevanten Regionen musst das Modell sich konservativer festlegen. Das ist ein Ansatz zur Lösung der evidentiellen Überkonfidenz, die bereits im Stand der Technik im Vergleich von \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}, \gls{Conformal Prediction} aufgezeigt wurde. Damit kann der Ansatz gegenüber \gls{Conformal Prediction} wettbewerbsfähiger gestaltet werden.
+
+Ein zweiter Ansatz zur expliziten Kontrolle der prädiktiven Unsicherheiten ist die Verlustfunktion um einen Schranken-Term zu ergänzen, der Varianzen außerhalb des tolerierten Kritiaklitäs-Intervalls \([0{,}4, 0{,}6]\) sanktioniert. Wiedeholt ist dabei \[
+\text{Var}_{\text{gesamt}}(x) = \underbrace{\frac{\beta}{\alpha - 1}}_{\text{aleatorisch}} + \underbrace{\frac{\beta^2}{(\alpha - 1)^2(\alpha - 2)}}_{\text{epistemisch}}
+\]
+die Gesamtvarianz des evidentiellen Modells. Der Schranken-Term lautet:
+\[
+\mathcal{L}_{\text{bound}} = \lambda \cdot \left( \max(0, \text{Var}_{\text{gesamt}}(x) - 0{,}6)^2 + \max(0, 0{,}4 - \text{Var}_{\text{gesamt}}(x))^2 \right)
+\]
+Dieser wird zur Gesamtverlustfunktion addiert: 
+
+\[
+\mathcal{L}_{\text{total}}(x, y) = \mathcal{L}_{\text{NLL}}(x, y) + \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(x, y) + \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x)
+\]
+
+\[
+\mathcal{L}_{\text{clip}}(x, y) =
+\begin{cases}
+(y - \gamma)^2, & \text{falls } (y - \gamma)^2 \leq U^*(x) \\
+2 \sqrt{U^*(x)} \cdot |y - \gamma| - U^*(x), & \text{sonst}
+\end{cases}
+\]
+
+\[
+\mathcal{L}_{\text{bound}}(x) = \left( \max(0, \text{Var}_{\text{gesamt}}(x) - 0{,}6)^2 + \max(0, 0{,}4 - \text{Var}_{\text{gesamt}}(x))^2 \right)
+\]
+
+\[
+\text{Var}_{\text{gesamt}}(x) =
+\begin{cases}
+\frac{\beta}{\alpha - 1} + \frac{\beta^2}{(\alpha - 1)^2 (\alpha - 2)}, & \text{falls } \alpha > 2 \\
+\infty, & \text{sonst}
+\end{cases}
+\]
+
+Dies ist ein Ansatz sowohl die Kontrolle über die Überkonfidenz im Trainingsverhalten zu regulieren, als auch die finalen Varianzwerte an die Grenzen der Kritikalitätsfunktion zu binden.
+
+Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{} aufgezeigt werden.
 
 
 
-\paragraph{Vorbereitung} Herr B.Sc. Mavanis \gls{Bayesianische neuronale Netze} Ansätze in Jax wurden verworfen, weil sie im Zeitrahmen zum Ende meiner Projektphase zum 24.07. zu ungenügenden Ergebnissen führten. Der HMC-Ansatz wurde nach Umstellung ebenfalls verworfen, wegen überstiegenem Budget in Trainingszeit. Es wurde in Herr Mavanis Repository unter Branch des Autoren ein Pyro Äquivalent implementiert sowie varriert mit drei, vier und fünf vollverbundenen Schichten, 32, 64, 128 Neuronen, 2000 bis im Schnitt 5000 Epochen inklusive Aufwärmprozess, 500 bis 2000 SVI Posterior Samples, Invertierung des Mittelwerts als Ausgabeneuron, Variation des BNN Modell Rangs, Unter- und Übergewichtung der Ausgabeneuronen, Übersampling der Signalspitze, Miterfassung aleatorischer Varianz, Verrauschen der epistemischen Varianz, Änderung der Aktivierungsfunktionen mittels ReLu, SiLu sowie zusätzlicher Lern-Raten-Abfall. Das beste Ergebnis wurde mit SVI, zwei vollverbundenen versteckten Schichten, 64 Neuronen, 2000 Epsioden und ohne Lern-Raten-Abfall erzielt. Das Gauss-Signal konnte auf dem Boden in der Position annähernd korrekt positioniert werden. Bei korrekter Position lieferte jede Parameter-Änderung zu sensibel-varrierende Ergebnisse in Bezug auf das Volumen, ohne auffällige Konvergenzen. In Bezug auf das Volumen konnte ein zum \gls{Evidenzbasierte neuronale Netze} vergleichbarer Underfit mit einem vergleichbar aus der Signalform austretendem wellenartigen Volumen erzielt werden. Wurde das Volumen annährend korrekt geschätzt, reagierte die Position zu sensibel auf Parameter-Änderungen. Hauptergebnis der Experimentierphase ist das zu stark mittlende Verhalten des \gls{Bayesianische neuronale Netze} über erwähnte Parameter-Variation in verwendeten Ansätzen. So wird bei großer Samplezahl am gewählten Beispiel aus Herr Autenriehts Kritikalitätsraum regelmäßig eine zur Gauss-Steigung invertierte konkave Ebene aufspannt, wichtige gesamplete Spitzenwerte ignoriert. Die Intention die Ausgabe zu Invertieren war nicht zielführend. Zusammenfassend wurde in keinem Fall ein relevantes vergleichbares Ergebnis auf dem einfachen Gauss-Beispiel erzielt. Deshalb wird ein synthetisches Ergebnis des BNN generiert, um den Vorschlag für die Methodik aufzuzeigen und abzuschließen.  
+\paragraph{Behandlung Überkonfidenz - \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippter Fit\grqq{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO 28-07
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{figure}[!ht]
+%   \centering
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y51.png}
+%     \caption{Konfiguration 4, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+%     \label{fig:bild31}
+%   \end{subfigure}
+
+%   \vspace{0.5em}
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y52.png}
+%     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+%     \label{fig:bild32}
+%   \end{subfigure}
+
+%   \vspace{0.5em}
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y53.png}
+%     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+%     \label{fig:bild33}
+%   \end{subfigure}
+
+%   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 4}
+%   \label{fig:three_subfigures3}
+% \end{figure}
 
 
 
-% \paragraph{Hypernomiale Meinung}
+\paragraph{Behandlungu Unterkonfidenz und Nichtwissen} Wir definieren eine \emph{Zero Evidence Region} (ZER) als Bereich im Eingaberaum, in dem die epistemische Evidenz des Modells unterhalb eines minimalen Schwellenwertes liegt. Basierend auf Josangs Subjective Logic ergibt sich die Unsicherheitsmasse für kontinuierliche Modelle analog zur multivariaten Meinung als:
+
+\[
+u(x) := \frac{1}{\alpha(x)} \quad \text{mit Evidenz } S = \alpha(x) - 1
+\]
+
+Wir führen eine untere Evidenzschranke \( \alpha_{\min} > 0 \) ein und definieren:
+
+\[
+\text{ZER}(x) := 
+\begin{cases}
+1, & \text{falls } \alpha(x) < \alpha_{\min} \\
+0, & \text{sonst}
+\end{cases}
+\]
+
+Alternativ über die epistemische Varianz:
+
+\[
+\text{ZER}(x) := 
+\begin{cases}
+1, & \text{falls } \text{Var}_{\text{epist}}(x) > v_{\max} \\
+0, & \text{sonst}
+\end{cases}
+\]
+
+Diese Regionen signalisieren dem System explizit, dass eine verlässliche Aussage nicht getroffen werden kann. Das Modell kann \textit{grundlegend} Nichtwissen aufzeigen. 
+
+Dies kann in die Loss-Regularierung aufgenommen werden als: 
+
+\[
+\mathcal{L}_{\text{total}}(x, y) = 
+(1 - \text{ZER}(x)) \cdot \left[ 
+\mathcal{L}_{\text{NLL}}(x, y) 
++ \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(x, y) 
++ \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x) 
+\right] 
++ \lambda_{\text{ZER}} \cdot \text{ZER}(x)
+\]
+
+\[
+\text{mit } \quad 
+\text{ZER}(x) := 
+\begin{cases}
+1, & \text{wenn } \alpha(x) < \alpha_{\min} \\
+0, & \text{sonst}
+\end{cases}
+\]
+
+\[
+\mathcal{L}_{\text{clip}}(x, y) =
+\begin{cases}
+(y - \gamma)^2, & \text{falls } (y - \gamma)^2 \leq U^*(x) \\
+2 \sqrt{U^*(x)} \cdot |y - \gamma| - U^*(x), & \text{sonst}
+\end{cases}
+\]
+
+\[
+\mathcal{L}_{\text{bound}}(x) = \left( 
+\max(0, \text{Var}_{\text{gesamt}}(x) - 0{,}6)^2 
++ 
+\max(0, 0{,}4 - \text{Var}_{\text{gesamt}}(x))^2 
+\right)
+\]
+
+\[
+\text{Var}_{\text{gesamt}}(x) = 
+\frac{\beta}{\alpha - 1} 
++ 
+\frac{\beta^2}{(\alpha - 1)^2 (\alpha - 2)}
+\]
+
+\[
+U^*(x) := \min(U_\nu, U_\alpha, U_0 \cdot (1 - C(x)))
+\]
+
+
+Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert spezialisiert werden.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO 28-07
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{figure}[!ht]
+%   \centering
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y51.png}
+%     \caption{Konfiguration 4, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+%     \label{fig:bild31}
+%   \end{subfigure}
+
+%   \vspace{0.5em}
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y52.png}
+%     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+%     \label{fig:bild32}
+%   \end{subfigure}
+
+%   \vspace{0.5em}
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y53.png}
+%     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+%     \label{fig:bild33}
+%   \end{subfigure}
+
+%   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 4}
+%   \label{fig:three_subfigures3}
+% \end{figure}
 
 
 
-
-% \paragraph{Multinomiale Meinung}
-
+\paragraph{Meta-Unsicherheit - Vergleich \gls{Bayesianische neuronale Netze} und \gls{Evidenzbasierte neuronale Netze} nach Josang} Zum Schluss soll Herr Mavanis Ansatz für \gls{Bayesianische neuronale Netze} mit dem der \gls{Evidenzbasierte neuronale Netze} nach Ansatz von Josangs \gls{aleatoricopinion}, \gls{epistemicopinion} für vergleichende Meta-Unsicherheit beispielhaft in Herr Autenrieths Kritikalitätsraum implementiert werden. 
 
 
 
-% \paragraph{Ergebnis}
+\paragraph{Vorbereitung} Herr B.Sc. Mavanis \gls{Bayesianische neuronale Netze} Ansätze in Jax wurden verworfen, weil sie im Zeitrahmen zum Ende meiner Projektphase zum 24.07. zu ungenügenden Ergebnissen führten. Der HMC-Ansatz wurde nach Umstellung ebenfalls verworfen, wegen überstiegenem Budget in Trainingszeit. Es wurde in Herr Mavanis Repository unter Branch des Autoren ein Pyro Äquivalent implementiert sowie varriert mit drei, vier und fünf vollverbundenen Schichten, 32, 64, 128 Neuronen, 2000 bis im Schnitt 5000 Epochen inklusive Aufwärmprozess, 500 bis 2000 SVI Posterior Samples, Invertierung des Mittelwerts als Ausgabeneuron, Variation des BNN Modell Rangs, Unter- und Übergewichtung der Ausgabeneuronen, Übersampling der Signalspitze, Miterfassung aleatorischer Varianz, Verrauschen der epistemischen Varianz, Änderung der Aktivierungsfunktionen mittels ReLu, SiLu sowie zusätzlicher Lern-Raten-Abfall. Das beste Ergebnis wurde mit SVI, zwei vollverbundenen versteckten Schichten, 64 Neuronen, 2000 Epsioden und ohne Lern-Raten-Abfall erzielt. Das Gauss-Signal konnte auf dem Boden in der Position annähernd korrekt positioniert werden. Bei korrekter Position lieferte jede Parameter-Änderung zu sensibel-varrierende Ergebnisse in Bezug auf das Volumen, ohne auffällige Konvergenzen. In Bezug auf das Volumen konnte ein zum \gls{Evidenzbasierte neuronale Netze} vergleichbarer Underfit mit einem vergleichbar aus der Signalform austretendem wellenartigen Volumen erzielt werden. Wurde das Volumen annährend korrekt geschätzt, reagierte die Position zu sensibel auf Parameter-Änderungen. Hauptergebnis der Experimentierphase ist das zu stark mittlende Verhalten des \gls{Bayesianische neuronale Netze} über erwähnte Parameter-Variation in verwendeten Ansätzen. So wird bei großer Samplezahl am gewählten Beispiel aus Herr Autenriehts Kritikalitätsraum regelmäßig eine zur Gauss-Steigung invertierte konkave Ebene aufgespannt, wichtige gesamplete Spitzenwerte ignoriert. Die Intention die Ausgabe zu Invertieren war nicht zielführend. Zusammenfassend wurde in keinem Fall ein relevantes vergleichbares Ergebnis auf dem einfachen Gauss-Beispiel erzielt. Deshalb wird ein synthetisches Ergebnis des BNN generiert, um den Vorschlag für die Methodik aufzuzeigen und abzuschließen.  
 
 
 
+\paragraph{Meta-Unsicherheitsvergleich zwischen ENN und synthetischem BNN} Zur Bewertung der strukturellen Unterschiede in den Unsicherheitsannahmen zwischen einem \gls{Evidenzbasierte neuronale Netze} und einem \gls{Bayesianische neuronale Netze} soll ein Divergenzmaß über die geschätzten Unsicherheitsverteilungen eingeführt werden. Da kein hinreichendes BNN-Modell vorliegt, wird die epistemische und aleatorische Unsicherheit des BNN synthetisch approximiert, indem ein Rauschterm \( \delta(x) \sim \mathcal{N}(0, \sigma^2) \) zur epistemischen ENN-Varianz addiert und anschließend in das Intervall \([0.4, 0.6]\) projiziert wird.
 
-\paragraph{Fazit der Durchführung} 
+Für jedes \( x \in \mathcal{X} \) wird berechnet:
 
-Gemäß A7 sollen abschließend die wichtigsten Ansätze und Ergebnisse der Arbeit in einem Jupyter Notebook zusammenfasst werden. Dies findet sich im Anhang. 
+\[
+\text{Var}_{\text{gesamt}}^{\text{ENN}}(x) = \text{Var}_{\text{epist}}^{\text{ENN}}(x) + \text{Var}_{\text{alea}}^{\text{ENN}}(x)
+\]
+\[
+\text{Var}_{\text{gesamt}}^{\text{BNN}}(x) = \text{Var}_{\text{epist}}^{\text{ENN}}(x) + \delta(x) + \text{Var}_{\text{alea}}^{\text{ENN}}(x)
+\]
+
+Die Meta-Unsicherheit wird anschließend durch die Jensen-Shannon-Divergenz zwischen den beiden Gesamtunsicherheitsverteilungen definiert:
+
+\[
+\text{MetaUncertainty} := \text{JSD}\left( \mathcal{D}_{\text{gesamt}}^{\text{ENN}} \parallel \mathcal{D}_{\text{gesamt}}^{\text{BNN}} \right)
+\]
+
+Je höher dieser Wert, desto größer ist die Divergenz in der modellierten Unsicherheitsstruktur und damit die meta-informative Abweichung zwischen den Netzarchitekturen. 
+
+Das definieren eines Ansatzes zur Meta-Unsicherheit erlaubt ebenso einen Ansatz zur Bewertung durch ein Framework. 
+
+\section*{Framework zur vergleichenden Unsicherheitsanalyse der Meta-Unsicherheit}
+
+\paragraph{1. Eingabe und Setup} Zur Analyse werden zwei Modelle betrachtet: ein \gls{Evidenzbasierte neuronale Netze} sowie ein \gls{Bayesianische neuronale Netze}, dessen Unsicherheitsverhalten synthetisch simuliert wird. wie vorher definiert. Die Berechnung erfolgt auf einem gemeinsamen Testdatensatz \( \mathcal{X}_{\text{test}} \) nach Wahl aus der eingeführten Datenpipeline. Optional kann eine Kritikalitätsfunktion \( C(x) \) eingebunden werden.
+
+\paragraph{2. Kernmetriken je Modell}
+
+\begin{itemize}
+    \item \textbf{Epistemische Varianz:} \( \text{Var}_{\text{epist}} \)
+    \item \textbf{Aleatorische Varianz:} \( \text{Var}_{\text{alea}} \)
+    \item \textbf{Gesamtvarianz:} \( \text{Var}_{\text{gesamt}} = \text{Var}_{\text{epist}} + \text{Var}_{\text{alea}} \)
+    \item \textbf{Accuracy:} Anteil korrekter Vorhersagen auf \( \mathcal{X}_{\text{test}} \)
+\end{itemize}
+
+\paragraph{3. Erweiterte Unsicherheitsattribute} Erweiterte Unsicherheitsattribute sind all diejenigen Bewertungsmetriken, die in der entwickelten Software Metrik-Registrierung enthalten und aus der vorherigen Rechrerche abgeleitet sind.
+
+\paragraph{4. Bewertung und tabellarischer Vergleich} Abschließend für das Framework zur vergleichenden Unsicherheitsanalyse der Meta-Unsicherheit soll ein beispielhafter Vergleich auf einem synthethischen Ergebnis durchgeführt werden.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO 28-07
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Metrik} & \textbf{ENN} & \textbf{BNN (synthetisch)} & \textbf{Differenz} \\
+\hline
+Epistemische Varianz (Mittel) & 0.51 & 0.49 & -0.02 \\
+Aleatorische Varianz (Mittel) & 0.43 & 0.46 & +0.03 \\
+JSD der Gesamtvarianz         & --   & --   & 0.21 \\
+Accuracy                      & 92.1\,\% & 91.8\,\% & -0.3\,\% \\
+Accuracy–Uncertainty Gap      & 0.12 & 0.08 & -0.04 \\
+Kritikalitätsgewichtete Unsicherheit & 0.34 & 0.47 & +0.13 \\
+\hline
+\end{tabular}
+\caption{Vergleich ausgewählter Unsicherheitsmetriken zwischen ENN und synthetisch approximiertem BNN}
+\end{table}
+
+\paragraph{5. Interpretation der Meta-Unsicherheit}
+
+Anhand der ermittelten Divergenzen und Attribute kann die sogenannte \emph{Meta-Unsicherheit} definiert werden als strukturelle Abweichung zwischen den Unsicherheitsmodellen zweier Architekturen. Hohe Werte (z.\,B. JSD \( > 0.25 \)) deuten auf stark unterschiedliche Unsicherheitsannahmen hin und erfordern eine differenzierte Betrachtung der Kalibrierung und Vertrauenswürdigkeit der Vorhersagen. Die weiteren Attribute können genutzt werden, um die Kon- und Divergenzstruktur zu spezialisieren.
+
+
+
+\paragraph{Fazit der Durchführung} Gemäß A7 sollen abschließend die wichtigsten Ansätze und Ergebnisse der Arbeit in einem Jupyter Notebook zusammenfasst werden. Dies findet sich im Anhang. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% in den Anhang
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Beweis der Lipschitz-Stetigkeit von } \( \mathcal{L}(x) \):
+
+\vspace{1em}
+
+Definiere die Funktion als:
+\[
+\mathcal{L}(x) =
+\begin{cases}
+x^2 & \text{für } x^2 < U \\
+2\sqrt{U} \cdot |x| - U & \text{für } x^2 \geq U
+\end{cases}
+\quad \text{mit } U := U_{\nu,\alpha}
+\]
+
+\textbf{1. Stetigkeit an der Übergangsstelle \( |x| = \sqrt{U} \):}
+
+\[
+\lim_{x \to \sqrt{U}^{-}} \mathcal{L}(x) = (\sqrt{U})^2 = U
+\quad \text{und} \quad
+\lim_{x \to \sqrt{U}^{+}} \mathcal{L}(x) = 2\sqrt{U} \cdot \sqrt{U} - U = 2U - U = U
+\]
+
+\(\Rightarrow \mathcal{L} \) ist stetig an \( x = \pm\sqrt{U} \)
+
+\vspace{1em}
+
+\textbf{2. Ableitung (Gradient) der beiden Zweige:}
+
+\begin{itemize}
+  \item Für \( |x| < \sqrt{U} \): \( \mathcal{L}'(x) = 2x \Rightarrow |\mathcal{L}'(x)| \leq 2\sqrt{U} \)
+  \item Für \( |x| > \sqrt{U} \): \( \mathcal{L}'(x) = \pm 2\sqrt{U} \Rightarrow |\mathcal{L}'(x)| = 2\sqrt{U} \)
+\end{itemize}
+
+\textbf{3. Schluss:} Die Ableitung ist überall definiert oder beschränkt (außer an \( x = 0 \), wo die Funktion zwar nicht differenzierbar ist, aber trotzdem eine endliche Steigung hat), also ist \( \mathcal{L} \) global Lipschitz-stetig mit:
+
+\[
+L = \sup_{x \in \mathbb{R}} |\mathcal{L}'(x)| = 2\sqrt{U}
+\]
+
+\(\Rightarrow \mathcal{L} \) ist Lipschitz-stetig mit Konstante \( L = 2\sqrt{U} \)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% in den Anhang ENDE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
