@@ -616,83 +616,108 @@ Wie im vorherigen Abschnitt ohne Störfunktion verzerren sich die Einzel-Signal-
 
 
 
-\paragraph{Zwischenfazit der Durchführung - Über- und Unterkondidenz} Schwachstelle durchgeführter Experimente ist ein Über- und Unterschätzen von Grenzwerten in Abhängigkeit von der Hyperparameter-Wahl, sowie die nach oben ungebundene Loss-Funktion wie aufgezeigt im Paragraphen \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{}. Mittels Josangs subejctive Logic wurden erweiterte Parametrisierungen aufgezeigt, welche die Behandlung des Unterschätzens bis zur Definition von \glqq{}Zero Evidence Regions\grqq{} behandeln. Das Überschätzen ist hier, sowie in der Literatur im Fokus. Kritikalität in VaMai fordert das Einhalten der gegebener Signal-Grenzen unabdingbar ein. Ulmer et al. zeigen dafür in (28) unter (26) auf Oh und Shins Ansatz auf, die \glqq{}Negative Log Likelihood\grqq{} Loss-Funktion mit Regularisierung nach Aminis Regressionsansatz unter (27) um einen Dritt-Term zu Erweitern. Dazu wurden verantwortliche Parameter $\nu$, $\alpha$ in (26) von Oh und Shin explizit mittels partieller Differenziation gelöst, um mit (29) eine eindeutige analytische Obergrenze - unintuitiv - über eine Minimum-Funktion $U_{\nu,\alpha}=min(U_{\nu}, U_{\alpha})$ auf einem Mini-Batch aufzuzeigen (vgl. Ulmer et al. \parencite[S.17, Z. 20-25, S.18 Z. 1-8]{Ulmer2023}}). Die analytische Lösung von Oh und Shin lautet: 
+\paragraph{Zwischenfazit der Durchführung - Über- und Unterkondidenz} Schwachstelle durchgeführter Experimente ist ein Über- und Unterschätzen von Grenzwerten in Abhängigkeit von der Hyperparameter-Wahl, sowie die nach oben ungebundene Loss-Funktion wie aufgezeigt im Paragraphen \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{}. Mittels Josangs \gls{subjectivelogic} wurden erweiterte Parametrisierungen aufgezeigt, welche die Behandlung des Unterschätzens bis zur Definition von \glqq{}Zero Evidence Regions\grqq{} behandeln. Das Überschätzen ist hier, so wie in der Literatur im Fokus. Kritikalität in VaMai fordert das Einhalten der gegebenen Signal-Grenzen unabdingbar ein. Ulmer et al. zeigen dafür in (28) unter (26) auf Oh und Shins Ansatz auf, die \glqq{}Negative Log Likelihood\grqq{} Loss-Funktion mit Regularisierung nach Aminis Regressionsansatz unter (27) um einen Dritt-Term zu Erweitern. Dazu wurden verantwortliche Parameter $\nu$, $\alpha$ in (26) von Oh und Shin explizit mittels partieller Differenziation gelöst, um mit (29) eine eindeutige analytische Obergrenze - unintuitiv - über eine Minimum-Funktion $U_{\nu,\alpha}=min(U_{\nu}, U_{\alpha})$ auf einem Mini-Batch aufzuzeigen (vgl. Ulmer et al. \parencite[S.17, Z. 20-25, S.18 Z. 1-8]{Ulmer2023}}). Die analytische Lösung von Oh und Shin lautet: 
 
 \[
-U_{\nu} = \frac{\beta(\nu + 1)}{\alpha \cdot \nu}\newline
-U_{\alpha} = \frac{2\cdot\beta\cdot(\nu + 1)}{\nu} \dot (exp(\Phi(\alpha + \frac{1}{2}) - \Psi(\alpha)) - 1))
+U_{\nu} = \frac{\beta(\nu + 1)}{\alpha \cdot \nu}, \quad 
+U_{\alpha} = \frac{2 \cdot \beta \cdot (\nu + 1)}{\nu} \cdot 
+\left[ \exp\left( \psi\left(\alpha + \frac{1}{2}\right) - \psi(\alpha) \right) - 1 \right]
 \]
 
-$\alpha$, $\beta$, $\nu$ sind wie folgt abhängig. $\beta$ gilt als frei definierbarer Skalenparameter mit in der Literatur häufig gewählter Belegung: 
+$\alpha$, $\beta$, $\nu$ sind wie folgt abhängig. $\beta$ gilt als frei definierbarer Skalenparameter mit in der Literatur häufig gewählter Belegung (vgl. Bishop 2006 \glqq{}Student-t-Modelle\grqq{} \parencite{bishop2006pattern}, Gelman et al. 2013 \glqq{}Models for robust inference\grqq{} \parencite{gelman2013bayesian}): 
 
 \[
 \beta = \begin{cases}
 1                                           & \text{unabhängig}, \\
-\beta_{0} \cdot (\alpha - 1)                & \text{abhängig von alpha}
+\beta_{0} \cdot (\alpha - 1)                & \text{abhängig von } \alpha
 \end{cases}
 \]
 
 $\nu$ und $\alpha$ definieren die Loss-Begrenzung über die Fehlerwerte der Loss-Funktion mit einer lipschitz-stetigen Übergangsbedingung von quadratischer zu linearer Komponente wie im Anhang gezeigt. 
 
+
+
 \begin{equation}
 \mathcal{L}_{\mathrm{MSE}} = 
 \begin{cases}
-(y_{i} - \gamma)^{2})                                              & (y_{i} - \gamma)^{2} \le U_{\nu,\alpha}, \\
-2\dot\sqrt{U_{\nu, \alpha}}} \cdot \left| y_{i} - \gamma \right|   & (y_{i} - \gamma)^{2} \geq U_{\nu,\alpha} \text{otherwise}
+  (y_i - \gamma)^2 & \text{wenn } (y_i - \gamma)^2 \le U_{\nu,\alpha}, \\
+  2 \cdot \sqrt{U_{\nu, \alpha}} \cdot | y_i - \gamma | & \text{wenn } (y_i - \gamma)^2 \geq U_{\nu,\alpha}
 \end{cases}
-&\text{Übergangsbedingung:} \\
-&(y_i - \gamma)^2 = 2 \sqrt{U_{\nu,\alpha}} \cdot |y_i - \gamma| - U_{\nu,\alpha} \\
-&\text{Lösung: } |y_i - \gamma| = \sqrt{U_{\nu,\alpha}}
 \end{equation}
+
+\noindent
+\begin{minipage}{\linewidth}
+\begin{align*}
+&\text{Übergangsbedingung:} && (y_i - \gamma)^2 = 2 \sqrt{U_{\nu,\alpha}} \cdot |y_i - \gamma| - U_{\nu,\alpha} \\
+&\text{Lösung:} && |y_i - \gamma| = \sqrt{U_{\nu,\alpha}}
+\end{align*}
+\vspace{0.125\baselineskip}
+\noindent
+\end{minipage}
 
 Die Min-Funktion begrenzt den quadratischen Anteil der Steigung der Loss-Funktion, um genau den Teil, in dem er stärker steigt, als die lineare Funktion. 
 
-Herr Autenrieths Kritikalitäsraum ist mit einem oberen und unteren Schwellenwert für die Kritikalität behaftet, in den Beipsielen die zwei horizontalen Ebenen.
+Herr Autenrieths Kritikalitäsraum ist mit einem oberen und unteren Schwellenwert für die Kritikalität behaftet, in den Beispielen die zwei horizontalen Ebenen.
 
 \[
-C \colon \mathcal{X} \rightarrow [0,4, 0,6]
+C \colon \mathcal{X} \rightarrow [0.4, 0.6]^3 \subset [0,10] \times [0,10] \times [0,1] \subset \mathbb{R}^3
 \]
 
-$C$ soll die Loss-Regularisierung eingrenzen. Als Erweiterung von Oh und Shin, lässt sich eine zweite kritikalitätsabhängige Unsicherheitsgrenze einführen durch:
+$C$ soll die Loss-Regularisierung eingrenzen. Als Erweiterung von Oh und Shin lässt sich eine zweite kritikalitätsabhängige Unsicherheitsgrenze einführen durch:
 
 \[
 U^*(x) := \min \left( U_\nu, U_\alpha, U_0 \cdot (1 - C(x)) \right)
 \]
 
-Dies erzwingt einen strengeren Übergang für die prädiktive Unsicherheit in hochkritischen Regionen des Eingaberaums, da erstens größere Fehler stärker bestraft werden. Zweitens, die Unsicherheit nicht skaliert werden kann, um den Fehler zu kompensieren. Drittens, epistemische und aleatorsiche Unsicherheit werden konservativer geschätzt, um den Fehler niedrig zu halten. Umgangssprachlich ließe sich das so zusammenfassen: Das Modell darf zwar seine Unsicherheit erhöhen. Aber nur, wenn der Punkt nicht kritisch ist. In sicherheitsrelevanten Regionen musst das Modell sich konservativer festlegen. Das ist ein Ansatz zur Lösung der evidentiellen Überkonfidenz, die bereits im Stand der Technik im Vergleich von \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}, \gls{Conformal Prediction} aufgezeigt wurde. Damit kann der Ansatz gegenüber \gls{Conformal Prediction} wettbewerbsfähiger gestaltet werden.
+Dies erzwingt einen strengeren Übergang für die prädiktive Unsicherheit in hochkritischen Regionen des Eingaberaums, da erstens größere Fehler stärker bestraft werden. Zweitens, die Unsicherheit nicht skaliert werden kann, um den Fehler zu kompensieren. Drittens, epistemische und aleatorsiche Unsicherheit konservativer geschätzt werden, um den Fehler niedrig zu halten. Umgangssprachlich ließe sich das so zusammenfassen: Das Modell darf zwar seine Unsicherheit erhöhen. Aber nur, wenn der Punkt nicht kritisch ist. In sicherheitsrelevanten Regionen muss das Modell sich konservativer festlegen. Das ist ein Ansatz zur Lösung der evidentiellen Überkonfidenz, die bereits im Stand der Technik im Vergleich von \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}, \gls{Conformal Prediction} aufgezeigt wurde. Damit kann der Ansatz gegenüber \gls{Conformal Prediction} wettbewerbsfähiger gestaltet werden.
 
-Ein zweiter Ansatz zur expliziten Kontrolle der prädiktiven Unsicherheiten ist die Verlustfunktion um einen Schranken-Term zu ergänzen, der Varianzen außerhalb des tolerierten Kritiaklitäs-Intervalls \([0{,}4, 0{,}6]\) sanktioniert. Wiedeholt ist dabei \[
+Ein zweiter Ansatz zur expliziten Kontrolle der prädiktiven Unsicherheiten ist die Verlustfunktion um einen Schranken-Term zu ergänzen, der Varianzen außerhalb des tolerierten Kritiaklitäs-Intervalls \([0{.}4, 0{.}6]\) sanktioniert. Wiedeholt zu (5.1) ist dabei \[
 \text{Var}_{\text{gesamt}}(x) = \underbrace{\frac{\beta}{\alpha - 1}}_{\text{aleatorisch}} + \underbrace{\frac{\beta^2}{(\alpha - 1)^2(\alpha - 2)}}_{\text{epistemisch}}
 \]
 die Gesamtvarianz des evidentiellen Modells. Der Schranken-Term lautet:
-\[
-\mathcal{L}_{\text{bound}} = \lambda \cdot \left( \max(0, \text{Var}_{\text{gesamt}}(x) - 0{,}6)^2 + \max(0, 0{,}4 - \text{Var}_{\text{gesamt}}(x))^2 \right)
-\]
-Dieser wird zur Gesamtverlustfunktion addiert: 
+\begin{equation}
+\mathcal{L}_{\text{bound}} = \lambda \cdot \left( 
+  \max(0, \text{Var}_{\text{gesamt}}(x) - 0{,}6)^2 
+  + \max(0, 0{,}4 - \text{Var}_{\text{gesamt}}(x))^2 
+\right)
+\label{eq:loss_varbound}
+\end{equation}
 
-\[
-\mathcal{L}_{\text{total}}(x, y) = \mathcal{L}_{\text{NLL}}(x, y) + \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(x, y) + \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x)
-\]
+\vspace{0.125\baselineskip}
 
+\noindent
+\begin{minipage}{\linewidth}
 \[
+\text{mit} \quad
+\text{Var}_{\text{gesamt}}(x) =
+\begin{cases}
+\frac{\beta}{\alpha - 1} + \frac{\beta^2}{(\alpha - 1)^2 (\alpha - 2)},                                         & \text{ konvergent für } \alpha > 2 \\
+\left( \frac{\beta}{\alpha - 1} + \frac{\beta^2}{(\alpha - 1)^2 (\alpha - 2)} \right) \longrightarrow \infty,   & \text{ divergent für } \alpha \leq 2
+\end{cases}
+\]
+\vspace{0.125\baselineskip}
+\noindent
+
+\end{minipage}
+
+(8.2) wird unter Hinzunahme von (8.3) als (8) und (9) zusammengefasst in (10) aus Aminis Evidential Regression, mit (8.4) zur Gesamtverlustfunktion (8.5) addiert: 
+
+\begin{equation}
+\mathcal{L}_i(w) = \mathcal{L}_{\text{NLL},i}(w) + \lambda \cdot \mathcal{L}_{\text{R},i}(w)
+\label{eq:evidential_loss}
+\end{equation}
+
+\begin{equation}
 \mathcal{L}_{\text{clip}}(x, y) =
 \begin{cases}
 (y - \gamma)^2, & \text{falls } (y - \gamma)^2 \leq U^*(x) \\
 2 \sqrt{U^*(x)} \cdot |y - \gamma| - U^*(x), & \text{sonst}
 \end{cases}
-\]
+\end{equation}
 
-\[
-\mathcal{L}_{\text{bound}}(x) = \left( \max(0, \text{Var}_{\text{gesamt}}(x) - 0{,}6)^2 + \max(0, 0{,}4 - \text{Var}_{\text{gesamt}}(x))^2 \right)
-\]
-
-\[
-\text{Var}_{\text{gesamt}}(x) =
-\begin{cases}
-\frac{\beta}{\alpha - 1} + \frac{\beta^2}{(\alpha - 1)^2 (\alpha - 2)}, & \text{falls } \alpha > 2 \\
-\infty, & \text{sonst}
-\end{cases}
-\]
+\begin{equation}
+\mathcal{L}_{\text{total}}(x, y) = \mathcal{L}_{\text{NLL}}(x, y) + \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(x, y) + \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x)
+\end{equation}
 
 Dies ist ein Ansatz sowohl die Kontrolle über die Überkonfidenz im Trainingsverhalten zu regulieren, als auch die finalen Varianzwerte an die Grenzen der Kritikalitätsfunktion zu binden.
 
@@ -740,31 +765,37 @@ Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Si
 
 
 
-\paragraph{Behandlungu Unterkonfidenz und Nichtwissen} Wir definieren eine \emph{Zero Evidence Region} (ZER) als Bereich im Eingaberaum, in dem die epistemische Evidenz des Modells unterhalb eines minimalen Schwellenwertes liegt. Basierend auf Josangs Subjective Logic ergibt sich die Unsicherheitsmasse für kontinuierliche Modelle analog zur multivariaten Meinung als:
+\paragraph{Behandlung Unterkonfidenz und Nichtwissen} Wir definieren eine \emph{Zero Evidence Region} (ZER) als Bereich im Eingaberaum, in dem die epistemische Evidenz des Modells unterhalb eines minimalen Schwellenwertes liegt. Basierend auf Josangs \gls{subjectivelogic} ergibt sich die Unsicherheitsmasse für kontinuierliche Modelle analog zur multivariaten Meinung als:
 
 \[
-u(x) := \frac{1}{\alpha(x)} \quad \text{mit Evidenz } S = \alpha(x) - 1
+u(x) := \frac{1}{\alpha(x)} \quad \text{mit Evidenz } E = \alpha(x) - 1
 \]
 
-Wir führen eine untere Evidenzschranke \( \alpha_{\min} > 0 \) ein und definieren:
+Wir führen eine untere Evidenzschranke \( \alpha_{\min} > 0 \) ein und definieren über $\alpha$, sowie alternativ über die epistemische Varianz $\text{Var}_{\text{epist}$:
 
-\[
+\begin{equation*}
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+$\displaystyle
 \text{ZER}(x) := 
 \begin{cases}
 1, & \text{falls } \alpha(x) < \alpha_{\min} \\
 0, & \text{sonst}
 \end{cases}
-\]
-
-Alternativ über die epistemische Varianz:
-
-\[
+$
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+$\displaystyle
 \text{ZER}(x) := 
 \begin{cases}
 1, & \text{falls } \text{Var}_{\text{epist}}(x) > v_{\max} \\
 0, & \text{sonst}
 \end{cases}
-\]
+$
+\end{minipage}
+\end{equation*}
 
 Diese Regionen signalisieren dem System explizit, dass eine verlässliche Aussage nicht getroffen werden kann. Das Modell kann \textit{grundlegend} Nichtwissen aufzeigen. 
 
@@ -780,44 +811,7 @@ Dies kann in die Loss-Regularierung aufgenommen werden als:
 + \lambda_{\text{ZER}} \cdot \text{ZER}(x)
 \]
 
-\[
-\text{mit } \quad 
-\text{ZER}(x) := 
-\begin{cases}
-1, & \text{wenn } \alpha(x) < \alpha_{\min} \\
-0, & \text{sonst}
-\end{cases}
-\]
-
-\[
-\mathcal{L}_{\text{clip}}(x, y) =
-\begin{cases}
-(y - \gamma)^2, & \text{falls } (y - \gamma)^2 \leq U^*(x) \\
-2 \sqrt{U^*(x)} \cdot |y - \gamma| - U^*(x), & \text{sonst}
-\end{cases}
-\]
-
-\[
-\mathcal{L}_{\text{bound}}(x) = \left( 
-\max(0, \text{Var}_{\text{gesamt}}(x) - 0{,}6)^2 
-+ 
-\max(0, 0{,}4 - \text{Var}_{\text{gesamt}}(x))^2 
-\right)
-\]
-
-\[
-\text{Var}_{\text{gesamt}}(x) = 
-\frac{\beta}{\alpha - 1} 
-+ 
-\frac{\beta^2}{(\alpha - 1)^2 (\alpha - 2)}
-\]
-
-\[
-U^*(x) := \min(U_\nu, U_\alpha, U_0 \cdot (1 - C(x)))
-\]
-
-
-Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert spezialisiert werden.
+Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert spezialisiert werden. Eine sinnvolle Erweiterung des 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO 28-07
@@ -865,7 +859,7 @@ Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Si
 
 
 
-\paragraph{Meta-Unsicherheitsvergleich zwischen ENN und synthetischem BNN} Zur Bewertung der strukturellen Unterschiede in den Unsicherheitsannahmen zwischen einem \gls{Evidenzbasierte neuronale Netze} und einem \gls{Bayesianische neuronale Netze} soll ein Divergenzmaß über die geschätzten Unsicherheitsverteilungen eingeführt werden. Da kein hinreichendes BNN-Modell vorliegt, wird die epistemische und aleatorische Unsicherheit des BNN synthetisch approximiert, indem ein Rauschterm \( \delta(x) \sim \mathcal{N}(0, \sigma^2) \) zur epistemischen ENN-Varianz addiert und anschließend in das Intervall \([0.4, 0.6]\) projiziert wird.
+\paragraph{Meta-Unsicherheitsvergleich zwischen ENN und synthetischem BNN} Zur Bewertung der strukturellen Unterschiede in den Unsicherheitsannahmen zwischen einem \gls{Evidenzbasierte neuronale Netze} und einem \gls{Bayesianische neuronale Netze} soll ein Divergenzmaß über die geschätzten Unsicherheitsverteilungen eingeführt werden. Da kein hinreichendes \gls{Bayesianische neuronale Netze}-Modell vorliegt, wird die \gls{Epistemische Unsicherheit} und \gls{Aleatorische Unsicherheit} des \gls{Bayesianische neuronale Netze} synthetisch approximiert, indem ein Rauschterm \( \delta(x) \sim \mathcal{N}(0, \sigma^2) \) zur epistemischen \gls{Evidenzbasierte neuronale Netze}-Varianz addiert und anschließend in das Intervall \([0.4, 0.6]\) projiziert wird.
 
 Für jedes \( x \in \mathcal{X} \) wird berechnet:
 
@@ -876,10 +870,10 @@ Für jedes \( x \in \mathcal{X} \) wird berechnet:
 \text{Var}_{\text{gesamt}}^{\text{BNN}}(x) = \text{Var}_{\text{epist}}^{\text{ENN}}(x) + \delta(x) + \text{Var}_{\text{alea}}^{\text{ENN}}(x)
 \]
 
-Die Meta-Unsicherheit wird anschließend durch die Jensen-Shannon-Divergenz zwischen den beiden Gesamtunsicherheitsverteilungen definiert:
+Die Meta-Unsicherheit wird anschließend durch die Jensen-Shannon-Divergenz (JSD) zwischen den beiden Gesamtunsicherheitsverteilungen definiert:
 
 \[
-\text{MetaUncertainty} := \text{JSD}\left( \mathcal{D}_{\text{gesamt}}^{\text{ENN}} \parallel \mathcal{D}_{\text{gesamt}}^{\text{BNN}} \right)
+\text{Meta-Unsicherheit} := \text{JSD}\left( \mathcal{D}_{\text{gesamt}}^{\text{ENN}} \parallel \mathcal{D}_{\text{gesamt}}^{\text{BNN}} \right)
 \]
 
 Je höher dieser Wert, desto größer ist die Divergenz in der modellierten Unsicherheitsstruktur und damit die meta-informative Abweichung zwischen den Netzarchitekturen. 
@@ -888,7 +882,7 @@ Das definieren eines Ansatzes zur Meta-Unsicherheit erlaubt ebenso einen Ansatz 
 
 \section*{Framework zur vergleichenden Unsicherheitsanalyse der Meta-Unsicherheit}
 
-\paragraph{1. Eingabe und Setup} Zur Analyse werden zwei Modelle betrachtet: ein \gls{Evidenzbasierte neuronale Netze} sowie ein \gls{Bayesianische neuronale Netze}, dessen Unsicherheitsverhalten synthetisch simuliert wird. wie vorher definiert. Die Berechnung erfolgt auf einem gemeinsamen Testdatensatz \( \mathcal{X}_{\text{test}} \) nach Wahl aus der eingeführten Datenpipeline. Optional kann eine Kritikalitätsfunktion \( C(x) \) eingebunden werden.
+\paragraph{1. Eingabe und Setup} Zur Analyse werden zwei Modelle betrachtet: ein \gls{Evidenzbasierte neuronale Netze} sowie ein \gls{Bayesianische neuronale Netze}, dessen Unsicherheitsverhalten synthetisch simuliert wird, wie vorher definiert. Die Berechnung erfolgt auf einem gemeinsamen Testdatensatz \( \mathcal{X}_{\text{test}} \) nach Wahl aus der eingeführten Datenpipeline. Optional kann eine Kritikalitätsfunktion \( C(x) \) eingebunden werden.
 
 \paragraph{2. Kernmetriken je Modell}
 
@@ -926,62 +920,11 @@ Kritikalitätsgewichtete Unsicherheit & 0.34 & 0.47 & +0.13 \\
 
 \paragraph{5. Interpretation der Meta-Unsicherheit}
 
-Anhand der ermittelten Divergenzen und Attribute kann die sogenannte \emph{Meta-Unsicherheit} definiert werden als strukturelle Abweichung zwischen den Unsicherheitsmodellen zweier Architekturen. Hohe Werte (z.\,B. JSD \( > 0.25 \)) deuten auf stark unterschiedliche Unsicherheitsannahmen hin und erfordern eine differenzierte Betrachtung der Kalibrierung und Vertrauenswürdigkeit der Vorhersagen. Die weiteren Attribute können genutzt werden, um die Kon- und Divergenzstruktur zu spezialisieren.
+Anhand der ermittelten Divergenzen und Attribute kann die sogenannte \emph{Meta-Unsicherheit} definiert werden als strukturelle Abweichung zwischen den Unsicherheitsmodellen zweier Architekturen. Hohe Werte (zum Beispiel JSD \( > 0.25 \)) deuten auf stark unterschiedliche Unsicherheitsannahmen hin. Sie erfordern eine differenzierte Betrachtung der Kalibrierung und Vertrauenswürdigkeit der Vorhersagen. Die weiteren Attribute können genutzt werden, um die Kon- und Divergenzstruktur zu spezialisieren.
 
 
 
 \paragraph{Fazit der Durchführung} Gemäß A7 sollen abschließend die wichtigsten Ansätze und Ergebnisse der Arbeit in einem Jupyter Notebook zusammenfasst werden. Dies findet sich im Anhang. 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% in den Anhang
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textbf{Beweis der Lipschitz-Stetigkeit von } \( \mathcal{L}(x) \):
-
-\vspace{1em}
-
-Definiere die Funktion als:
-\[
-\mathcal{L}(x) =
-\begin{cases}
-x^2 & \text{für } x^2 < U \\
-2\sqrt{U} \cdot |x| - U & \text{für } x^2 \geq U
-\end{cases}
-\quad \text{mit } U := U_{\nu,\alpha}
-\]
-
-\textbf{1. Stetigkeit an der Übergangsstelle \( |x| = \sqrt{U} \):}
-
-\[
-\lim_{x \to \sqrt{U}^{-}} \mathcal{L}(x) = (\sqrt{U})^2 = U
-\quad \text{und} \quad
-\lim_{x \to \sqrt{U}^{+}} \mathcal{L}(x) = 2\sqrt{U} \cdot \sqrt{U} - U = 2U - U = U
-\]
-
-\(\Rightarrow \mathcal{L} \) ist stetig an \( x = \pm\sqrt{U} \)
-
-\vspace{1em}
-
-\textbf{2. Ableitung (Gradient) der beiden Zweige:}
-
-\begin{itemize}
-  \item Für \( |x| < \sqrt{U} \): \( \mathcal{L}'(x) = 2x \Rightarrow |\mathcal{L}'(x)| \leq 2\sqrt{U} \)
-  \item Für \( |x| > \sqrt{U} \): \( \mathcal{L}'(x) = \pm 2\sqrt{U} \Rightarrow |\mathcal{L}'(x)| = 2\sqrt{U} \)
-\end{itemize}
-
-\textbf{3. Schluss:} Die Ableitung ist überall definiert oder beschränkt (außer an \( x = 0 \), wo die Funktion zwar nicht differenzierbar ist, aber trotzdem eine endliche Steigung hat), also ist \( \mathcal{L} \) global Lipschitz-stetig mit:
-
-\[
-L = \sup_{x \in \mathbb{R}} |\mathcal{L}'(x)| = 2\sqrt{U}
-\]
-
-\(\Rightarrow \mathcal{L} \) ist Lipschitz-stetig mit Konstante \( L = 2\sqrt{U} \)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% in den Anhang ENDE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
