@@ -616,7 +616,7 @@ Wie im vorherigen Abschnitt ohne Störfunktion verzerren sich die Einzel-Signal-
 
 
 
-\paragraph{Zwischenfazit der Durchführung - Über- und Unterkondidenz} Schwachstelle durchgeführter Experimente ist ein Über- und Unterschätzen von Grenzwerten in Abhängigkeit von der Hyperparameter-Wahl, sowie die nach oben ungebundene Loss-Funktion wie aufgezeigt im Paragraphen \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{}. Mittels Josangs \gls{subjectivelogic} wurden erweiterte Parametrisierungen aufgezeigt, welche die Behandlung des Unterschätzens bis zur Definition von \glqq{}Zero Evidence Regions\grqq{} behandeln. Das Überschätzen ist hier, so wie in der Literatur im Fokus. Kritikalität in VaMai fordert das Einhalten der gegebenen Signal-Grenzen unabdingbar ein. Ulmer et al. zeigen dafür in (28) unter (26) auf Oh und Shins Ansatz auf, die \glqq{}Negative Log Likelihood\grqq{} Loss-Funktion mit Regularisierung nach Aminis Regressionsansatz unter (27) um einen Dritt-Term zu Erweitern. Dazu wurden verantwortliche Parameter $\nu$, $\alpha$ in (26) von Oh und Shin explizit mittels partieller Differenziation gelöst, um mit (29) eine eindeutige analytische Obergrenze - unintuitiv - über eine Minimum-Funktion $U_{\nu,\alpha}=min(U_{\nu}, U_{\alpha})$ auf einem Mini-Batch aufzuzeigen (vgl. Ulmer et al. \parencite[S.17, Z. 20-25, S.18 Z. 1-8]{Ulmer2023}}). Die analytische Lösung von Oh und Shin lautet: 
+\paragraph{Zwischenfazit der Durchführung - Über- und Unterkonfidenz} Schwachstelle durchgeführter Experimente ist ein Über- und Unterschätzen von Grenzwerten in Abhängigkeit von der Hyperparameter-Wahl, sowie die nach oben ungebundene Loss-Funktion wie aufgezeigt im Paragraphen \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{}. Mittels Josangs \gls{subjectivelogic} wurden erweiterte Parametrisierungen aufgezeigt, welche die Behandlung des Unterschätzens bis zur Definition von \glqq{}Zero Evidence Regions\grqq{} behandeln. Das Überschätzen ist hier, so wie in der Literatur im Fokus. Kritikalität in VaMai fordert das Einhalten der gegebenen Signal-Grenzen unabdingbar ein. Ulmer et al. zeigen dafür in (28) unter (26) auf Oh und Shins Ansatz auf, die \glqq{}Negative Log Likelihood\grqq{} Loss-Funktion mit Regularisierung nach Aminis Regressionsansatz unter (27) um einen Dritt-Term zu Erweitern. Dazu wurden verantwortliche Parameter $\nu$, $\alpha$ in (26) von Oh und Shin explizit mittels partieller Differenziation gelöst, um mit (29) eine eindeutige analytische Obergrenze - unintuitiv - über eine Minimum-Funktion $U_{\nu,\alpha}=min(U_{\nu}, U_{\alpha})$ auf einem Mini-Batch aufzuzeigen (vgl. Ulmer et al. \parencite[S.17, Z. 20-25, S.18 Z. 1-8]{Ulmer2023}}). Die analytische Lösung von Oh und Shin lautet: 
 
 \[
 U_{\nu} = \frac{\beta(\nu + 1)}{\alpha \cdot \nu}, \quad 
@@ -676,7 +676,7 @@ Ein zweiter Ansatz zur expliziten Kontrolle der prädiktiven Unsicherheiten ist 
 \]
 die Gesamtvarianz des evidentiellen Modells. Der Schranken-Term lautet:
 \begin{equation}
-\mathcal{L}_{\text{bound}} = \lambda \cdot \left( 
+\mathcal{L}_{\text{bound}(w)} = \lambda \cdot \left( 
   \max(0, \text{Var}_{\text{gesamt}}(x) - 0{,}6)^2 
   + \max(0, 0{,}4 - \text{Var}_{\text{gesamt}}(x))^2 
 \right)
@@ -708,7 +708,7 @@ die Gesamtvarianz des evidentiellen Modells. Der Schranken-Term lautet:
 \end{equation}
 
 \begin{equation}
-\mathcal{L}_{\text{clip}}(x, y) =
+\mathcal{L}_{\text{clip}}(w) =
 \begin{cases}
 (y - \gamma)^2, & \text{falls } (y - \gamma)^2 \leq U^*(x) \\
 2 \sqrt{U^*(x)} \cdot |y - \gamma| - U^*(x), & \text{sonst}
@@ -716,7 +716,7 @@ die Gesamtvarianz des evidentiellen Modells. Der Schranken-Term lautet:
 \end{equation}
 
 \begin{equation}
-\mathcal{L}_{\text{total}}(x, y) = \mathcal{L}_{\text{NLL}}(x, y) + \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(x, y) + \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x)
+\mathcal{L}_{\text{total}}(w) = \mathcal{L}_{\text{NLL}}(w) + \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(w) + \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x)
 \end{equation}
 
 Dies ist ein Ansatz sowohl die Kontrolle über die Überkonfidenz im Trainingsverhalten zu regulieren, als auch die finalen Varianzwerte an die Grenzen der Kritikalitätsfunktion zu binden.
@@ -730,10 +730,10 @@ Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Si
 Mittels selber Konfiguration wie im \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{} in Schicht-, Neuronen-, Epochenzahl und Anpassung 
 
 \begin{align*}
-\mathcal{L}_{\text{total}}(x, y) &= 
-\mathcal{L}_{\text{NLL}}(x, y) 
-+ \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(x, y) 
-+ \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x)
+\mathcal{L}_{\text{total}}(w) &= 
+\mathcal{L}_{\text{NLL}}(w) 
++ \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(w) 
++ \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(w)
 \\
 \text{mit} \quad 
 &\lambda_{\text{clip}} = 8.0, \quad 
@@ -743,9 +743,9 @@ Mittels selber Konfiguration wie im \glqq{}Einzelnes 3D-Signal \gls{EvidentialDe
 \text{Regularisierung } \lambda = 10^{-3}
 \end{align*}
 
-, benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich geklippt worden. Varriert wurden die Epochenzahl zwischen 2000 und 4000 mit dem besten Ergebnis in Tendenz zu 2000. Erste Ergebnisse unter $\lambda_{\text{clip}}=2$, $\lambda_{\text{clip}}=5$ fielen zu flach aus. $\lambda_{\text{clip}}$, $\lambda_{\text{clip}}$ wirken Ausgabe-amplifizierend auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} bei Verdopplung der Parameter im selben Verhältnis. $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{clip}}=[20, 40]$ mitteln das geklippte Signal in Herr Autentrieths Kritikalitätsgrenzen als bestes Ergebnis für die Amplitude. Niedrigere Parametrisierungen liefern die beste Nachbildung der Position des Gauss-Signals mit zu flachem Volumen. Ein weiterer sensibler Faktor ist die Epochenzahl zwischen 2000 und 2500. Bei 2500 Epochen gilt: Die Krümmung des Gauss für das obere Drittel wird noch besser nachgebildet, doch die Gauss-Nachbildung geht im unteren Teil bereits wieder in eine Underfit-Dynamik über. Bei 2000 Epochen ist der Ausblick auf den Kompromiss Volumen, Posiition am besten wie in der Abbildung zu sehen. Verfehlt jedoch leider noch die gewählten Kritikalitätsgrenzen, um 0,1 Kritikalität aufgrund einer ungetesteten Parameter-Kombination. Weiteres Experimentier-Budget erscheint hier sinnvoll, um den Kompromiss zwischen Volumen und Position zu lösen. Über alle Versuche mit geklippter Loss-Funktion ist die Oberfläche im oberen Drittel einheitlich zur Sample-Oberfläche nachgebildet worden, ohne Ausreißer. Die Loss-Erweiterung erfüllt damit ihren Zweck. Unsicherheit des Netzes wurde in gleichen Dynamiken wie in vorherigen Versuchen ausgedrückt in wellenförmig abflachender Konvergenz zum Domänenrand oder äquidistanten Massen um den Punkt größter Sampledichte.
+, benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich geklippt worden. Varriert wurden die Epochenzahl zwischen 2000 und 4000 mit dem besten Ergebnis in Tendenz zu 2000. Erste Ergebnisse unter $\lambda_{\text{clip}}=2$, $\lambda_{\text{bound}}=5$ fielen zu flach aus. $\lambda_{\text{clip}}$, $\lambda_{\text{bound}}$ wirken Ausgabe-amplifizierend auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} bei Verdopplung der Parameter im selben Verhältnis. $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{bound}}=[20, 40]$ mitteln das geklippte Signal in Herr Autentrieths Kritikalitätsgrenzen als bestes Ergebnis für die Amplitude. Niedrigere Parametrisierungen liefern die beste Nachbildung der Position des Gauss-Signals mit zu flachem Volumen. Ein weiterer sensibler Faktor ist die Epochenzahl zwischen 2000 und 2500. Bei 2500 Epochen gilt: Die Krümmung des Gauss für das obere Drittel wird noch besser nachgebildet, doch die Gauss-Nachbildung geht im unteren Teil bereits wieder in eine Underfit-Dynamik über. Bei 2000 Epochen ist der Ausblick auf den Kompromiss Volumen, Position am besten wie in der Abbildung zu sehen. Verfehlt jedoch leider noch die gewählten Kritikalitätsgrenzen, um 0.1 Kritikalität aufgrund einer ungetesteten Parameter-Kombination. Weiteres Experimentier-Budget erscheint hier sinnvoll, um den Kompromiss zwischen Volumen und Position zu lösen. Über alle Versuche mit geklippter Loss-Funktion ist die Oberfläche im oberen Drittel einheitlich zur Sample-Oberfläche nachgebildet worden, ohne Ausreißer. Die Loss-Erweiterung erfüllt damit ihren Zweck. Unsicherheit des Netzes wurde in gleichen Dynamiken wie in vorherigen Versuchen ausgedrückt in wellenförmig abflachender Konvergenz zum Domänenrand oder äquidistanten Massen um den Punkt größter Sampledichte.
 
-% TODO: Bild für aleatorische Varianz Epoche=2000-2500, $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{clip}}=[20, 40]$ nachliefern.
+% TODO: Bild für aleatorische Varianz Epoche=2000-2500, $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{bound}}=[20, 40]$ nachliefern.
 
 \begin{figure}[!ht]
   \centering
@@ -781,7 +781,7 @@ Mittels selber Konfiguration wie im \glqq{}Einzelnes 3D-Signal \gls{EvidentialDe
 
 
 
-\paragraph{Behandlung Unterkonfidenz und Nichtwissen} Wir definieren eine \emph{Zero Evidence Region} (ZER) als Bereich im Eingaberaum, in dem die epistemische Evidenz des Modells unterhalb eines minimalen Schwellenwertes liegt. Basierend auf Josangs \gls{subjectivelogic} ergibt sich die Unsicherheitsmasse für kontinuierliche Modelle analog zur multivariaten Meinung als:
+\paragraph{Behandlung Unterkonfidenz und Nichtwissen} Es wird eine \emph{Zero Evidence Region} (ZER) definiert als Bereich im Eingaberaum, in dem die \gls{Epistemische Unsicherheit} des Modells unterhalb eines minimalen Schwellenwertes liegt. Basierend auf Josangs \gls{subjectivelogic} ergibt sich die Unsicherheitsmasse für kontinuierliche Modelle analog zur multivariaten Meinung als:
 
 \[
 u(x) := \frac{1}{\alpha(x)} \quad \text{mit Evidenz } E = \alpha(x) - 1
@@ -817,52 +817,51 @@ Diese Regionen signalisieren dem System explizit, dass eine verlässliche Aussag
 
 Dies kann in die Loss-Regularierung aufgenommen werden als: 
 \[
-\mathcal{L}_{\text{total}}(x, y) = 
+\mathcal{L}_{\text{total}}(w) = 
 (1 - \text{ZER}(x)) \cdot \left[ 
-\mathcal{L}_{\text{NLL}}(x, y) 
-+ \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(x, y) 
+\mathcal{L}_{\text{NLL}}(w) 
++ \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(w) 
 + \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x) 
-\right] 
-+ \lambda_{\text{ZER}} \cdot \text{ZER}(x)
+\right]
 \]
 
-Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert spezialisiert werden.  
+\[
+\text{mit} \quad 
+\lambda_{\text{clip}} = 4.0, \quad
+\lambda_{\text{bound}} = 20.0, \quad
+\lambda = 10^{-3}, \quad
+U_0 = 2.0, \quad
+\nu = 4.0
+\]
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TODO 29-07
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Dies soll jetzt noch einmal ausgehend von Konfiguration 5 an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert spezialisiert werden.  
 
-% \begin{figure}[!ht]
-%   \centering
+Wählt man $\lamba_{clip}$, $\lamba_{bound}$ äquivalent zum letzten Versuch \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippter Fit\grqq{} steuert man die Konvergenz des Modells über noch vorhandenen Eingabedaten, die nicht vom ZER-Operator getroffen werden. Trainiert man das Netz über die bisher etablierten Konfiguration von 5 Läufen, 2000 Epochen, zwei vollverbunden Schichten, 128 Neuronen, maximal $\lambda_{clip}=8$, maximal $\lambda_{bound}=40$ divergiert der Loss ab dem fünften Lauf überdurchschnittlich häufig zu keinem Ausgabewert $nan$. Reduziert man als Konfiguration 6 die $\lambda$-Parameter von dort an, erhält man über fünf Läufe Training eine Durchschnittsausgabe keiner (Wert \glqq{}null\grqq{}) \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} über den gesamten Raum. Eine zu den vorherigen Fits vergleichbare Lösung, die der \gls{GroundTruth} des Original-Signals nachkommt, liegt ab 1000 Episoden aufwärts im Zwischenbereich erwähnter Konfigurationen. Höheres $U_{0}$, $\nu$ fängt an die Fit-Dynamik des \gls{Evidenzbasierte neuronale Netze} zu verbessern. Der grundlegende Mechanismus zur Etablierung eines unteren Schwellenwerts, der alle darunterliegenden Evidenzen nahe Null zu Null schätzt, funktioniert. Damit ist die grundlegende Funktion aufgezeigt wie in der streng abfallenden Steigung der Varianzen im Übergang zu null gegenüber dem Gesamtraum zu sehen. Es wird an dieser Stelle keine Optimierung zu Ground-Truth angestrebt.  
 
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \includegraphics[width=0.6\textwidth]{../figures/y51.png}
-%     \caption{Konfiguration 4, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
-%     \label{fig:bild31}
-%   \end{subfigure}
 
-%   \vspace{0.5em}
 
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \includegraphics[width=0.6\textwidth]{../figures/y52.png}
-%     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-%     \label{fig:bild32}
-%   \end{subfigure}
+\begin{figure}[!ht]
+  \centering
 
-%   \vspace{0.5em}
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y72.png}
+    \caption{Konfiguration 6, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+    \label{fig:bild32}
+  \end{subfigure}
 
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \includegraphics[width=0.6\textwidth]{../figures/y53.png}
-%     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
-%     \label{fig:bild33}
-%   \end{subfigure}
+  \vspace{0.5em}
 
-%   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 4}
-%   \label{fig:three_subfigures3}
-% \end{figure}
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y73.png}
+    \caption{Konfiguration 6, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \label{fig:bild33}
+  \end{subfigure}
+
+  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 6}
+  \label{fig:three_subfigures3}
+\end{figure}
 
 
 
