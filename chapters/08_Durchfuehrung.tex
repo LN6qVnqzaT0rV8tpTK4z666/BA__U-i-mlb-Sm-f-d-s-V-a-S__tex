@@ -478,7 +478,7 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
 
 
 
-\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit} Zu sehen ist, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Overfit für ein einfaches Signal durch die doppelte Anzahl gewählter Epochen bei gleicher Anzahl Layer, Anzahl Neuronen wie im Fit-Szenario äußert. Visuell ist es insbesondere durch ein Austreten der epistemischen Varianz aus der ursprünglichen Signalform erkennbar. Das Ergebnis beruht auf der Trainingskonfiguration 1 mit doppelter Epochenzahl von viertausend. Es wird visuell deutlich, dass die Ground Truth der epistemischen Varianz im Original-Signal, welche durch die Obergrenze bei eins limitiert ist, durch einen Overfit überkonfident auf 1,4 approximiert wird. Der vorhandene Sample-Punkt auf der Spitze des Gauss-Signals als gesampletes Maximum des Original-Signals wird überschritten. Eine optimale Epochenzahl für einen Fit für das einzelne 3D-Gauss-Signal lässt sich so auf den Bereich zwischen 2000 und 4000 Epochen mindestens aus diesen Try-And-Error-Versuchen eingrenzen.
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit} Zu sehen ist unter Konfiguration 3, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Overfit für ein einfaches Signal durch die doppelte Anzahl gewählter Epochen bei gleicher Anzahl Layer, Anzahl Neuronen wie im Fit-Szenario äußert. Visuell ist es insbesondere durch ein Austreten der epistemischen Varianz aus der ursprünglichen Signalform erkennbar. Das Ergebnis beruht auf der Trainingskonfiguration 1 mit doppelter Epochenzahl von viertausend. Es wird visuell deutlich, dass die Ground Truth der epistemischen Varianz im Original-Signal, welche durch die Obergrenze bei eins limitiert ist, durch einen Overfit überkonfident auf 1,4 approximiert wird. Der vorhandene Sample-Punkt auf der Spitze des Gauss-Signals als gesampletes Maximum des Original-Signals wird überschritten. Eine optimale Epochenzahl für einen Fit für das einzelne 3D-Gauss-Signal lässt sich so auf den Bereich zwischen 2000 und 4000 Epochen mindestens aus diesen Try-And-Error-Versuchen eingrenzen.
 
 
 
@@ -537,7 +537,7 @@ erzielte auf bisheriger Grundlage mit folgenden Parametrisierungen Underfits.
 2 & 256 & 2000 \\
 \hline
 \end{tabular}
-\caption{Vergleich von Netzwerkarchitekturen und Trainingsparametern}
+\caption{Vergleich von Netzwerkarchitekturen und Trainingsparametern in Konfiguration 4}
 \end{table}
 
 Zu beobachten ist, dass eine Erhöhung der Schicht- und Neuronen-Anzahl im 3D-Fall dazu beiträgt das größte Teil-Signal präziser auf dem Domänenboden abzubilden bis es die Originalposition des größten Teil-Signals erreicht. Jedoch fällt das Volumen zu flach aus. Eine weitere Beobachtung ist, dass Aminis Regressionsansatz bei mehreren Signalformen in der Domäne, im Volumen die Gesamtunsicherheitsmasse der aleatorischen und epistemischen Varianz aller auftretenden Signale erfasst. Ergänzend dazu orientiert sich die Position der erfassten Gesamtunsicherheitsmasse jedoch im ersten Fall an der größten Dichte von Maximalwerten der auftretenden Signal-Formen. 
@@ -727,41 +727,57 @@ Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Si
 
 \paragraph{Behandlung Überkonfidenz - \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippter Fit\grqq{}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TODO 28-07
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Mittels selber Konfiguration wie im \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{} in Schicht-, Neuronen-, Epochenzahl und Anpassung 
 
-% \begin{figure}[!ht]
-%   \centering
+\begin{align*}
+\mathcal{L}_{\text{total}}(x, y) &= 
+\mathcal{L}_{\text{NLL}}(x, y) 
++ \lambda_{\text{clip}} \cdot \mathcal{L}_{\text{clip}}(x, y) 
++ \lambda_{\text{bound}} \cdot \mathcal{L}_{\text{bound}}(x)
+\\
+\text{mit} \quad 
+&\lambda_{\text{clip}} = 8.0, \quad 
+\lambda_{\text{bound}} = 20.0, \quad 
+\beta_0 = 1.0, \quad 
+\nu = 3.0, \quad 
+\text{Regularisierung } \lambda = 10^{-3}
+\end{align*}
 
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \includegraphics[width=0.6\textwidth]{../figures/y51.png}
-%     \caption{Konfiguration 4, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
-%     \label{fig:bild31}
-%   \end{subfigure}
+, benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich geklippt worden. Varriert wurden die Epochenzahl zwischen 2000 und 4000 mit dem besten Ergebnis in Tendenz zu 2000. Erste Ergebnisse unter $\lambda_{\text{clip}}=2$, $\lambda_{\text{clip}}=5$ fielen zu flach aus. $\lambda_{\text{clip}}$, $\lambda_{\text{clip}}$ wirken Ausgabe-amplifizierend auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} bei Verdopplung der Parameter im selben Verhältnis. $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{clip}}=[20, 40]$ mitteln das geklippte Signal in Herr Autentrieths Kritikalitätsgrenzen als bestes Ergebnis für die Amplitude. Niedrigere Parametrisierungen liefern die beste Nachbildung der Position des Gauss-Signals mit zu flachem Volumen. Ein weiterer sensibler Faktor ist die Epochenzahl zwischen 2000 und 2500. Bei 2500 Epochen gilt: Die Krümmung des Gauss für das obere Drittel wird noch besser nachgebildet, doch die Gauss-Nachbildung geht im unteren Teil bereits wieder in eine Underfit-Dynamik über. Bei 2000 Epochen ist der Ausblick auf den Kompromiss Volumen, Posiition am besten wie in der Abbildung zu sehen. Verfehlt jedoch leider noch die gewählten Kritikalitätsgrenzen, um 0,1 Kritikalität aufgrund einer ungetesteten Parameter-Kombination. Weiteres Experimentier-Budget erscheint hier sinnvoll, um den Kompromiss zwischen Volumen und Position zu lösen. Über alle Versuche mit geklippter Loss-Funktion ist die Oberfläche im oberen Drittel einheitlich zur Sample-Oberfläche nachgebildet worden, ohne Ausreißer. Die Loss-Erweiterung erfüllt damit ihren Zweck. Unsicherheit des Netzes wurde in gleichen Dynamiken wie in vorherigen Versuchen ausgedrückt in wellenförmig abflachender Konvergenz zum Domänenrand oder äquidistanten Massen um den Punkt größter Sampledichte.
 
-%   \vspace{0.5em}
+% TODO: Bild für aleatorische Varianz Epoche=2000-2500, $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{clip}}=[20, 40]$ nachliefern.
 
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \includegraphics[width=0.6\textwidth]{../figures/y52.png}
-%     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-%     \label{fig:bild32}
-%   \end{subfigure}
+\begin{figure}[!ht]
+  \centering
 
-%   \vspace{0.5em}
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y61.png}
+    \caption{Konfiguration 5, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+    \label{fig:bild31}
+  \end{subfigure}
 
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \includegraphics[width=0.6\textwidth]{../figures/y53.png}
-%     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
-%     \label{fig:bild33}
-%   \end{subfigure}
+  % \vspace{0.5em}
 
-%   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 4}
-%   \label{fig:three_subfigures3}
-% \end{figure}
+  % \begin{subfigure}[t]{\textwidth}
+  %   \centering
+  %   \includegraphics[width=0.6\textwidth]{../figures/y62.png}
+  %   \caption{Konfiguration 5, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+  %   \label{fig:bild32}
+  % \end{subfigure}
+
+  \vspace{0.5em}
+
+  \begin{subfigure}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../figures/y63.png}
+    \caption{Konfiguration 5, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \label{fig:bild33}
+  \end{subfigure}
+
+  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 5}
+  \label{fig:three_subfigures3}
+\end{figure}
 
 
 
@@ -800,7 +816,6 @@ $
 Diese Regionen signalisieren dem System explizit, dass eine verlässliche Aussage nicht getroffen werden kann. Das Modell kann \textit{grundlegend} Nichtwissen aufzeigen. 
 
 Dies kann in die Loss-Regularierung aufgenommen werden als: 
-
 \[
 \mathcal{L}_{\text{total}}(x, y) = 
 (1 - \text{ZER}(x)) \cdot \left[ 
@@ -811,10 +826,10 @@ Dies kann in die Loss-Regularierung aufgenommen werden als:
 + \lambda_{\text{ZER}} \cdot \text{ZER}(x)
 \]
 
-Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert spezialisiert werden. Eine sinnvolle Erweiterung des 
+Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert spezialisiert werden.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TODO 28-07
+% TODO 29-07
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \begin{figure}[!ht]
