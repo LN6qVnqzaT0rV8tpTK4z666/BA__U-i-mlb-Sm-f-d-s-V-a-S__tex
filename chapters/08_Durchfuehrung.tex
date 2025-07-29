@@ -834,9 +834,9 @@ U_0 = 2.0, \quad
 \nu = 4.0
 \]
 
-Dies soll jetzt noch einmal ausgehend von Konfiguration 5 an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert spezialisiert werden.  
+Dies soll jetzt noch einmal ausgehend von Konfiguration 5 an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert, spezialisiert werden.  
 
-Wählt man $\lamba_{clip}$, $\lamba_{bound}$ äquivalent zum letzten Versuch \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippter Fit\grqq{} steuert man die Konvergenz des Modells über noch vorhandenen Eingabedaten, die nicht vom ZER-Operator getroffen werden. Trainiert man das Netz über die bisher etablierten Konfiguration von 5 Läufen, 2000 Epochen, zwei vollverbunden Schichten, 128 Neuronen, maximal $\lambda_{clip}=8$, maximal $\lambda_{bound}=40$ divergiert der Loss ab dem fünften Lauf überdurchschnittlich häufig zu keinem Ausgabewert $nan$. Reduziert man als Konfiguration 6 die $\lambda$-Parameter von dort an, erhält man über fünf Läufe Training eine Durchschnittsausgabe keiner (Wert \glqq{}null\grqq{}) \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} über den gesamten Raum. Eine zu den vorherigen Fits vergleichbare Lösung, die der \gls{GroundTruth} des Original-Signals nachkommt, liegt ab 1000 Episoden aufwärts im Zwischenbereich erwähnter Konfigurationen. Höheres $U_{0}$, $\nu$ fängt an die Fit-Dynamik des \gls{Evidenzbasierte neuronale Netze} zu verbessern. Der grundlegende Mechanismus zur Etablierung eines unteren Schwellenwerts, der alle darunterliegenden Evidenzen nahe Null zu Null schätzt, funktioniert. Damit ist die grundlegende Funktion aufgezeigt wie in der streng abfallenden Steigung der Varianzen im Übergang zu null gegenüber dem Gesamtraum zu sehen. Es wird an dieser Stelle keine Optimierung zu Ground-Truth angestrebt.  
+Wählt man $\lambda_{clip}$, $\lambda_{bound}$ äquivalent zum letzten Versuch \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippter Fit\grqq{} steuert man die Konvergenz des Modells über noch vorhandenen Eingabedaten, die nicht vom ZER-Operator getroffen werden. Trainiert man das Netz über die bisher etablierten Konfiguration von 5 Läufen, 2000 Epochen, zwei vollverbunden Schichten, 128 Neuronen, maximal $\lambda_{clip}=8$, maximal $\lambda_{bound}=40$ divergiert der Loss ab dem fünften Lauf überdurchschnittlich häufig zu keinem Ausgabewert $nan$. Reduziert man als Konfiguration 6 die $\lambda$-Parameter von dort an, erhält man über fünf Läufe Training eine Durchschnittsausgabe keiner (Wert \glqq{}null\grqq{}) \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} über den gesamten Raum. Eine zu den vorherigen Fits vergleichbare Lösung, die der \gls{GroundTruth} des Original-Signals nachkommt, liegt ab 1000 Episoden aufwärts im Zwischenbereich erwähnter Konfigurationen. Höheres $U_{0}$, $\nu$ fängt an die Fit-Dynamik des \gls{Evidenzbasierte neuronale Netze} zu verbessern. Der grundlegende Mechanismus zur Etablierung eines unteren Schwellenwerts, der alle darunterliegenden Evidenzen nahe Null zu Null schätzt, funktioniert. Damit ist die grundlegende Funktion aufgezeigt wie in der streng abfallenden Steigung der Varianzen im Übergang zu null gegenüber dem Gesamtraum zu sehen. Es wird an dieser Stelle keine Optimierung zu \gls{GroundTruth} angestrebt.  
 
 
 
@@ -869,11 +869,11 @@ Wählt man $\lamba_{clip}$, $\lamba_{bound}$ äquivalent zum letzten Versuch \gl
 
 
 
-\paragraph{Vorbereitung} Herr B.Sc. Mavanis \gls{Bayesianische neuronale Netze} Ansätze in Jax wurden verworfen, weil sie im Zeitrahmen zum Ende meiner Projektphase zum 24.07. zu ungenügenden Ergebnissen führten. Der HMC-Ansatz wurde nach Umstellung ebenfalls verworfen, wegen überstiegenem Budget in Trainingszeit. Es wurde in Herr Mavanis Repository unter Branch des Autoren ein Pyro Äquivalent implementiert sowie varriert mit drei, vier und fünf vollverbundenen Schichten, 32, 64, 128 Neuronen, 2000 bis im Schnitt 5000 Epochen inklusive Aufwärmprozess, 500 bis 2000 SVI Posterior Samples, Invertierung des Mittelwerts als Ausgabeneuron, Variation des BNN Modell Rangs, Unter- und Übergewichtung der Ausgabeneuronen, Übersampling der Signalspitze, Miterfassung aleatorischer Varianz, Verrauschen der epistemischen Varianz, Änderung der Aktivierungsfunktionen mittels ReLu, SiLu sowie zusätzlicher Lern-Raten-Abfall. Das beste Ergebnis wurde mit SVI, zwei vollverbundenen versteckten Schichten, 64 Neuronen, 2000 Epsioden und ohne Lern-Raten-Abfall erzielt. Das Gauss-Signal konnte auf dem Boden in der Position annähernd korrekt positioniert werden. Bei korrekter Position lieferte jede Parameter-Änderung zu sensibel-varrierende Ergebnisse in Bezug auf das Volumen, ohne auffällige Konvergenzen. In Bezug auf das Volumen konnte ein zum \gls{Evidenzbasierte neuronale Netze} vergleichbarer Underfit mit einem vergleichbar aus der Signalform austretendem wellenartigen Volumen erzielt werden. Wurde das Volumen annährend korrekt geschätzt, reagierte die Position zu sensibel auf Parameter-Änderungen. Hauptergebnis der Experimentierphase ist das zu stark mittlende Verhalten des \gls{Bayesianische neuronale Netze} über erwähnte Parameter-Variation in verwendeten Ansätzen. So wird bei großer Samplezahl am gewählten Beispiel aus Herr Autenriehts Kritikalitätsraum regelmäßig eine zur Gauss-Steigung invertierte konkave Ebene aufgespannt, wichtige gesamplete Spitzenwerte ignoriert. Die Intention die Ausgabe zu Invertieren war nicht zielführend. Zusammenfassend wurde in keinem Fall ein relevantes vergleichbares Ergebnis auf dem einfachen Gauss-Beispiel erzielt. Deshalb wird ein synthetisches Ergebnis des BNN generiert, um den Vorschlag für die Methodik aufzuzeigen und abzuschließen.  
+\paragraph{Vorbereitung} Herr B.Sc. Mavanis \gls{Bayesianische neuronale Netze} Ansätze in Jax wurden zur Bearbeitung dieser Thesis verworfen, weil sie im Zeitrahmen zum Ende meiner Projektphase zum 24.07. zu ungenügenden Ergebnissen führten. Der HMC-Ansatz wurde nach Umstellung für diesen Zweck ebenfalls verworfen, wegen überstiegenem Budget in Trainingszeit. Es wurde in Herr Mavanis Repository unter Branch des Autoren ein Pyro Äquivalent implementiert sowie varriert mit drei, vier und fünf vollverbundenen Schichten, 32, 64, 128 Neuronen, 2000 bis im Schnitt 5000 Epochen inklusive Aufwärmprozess, 500 bis 2000 SVI Posterior Samples, Invertierung des Mittelwerts als Ausgabeneuron, Variation des \gls{Bayesianische neuronale Netze} Modell Rangs, Unter- und Übergewichtung der Ausgabeneuronen, Übersampling der Signalspitze, Miterfassung aleatorischer Varianz, Verrauschen der epistemischen Varianz, Änderung der Aktivierungsfunktionen mittels ReLu, SiLu sowie zusätzlicher Lern-Raten-Abfall. Das beste Ergebnis wurde mit SVI, zwei vollverbundenen versteckten Schichten, 64 Neuronen, 2000 Epsioden und ohne Lern-Raten-Abfall erzielt. Das Gauss-Signal konnte auf dem Boden in der Position annähernd korrekt positioniert werden. Bei korrekter Position lieferte jede Parameter-Änderung zu sensibel-varrierende Ergebnisse in Bezug auf das Volumen, ohne auffällige Konvergenzen. In Bezug auf das Volumen konnte ein zum \gls{Evidenzbasierte neuronale Netze} vergleichbarer Underfit mit einem vergleichbar aus der Signalform austretendem wellenartigen Volumen erzielt werden. Wurde das Volumen annährend korrekt geschätzt, reagierte die Position zu sensibel auf Parameter-Änderungen. Hauptergebnis der Experimentierphase ist das zu stark mittlende Verhalten des \gls{Bayesianische neuronale Netze} über erwähnte Parameter-Variation in verwendeten Ansätzen. So wird bei großer Samplezahl am gewählten Beispiel aus Herr Autenriehts Kritikalitätsraum regelmäßig eine zur Gauss-Steigung invertierte konkave Ebene aufgespannt, wichtige gesamplete Spitzenwerte ignoriert. Die Intention die Ausgabe zu Invertieren war nicht zielführend. Zusammenfassend wurde in keinem Fall ein relevantes vergleichbares Ergebnis auf dem einfachen Gauss-Beispiel erzielt. Deshalb wird ein synthetisches Ergebnis des \gls{Bayesianische neuronale Netze} generiert, um den Vorschlag für die Methodik aufzuzeigen und abzuschließen.  
 
 
 
-\paragraph{Meta-Unsicherheitsvergleich zwischen ENN und synthetischem BNN} Zur Bewertung der strukturellen Unterschiede in den Unsicherheitsannahmen zwischen einem \gls{Evidenzbasierte neuronale Netze} und einem \gls{Bayesianische neuronale Netze} soll ein Divergenzmaß über die geschätzten Unsicherheitsverteilungen eingeführt werden. Da kein hinreichendes \gls{Bayesianische neuronale Netze}-Modell vorliegt, wird die \gls{Epistemische Unsicherheit} und \gls{Aleatorische Unsicherheit} des \gls{Bayesianische neuronale Netze} synthetisch approximiert, indem ein Rauschterm \( \delta(x) \sim \mathcal{N}(0, \sigma^2) \) zur epistemischen \gls{Evidenzbasierte neuronale Netze}-Varianz addiert und anschließend in das Intervall \([0.4, 0.6]\) projiziert wird.
+\paragraph{Meta-Unsicherheitsvergleich zwischen ENN und synthetischem \gls{Bayesianische neuronale Netze}} Zur Bewertung der strukturellen Unterschiede in den Unsicherheitsannahmen zwischen einem \gls{Evidenzbasierte neuronale Netze} und einem \gls{Bayesianische neuronale Netze} soll ein Divergenzmaß über die geschätzten Unsicherheitsverteilungen eingeführt werden. Da kein hinreichendes \gls{Bayesianische neuronale Netze}-Modell vorliegt, wird die \gls{Epistemische Unsicherheit} und \gls{Aleatorische Unsicherheit} des \gls{Bayesianische neuronale Netze} synthetisch approximiert, indem ein Rauschterm \( \delta(x) \sim \mathcal{N}(0, \sigma^2) \) zur epistemischen \gls{Evidenzbasierte neuronale Netze}-Varianz addiert und anschließend in das Intervall \([0.4, 0.6]\) projiziert wird.
 
 Für jedes \( x \in \mathcal{X} \) wird berechnet:
 
@@ -881,7 +881,7 @@ Für jedes \( x \in \mathcal{X} \) wird berechnet:
 \text{Var}_{\text{gesamt}}^{\text{ENN}}(x) = \text{Var}_{\text{epist}}^{\text{ENN}}(x) + \text{Var}_{\text{alea}}^{\text{ENN}}(x)
 \]
 \[
-\text{Var}_{\text{gesamt}}^{\text{BNN}}(x) = \text{Var}_{\text{epist}}^{\text{ENN}}(x) + \delta(x) + \text{Var}_{\text{alea}}^{\text{ENN}}(x)
+\text{Var}_{\text{gesamt}}^{\text{BNN}}(x) = \text{Var}_{\text{epist}}^{\text{ENN}}(x) + \text{Var}_{\text{alea}}^{\text{ENN}}(x) + \delta(x) 
 \]
 
 Die Meta-Unsicherheit wird anschließend durch die Jensen-Shannon-Divergenz (JSD) zwischen den beiden Gesamtunsicherheitsverteilungen definiert:
@@ -896,7 +896,9 @@ Das definieren eines Ansatzes zur Meta-Unsicherheit erlaubt ebenso einen Ansatz 
 
 \section*{Framework zur vergleichenden Unsicherheitsanalyse der Meta-Unsicherheit}
 
-\paragraph{1. Eingabe und Setup} Zur Analyse werden zwei Modelle betrachtet: ein \gls{Evidenzbasierte neuronale Netze} sowie ein \gls{Bayesianische neuronale Netze}, dessen Unsicherheitsverhalten synthetisch simuliert wird, wie vorher definiert. Die Berechnung erfolgt auf einem gemeinsamen Testdatensatz \( \mathcal{X}_{\text{test}} \) nach Wahl aus der eingeführten Datenpipeline. Optional kann eine Kritikalitätsfunktion \( C(x) \) eingebunden werden.
+\paragraph{1. Eingabe und Setup} Zur Analyse werden zwei Modelle betrachtet: ein \gls{Evidenzbasierte neuronale Netze} sowie ein \gls{Bayesianische neuronale Netze}, dessen Unsicherheitsverhalten synthetisch simuliert wird, wie vorher definiert. Die Berechnung erfolgt auf einem gemeinsamen Testdatensatz \( \mathcal{X}_{\text{test}} \) am bisher verwendeten Beispiel des Gauss-Signals in der Implementierung von Herr Autenrieths Kritikalitätsraum.
+
+%nach Wahl aus der eingeführten Datenpipeline. Optional kann eine Kritikalitätsfunktion \( C(x) \) eingebunden werden.
 
 \paragraph{2. Kernmetriken je Modell}
 
@@ -911,30 +913,24 @@ Das definieren eines Ansatzes zur Meta-Unsicherheit erlaubt ebenso einen Ansatz 
 
 \paragraph{4. Bewertung und tabellarischer Vergleich} Abschließend für das Framework zur vergleichenden Unsicherheitsanalyse der Meta-Unsicherheit soll ein beispielhafter Vergleich auf einem synthethischen Ergebnis durchgeführt werden.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TODO 28-07
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Metrik} & \textbf{ENN} & \textbf{BNN (synthetisch)} & \textbf{Differenz} \\
 \hline
-Epistemische Varianz (Mittel) & 0.51 & 0.49 & -0.02 \\
-Aleatorische Varianz (Mittel) & 0.43 & 0.46 & +0.03 \\
-JSD der Gesamtvarianz         & --   & --   & 0.21 \\
-Accuracy                      & 92.1\,\% & 91.8\,\% & -0.3\,\% \\
-Accuracy–Uncertainty Gap      & 0.12 & 0.08 & -0.04 \\
-Kritikalitätsgewichtete Unsicherheit & 0.34 & 0.47 & +0.13 \\
+Epistemische Varianz (Mittel)           & 0.0439 & 0.4000 & +0.3561 \\
+Aleatorische Varianz (Mittel)           & 0.0407 & 0.4000 & +0.3593 \\
+Gesamtvarianz (Mittel)                  & 0.0846 & 0.8000 & +0.7154 \\
+JSD der Gesamtvarianz                   & --     & --     & 0.4405  \\
+Accuracy                                & 95.72\,\% & 95.71\,\% & -0.01\,\% \\
+Kritikalitätsgewichtete Unsicherheit    & 0.0167 & 0.0491 & +0.0324 \\
 \hline
 \end{tabular}
 \caption{Vergleich ausgewählter Unsicherheitsmetriken zwischen ENN und synthetisch approximiertem BNN}
 \end{table}
 
-\paragraph{5. Interpretation der Meta-Unsicherheit}
-
-Anhand der ermittelten Divergenzen und Attribute kann die sogenannte \emph{Meta-Unsicherheit} definiert werden als strukturelle Abweichung zwischen den Unsicherheitsmodellen zweier Architekturen. Hohe Werte (zum Beispiel JSD \( > 0.25 \)) deuten auf stark unterschiedliche Unsicherheitsannahmen hin. Sie erfordern eine differenzierte Betrachtung der Kalibrierung und Vertrauenswürdigkeit der Vorhersagen. Die weiteren Attribute können genutzt werden, um die Kon- und Divergenzstruktur zu spezialisieren.
+\paragraph{5. Interpretation der Meta-Unsicherheit} Nimmt man eine JSD von null als Gleichheit der resultierenden Verteilungen der Gesamtunsicherheit in der Gesamtvarianz an, so ist ein Betrag von 0.4405 vergleichsweise hoch. \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} im synthetischen \gls{Bayesianische neuronale Netze} im Vergleich zum \gls{Evidenzbasierte neuronale Netze} bestätigen die strukturelle Abweichung der Unsicherheitsmodellierung aus allen bisherigen Ergebnissen der Thesis, und verknüpfter Abschlussarbeiten. Trotz nahezu identischer Accuracy (95.72\,\% vs. 95.71\,\%) verdeutlichen die Differenzen in den Varianzmetriken und der kritikalitätsgewichteten Unsicherheit eine deutlich unterschiedliche Vertrauensstruktur in den Vorhersagen beider Modelle. Grundlegend wird damit aufgezeigt, dass eine Kalibrierung über verschiedene Unsicherheitsattribute so möglich, und zum Vergleich im Verbund sinnvoll ist. Die Aussagekraft der \emph{Meta-Unsicherheit} als Analysewerkzeug für Unsicherheitsannahmen hängt dabei unmittelbar vom Design der Experimente in machine-learning-basierten Surrogatmodellen ab. Weitere Attribute wie in der Datenpipeline aufgezeigt können genutzt werden, um die Unsicherheitsmodellierung zu spezialisieren.
 
 
 
