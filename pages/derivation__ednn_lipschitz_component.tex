@@ -1,0 +1,45 @@
+\pagebreak
+
+\section*{Herleitung der Loss-Erweiterung im \gls{Evidenzbasierte neuronale Netze} nach Oh und Shin}
+\label{sec:enn_derivation__lipschitz_component}
+
+\textbf{Beweis der Lipschitz-Stetigkeit von } \( \mathcal{L}(x) \):
+
+\vspace{1em}
+
+Definiere die Funktion als:
+\[
+\mathcal{L}(x) =
+\begin{cases}
+x^2 & \text{für } x^2 < U \\
+2\sqrt{U} \cdot |x| - U & \text{für } x^2 \geq U
+\end{cases}
+\quad \text{mit } U := U_{\nu,\alpha}
+\]
+
+\textbf{1. Stetigkeit an der Übergangsstelle \( |x| = \sqrt{U} \):}
+
+\[
+\lim_{x \to \sqrt{U}^{-}} \mathcal{L}(x) = (\sqrt{U})^2 = U
+\quad \text{und} \quad
+\lim_{x \to \sqrt{U}^{+}} \mathcal{L}(x) = 2\sqrt{U} \cdot \sqrt{U} - U = 2U - U = U
+\]
+
+\(\Rightarrow \mathcal{L} \) ist stetig an \( x = \pm\sqrt{U} \)
+
+\vspace{1em}
+
+\textbf{2. Ableitung (Gradient) der beiden Zweige:}
+
+\begin{itemize}
+  \item Für \( |x| < \sqrt{U} \): \( \mathcal{L}'(x) = 2x \Rightarrow |\mathcal{L}'(x)| \leq 2\sqrt{U} \)
+  \item Für \( |x| > \sqrt{U} \): \( \mathcal{L}'(x) = \pm 2\sqrt{U} \Rightarrow |\mathcal{L}'(x)| = 2\sqrt{U} \)
+\end{itemize}
+
+\textbf{3. Schluss:} Die Ableitung ist überall definiert oder beschränkt (außer an \( x = 0 \), wo die Funktion zwar nicht differenzierbar ist, aber trotzdem eine endliche Steigung hat), also ist \( \mathcal{L} \) global Lipschitz-stetig mit:
+
+\[
+L = \sup_{x \in \mathbb{R}} |\mathcal{L}'(x)| = 2\sqrt{U}
+\]
+
+\(\Rightarrow \mathcal{L} \) ist Lipschitz-stetig mit Konstante \( L = 2\sqrt{U} \)
