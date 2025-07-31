@@ -19,7 +19,7 @@ In diesem Abschnitt sollen zentrale Erkenntnisse der Arbeit zusammengefasst werd
 
 Im Rahmen dieser Arbeit wurde ein evidenzbasiertes Verfahren zur Unsicherheitsquantifizierung in \gls{machinelearning}-basierten Surrogatmodellen methodisch angewandt und exemplarisch umgesetzt. Durch den Einsatz eines \gls{Evidenzbasierte neuronale Netze} konnten sowohl \gls{Aleatorische Unsicherheit} als auch \gls{Epistemische Unsicherheit} direkt aus den Eingabedaten gelernt und getrennt interpretiert werden. Die modellierten Unsicherheiten erwiesen sich als differenzierbar, kalibrierbar und visuell interpretierbar im Kontext von Szenarien, die mit einer Kritikalitätsfunktion belegt sind.
 
-Herr Autenrieths Kritikalitätsräume als zu untersuchender Eingaberaum ist ein statisches System auf Basis algebraischer Gleichungen zum Simulieren von Nichtlinearitäten belegt mit pseudo-dynamischer Störfunktion. 
+Herr Autenrieths Kritikalitätsräume als zu untersuchender Eingaberaum sind ein statisches System auf Basis algebraischer Gleichungen zum Simulieren von Nichtlinearitäten belegt mit pseudo-dynamischer Störfunktion. 
 
 \[
 y(t) = f(u(t)) + \epsilon(t)
@@ -33,7 +33,7 @@ Das formal statische Verhalten beider Systeme spricht - ohne formalen inneren Zu
 
 In der Arbeit wurden in Bezug auf die Beobachtbar- sowie Steuerbarkeit die folgende Fragen positiv beantwortet: Erstens, kann das ENN durch geeignete Parametrisierung so gesteuert werden, dass es die Struktur des Kritikalitätsraums (zum Beispiel Unsicherheitsniveaus oder Schwellen) korrekt annähert? Damit ist es funktional steuerbar im Parameterraum. Zweitens, kann ich aus den Ausgaben des \gls{Evidenzbasierte neuronale Netze} (zum Beispiel Varianzen, Evidenz, Kritikalität) auf Strukturen im zugrunde liegenden Kritikalitätsraum schließen? Somit ist es eine beobachtbare Approximation, obwohl das System an sich zustandslos ist.
 
-Die Kombination von Unsicherheitsmetriken, Evidenzparametern und aggregierten Maßzahlen ermöglichte zudem die Entwicklung eines Meta-Unsicherheitsmaßes zur Bewertung der Vertrauenswürdigkeit von Szenarien. Der Vergleich mit \gls{Bayesianische neuronale Netze}-Modellen zeigte, dass evidenzbasierte Ansätze nicht nur effizienter, sondern auch deutlich robuster gegenüber struktureller Unsicherheit agieren können. Insgesamt demonstriert die Arbeit das Potenzial evidenzieller Verfahren zur methodisch fundierten und anwendungsnahen Bewertung datengetriebener Modelle unter Unsicherheit.
+Die Kombination von Unsicherheitsmetriken, Evidenzparametern und Maßzahlen ermöglichte zudem die Entwicklung eines Meta-Unsicherheitsmaßes zur Bewertung der Vertrauenswürdigkeit von Szenarien. Der Vergleich mit \gls{Bayesianische neuronale Netze}-Modellen zeigte, dass evidenzbasierte Ansätze nicht nur effizienter, sondern auch deutlich robuster gegenüber struktureller Unsicherheit agieren können. Insgesamt demonstriert die Arbeit das Potenzial evidenzieller Verfahren zur methodisch fundierten und anwendungsnahen Bewertung datengetriebener Modelle unter Unsicherheit.
 
 
 

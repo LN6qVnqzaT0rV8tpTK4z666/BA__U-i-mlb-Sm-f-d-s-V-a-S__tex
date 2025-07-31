@@ -99,7 +99,7 @@ Die Laufzeit zur Anpassung der Gewichtungen eines neuronalen Netzwerks (\gls{neu
 Ein \gls{neuronalesnetzwerk} approximiert eine Funktion \( f_{\theta}(x) = \sigma(Wx + b) \). Dabei ist \( \sigma \) eine nichtlineare Aktivierungsfunktion, typischerweise \textit{ReLU} oder \textit{Tanh}. Die Parameter des Modells sind gegeben durch \( \theta = \{ W, b \} \), wobei:
 
 \begin{itemize}
-  \item \( W \) die Gewichtsmatrix darstellt, z.\,B. 
+  \item \( W \) die Gewichtsmatrix darstellt, zum Beispiel 
     \[
       W = 
       \begin{pmatrix}
@@ -142,11 +142,11 @@ Dadurch wird die \textbf{\gls{Epistemische Unsicherheit}} über die Posterior-Ve
 
 \section*{\gls{Evidenzbasierte neuronale Netze} - Evidential Deep Neural Network}
 
-Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $E$, zum Beispiel innerhalb einer Normal-Inversen-Gamma-Verteilung (\gls{noninversegammadistribution}) $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass keine explizite \gls{MonteCarloSampling}-Strategie notwendig ist, um \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} zu bestimmen.
+Ein \textbf{Evidential Deep Neural Network (\gls{Evidenzbasierte neuronale Netze})} lernt direkt die Parameter einer Wahrscheinlichkeitsverteilung über Unsicherheiten durch eine Evidenzgröße $E$, zum Beispiel innerhalb einer Normal-Inversen-Gamma-Verteilung (\gls{noninversegammadistribution}) $p(y \mid \mu, \sigma^2, e)$. Vorteilhaft ist, dass \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} ohne explizites \gls{MonteCarloSampling} bestimmt werden können – im Gegensatz zum bayesschen Ansatz.
 
 \subsubsection*{Parameterbedeutung:}
 \begin{itemize}
-  \item $\mu$: Erwartungswert der Zielgröße (z.\,B. Position, Fehlermaß)
+  \item $\mu$: Erwartungswert der Zielgröße, zum Beispiel Position, Fehlermaß
   \item $v$: Skalenparameter (inverse Varianz), modelliert die Konfidenz
   \item $\alpha$: Formparameter der NIG-Verteilung, verknüpft mit epistemischer Evidenz
   \item $\beta$: Skalenparameter der Varianz, verknüpft mit aleatorischer Evidenz
@@ -200,4 +200,4 @@ Diese Form erlaubt eine einmalige Modellvorhersage zur gleichzeitigen Schätzung
 
 
 
-\nocite{krause2025}
+% \nocite{krause2025}

@@ -1577,9 +1577,10 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
 \par\vspace{1\baselineskip}\noindent
 
 % Beweis aus Herleitung wie das einander entsprechen kann.
+Gemäß \glqq{}Guide to the Uncertainty of Measurement\grqq{} (GUM) muss ingenieurstechnisch eine aussagekräftige Stichprobe über das reale Anwendungsszenario beobachtet worden sein, um eine synthetische Charakterisierung zur realen Messunsicherheit empirisch zu modellieren. Die Zuordnung von \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} zu den im GUM beschriebenen Unsicherheitskomponenten erfolgt erläuternd im Anhang. Ein möglicher Ansatz zur Realitätsbewertung ist dann die softwaretechnische, datengetriebene Modellierung zur Signalrekonstruktion des Szenarios. Dabei müssen alle identifizierten Unsicherheitsquellen formal beschrieben sowie nach messtechnischen Kriterien kategorisiert werden, um die abgeleiteten Daten mit fundierten Vertrauens- und Zuverlässigkeitsaussagen belegen zu können.
 
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
-Lanini et. al liefern ein Framework zur Bewertung von R4 zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken (vgl. Lanini et al. ~\parencite{Lanini2024}). 
+Bezieht man das auf gängige Optimierungen \gls{machinelearning}-basierter Surrogatmodelle im synthetischen Eingaberaum liefern Lanini et. al ein Framework zur Bewertung von R4 zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken (vgl. Lanini et al. ~\parencite{Lanini2024}). 
 \newline
 Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische \gls{kuenstlicheintelligenz}. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden (vgl. Manchingal et al. \parencite{manchingal2025}). 
 
@@ -1653,7 +1654,7 @@ Akquisitions-kriterienbasiert wählt evidentielles Lernen Punkte niedriger Koste
   \caption{R4.3 \glqq{}Major approaches to uncertainty in AI\grqq{} nach Manchingal et al. 2025}
 \end{figure}
 
-Abschließend für Evidentielles Wissen im Modell sollen nach R.4.3 die Hauptansätze nach Manchingal zur \gls{uncertaintyquantification} zusammengefasst werden wie sie auch in VaMai in Betracht gezogen werden.
+Abschließend für Evidentielles Wissen im Modell sollen nach R.4.3 die Hauptansätze nach Manchingal zur \gls{uncertaintyquantification} zusammengefasst werden wie sie auch in VaMai in Betracht gezogen werden, wobei diese Arbeit den Fokus auf den evidentiellen Ansatz legt.
 
 \paragraph{Frequentistisch:} Modelliert nur \gls{Aleatorische Unsicherheit}. Keine \gls{Epistemische Unsicherheit} enthalten. Ergebnis sind Punkt-, Intervallschätzungen wie 
 \(\hat{y} \pm \text{CI}\). Beispiel ist die klassische Regression.
