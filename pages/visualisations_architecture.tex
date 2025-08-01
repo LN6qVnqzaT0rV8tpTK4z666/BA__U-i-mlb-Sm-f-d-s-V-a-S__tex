@@ -7,10 +7,15 @@
 
 
 
+
+% ================================
+% ENN 
+% ================================
+
 % \needspace{10\baselineskip}
 \subsection*{\gls{Evidenzbasierte neuronale Netze} Regression nach Amini \parencite{amini2020deep}}
 
-% \par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 \begin{center}
 \begin{minipage}[t]{0.47\textwidth}
@@ -84,7 +89,7 @@ z.\,B. Adam, Lernrate $\nu = $
 % \needspace{10\baselineskip}
 \subsection*{\gls{Evidenzbasierte neuronale Netze} Klassifikation nach Amini \parencite{amini2020deep}}
 
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 \begin{center}
 \begin{minipage}[t]{0.47\textwidth}
@@ -161,10 +166,14 @@ z. B. Adam, Lernrate $\nu = 5 * 10^{-3}$
 
 
 
+% ================================
+% BNN 
+% ================================
+
 %\needspace{10\baselineskip}
 \subsection*{\gls{Bayesianische neuronale Netze} \gls{svi} nach Pyro \parencite{PyroPplDevelopers.2024}}
 
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 \begin{center}
 \begin{minipage}[t]{0.47\textwidth}
@@ -287,10 +296,14 @@ Lernrate $\nu = [1 * 10^{-4}:1 * 10^{-3}]$ \\
 
 \newpage
 
+% ================================
+% BNN 
+% ================================
+
 %\needspace{10\baselineskip}
 \subsection*{\gls{Bayesianische neuronale Netze} \gls{hmc} nach Pyro \parencite{PyroPplDevelopers.2024}}
 
-\par\noindent\\
+\par\vspace{1\baselineskip}\noindent
 
 \begin{center}
 \begin{minipage}[t]{0.47\textwidth}
@@ -398,6 +411,91 @@ Negative Log-Likelihood \\[4pt]
 z. B. adaptiver Algorithmus wie NUTS mit $step\_size \in [0.1, 0.01]$
 \end{minipage}
 \end{center}
+
+
+
+
+\newpage
+
+% ================================
+% CP 
+% ================================
+
+%\needspace{10\baselineskip}
+\subsection*{\gls{Conformal Prediction} mit \gls{randomforestregression} nach Angelopoulos \parencite{angelopoulos2021gentle}}
+
+\par\vspace{1\baselineskip}\noindent
+
+\begin{center}
+\begin{minipage}[t]{0.47\textwidth}
+\centering
+\adjustbox{valign=t, scale=0.8}{
+    \begin{tikzpicture}[
+        node distance=1.2cm and 2.5cm,
+        every node/.style={font=\sffamily},
+        layer/.style={
+            rectangle, 
+            draw, 
+            minimum width=3.0cm, 
+            minimum height=1.2cm, 
+            align=center
+        },
+        arrow/.style={->, thick}
+    ]
+
+    % Flow nodes
+    \node[layer, fill=blue!10] (input) {Eingang \\ $\mathbf{x} \in \mathbb{R}^d$};
+
+    \node[layer, fill=green!15, below=of input] (forest) {Random Forest Regressor \\ $T$ Bäume};
+
+    \node[layer, fill=orange!20, below=of forest] (calib) {Kalibrierung \\ Residuen $\hat{r}_i = |y_i - \hat{y}_i|$};
+
+    \node[layer, fill=yellow!15, below=of calib] (interval) {Konfidenzintervall \\ $[\hat{y} - q_\alpha, \hat{y} + q_\alpha]$};
+
+    % Arrows
+    \draw[arrow] (input) -- (forest);
+    \draw[arrow] (forest) -- (calib);
+    \draw[arrow] (calib) -- (interval);
+
+    \end{tikzpicture}
+}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\raggedright
+\small
+\textbf{Details:} \\[6pt]
+
+\textbf{Modell:} \\ 
+Random Forest Regression \\ 
+$T = 100$ Entscheidungsbäume \\ 
+Trainiert auf $\mathcal{D}_{\text{train}}$ \\[4pt]
+
+\textbf{Kalibrierung:} \\ 
+$\mathcal{D}_{\text{cal}}$ enthält Residuen $\hat{r}_i$ \\ 
+Konfidenzquantil: $q_\alpha = \text{Quantil}_{1-\alpha}(|y_i - \hat{y}_i|)$ \\[4pt]
+
+\textbf{Vorhersage:} \\ 
+$\hat{y} = \frac{1}{T} \sum_{t=1}^T f_t(\mathbf{x})$ \\ 
+Konfidenzintervall: \\
+$[\hat{y} - q_\alpha,\ \hat{y} + q_\alpha]$ \\[4pt]
+
+\textbf{Unsicherheiten:} \\ 
+\textit{Epistemisch:} Streuung zwischen Baumvorhersagen \\ 
+$\text{Var}_\text{trees}(\hat{y}_t)$ \\ 
+\textit{Aleatorisch:} Residualvarianz $\sigma^2 = \text{Var}(\hat{r}_i)$ \\[4pt]
+
+\textbf{Parametervariation:} \\ 
+$\alpha \in \{0.20,\ 0.10,\ 0.05,\ 0.01\}$ \\[4pt]
+
+\textbf{Loss:} \\ 
+Root Mean Squared Error (RMSE)
+\end{minipage}
+\end{center}
+
+
+
+
 
 
 
