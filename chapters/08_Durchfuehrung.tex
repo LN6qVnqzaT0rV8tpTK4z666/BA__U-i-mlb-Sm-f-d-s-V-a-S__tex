@@ -16,7 +16,48 @@ In der Durchführung soll \textit{A6 Implementierung und Validierung der entwick
 und Modellierungstechniken in einer realistischen Anwendung, wie z. B. der
 Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten} beantwortet werden. \parencite{amini2020deep} liefert einen bekannten validierten Ansatz aus öffentlicher Forschung. Hergert 2025 liefert einen bekannten validierten Ansatz von Unternehmensseite. 
 
-\section*{Bekannte Ansätze}
+\section*{Bekannter Ansatz zur Raumerfassung}
+
+\subsection*{VaMai - Kritikalitätsraum - Validierung - Annahmen}
+
+VaMai verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung unter anderem über die Arbeit von Hergert. Umgangssprachlich möchte man den Raum so gut abdecken, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt: Zeige, dass durch die gewählte Methode (z.\,B. Evidential Deep Learning und Unsicherheitsaggregation) die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
+
+\[ 
+\mathbb{P}\bigl(\exists\, x \in \Omega \setminus \widehat{\Omega}_k : \text{Kritikalität}(x) > \tau \bigr) < \varepsilon. 
+\]
+
+Das heißt, die Wahrscheinlichkeit, dass irgendwo im Raum $\Omega$ noch ein Punkt existiert, dessen Kritikalität den Schwellenwert überschreitet, aber nicht durch diese Methode erkannt wurde, ist hinreichend klein (z.\,B. unter 5\,\% mit $\mu \pm 2\sigma$). $\Omega \subset \mathbb{R}^{n}$ ist der gesamte Zustands- oder Szenarienraum. $\Omega_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}$ ist der echte Kritikalitätsraum. $\widehat{\Omega}_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}$ ist der durch die Methode erkannte Kritikalitätsraum. $\varepsilon \in (0,1)$ ist das akzeptierte Fehlerniveau.
+
+Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \emptyset \bigr) \le \varepsilon.$ Dazu wird folgende Vorgehensweise in Betracht gezogen: 
+
+% enger formalisierbar, siehe Notizen
+
+\begin{enumerate}
+  \item Unsicherheitsmodellierung mittels Evidential Deep Learning
+  \begin{itemize}
+    \item Liefert für jeden Punkt $x \in \Omega$ eine Wahrscheinlichkeitsverteilung mit Varianz $\mathrm{Var}(x) = \sigma^{2}_{\text{epistemisch}} + \sigma^{2}_{\text{aleatorisch}}$.
+    \item Kritikalität ist Funktion der Größe $k(x)$.
+  \end{itemize}
+  \item Sampling- / Klassifikationsabdeckung
+  \begin{itemize}
+    \item Raum $\Omega$ wurde mit Dichte $\delta$ gesampled (zum Beispiel mittels Gitter, Trajektorien, Pfaden) von VaMai Projektteilnehmer B.Sc. Pascal Imholze mit dem Ziel einer möglichst hohen Abdeckung.
+    \item Wenn $\forall x \in \Omgea$ ein Sample $x' \in \widehat{\Omega}_k$ mit $\lVert x - x' \rVert \le \delta'$ existiert, gilt \glqq dichte Abdeckung \grqq.
+    \item Generell ist in Hinblick auf in VaMai abgezielte Methoden wie \glq Few Shot Learning \grqq von Herr Mavani mit Sampleumfängen $n \in [20, 30], n \in \mathbb{N}$ zu beachten, dass der zentrale Grenzwertsatz der auch die \gls{EvidentialDeepLearning} später erläuterte Student-t-Verteilung betrifft, nach Faustformel ab einem Stichprobenumfang $n \geq 30$ gültig ist. % Quelle GUM
+  \end{itemize}
+  \item Uniforme Konvergenz / PAC-ähnliche Argumentation
+  \begin{itemize}
+    \item Zeige, dass mit Vorhersagewahrscheinlichkeit, Unsicherheitsabschätzung die Methodik mit zunehmender Samplezahl $N$ gegen den wahren Kritikalitätsraum konvergiert. 
+    \[
+    \mathbb{P}\bigl( \sup_{x \in \Omega} \bigl\lvert f(x) - \widehat{k}(x) \bigr\rvert \ge \eta \bigr) \le \varepsilon.
+    \]
+    \item Wenn $\widehat{k(x)} \approx k(x)$ auf ganz $\Omega$, gilt auch $\widehat{\Omega}_{k} \approx \Omega_{k}$. Es folgt, dass die Wahrscheinlichkeit einen echten Kritikalitätsraum \textit{nicht} zu erkennen kleiner als $\epsilon$ ist.
+  \end{itemize}
+
+\end{enumerate}
+
+
+
+\section*{Bekannter Ansatz - Evidential Deep Learning}
 
 Zur Validierung der eingesetzten Methodik für \gls{Evidenzbasierte neuronale Netze} wird der von \parencite{amini2020deep} veröffentlichte Benchmark reproduziert. Hierfür wird die im Anhang dargestellte Aufwandsschätzung berücksichtigt, die auf die im Unternehmen verfügbare Hardware abgestimmt ist, (~\ref{sec:aufwand-edl}).
 
@@ -151,81 +192,50 @@ BNN Accuracy & & & & & & & \\
 \end{table}
 
 
+
 \section*{Visueller Abgleich \gls{Bayesianische neuronale Netze}-\gls{Evidenzbasierte neuronale Netze}}
+
+Nach Reproduktion von Aminis Benchmark, wird die Methode \gls{EvidentialDeepLearning} auf einer Beispielfunktion nach Depeweg mit einem visuellem Regressions-Benchmark mit Herr Mavanis Ergebnissen verglichen (vgl. Depeweg \parencite[S.56, (4.1)]{Depeweg2019}). In ersten Entwicklungen aus denen ich die Ergebnisse erhalten habe, umfingen diese deutlich über hundert Sample-Punkte auf einem vom \gls{Bayesianische neuronale Netze} verrauschten $2-\sigma$-Standardabweichung um den prädikativen Mittelwert in der vom Netz beobachteten Funktion, um wie wahre Funktion (8.1).
+
+\begin{equation}
+y = 7 \cdot \sin(x) + 3 \cdot \left| \cos\left( \frac{x}{2} \right) \right| \cdot \epsilon
+\end{equation}
+
+Im Verlauf sollten diese von Herr Mavani reduziert werden auf zwanzig bis dreißig Sample-Punkte. Es sollen grundlegende Aspekte verglichen werden. Diese Aspekte zeigen die projektbegleitenden Unterschiede der Arbeiten auf. Für \gls{Evidenzbasierte neuronale Netze} sollte die Aufteilung in \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} untersucht werden. Da der Aspekt der direkten Erfassung von \gls{Evidenzbasierte neuronale Netze} attraktiv für weitere Untersuchungen erscheint. Der zentrale Unterschied ist dabei, dass die Teilung der additiven Komponenten \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} auf Varianz-Ebene $\sigma^{2}$ stattfindet, wie in Abbildung 8.3. zu sehen. Während die Standardabweichung als Gesamtunsicherheit der Streuung unter der Herr Mavani seine Thesis-Ziele optimiert eine Dimension darunter $\sigma$ stattfinden. Umgangssprachlich lässt sich das wie folgt trennen, dass Herr Mavani über die Samplezahl die Frage verfolgt, wie breit ein Bereich sei, in dem $\sigma$-abhängig viele Werte liegen, während bei mir der Frage nachgegangen wird, wie hoch der aleatorische und epistemische Anteil ist. Da in meinem Fall die \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} weiter erklärt, analysiert und getrennt werden sollte, ist für \gls{EvidentialDeepLearning} die Varianz notwendig.
+
+\paragraph{Sample-Zahl} Die \gls{bayesianischen Bayesianische neuronale Netze} (Abbildung 8.1., Abbildung 8.2.) erzeugen Vorhersagen über Monte-Carlo-Sampling mit über 100 Einzelvorhersagen, was zu geglätteten Unsicherheitsintervallen führt. Das evidenzbasierte Netz verwendet kein Sampling, sondern gibt direkte Unsicherheitsverteilungen aus - was zu stärker sichtbarer Streuung führt, insbesondere in Regionen mit hoher \gls{Epistemische Unsicherheit} oder \gls{Aleatorische Unsicherheit}.
+
+\paragraph{Aleatorische Varianz} Im evidenzbasierten Ansatz (Abbildung 8.3., orange Fläche) wird die \gls{Aleatorische Unsicherheit} explizit separat dargestellt. Diese bleibt in den datenreichen Bereichen konstant und dominiert dort die Gesamtvarianz, während sie bei den \gls{bayesianischen Bayesianische neuronale Netze} nur implizit enthalten ist.
+
+\paragraph{Epistemische Varianz} Die epistemische Unsicherheit (Abbildung 8.3., rosa Fläche) ist beim evidenzbasierten Netz hauptsächlich in datenarmen Randbereichen sichtbar. Im Gegensatz dazu überdecken die Unsicherheitsbereiche der bayesianischen Methode Abbildung 8.1. & Abbildung 8.2) beides gemeinsam und sind somit weniger trennscharf.
+
+\paragraph{Heteroskedastischer Anteil} Beide Methoden erfassen die Heteroskedastizität der Daten. Beim evidenzbasierten Netz ist sie explizit modelliert und visualisiert (Verengung/Weitung der Unsicherheitsbereiche in Abbildung 8.3.), bei den \gls{bayesianischen Bayesianische neuronale Netze} implizit über die Streuung der Samples sichtbar.
+
+\paragraph{Homoskedastischer Anteil} Ein konstanter Unsicherheitsanteil (Basisrauschen) ist bei beiden Methoden vorhanden, beim evidenzbasierten Modell durch die flache orange Fläche innerhalb des Datenbereichs erkennbar, bei den \gls{bayesianischen Bayesianische neuronale Netze} schwerer abgrenzbar, da keine explizite Zerlegung erfolgt.
+
+% Bild drei mit mueh(x) = +- 2 \cdot sqrt(Var(y|x)) aufsetzbar, genauso umgekehrt mit stdw um Gleichheiten zu zeigen bei Notwendikgeit.
 
 \begin{figure}[!h]
   \centering
   \begin{minipage}{0.5\textwidth}
       \centering
       \includegraphics[width=\textwidth]{../figures/bnn_posterior_predictive.png}
-      \caption{Ninand Mavani Visual Benchmark \gls{Bayesianische neuronale Netze} \gls{hmc}}
+      \caption{Ninand Mavani Visual Benchmark \gls{Bayesianische neuronale Netze} \gls{hmc} auf (8.1)}
   \end{minipage}%
   \begin{minipage}{0.5\textwidth}
       \centering
       \includegraphics[width=\textwidth]{../figures/bnn_svi_predictive.png}
-      \caption{Ninand Mavani Visual Benchmark \gls{Bayesianische neuronale Netze} \gls{svi}}
+      \caption{Ninand Mavani Visual Benchmark \gls{Bayesianische neuronale Netze} \gls{svi} auf (8.1)}
+  \end{minipage}
+  \\[1em]
+  \begin{minipage}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{../figures/uncertainty_dim_2__mavani_style.png}
+      \caption{Marten Windler Visual Benchmark \gls{Evidenzbasierte neuronale Netze} auf (8.1)}
   \end{minipage}
 \end{figure}
 
 
-% \subsection*{Schnittstelle}
-
-% \subsection*{Benchmark EDNN}
-
-% \subsection*{Benchmark BNN-EDNN}
-
-% \begin{table}[h!]
-% \centering
-% \resizebox{\textwidth}{!}{
-% \begin{tabular}{|c|c|c|c|c|}
-% \hline
-% \textbf{Sigma (Standard Deviation)} & \textbf{BNN Variance} & \textbf{BNN Accuracy (\%)} & \textbf{EDNN Variance} & \textbf{EDNN Accuracy (\%)} \\
-% \hline
-% 0 & 0.0 & 0 & 0.0 & 0 \\
-% \hline
-% \end{tabular}
-% }
-% \caption{Vergleich von BNN und EDNN mit Meta-Metrik im 2-Sigma-Bereich}
-% \label{tab:BNN_EDNN_Comparison}
-% \end{table}
-
-
-\subsection*{VaMai - Kritikalitätsraum - Validierung - Annahmen}
-
-Vamai verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung. Umgangssprachlich möchte man den Raum so gut abdecken, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt: Zeige, dass durch die gewählte Methode (z.\,B. Evidential Deep Learning und Unsicherheitsaggregation) die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
-
-\[ 
-\mathbb{P}\bigl(\exists\, x \in \Omega \setminus \widehat{\Omega}_k : \text{Kritikalität}(x) > \tau \bigr) < \varepsilon. 
-\]
-
-Das heißt, die Wahrscheinlichkeit, dass irgendwo im Raum $\Omega$ noch ein Punkt existiert, dessen Kritikalität den Schwellenwert überschreitet, aber nicht durch diese Methode erkannt wurde, ist hinreichend klein (z.\,B. unter 5\,\% mit $\mu \pm 2\sigma$). $\Omega \subset \mathbb{R}^{n}$ ist der gesamte Zustands- oder Szenarienraum. $\Omega_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}$ ist der echte Kritikalitätsraum. $\widehat{\Omega}_k := \left\{ x \in \Omega \;\big|\; k(x) \ge \tau \right\}$ ist der durch die Methode erkannte Kritikalitätsraum. $\varepsilon \in (0,1)$ ist das akzeptierte Fehlerniveau.
-
-Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \emptyset \bigr) \le \varepsilon.$ Dazu wird folgende Vorgehensweise in Betracht gezogen: 
-
-% enger formalisierbar, siehe Notizen
-
-\begin{enumerate}
-  \item Unsicherheitsmodellierung mittels Evidential Deep Learning
-  \begin{itemize}
-    \item Liefert für jeden Punkt $x \in \Omega$ eine Wahrscheinlichkeitsverteilung mit Varianz $\mathrm{Var}(x) = \sigma^{2}_{\text{epistemisch}} + \sigma^{2}_{\text{aleatorisch}}$.
-    \item Kritikalität ist Funktion der Größe $k(x)$.
-  \end{itemize}
-  \item Sampling- / Klassifikationsabdeckung
-  \begin{itemize}
-    \item Raum $\Omega$ wurde mit Dichte $\delta$ gesampled (zum Beispiel mittels Gitter, Trajektorien, Pfaden) von VaMai Projektteilnehmer B.Sc. Pascal Imholze mit dem Ziel einer möglichst hohen Abdeckung.
-    \item Wenn $\forall x \in \Omgea$ ein Sample $x' \in \widehat{\Omega}_k$ mit $\lVert x - x' \rVert \le \delta'$ existiert, gilt \glqq dichte Abdeckung \grqq.
-    \item Generell ist in Hinblick auf in VaMai abgezielte Methoden wie \glq Few Shot Learning \grqq von Herr Mavani mit Sampleumfängen $n \in [20, 30], n \in \mathbb{N}$ zu beachten, dass der zentrale Grenzwertsatz der auch die \gls{EvidentialDeepLearning} später erläuterte Student-t-Verteilung betrifft, nach Faustformel ab einem Stichprobenumfang $n \geq 30$ gültig ist. % Quelle GUM
-  \end{itemize}
-  \item Uniforme Konvergenz / PAC-ähnliche Argumentation
-  \begin{itemize}
-    \item Zeige, dass mit Vorhersagewahrscheinlichkeit, Unsicherheitsabschätzung die Methodik mit zunehmender Samplezahl $N$ gegen den wahren Kritikalitätsraum konvergiert. 
-    \[
-    \mathbb{P}\bigl( \sup_{x \in \Omega} \bigl\lvert f(x) - \widehat{k}(x) \bigr\rvert \ge \eta \bigr) \le \varepsilon.
-    \]
-    \item Wenn $\widehat{k(x)} \approx k(x)$ auf ganz $\Omega$, gilt auch $\widehat{\Omega}_{k} \approx \Omega_{k}$. Es folgt, dass die Wahrscheinlichkeit einen echten Kritikalitätsraum \textit{nicht} zu erkennen kleiner als $\epsilon$ ist.
-  \end{itemize}
-
-\end{enumerate}
 
 \subsection*{VaMai - Kritikalitätsraum - Validierung - Experiment}
 
