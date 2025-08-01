@@ -2537,9 +2537,7 @@ Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale
 
 
 
-\paragraph{Vergleichs-Score}
-
-Der Vergleichs-Score wird berechnet als:
+\paragraph{Vergleichs-Score} Der Vergleichs-Score wird berechnet als:
 {
   \[\footnotesize
   \text{Score} = w_\text{err} \cdot \frac{\text{RMSE}}{\text{Norm}_\text{RMSE}}
@@ -2547,7 +2545,22 @@ Der Vergleichs-Score wird berechnet als:
   + w_\text{width} \cdot \frac{\text{IntervalWidth}}{\text{Norm}_\text{Width}}
   + w_\text{runtime} \cdot \frac{\text{Runtime}}{\text{Norm}_\text{Runtime}}
   \]
+  \[
+  \footnotesize
+  = 0{,}5 \cdot \frac{\text{RMSE}}{10{,}0}
+  + 0{,}3 \cdot \frac{\text{ECE}}{1{,}0}
+  + 0{,}1 \cdot \frac{\text{IntervalWidth}}{5{,}0}
+  + 0{,}1 \cdot \frac{\text{Runtime}}{30{,}0}
+  \]
 }
+
+\paragraph{Begründung der Norm-Parametrisierung für Vergleichs-Score} Empirisch ergab sich aus der Ausführung des Vergleichsskripts: Erstens, die RMSE schwankt zwischen $0{,}3$ und $3{,}0$, daher wird $\text{Norm}_\text{RMSE} = 10{,}0$ gesetzt, um ausreichend Spielraum zu lassen.
+Zweitens, die ECE ist eine Wahrscheinlichkeit im Intervall $[0,1]$, sodass sich $\text{Norm}_\text{ECE} = 1{,}0$ direkt ergibt. Drittens, die Intervallbreite liegt auf Hardwarekonfiguration 1 zwischen $2{,}0$ und $4{,}5$, weshalb $\text{Norm}_\text{Width} = 5{,}0$ als konservative Obergrenze gewählt wird. Viertens, die Laufzeit reicht von etwa $2\,\text{s}$ (CP) bis $25\,\text{s}$ (\gls{hmc}), daher wird $\text{Norm}_\text{Runtime} = 30{,}0$ gewählt, um die gesamte Spanne abzudecken.
+\par\vspace{1\baselineskip}\noindent
+
+\paragraph{Begründung der Gewichtungsfaktoren für Vergleichs-Score} Erstens, das Fehlermaß RMSE geht mit $w_\text{err} = 0{,}5$ am stärksten in die Bewertung ein, da die Vorhersagegenauigkeit im Zentrum der Modellgüte steht. Zweitens, die Kalibrierung wird durch $w_\text{ECE} = 0{,}3$ gewichtet, da eine realistische Unsicherheitsquantifizierung für verlässliche Modelle essenziell ist. Drittens, die mittlere Intervallbreite wird mit $w_\text{width} = 0{,}1$ berücksichtigt, da sie als sekundäres Kriterium eher die Informationsdichte als die primäre Modellqualität beeinflusst.  Viertens, die Laufzeit geht mit $w_\text{runtime} = 0{,}1$ ein, um recheneffiziente Modelle bevorzugt zu behandeln, ohne Genauigkeit und Kalibrierung zu überlagern.
+
+
 
 \begin{table}[!htbp]
   \centering
