@@ -1580,7 +1580,7 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
 Gemäß \glqq{}Guide to the Uncertainty of Measurement\grqq{} (GUM) muss ingenieurstechnisch eine aussagekräftige Stichprobe über das reale Anwendungsszenario beobachtet worden sein, um eine synthetische Charakterisierung zur realen Messunsicherheit empirisch zu modellieren. Die Zuordnung von \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} zu den im GUM beschriebenen Unsicherheitskomponenten erfolgt erläuternd im Anhang. Ein möglicher Ansatz zur Realitätsbewertung ist dann die softwaretechnische, datengetriebene Modellierung zur Signalrekonstruktion des Szenarios. Dabei müssen alle identifizierten Unsicherheitsquellen formal beschrieben sowie nach messtechnischen Kriterien kategorisiert werden, um die abgeleiteten Daten mit fundierten Vertrauens- und Zuverlässigkeitsaussagen belegen zu können.
 
 % UQ-Pred-UQ-Data-EQ-Ensure-Framework
-Bezieht man das auf gängige Optimierungen \gls{machinelearning}-basierter Surrogatmodelle im synthetischen Eingaberaum liefern Lanini et. al ein Framework zur Bewertung von R4 zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken (vgl. Lanini et al. ~\parencite{Lanini2024}). 
+Bezieht man das auf gängige Optimierungen \gls{machinelearning}-basierter Surrogatmodelle im synthetischen Eingaberaum, liefern Lanini et. al ein Framework zur Bewertung von R4 zur Optimierung in einer Anwendungsdomäne. Ihre Recherche differenziert zur Beantwortung weiterhin datenbasierte und modellbasierte Unsicherheitsmetriken (vgl. Lanini et al. ~\parencite{Lanini2024}). 
 \newline
 Manchingal et al. distanzieren sich von der Optimierung auf Anwendungsdomänen. Als Paradigmenwechsel beschreiben Sie epistemische \gls{kuenstlicheintelligenz}. Im Kern soll nicht nur auf Wissen in Form von Daten, sondern auch auf Nicht-Wissen trainiert werden (vgl. Manchingal et al. \parencite{manchingal2025}). 
 
@@ -2724,7 +2724,19 @@ A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neu
 
 % S4: Auswertung
 \newline 
-%\texttt{min\_sensitivity\_analysis\_enn.py} liefert:
+\paragraph{Parametrisierung der Sensitivitätsanalyse \gls{Evidenzbasierte neuronale Netze}} 
+\begin{equation*}
+  \nu \in \{1,\ 5,\ 10,\ 20\}
+\end{equation*}
+\vspace{-0.2cm}
+\begin{align*}
+  \text{Architektur:} \quad & \text{Dense(64)} \rightarrow \text{Dense(64)} \rightarrow \text{Output: } (\gamma, \log v, \log\alpha, \log\beta) \\
+  \text{Varianzen:} \quad &
+      \begin{cases}
+          \text{Aleatorisch: } \sigma^2_{\text{alea}} = \frac{\beta}{\alpha - 1} \\
+          \text{Epistemisch: } \sigma^2_{\text{epis}} = \frac{\beta}{\nu(\alpha - 1)}
+      \end{cases}
+\end{align*}
 
 \begin{table}[!htbp]
 \centering
@@ -2753,8 +2765,19 @@ A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neu
 
 Der Parameter $\nu$ steuert im \gls{Evidenzbasierte neuronale Netze} die Gewichtung zwischen \gls{Epistemische Unsicherheit} und \gls{Aleatorische Unsicherheit}, wobei kleine $\nu$-Werte die \gls{Epistemische Unsicherheit} dominieren lassen und große $\nu$-Werte die Unsicherheitszerlegung stärker zugunsten der \gls{Aleatorische Unsicherheit} Komponente verschieben.
 
+
+
 \newline
-%\texttt{min\_sensitivity\_analysis\_bnn.py} liefert:
+
+\paragraph{Parametrisierung der Sensitivitätsanalyse \gls{Bayesianische neuronale Netze}} 
+\begin{equation*}
+  \text{Dropout-Raten: } \delta \in \{0.05,\ 0.10,\ 0.20,\ 0.50\}
+\end{equation*}
+\vspace{-0.2cm}
+\begin{align*}
+  \text{Architektur:} \quad & \text{Dense(64)} \rightarrow \text{Dropout}(\delta) \rightarrow \text{Dense(64)} \rightarrow \text{Dropout}(\delta) \rightarrow \text{Output: } \mu, \log\sigma^2 \\
+  \text{Loss:} \quad & \mathcal{L}_{\text{BNN}} = \frac{1}{2} \log\sigma^2 + \frac{(y - \mu)^2}{2\sigma^2}
+\end{align*}
 
 \begin{table}[!htbp]
 \centering
@@ -2783,8 +2806,18 @@ Der Parameter $\nu$ steuert im \gls{Evidenzbasierte neuronale Netze} die Gewicht
 
 Die Dropout-Rate im \gls{Bayesianische neuronale Netze} beeinflusst direkt die \gls{Epistemische Unsicherheit}, da höhere Dropout-Raten mehr Modellvariabilität zulassen und somit größere \gls{Epistemische Unsicherheit} in den Vorhersagen erzeugen.
 
+
+
 \newline
-%\texttt{min\_sensitivity\_analysis\_cp.py} liefert:
+\paragraph{Parametrisierung der Sensitivitätsanalyse \gls{Conformal Prediction}} 
+\begin{equation*}
+    \alpha \in \{0.20,\ 0.10,\ 0.05,\ 0.01\}
+\end{equation*}
+\vspace{-0.2cm}
+\begin{align*}
+    \text{Modell:} \quad & \text{Random Forest Regressor (n=100)} \\
+    \text{Kalibrierung:} \quad & \text{Residual-basiertes Intervall: } [\hat{y} - q_{1-\alpha},\ \hat{y} + q_{1-\alpha}]
+\end{align*}
 
 \begin{table}[!htbp]
 \centering
@@ -2867,7 +2900,7 @@ Insgesamt zeigen die Modelle unterschiedliche Profile: Erstens, \gls{Evidenzbasi
 \hline
 
 \end{tabularx}
-\caption{A6 Zusammenfassung Sensitivität UQ-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction}, \gls{Evidenzbasierte neuronale Netze}}
+\caption{A6 Zusammenfassung Sensitivität \gls{uncertaintyquantification}-Methoden \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction}, \gls{Evidenzbasierte neuronale Netze}}
 \label{tab:sensitivity_r9_transposed}
 \end{table}
 
