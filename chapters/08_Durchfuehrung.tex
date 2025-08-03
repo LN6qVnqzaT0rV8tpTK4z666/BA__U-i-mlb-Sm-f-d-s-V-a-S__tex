@@ -340,6 +340,86 @@ Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äqui
 
 
 
+\paragraph{Fit-Parametrisierung \gls{Evidenzbasierte neuronale Netze}} Zur Bewertung des Fits des \gls{Evidenzbasierte neuronale Netze} wird folgende Bewertung herangezogen. % Grundsätzlich liefert Herr Autenrieths Kritikalitätssoftware ein Modul zum attributweisen Raumvergleich in dem man dies zukünftig berücksichtigen könnte. 
+Es wird ein Original-Signalverlauf $y(x)$ zum vom Netz rekonstruierten $\hat{y}(x)$ abgebildet als Fehler-Signal $e(x)$: 
+
+\[
+e(x) = y(x) - \hat{y}(x) = \underbrace{\frac{1}{\sigma \cdot \sqrt{2\pi}}}_{\text{Amplitude } A} \cdot exp\( -\frac{(x-\mu)^{2}}{2\cdot\sigma^{2}} \)
+\]
+
+Aminis Modell ergibt die aleaotrische Varianz als inverse Varianz 
+
+\[
+\sigma^{2} = \frac{1}{\lambda}
+\]
+
+Ebenso die epistemische Varianz in Abhängigkeit vom Mittelwert des Signals
+
+\[
+\sigma^2_{\text{epistemisch}} = \frac{\beta}{\lambda(\alpha - 1)} \quad \text{für } \alpha > 1
+\]
+
+Eine der beiden Bedingungen ist als Vorwissen des Autors von Signalvergleichen mittels \gls{EvidentialDeepLearning} zum Abgleich eines Fits sinnvoll, um die Amplitude zum Fit abzuschätzen. Im Fall eines im späteren Experiment verwendeten Gauss-Signals ergibt sich der optimale Fit über $A$ zu eins. Abweichungen darunter sind ein Underfit für die Gesamtunsicherheit als Varianz, darüber ein Overtfit für die Gesamtunsicherheit als Varianz. \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} werden tabellarisch eingeordnet. $e(x)$ quantifiziert damit den Fit für zu betrachtende Unsicherheitsarten über die Amplitude zur Signal-Klasse. 
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{Modellverhalten} & \textbf{Aleatorische Varianz} & \textbf{Epistemische Varianz} & \textbf{Signalabdeckung} & \textbf{Risiko} \\
+\midrule
+\textbf{Underfit} & Hoch / beliebig & Hoch    & Meist breit   & Ignoriert Muster \\
+\textbf{Fit}      & Realistisch     & Gering  & Angemessen    & Gut generalisierend \\
+\textbf{Overfit}  & Niedrig         & Gering  & Eng           & Übersicher, fehleranfällig \\
+\bottomrule
+\end{tabular}
+\caption{Modellverhalten und Unsicherheitsmerkmale in der Signalrekonstruktion}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgreifen in Diskussion.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \[
+% \begin{aligned}
+% e(x) & = y(x) - \hat{y}(x) & = 
+% \underbrace{\frac{1}{\sigma \cdot \sqrt{2\pi}}}_{\text{Amplitude } A}
+% \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right) \\
+%      &                             & = 0.8 \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right) \\
+%      &                             & = 1.4 \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
+% \end{aligned}
+% \]
+
+% \textbf{Für } \( A = 0{,}8 \):
+
+% \[
+% \sigma = \frac{1}{0{,}8 \cdot \sqrt{2\pi}} 
+% = \frac{1}{0{,}8 \cdot 2{,}5066}
+% = \frac{1}{2{,}0053}
+% \approx 0{,}4987
+% \]
+
+% \textbf{Für } \( A = 1{,}4 \):
+
+% \[
+% \sigma = \frac{1}{1{,}4 \cdot \sqrt{2\pi}} 
+% = \frac{1}{1{,}4 \cdot 2{,}5066}
+% = \frac{1}{3{,}5092}
+% \approx 0{,}2850
+% \]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgreifen in Diskussion. Ende.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \paragraph{Verallgemeinerung der Fit-Parametrisierung \gls{Evidenzbasierte neuronale Netze} für Kritikalitätsabdeckung} %
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufgreifen in Diskussion unter Hergert als BNN Kritikalitätsabdeckung Ausblick ENN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 \paragraph{Konfiguration \glqq Prototyping \grqq} Feedforward-Netzwerk mit einer versteckten Schicht (\texttt{Dense(64, relu)}), Ausgangslayer \texttt{DenseNormalGamma}. Optimierer: Adam, Lernrate: $1\cdot10^{-3}$. Verlustfunktion: \texttt{EvidentialRegression} mit Regularisierung \texttt{coeff=1e-2}. Trainingsdauer: 100 Epochen. Trainingsdaten: Latin Hypercube Sampling (101 Samples), Rauschen: Gauß-verteiltes Rauschen mit $\sigma = 0{,}01$. Evaluation mittels RMSE auf Testdaten (80/20 Split), 5 Wiederholungen. Ausgaben: $\gamma$, $\nu$, $\alpha$, $\beta$ zur Berechnung von aleatorischer und epistemischer Varianz.
 
 \begin{figure}[!ht]
