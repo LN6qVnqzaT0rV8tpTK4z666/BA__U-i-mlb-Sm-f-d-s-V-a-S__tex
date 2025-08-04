@@ -36,30 +36,88 @@
 
 
 \begin{otherlanguage}{ngerman}
-Nach der quantitativen Auswertung der trainierten Modelle folgt in diesem Kapitel eine reflektierende Diskussion der Ergebnisse im Hinblick auf die zuvor definierten Forschungsfragen. Dabei steht die Aussagekraft der modellierten Unsicherheiten, die Kalibrierung sowie das Verhalten des EDN im Vergleich zu etablierten Baselines aus der Literatur im Mittelpunkt. Die Ergebnisse werden hinsichtlich ihrer technischen Relevanz für szenariobasierte Validierung, Robustheit gegenüber kritischen Eingabebereichen sowie ihrer Interpretierbarkeit im Kontext sicherheitsrelevanter Entscheidungsprozesse analysiert. Darüber hinaus werden potenzielle Einschränkungen, Beobachtungen abweichender Modellverhalten sowie offene methodische Fragen kritisch eingeordnet.
+% Nach der quantitativen Auswertung der trainierten Modelle folgt in diesem Kapitel eine reflektierende Diskussion der Ergebnisse im Hinblick auf die zuvor definierten Forschungsfragen. Dabei steht die Aussagekraft der modellierten Unsicherheiten, die Kalibrierung sowie das Verhalten des EDN im Vergleich zu etablierten Baselines aus der Literatur im Mittelpunkt. Die Ergebnisse werden hinsichtlich ihrer technischen Relevanz für szenariobasierte Validierung, Robustheit gegenüber kritischen Eingabebereichen sowie ihrer Interpretierbarkeit im Kontext sicherheitsrelevanter Entscheidungsprozesse analysiert. Darüber hinaus werden potenzielle Einschränkungen, Beobachtungen abweichender Modellverhalten sowie offene methodische Fragen kritisch eingeordnet.
 
-\section{Bewertung der Vertrauenswürdigkeit}
+% \paragraph{Bewertung der Vertrauenswürdigkeit}
 
-%  % Can you trust your ML metric? 
-%  % Is Epistemic Uncertainty Faithfully Represented by Evidential Deep Learning Methods?
+% %  % Can you trust your ML metric? 
+% %  % Is Epistemic Uncertainty Faithfully Represented by Evidential Deep Learning Methods?
 
-Den zentralen Gegenstandpunkt zur Arbeit liefern Jürgens et al. (2024), Herd et al. (2024) durch kritisches Hinterfragen der Unsicherheit in \gls{machinelearning}-Modellen und deren Kennzahlen. Jürgens et al. stellen fest, dass \gls{EvidentialDeepLearning} Schwierigkeiten hat, epistemische Unsicherheit zuverlässig darzustellen, insbesondere in Bezug auf die Varianz. Sie argumentieren, dass die Unsicherheitsschätzungen aufgrund der Instabilität der Modellparameter über verschiedene Trainingsdurchläufe hinweg stark variieren, was auf Identifizierbarkeitsprobleme hindeutet. Dies führt zu unzuverlässigen Quantifizierungen der Unsicherheit, insbesondere in der inneren Verlustminimierung. Auf der anderen Seite schlagen Herd et al. vor, traditionelle Leistungskennzahlen wie Genauigkeit und Präzision durch subjektive Logik zu ergänzen, um Unsicherheiten systematisch zu behandeln und so die tatsächliche Modellleistung besser zu bewerten. Sie betonen, dass die gängigen Metriken oft die Unsicherheiten nicht berücksichtigen, wodurch die Modellleistung überschätzt wird. Beide Arbeiten machen deutlich, dass die Unsicherheit in den Modellen häufig nicht korrekt erfasst wird und dass eine probabilistische Behandlung der Unsicherheit notwendig ist, um die tatsächliche Modellleistung realistischer zu bewerten ~\parencite{Jurgens.} ~\parencite{Herd04082024}.
+% Den zentralen Gegenstandpunkt zur Arbeit liefern Jürgens et al. (2024), Herd et al. (2024) durch kritisches Hinterfragen der Unsicherheit in \gls{machinelearning}-Modellen und deren Kennzahlen. Jürgens et al. stellen fest, dass \gls{EvidentialDeepLearning} Schwierigkeiten hat, epistemische Unsicherheit zuverlässig darzustellen, insbesondere in Bezug auf die Varianz. Sie argumentieren, dass die Unsicherheitsschätzungen aufgrund der Instabilität der Modellparameter über verschiedene Trainingsdurchläufe hinweg stark variieren, was auf Identifizierbarkeitsprobleme hindeutet. Dies führt zu unzuverlässigen Quantifizierungen der Unsicherheit, insbesondere in der inneren Verlustminimierung. Auf der anderen Seite schlagen Herd et al. vor, traditionelle Leistungskennzahlen wie Genauigkeit und Präzision durch subjektive Logik zu ergänzen, um Unsicherheiten systematisch zu behandeln und so die tatsächliche Modellleistung besser zu bewerten. Sie betonen, dass die gängigen Metriken oft die Unsicherheiten nicht berücksichtigen, wodurch die Modellleistung überschätzt wird. Beide Arbeiten machen deutlich, dass die Unsicherheit in den Modellen häufig nicht korrekt erfasst wird und dass eine probabilistische Behandlung der Unsicherheit notwendig ist, um die tatsächliche Modellleistung realistischer zu bewerten ~\parencite{Jurgens.} ~\parencite{Herd04082024}.
 
-\section{Bewertung der Meta-Vertrauenswürdigkeit (Meta-Unsicherheit)}
+% \paragraph{Bewertung der Meta-Vertrauenswürdigkeit (Meta-Unsicherheit)}
 
-Der weiterführende Begriff „Meta-Unsicherheit“ ist in der wissenschaftlichen Literatur nicht standardisiert etabliert. Ein Ziel der vorliegenden Arbeit besteht darin, über die klassische Trennung von AC und EC hinaus ein übergeordnetes Maß für die Vertrauenswürdigkeit modellbasierter Vorhersagen für den evidenzbasierten und bayesischen Ansatz zu entwickeln – eine sogenannte Meta-Unsicherheit. Darunter wird die systematische Aggregation, Interpretation und Bewertung der vom Modell selbst generierten Unsicherheiten verstanden, mit dem Ziel, ein globales, kontextsensitives Vertrauensmaß abzuleiten. 
+% Der weiterführende Begriff „Meta-Unsicherheit“ ist in der wissenschaftlichen Literatur nicht standardisiert etabliert. Ein Ziel der vorliegenden Arbeit besteht darin, über die klassische Trennung von AC und EC hinaus ein übergeordnetes Maß für die Vertrauenswürdigkeit modellbasierter Vorhersagen für den evidenzbasierten und bayesischen Ansatz zu entwickeln – eine sogenannte Meta-Unsicherheit. Darunter wird die systematische Aggregation, Interpretation und Bewertung der vom Modell selbst generierten Unsicherheiten verstanden, mit dem Ziel, ein globales, kontextsensitives Vertrauensmaß abzuleiten. 
 
-Die Meta-Unsicherheit ergibt sich nicht als direkter Modelloutput, sondern als Funktion aus mehreren Unsicherheitskomponenten, die entlang einer Trajektorie, eines Szenarios oder im Rahmen eines gesamten Validierungslaufs kumulativ betrachtet werden. Typische Einflussgrößen sind dabei:
-\begin{itemize}
-  \item die lokale Evidenz (\(\alpha^{-1}\)) des Modells in Kombination mit der Vorhersagegüte (\(\left| y - \mu \right|\)),
-  \item die Verteilung epistemischer Varianz über den Eingaberaum,
-  \item strukturelle Merkmale wie Häufung unsicherer Bereiche oder abrupte Evidenzsprünge (z.\,B. entlang eines Pfades),
-  \item sowie Metriken wie die Jensen-Shannon-Divergenz zwischen aufeinanderfolgenden Unsicherheitsverteilungen oder Modellen.
-\end{itemize}
+% Die Meta-Unsicherheit ergibt sich nicht als direkter Modelloutput, sondern als Funktion aus mehreren Unsicherheitskomponenten, die entlang einer Trajektorie, eines Szenarios oder im Rahmen eines gesamten Validierungslaufs kumulativ betrachtet werden. Typische Einflussgrößen sind dabei:
+% \begin{itemize}
+%   \item die lokale Evidenz (\(\alpha^{-1}\)) des Modells in Kombination mit der Vorhersagegüte (\(\left| y - \mu \right|\)),
+%   \item die Verteilung epistemischer Varianz über den Eingaberaum,
+%   \item strukturelle Merkmale wie Häufung unsicherer Bereiche oder abrupte Evidenzsprünge (z.\,B. entlang eines Pfades),
+%   \item sowie Metriken wie die Jensen-Shannon-Divergenz zwischen aufeinanderfolgenden Unsicherheitsverteilungen oder Modellen.
+% \end{itemize}
 
-Zur Erfassung der Meta-Unsicherheit kann ein aggregiertes Risikomaß definiert werden, das z.\,B. eine gewichtete Summe lokaler Unsicherheiten, Varianzgradienten oder Nichtkalibrierbarkeit darstellt. In der Praxis liefert ein solches Maß eine Einschätzung darüber, wie konsistent, robust und erklärbar die Vorhersagen eines Modells im Kontext der gestellten Aufgabe sind.
+% Zur Erfassung der Meta-Unsicherheit kann ein aggregiertes Risikomaß definiert werden, das z.\,B. eine gewichtete Summe lokaler Unsicherheiten, Varianzgradienten oder Nichtkalibrierbarkeit darstellt. In der Praxis liefert ein solches Maß eine Einschätzung darüber, wie konsistent, robust und erklärbar die Vorhersagen eines Modells im Kontext der gestellten Aufgabe sind.
 
-Gerade in sicherheitskritischen Szenarien – etwa in der Validierung autonomer Systeme oder der simulationsbasierten Entscheidungsunterstützung – liefert Meta-Unsicherheit einen entscheidenden Beitrag zur Vertrauensbewertung. Sie ergänzt klassische Metriken der Modellgüte durch eine interpretierbare, quantitative Aussage über die Zuverlässigkeit des Modells selbst – nicht nur dessen Ausgabe.
+% Gerade in sicherheitskritischen Szenarien – etwa in der Validierung autonomer Systeme oder der simulationsbasierten Entscheidungsunterstützung – liefert Meta-Unsicherheit einen entscheidenden Beitrag zur Vertrauensbewertung. Sie ergänzt klassische Metriken der Modellgüte durch eine interpretierbare, quantitative Aussage über die Zuverlässigkeit des Modells selbst – nicht nur dessen Ausgabe.
 
-% Ergebnisse wissenschaftlich sinnvoll aufgreifen.
+% % Ergebnisse wissenschaftlich sinnvoll aufgreifen.
+
+
+
+
+\section{Diskussion}
+
+% Bewertung der eingesetzten Methoden
+\paragraph{Bewertung der Modellierungsansätze}
+
+% Kommentiere hier z. B. die Eigenschaften deiner Loss-Funktion, inklusive des Clippings mit $U^*(x)$
+Die Kombination aus evidenzbasierter Verlustfunktion und kritikalitätsabhängiger Begrenzung der Unsicherheit durch $U^*(x)$ bietet einen stabilen Ansatz zur Kontrolle von Überkonfidenz in sensitiven Regionen. Die eingeführte Lipschitz-Begrenzung durch die min-Funktion verhindert stark ansteigende Gradienten in extremen Fehlersituationen.  Allerdings kann dies auch dazu führen, dass in niedrig-kritischen Bereichen das Modell zu konservativ wird.
+
+% Ggf. Unsicherheiten oder Regularisierung stärker hervorheben
+Die Regularisierungsparameter $\nu$, $\alpha$ und $\beta$ sind dabei sensitiv in ihrer Wirkung. Insbesondere die Wahl von $\beta$ beeinflusst das Verhalten der Gesamtvarianz und sollte für reale Anwendungen datenspezifisch validiert werden.
+
+% Umgang mit verschiedenen Unsicherheiten
+\paragraph{Unsicherheitsquantifizierung im Kontext realer Systeme}
+
+% Diskussion aleatorisch vs. epistemisch
+Die Trennung von \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} erfolgt hier auf Basis der evidenzbasierten Wahrscheinlichkeitsmodellierung. Dies ist theoretisch konsistent mit der Unsicherheitsdefinition der GUM, jedoch praktisch schwer zu validieren, solange keine realen Messdaten mit bekannter Varianzstruktur vorliegen.
+
+% Synthetische Daten hinterfragen
+Die genutzten Kritikalitätsfunktionen sind synthetisch definiert. 
+Somit bleibt offen, ob das trainierte Netz diese Trennung bei realen, verrauschten Daten gleichermaßen leisten kann. Eine Erweiterung um reale Sensorikdaten wäre hier ein nächster Schritt.
+
+\paragraph{Einfluss der Kritikalitätsfunktion und Regularisierung}
+
+% Diskussion über die Konstruktion der Kritikalitätsräume
+Die Kritikalitätsfunktion $C(x)$ wurde explizit modelliert, um Unsicherheiten in sensiblen Bereichen zu begrenzen. Diese Eingrenzung erweist sich als effektives Steuerungsinstrument im Trainingsprozess, stellt aber eine idealisierte Repräsentation realer Risiken dar. In praktischen Anwendungen müsste $C(x)$ durch Expertenwissen, Redundanzlogik oder risikobasierte Metriken ersetzt werden.
+
+% Hier kannst du auch die Rolle der Zero-Evidence-Regionen erwähnen
+Ergänzend wurde eine ZER-Regelung über einen unteren Varianz-Schwellenwert eingeführt, um Regionen mit extrem geringer Evidenz explizit zu markieren. Dies erhöht die Erklärbarkeit des Modells, setzt aber voraus, dass die Parametrisierung der Evidenzverteilung sinnvoll gewählt wurde.
+
+\paragraph{Limitationen}
+
+% Offen und ehrlich: Was konnte nicht umgesetzt werden?
+Ein wesentlicher Nachteil der durchgeführten Studie ist die fehlende Validierung mit realen Anwendungsdaten. 
+Weder das Verhalten der Kritikalitätsfunktion noch die Effektivität der Verlustbegrenzung wurden im produktiven Kontext getestet. 
+% Meta-Unsicherheit als Konzept zwar motiviert, jedoch nicht quantitativ experimentell untersucht.
+
+% Weitere Punkte
+Die gesamte Arbeit basiert auf synthetisch erzeugten Datensätzen. 
+Dies ermöglicht zwar kontrollierte Experimente, schränkt aber die Generalisierbarkeit auf reale Szenarien ein.
+
+\paragraph{Ausblick und Weiterentwicklungsmöglichkeiten}
+
+% Wo könnte die Arbeit hinführen?
+Ein möglicher nächster Schritt wäre die Übertragung der entwickelten Methoden auf reale Daten mit bekannter Unsicherheitsstruktur, zum Beispiel aus der Sensorik, Messtechnik oder dem Bereich autonomer Systeme. 
+Auch eine Erweiterung des \gls{Evidenzbasierte neuronale Netze} um Rekurrenzmechanismen zum Beispiel LSTM oder ODE-Netze zur Modellierung von Zeitdynamik wäre in begrenzter Abstraktion von Signalen denkbar.
+
+% Meta-Unsicherheit als Forschungsrichtung
+Ein weiteres Forschungspotenzial liegt in der quantitativen Ausführung des Konzepts der Meta-Unsicherheit – also der Unsicherheit über die Unsicherheitsmaße selbst. 
+
+% Letzter Satz: Stärke der Arbeit betonen
+Die Arbeit zeigt, dass eine evidenzbasierte Unsicherheitsquantifizierung mit kritikalitätsabhängiger Regularisierung ein vielversprechender Ansatz zur Risikominimierung in sicherheitsrelevanten Systemen sein kann.
+
+
+
 \end{otherlanguage}
