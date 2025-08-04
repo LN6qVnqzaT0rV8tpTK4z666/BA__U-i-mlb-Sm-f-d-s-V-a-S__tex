@@ -20,7 +20,7 @@ Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten} beantwort
 
 \subsection*{VaMAI - Kritikalitätsraum - Validierung - Annahmen}
 
-VaMAI verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung unter anderem über die Arbeit von Hergert. Hergert lieferte dafür bereits einen Ansatz mittels \glqq{}Gaussian Process\grqq{} als Surrogatmodell für die szenarienbasierte Validierung der autonomen Systeme der Atlas Elektronik GmbH. Ein Alternativer Ansatz zur Unsicherheisanalyse dabei sind \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. Umgangssprachlich hat Hergert den Raum so gut abgedeckt, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt: Zeige, dass durch die gewählte Methode - zum Beispiel Gaussian Proces und Unsicherheitsaggregation - die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
+VaMAI verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung unter anderem über die Arbeit von Hergert. Hergert lieferte dafür bereits einen Ansatz mittels \glqq{}Gaussian Process\grqq{} als Surrogatmodell für die szenarienbasierte Validierung der autonomen Systeme der Atlas Elektronik GmbH. Ein Alternativer Ansatz zur Unsicherheisanalyse dabei sind \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. Umgangssprachlich hat Hergert den Raum so gut abgedeckt, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt: Zeige, dass durch die gewählte Methode - zum Beispiel Gaussian Processes und Unsicherheitsaggregation - die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
 
 \[ 
 \mathbb{P}\bigl(\exists\, x \in \Omega \setminus \widehat{\Omega}_k : \text{Kritikalität}(x) > \tau \bigr) < \varepsilon. 
@@ -35,12 +35,12 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
 \begin{enumerate}
   \item Unsicherheitsmodellierung mittels machine-learning basiertem Surrogatmodell
   \begin{itemize}
-    \item Liefert für jeden Punkt $x \in \Omega$ eine Wahrscheinlichkeitsverteilung mit Varianz $\mathrm{Var}(x) = \sigma^{2}_{\text{epistemisch}} + \sigma^{2}_{\text{aleatorisch}}$.
-    \item Kritikalität ist Funktion der Größe $k(x)$.
+    \item Liefert für jeden Punkt $x \in \Omega$ eine Wahrscheinlichkeitsverteilung mit Varianz $\mathrm{Var}(x) = \sigma^{2}_{\text{epistemisch}} + \sigma^{2}_{\text{aleatorisch}}$. Dieser Aspekt wird in der Arbeit von Herr B.Sc. N. Mavani für \gls{Bayesianische neuronale Netze} nach meiner Projektteilnahme mittels dieser Thesis, auf meiner Seite mittels \gls{Evidenzbasierte neuronale Netze} untersucht.
+    \item Kritikalität ist allgemein im Projekt Funktion der Größe $k(x)$.
   \end{itemize}
   \item Sampling- / Klassifikationsabdeckung
   \begin{itemize}
-    \item Raum $\Omega$ wurde mit Dichte $\delta$ gesampled (zum Beispiel mittels Gitter, Trajektorien, Pfaden) von VaMAI Projektteilnehmer B.Sc. Pascal Imholze mit dem Ziel einer möglichst hohen Abdeckung.
+    \item Raum $\Omega$ wurde mit Dichte $\delta$ gesampled - zum Beispiel mittels Gitter, Trajektorien, Pfaden - von VaMAI Projektteilnehmer B.Sc. Pascal Imholze mit dem Ziel einer möglichst hohen Abdeckung.
     \item Wenn $\forall x \in \Omgea$ ein Sample $x' \in \widehat{\Omega}_k$ mit $\lVert x - x' \rVert \le \delta'$ existiert, gilt \glqq dichte Abdeckung \grqq.
     \item Generell ist in Hinblick auf in VaMAI abgezielte Methoden wie \glqq{}Few Shot Learning\grqq{} von Herr Mavani mit Sampleumfängen $n \in [20, 30], n \in \mathbb{N}$ zu beachten, dass der zentrale Grenzwertsatz der auch die \gls{EvidentialDeepLearning} später erläuterte Student-t-Verteilung betrifft, nach Faustformel ab einem Stichprobenumfang $n \geq 30$ gültig ist. % Quelle GUM
   \end{itemize}
@@ -50,10 +50,12 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
     \[
     \mathbb{P}\bigl( \sup_{x \in \Omega} \bigl\lvert f(x) - \widehat{k}(x) \bigr\rvert \ge \eta \bigr) \le \varepsilon.
     \]
-    \item Wenn $\widehat{k(x)} \approx k(x)$ auf ganz $\Omega$, gilt auch $\widehat{\Omega}_{k} \approx \Omega_{k}$. Es folgt, dass die Wahrscheinlichkeit einen echten Kritikalitätsraum \textit{nicht} zu erkennen kleiner als $\epsilon$ ist.
+    \item Wenn $\widehat{k(x)} \approx k(x)$ auf ganz $\Omega$, gilt auch $\widehat{\Omega}_{k} \approx \Omega_{k}$. Es folgt, dass die Wahrscheinlichkeit einen echten Kritikalitätsraum \textit{nicht} zu erkennen kleiner als $\epsilon$ ist. Dieser Aspekt ist von Herr D. Hergert im Rahmen seiner Masterarbeit mittels Gaussian Processes gezeigt worden. 
   \end{itemize}
 
 \end{enumerate}
+
+\paragraph{Szenarienselektion} Im Rahmen dieser Beweisidee ist die Szenarioselektion in VaMAI einzuordnen. Die Szenarienselektion dient der gezielten Auswahl von Szenarien auf Grundlage der Unsicherheiten, die durch das Surrogatmodell bereitgestellt werden. Diese Unsicherheiten setzen sich aus einem epistemischen und einem aleatorischen Anteil zusammen. Zunächst wird ein initiales Szenariosample $\widehat{\Omega}_0$ definiert, auf dem ein erstes Surrogatmodell trainiert wird. Anschließend erfolgt eine Bewertung der Modellunsicherheit über den gesamten Raum $\Omega$, wobei insbesondere Regionen mit hoher epistemischer Unsicherheit identifiziert werden. Im dritten Schritt wird ein adaptives Sampling durchgeführt: Neue Szenarien mit hoher epistemischer Unsicherheit sowie ausgeprägter Kritikalität $k(x)$ werden gezielt zur Ergänzung des bisherigen Szenariosamples ausgewählt. Daraufhin wird das Surrogatmodell mit den hinzugefügten Szenarien erneut trainiert und validiert. Im Anschluss daran wird überprüft, ob ein festgelegtes Abdeckungs- oder Konvergenzkriterium - beispielsweise hinreichende Testgenauigkeit, Unsicherheitsreduktion oder Konvergenz gemäß PAC-Bedingung - erfüllt ist. Ist dies nicht der Fall, beginnt der Selektionsprozess erneut mit der Analyse der Modellunsicherheit. Ziel der Methode ist es, mit möglichst wenigen, aber gezielt gewählten Szenarien eine aussagekräftige und belastbare Approximation des Kritikalitätsraums innerhalb von $\Omega$ zu erreichen. Vergleiche dazu die Übersicht im Anhang.
 
 
 
