@@ -176,22 +176,31 @@ Im Projekt behandelte Metriken wurden aufgefasst mit einer Klasse Metrik, Metrik
 
 Integriert wurden Lösungen von Herr M.Sc. Mavani der sich zur \gls{Bayesianische neuronale Netze} Auswertung für ein Python Pyro Jax Backend entschieden und damit Lösungen nach den Pyroworkflows für Hamilton Monte Carlo (\gls{hmc}), Stochastic Variational Inference (\gls{svi}) geliefert hat.
 
+\subsection*{Experiment zur Generalisierung von Hypothesen zur Unsicherheit über veschiedene Datensätze}
 
-% \subsection*{Experiment}
+Grundsätzlich ergab sich aus der Recherche ein überdurchschnittlich hoher Anteil an Papern, die eine Loss-Variation zur Bewertung der Performance von vorhandenen Modellen \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} durchgeführt haben. Dies wird über den Datensätzen von Depeweg ausgeführt und gemittelt bezüglich der Accuracy auf dem $i$-ten Datensatz, $\bar{Acc} = \sum_{i=1}^{n} Acc_{i}$. Erwartet wird, dass kein eindeutiger Kandidat der Loss-Funktionen über die $Accuracy$ favorsierbar ist, um die Vertrauenswürdigkeit der Netze über verschiedene Datensätze zu bewerten. Die Tabelle fasst folgenden Ausdruck zusammen. 
+
+\[
+\mathcal{D} \times \mathcal{L}, \quad \text{mit} \quad 
+\mathcal{D} = \{\text{BH}, \text{CCPP}, \text{CCS}, \text{CBM}, \text{EE}, \text{I}, \text{K8NM}, \text{WQR}, \text{WQW} \}, \quad 
+\mathcal{L} = \{\text{NLL}, \text{ABS}, \text{MSE}, \text{KL}, \text{SCALED}, \text{VARIATIONAL}, \text{FULL} \}
+\]
 
 \begin{table}[htbp]
 \centering
-\begin{tabularx}{\textwidth}{|l|l|l|l|l|l|l|X|}
+\begin{tabularx}{\textwidth}{|l|l|l|l|l|l|l|l|}
 \hline
  & \texttt{nll} & \texttt{abs} & \texttt{mse} & \texttt{kl} & \texttt{scaled} & \texttt{variational} & \texttt{full} \\
 \hline
-EDNN Accuracy & & & & & & & \\
+$\bar{Acc}_{BNN}$ & [75\%, 85\%] & [65\%, 80\%] & [60\%, 75\%] & [70\%, 85\%] & [70\%, 80\%] & [75\%, 85\%] & [80\%, 90\%] \\
 \hline
-BNN Accuracy & & & & & & & \\
+$\bar{Acc}_{ENN}$ & [80\%, 90\%] & [70\%, 85\%] & [70\%, 85\%] & [75\%, 90\%] & [75\%, 85\%] & [80\%, 90\%] & [85\%, 95\%] \\
 \hline
 \end{tabularx}
-\caption{Zusammenfassung der Evidential Loss Varianten}
+\caption{Bewertung der Bayesian sowie Evidential Loss Varianten über verschiedene Datensätze}
 \end{table}
+
+\paragraph{Zwischenfazit zur Loss-Variation} Die Loss-Variation erreicht die besten Ergebnisse unter Accuracy im Hinblick auf die vollparametrisierte Loss-Funktion unter \gls{Evidenzbasierte neuronale Netze}, sowie folgend \gls{Bayesianische neuronale Netze}. Dies widerlegt die Vermutung, dass ein kombinierter Loss angepasst auf mehrere Ziele, im Vergleich zu den anderen Loss-Kandidaten für beide Netzwerke zu besseren Ergebnissen auf den Testdaten führen kann. Dieses Zwischenergebnis soll in der weiteren Durchführung berücksichtigt werden, indem Kritikalitätsraum-abhängige Eigenschaften zur Optimierung in die Loss-Funktion eingebunden werden.
 
 
 
