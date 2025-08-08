@@ -61,9 +61,9 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
 
 \section*{Bekannter Ansatz - Evidential Deep Learning}
 
-Zur Validierung der eingesetzten Methodik für \gls{Evidenzbasierte neuronale Netze} wird der von \parencite{amini2020deep} veröffentlichte Benchmark reproduziert. Hierfür wird die im Anhang dargestellte Aufwandsschätzung berücksichtigt, die auf die im Unternehmen verfügbare Hardware abgestimmt ist, siehe Hardwarekonfiguration 1 im Anhang.
+Zur Validierung der eingesetzten Methodik für \gls{Evidenzbasierte neuronale Netze} wird der von Amini (vgl. Amini \parencite{amini2020deep}) veröffentlichte Benchmark reproduziert. Hierfür wird die im Anhang dargestellte Aufwandsschätzung berücksichtigt, die auf die im Unternehmen verfügbare Hardware abgestimmt ist, siehe Hardwarekonfiguration 1 im Anhang.
 
-\paragraph{Vergleich Amini \gls{Evidenzbasierte neuronale Netze} Regression} \parencite{amini2020deep} Sektion 4 Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze}.  
+\paragraph{Vergleich Amini \gls{Evidenzbasierte neuronale Netze} Regression} Amini Sektion 4 (vgl. Amini \parencite{amini2020deep}) Experiment liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze}.  
 \begin{noindentquote}
 \scriptsize
 $
@@ -77,7 +77,9 @@ $
 Der Benchmark konnte in erster Konfiguration annähernd reproduziert werden. 
 \begin{noindentquote}
   \scriptsize
-  \texttt{python3 neurips2020/run\_uci\_dataset\_tests.py --datasets boston concrete energy-efficiency kin8nm naval power-plant protein wine yacht --num-trials 1 --num-epochs 5}
+  \texttt{python3 neurips2020/run\_uci\_dataset\_tests.py --datasets boston concrete \\
+  energy-efficiency kin8nm naval power-plant protein wine yacht \\ 
+  --num-trials 1 --num-epochs 5}
 \end{noindentquote}
  mit Laufzeit von 9 Minuten 10.2 Sekunden $\leq$ 10 Minuten als \glqq Proof of concept\grqq. Die Konvergenz zu Aminis Werten ($\Delta (\text{RMSE}) = \left[ -0.5;\ -0.6 \right]$; $\Delta \text{NLL} = -0.08$) wird deutlich für die Konfiguration hinreichend umfangreicher Datensätze $\{\text{kin8nm}, \text{naval}, \text{protein} \}$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang. % Für den visuell Abgleich siehe Abschnitt~\ref{sec:visualisierungen_edl_amini2020_regression}
 
@@ -160,47 +162,58 @@ yacht
 \end{table*}
 
 
-\paragraph{Vergleich Amini \gls{Evidenzbasierte neuronale Netze} Klassifikation} \parencite{amini2020deep} \texttt{gen\_depth\_results.py} liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang. % Für den visuell Abgleich siehe Abschnitt~\ref{sec:visualisierungen_edl_amini2020_classification}
+\paragraph{Vergleich Amini \gls{Evidenzbasierte neuronale Netze} Klassifikation} Aminis Reproduzierbarkeits-Sektion (vgl. Amini \parencite{amini2020deep}) als Skript \texttt{gen\_depth\_results.py} ausgeführt, liefert Ergebnisse für \gls{Evidenzbasierte neuronale Netze} für die Aufgabe \glqq Monocular depth estimation\grqq. Der Benchmark konnte reproduziert werden mit einer Konfiguration $N_\text{batch}=25$, $N_\text{adv}=3$ unter der Hardware-Limitierung aus Tabelle 1, Gerät 1, Hardware-Spezifikation, Anhang. % Für den visuell Abgleich siehe Abschnitt~\ref{sec:visualisierungen_edl_amini2020_classification}
 
 
 
 \section*{Eigenentwicklung}
 
-Grundlegend benötigt wurde eine Datenpipeline. In Entwicklung mit Herr B.Sc. N. Mavani sollte für den Vergleich von \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} als Baseline von Mavanis Seite auf \parencite{Depeweg2019}, von meiner Seite auf \parencite{Ulmer2023} aufgesetzt werden.\newline
+\paragraph{Datenpipeline} Grundlegend benötigt wurde eine Datenpipeline. In Entwicklung mit Herr B.Sc. N. Mavani sollte für den Vergleich von \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} als Baseline von Mavanis Seite auf Depeweg (vgl. Depeweg \parencite{Depeweg2019}), von meiner Seite auf Ulmer (vgl. Ulmer et al. \parencite{Ulmer2023}) aufgesetzt werden.
 
-Dazu wurden von \parencite{Depeweg2019} verwendete Datensätze verwendet und ergänzt um im Anhang, Abschnitt Datensätze gelistete. Aufgesetzte Stufen der Datenpipeline sind eine Vorverarbeitung zum Umwandeln von Formaten, Einlesen in Torch Dataset Klassen, Torch Trainingsklassen, Visualisierungsklassen.\newline
+Dazu wurden von Depeweg (vgl. Depeweg \parencite{Depeweg2019}) verwendete Datensätze verwendet und ergänzt um im Anhang, Abschnitt Datensätze gelistete. Aufgesetzte Stufen der Datenpipeline sind eine Vorverarbeitung zum Umwandeln von Formaten, Einlesen in Torch Dataset Klassen, Torch Trainingsklassen, Visualisierungsklassen.
 
-Aus den Datensätzen wurden Trainings und Visualisierungen abgeleitet und generifiziert. Ebenso wurden recherchierte Loss-Funktionen generifiziert. Trainings wurden auf einen modernen Standard ergänzt wie Checkpoints, Patience-Epochen, vergleichbar und generifiziert. Nach Generifizierung bleiben einer Klasse überwiegend nur noch konfigurierbare Anteile vorbehalten. Eine Konfiguration wurde als Refactor geplant und soll von dort aus zu einer zentralen Konfiguration hochgereicht werden.\newline
+Aus den Datensätzen wurden Trainings und Visualisierungen abgeleitet und generifiziert. Ebenso wurden recherchierte Loss-Funktionen generifiziert. Trainings wurden auf einen modernen Standard ergänzt wie Checkpoints, Patience-Epochen, vergleichbar und generifiziert. Nach Generifizierung bleiben einer Klasse überwiegend nur noch konfigurierbare Anteile vorbehalten. Eine Konfiguration wurde als Refactor geplant und soll von dort aus zu einer zentralen Konfiguration hochgereicht werden.
 
-Im Projekt behandelte Metriken wurden aufgefasst mit einer Klasse Metrik, Metrik-Thresholds, Metrik-Registry, Metrik-Registry-Defintions deren Name die Funktion hinreichend vorgibt.\newline
+Im Projekt behandelte Metriken wurden aufgefasst mit einer Klasse Metrik, Metrik-Thresholds, Metrik-Registry, Metrik-Registry-Defintions deren Name die Funktion hinreichend vorgibt.
 
-Integriert wurden Lösungen von Herr M.Sc. Mavani der sich zur \gls{Bayesianische neuronale Netze} Auswertung für ein Python Pyro Jax Backend entschieden und damit Lösungen nach den Pyroworkflows für Hamilton Monte Carlo (\gls{hmc}), Stochastic Variational Inference (\gls{svi}) geliefert hat.
+Integriert wurden Lösungen von Herr M.Sc. Mavani der sich zur \gls{Bayesianische neuronale Netze} Auswertung für ein Python Pyro Jax Backend entschieden und damit Lösungen nach den Pyroworkflows für Hamilton Monte Carlo (\gls{hmc}), Stochastic Variational Inference (\gls{svi}) geliefert hat.  
 
-\subsection*{Experiment zur Generalisierung von Hypothesen zur Unsicherheit über veschiedene Datensätze}
+\paragraph{Zwischenfazit Datenpipeline} Die Recherche belegt einen hochindividualisierten Grad in der Wahl der Metriken zur Belegung der Unsicherheiten in einer Datenpipeline. Ebenso wie die Skript-Ausgestaltung softwareseitig zur Ermittlung dieser. Josang für \gls{Bayesianische neuronale Netze} auf, dass dies durch explizite Ausmodellierung robust gestaltet werden kann, und erläutert dazu ein explizit methodisches Vorgehen. Um das Einbeziehen beliebiger Metriken möglich zu machen, wurde ein Hauptdurchlauf bezüglich \gls{EvidentialDeepLearning} fertig gestellt, der zu 80\% durchläuft. 
 
-Grundsätzlich ergab sich aus der Recherche ein überdurchschnittlich hoher Anteil an Papern, die eine Loss-Variation zur Bewertung der Performance von vorhandenen Modellen \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} durchgeführt haben. Dies wird über den Datensätzen von Depeweg ausgeführt und gemittelt bezüglich der Accuracy auf dem $i$-ten Datensatz, $\bar{Acc} = \sum_{i=1}^{n} Acc_{i}$. Erwartet wird, dass kein eindeutiger Kandidat der Loss-Funktionen über die $Accuracy$ favorsierbar ist, um die Vertrauenswürdigkeit der Netze über verschiedene Datensätze zu bewerten. Die Tabelle fasst folgenden Ausdruck zusammen. 
+
+
+\subsection*{Experiment zur Approximation der Generalisierung von Hypothesen zur Unsicherheit über verschiedene Datensätze}
+
+Grundsätzlich ergab sich aus der Recherche ein überdurchschnittlich hoher Anteil an Papern, die eine Loss-Variation zur Bewertung der Performance von vorhandenen Modellen \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} durchgeführt haben mit der besten Übersicht wie erwähnt in Ulmer et al. (vgl. Ulmer et al. \parencite{Ulmer2023}}). Loss-Funktions Kandidaten $\mathcal{L}$ werden über den Datensätzen $\mathcal{D}$ von Depeweg ausgeführt und gemittelt bezüglich der Accuracy ($Acc$) auf dem $i$-ten Datensatz, $\overline{Acc} = \sum_{i=1}^{n} Acc(x)_{i}$. Es wurde grob approxmiert, um eine Tendenz erkennbar zu unterscheiden. Erwartet wurde, dass kein eindeutiger Kandidat der Loss-Funktionen über die Accuracy favorisierbar ist, um die Vertrauenswürdigkeit der Netze über verschiedene Datensätze zu bewerten. Die Tabelle fasst nachfolgenden Ausdruck zusammen. Erneut sei dabei erwähnt, dass keine nachhaltige Stichprobe über einen vollparametrisierten Test erhoben, sondern approximiert und gemittelt wurde, um eine Tendenz festzustellen. 
 
 \[
-\mathcal{D} \times \mathcal{L}, \quad \text{mit} \quad 
-\mathcal{D} = \{\text{BH}, \text{CCPP}, \text{CCS}, \text{CBM}, \text{EE}, \text{I}, \text{K8NM}, \text{WQR}, \text{WQW} \}, \quad 
+\begin{array}{c}
+\mathcal{D} \times \mathcal{L}, \\
+\vspace{0.15\baselineskip}
+\noindent
+\mathcal{D} = \{\text{BH}, \text{CCPP}, \text{CCS}, \text{CBM}, \text{EE}, \text{I}, \text{K8NM}, \text{WQR}, \text{WQW} \}, \\
+\vspace{0.15\baselineskip}
+\noindent
 \mathcal{L} = \{\text{NLL}, \text{ABS}, \text{MSE}, \text{KL}, \text{SCALED}, \text{VARIATIONAL}, \text{FULL} \}
+\end{array}
 \]
 
 \begin{table}[htbp]
-\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.5}
 \begin{tabularx}{\textwidth}{|l|l|l|l|l|l|l|l|}
 \hline
- & \texttt{nll} & \texttt{abs} & \texttt{mse} & \texttt{kl} & \texttt{scaled} & \texttt{variational} & \texttt{full} \\
+ & \texttt{nll} & \texttt{abs} & \texttt{mse} & \texttt{kl} & \texttt{scaled} & \texttt{var} & \texttt{full} \\
 \hline
-$\bar{Acc}_{BNN}$ & [75\%, 85\%] & [65\%, 80\%] & [60\%, 75\%] & [70\%, 85\%] & [70\%, 80\%] & [75\%, 85\%] & [80\%, 90\%] \\
+$\overline{Acc}_{BNN}$ & [75\%, 85\%] & [65\%, 80\%] & [60\%, 75\%] & [70\%, 85\%] & [70\%, 80\%] & [75\%, 85\%] & [80\%, 90\%] \\
 \hline
-$\bar{Acc}_{ENN}$ & [80\%, 90\%] & [70\%, 85\%] & [70\%, 85\%] & [75\%, 90\%] & [75\%, 85\%] & [80\%, 90\%] & [85\%, 95\%] \\
+$\overline{Acc}_{ENN}$ & [80\%, 90\%] & [70\%, 85\%] & [70\%, 85\%] & [75\%, 90\%] & [75\%, 85\%] & [80\%, 90\%] & [85\%, 95\%] \\
 \hline
 \end{tabularx}
-\caption{Bewertung der Bayesian sowie Evidential Loss Varianten über verschiedene Datensätze}
+\caption{Bewertung \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} Loss über verschiedene Datensätze}
 \end{table}
 
-\paragraph{Zwischenfazit zur Loss-Variation} Die Loss-Variation erreicht die besten Ergebnisse unter Accuracy im Hinblick auf die vollparametrisierte Loss-Funktion unter \gls{Evidenzbasierte neuronale Netze}, sowie folgend \gls{Bayesianische neuronale Netze}. Dies widerlegt die Vermutung, dass ein kombinierter Loss angepasst auf mehrere Ziele, im Vergleich zu den anderen Loss-Kandidaten für beide Netzwerke zu besseren Ergebnissen auf den Testdaten führen kann. Dieses Zwischenergebnis soll in der weiteren Durchführung berücksichtigt werden, indem Kritikalitätsraum-abhängige Eigenschaften zur Optimierung in die Loss-Funktion eingebunden werden.
+\paragraph{Zwischenfazit zur Loss-Variation} Die Loss-Variation erreicht die besten Ergebnisse unter Accuracy im Hinblick auf die \glqq{}vollparametrisierte\grqq{}, \glqq{}full\grqq{} Loss-Funktion unter \gls{Evidenzbasierte neuronale Netze}, sowie folgend \gls{Bayesianische neuronale Netze}. Dies \textit{widerlegt} die Hypothese, dass der kombinierte \glqq{}full\grqq{} Loss - angepasst auf mehrere Ziele - den anderen Loss-Kandidaten im Vergleich \textit{nicht} vorzuziehen ist für beide Netzwerke im Hinblick auf die Ergebnisse auf den Testdaten. Dieses Zwischenergebnis soll in der weiteren Durchführung berücksichtigt werden, indem Kritikalitätsraum-abhängige Eigenschaften zur Optimierung in die Loss-Funktion eingebunden werden.
 
 
 
@@ -354,8 +367,24 @@ Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äqui
 \paragraph{Fit-Parametrisierung \gls{Evidenzbasierte neuronale Netze}} Zur Bewertung des Fits des \gls{Evidenzbasierte neuronale Netze} wird folgende Bewertung herangezogen. % Grundsätzlich liefert Herr Autenrieths Kritikalitätssoftware ein Modul zum attributweisen Raumvergleich in dem man dies zukünftig berücksichtigen könnte. 
 Es wird ein Original-Signalverlauf $y(x)$ zum vom Netz rekonstruierten $\hat{y}(x)$ abgebildet als Fehler-Signal $e(x)$: 
 
-\[
-e(x) = y(x) - \hat{y}(x) := 
+% \[
+% e(x) = y(x) - \hat{y}(x) := 
+% \underbrace{
+%   \underbrace{\frac{1}{\sigma \cdot \sqrt{2\pi}}}_{\text{Amplitude } A_1}
+%   \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
+% }_{\text{Gauss-Signal 1}}
+% - 
+% \underbrace{
+%   \underbrace{\frac{1}{\sigma \cdot \sqrt{2\pi}}}_{\text{Amplitude } A_2}
+%   \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
+% }_{\text{Gauss-Signal 2}}
+% \quad \text{mit } A_1 \geq A_2
+% \]
+
+{\small
+\begin{align}
+e(x)     &= y(x) - \hat{y}(x)
+& :=
 \underbrace{
   \underbrace{\frac{1}{\sigma \cdot \sqrt{2\pi}}}_{\text{Amplitude } A_1}
   \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
@@ -366,7 +395,22 @@ e(x) = y(x) - \hat{y}(x) :=
   \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
 }_{\text{Gauss-Signal 2}}
 \quad \text{mit } A_1 \geq A_2
-\]
+\\[1.0em]
+& & :=
+\underbrace{
+  \underbrace{A_1}
+  \cdot \mathbf{1}_{\{|x - x_1| \leq \delta,\, |y - y_1| \leq \delta\}}
+}_{\text{Hyperwürfel 1}}
+-
+\underbrace{
+  \underbrace{A_2}
+  \cdot \mathbf{1}_{\{|x - x_2| \leq \delta,\, |y - y_2| \leq \delta\}}
+}_{\text{Hyperwürfel 2}}
+\quad \text{mit } A_1 \geq A_2
+\end{align}
+}
+
+
 
 Aminis Modell ergibt die aleaotrische Varianz als inverse Varianz 
 
@@ -380,7 +424,10 @@ Ebenso die epistemische Varianz in Abhängigkeit vom Mittelwert des Signals
 \sigma^2_{\text{epistemisch}} = \frac{\beta}{\lambda(\alpha - 1)} \quad \text{für } \alpha > 1 \text{ nach Amini (5.2)}
 \]
 
-Eine der beiden Bedingungen ist als Vorwissen des Autors von Signalvergleichen mittels \gls{EvidentialDeepLearning} zum Abgleich eines Fits sinnvoll, um die Amplitude zum Fit abzuschätzen. Im Fall eines im späteren Experiment verwendeten Gauss-Signals ergibt sich der optimale Fit über $A$ zu eins. Abweichungen darunter sind ein Underfit für die Gesamtunsicherheit als Varianz, darüber ein Overfit für die Gesamtunsicherheit als Varianz. \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} werden tabellarisch eingeordnet. $e(x)$ quantifiziert damit den Fit für zu betrachtende Unsicherheitsarten über die Amplitude zur Signal-Klasse. 
+Eine der beiden Bedingungen ist als Vorwissen des Autors von Signalvergleichen mittels \gls{EvidentialDeepLearning} zum Abgleich einer guten Approximation sinnvoll, um die Amplitude zur Approximation abzuschätzen. Für das im Experiment verwendete Gauß-Signal ergibt sich die optimale Approximation bei einer Amplitude $A = 1$. Abweichungen von diesem Wert werden als Unterapproximation ($A < 1$), Überapproximation ($A > 1$) der Gesamtunsicherheit (interpretiert als additive Varianz nach (5.1)) gewertet. Gleiches gilt für den Hyperwürfel. \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} werden tabellarisch eingeordnet. $e(x)$ quantifiziert damit die Approximation für zu betrachtende Unsicherheitsarten über die Amplitude zur Signal-Klasse. 
+
+An dieser Stelle wurde der Under-, Over-, Fit Begriff diskutiert und für unpräzise empfunden, weil für die Unsicherheitsmassen $\mu$, \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} nicht unersucht wird, wie sich das Modell gegenüber einer dynamischen Veränderung der Sample-Zahl in Bezug auf Generalisierbarkeit, Robustheit in der Modellkomplexität verhält. Ziel ist es nach Ausarbeitung vielmehr, statische Signalzustände sowie Sample-Zahl-Variationen direkt zu approximieren und daraus Rückschlüsse auf die Unsicherheitsverteilung zu ziehen.
+
 
 \begin{table}[h!]
 \centering
@@ -388,9 +435,9 @@ Eine der beiden Bedingungen ist als Vorwissen des Autors von Signalvergleichen m
 \toprule
 \textbf{Modellverhalten} & \textbf{\gls{Aleatorische Unsicherheit}} & \textbf{\gls{Epistemische Unsicherheit}} & \textbf{Signalabdeckung} & \textbf{Risiko} \\
 \midrule
-\textbf{Unterapprox.} & Hoch / beliebig & Hoch    & Meist breit   & Ignoriert Muster \\
-\textbf{Approximatino}      & Realistisch     & Gering  & Angemessen    & Gut generalisierend \\
-\textbf{Überapprox.}  & Niedrig         & Gering  & Eng           & Übersicher, fehleranfällig \\
+\textbf{Unterapprox.}   & Hoch / beliebig & Hoch    & Meist breit   & Ignoriert Muster \\
+\textbf{Approximatino}  & Realistisch     & Gering  & Angemessen    & Gut generalisierend \\
+\textbf{Überapprox.}    & Niedrig         & Gering  & Eng           & Übersicher, fehleranfällig \\
 \bottomrule
 \end{tabular}
 \caption{\gls{Evidenzbasierte neuronale Netze} Modellverhalten und Unsicherheitsmerkmale in der Signalrekonstruktion}
@@ -440,9 +487,7 @@ Eine der beiden Bedingungen ist als Vorwissen des Autors von Signalvergleichen m
 % Aufgreifen in Diskussion unter Hergert als BNN Kritikalitätsabdeckung Ausblick ENN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-\paragraph{Konfiguration \glqq Prototyping \grqq} Feedforward-Netzwerk mit einer versteckten Schicht (\texttt{Dense(64, relu)}), Ausgangslayer \texttt{DenseNormalGamma}. Optimierer: Adam, Lernrate: $1\cdot10^{-3}$. Verlustfunktion: \texttt{EvidentialRegression} mit Regularisierung \texttt{coeff=1e-2}. Trainingsdauer: 100 Epochen. Trainingsdaten: Latin Hypercube Sampling (101 Samples), Rauschen: Gauß-verteiltes Rauschen mit $\sigma = 0{,}01$. Evaluation mittels RMSE auf Testdaten (80/20 Split), 5 Wiederholungen. Ausgaben: $\gamma$, $\nu$, $\alpha$, $\beta$ zur Berechnung von aleatorischer und epistemischer Varianz.
+\paragraph{Ausgangs-Konfiguration \glqq Prototyping \grqq} Um das UI für die Ausgangssituation des VaMAI Standardbeispiels zu erarbeiten, wurde folgende Ausgangs-Konfiguration mit Aminis \gls{Evidenzbasierte neuronale Netze} eingebunden. Feedforward-Netzwerk mit einer versteckten Schicht (\texttt{Dense(64, relu)}), Ausgangslayer \texttt{DenseNormalGamma}. Optimierer: Adam, Lernrate: $1\cdot10^{-3}$. Verlustfunktion: \texttt{EvidentialRegression} mit Regularisierung \texttt{coeff=1e-2}. Trainingsdauer: 100 Epochen. Trainingsdaten: Latin Hypercube Sampling (101 Samples), Rauschen: Gauß-verteiltes Rauschen mit $\sigma = 0{,}01$. Evaluation mittels RMSE auf Testdaten (80/20 Split), 5 Wiederholungen. Ausgaben: $\gamma$, $\nu$, $\alpha$, $\beta$ zur Berechnung von aleatorischer und epistemischer Varianz.
 
 \begin{figure}[!ht]
   \centering
@@ -450,7 +495,7 @@ Eine der beiden Bedingungen ist als Vorwissen des Autors von Signalvergleichen m
   \caption{R Grundl. Ausgangs-UI Kritikalität, Varianz total, aleat., epist.}
 \end{figure}
 
-Vereinfacht man die Signal-Parametrisierung zunächst stark zu einer Gauss-Funktion in einer Domäne 10 LE x 10 LE x 1 LE
+\paragraph{Ausgangsfunktionen} Allgemein wurde das VaMAI Standardbeispiel auf zwei Funktionen reduziert zur Untersuchung in einer Domäne 10 LE x 10 LE x 1 LE: Erstens eine Gauss-Funktion, 
 
 \[
 f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(y - \mu_y)^2}{2\sigma_y^2} \right) \right)
@@ -461,14 +506,136 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
 \]
 
 \[
-\Rightarrow \quad f(x, y) = \exp\left( -\frac{(x - 5)^2 + (y - 5)^2}{2} \right)
+\Rightarrow \quad f(x, y) = \exp\left( -\frac{(x - 5)^2 + (y - 5)^2}{2} \right),
 \]
 
-, wählt die unter Amini vorgeschlagene Trainings-Parametrisierung für komplexere Fälle mit zwei vollverbundenen Schichten, 128 Neuronen, 2000 Epochen, jeweils als Trainingskonfiguration 2 statt einer vollverbundenen Schicht, 64 Neuronen, 500 Epochen als Trainingskonfiguration 1, erhält man folgende zielführende Dynamik bereits ohne größere Störfunktion. 
+Diese Funktion hat ihr Maximum bei $(5, 5)$ und fällt exponentiell ab, erreicht jedoch nie exakt den Wert Null. Zweitens ein Hyperwürfel,
+
+\[
+f(x, y) =
+\begin{cases}
+1, & \text{wenn } |x - 5| \leq \delta \text{ und } |y - 5| \leq \delta \\
+0, & \text{sonst}
+\end{cases}
+\]
+
+Hierbei ist $\delta > 0$ die Halbseitenlänge des Würfels. Für $\delta = 0{,}5$ ergibt sich ein Quadrat um den Punkt $(5, 5)$ im Bereich $[4{,}5, 5{,}5] \times [4{,}5, 5{,}5]$.
+
+\paragraph{Ausgangs-Sampling} Das ursprüngliche Latin-Hypercube-Sampling soll in der Samplezahl varriert werden mit $n = { n_{min}:=10, n_{frac{\Delta}{2}}, n_{\Delta} }$. $n_{\Delta}$ als Maximum soll abhängig von der Konvergenz der Loss-Funktion sein, die sich an diesem Punkt nicht mehr signifikant ändert. Dieser wird durch Try-and-Error-Versuche bestimmt aus vorgegebenen Samplegrößen zum Vereinfachen des Experiments, $n = \{ 10, 50, 100, 150, 200 \}$. $n_{\frac{\Delta}{2}}$ entspricht dem intervallhalbierenden Wert von $\left[ n_{\min},\; n_{\Delta} \right]$. Im Experiment werden zuerst $n_{\min}$, dann anhand der Konvergenzrichtung sowie vorgegebenen $n$, $n_{\Delta}$ bestimmt und schließlich $n_{\frac{\Delta}{2}}$.
+
+Für jede gewählte Samplesize $n$ wurde das Modell über eine feste Anzahl Epochen trainiert. Nach jeder Epoche wurden der Trainings- und der Validierungsverlust aufgezeichnet. Die Epoche mit dem minimalen Validierungsverlust wurde als beste Epoche bestimmt. Je höher die Epoche, umso vergleichbarer konvergieren Trainings- und Validierungsloss. Je mehr Trainings- und Validierungsloss konvergieren, umso mehr wird dem Modell ein generalisbierbarer Fit an die Ausgangsdaten zugeordnet. 
+
+\paragraph{Under-, Over-, Fit-Defintion} Der Begriff \emph{Fit} beschreibt, wie gut ein Modell die zugrunde liegende Datenverteilung approximiert. Mathematisch versucht das Modell $f_\theta(x)$, die unbekannte Zielfunktion $y = g(x)$ möglichst genau zu approximieren. Ein guter Fit bedeutet, dass sowohl der Trainings-Loss als auch der Validierungs-Loss niedrig sind und ähnliche Werte aufweisen. Der Trainings-Loss $L_{\text{train}}$ misst den Fehler zwischen den Modellvorhersagen $\hat{y}$ und der Ground Truth $y$ auf den Trainingsdaten, während der Validierungs-Loss $L_{\text{val}}$ den Fehler auf einem unabhängigen Validierungsdatensatz angibt. 
+
+Sind beide Loss-Werte hoch, liegt ein \textit{Unterfit} vor, das Modell hat also die Struktur der Daten nicht erfasst. Sind beide Werte niedrig und ähnlich groß, spricht man von einem guten Fit, da das Modell sowohl die Trainingsdaten gut approximiert als auch auf neuen Daten gut generalisiert. Ist der Trainings-Loss niedrig, der Validierungs-Loss jedoch deutlich höher, liegt ein \gls{Überfit} oder \gls{Overfit} vor; das Modell hat sich zu stark an die Trainingsdaten angepasst und generalisiert schlechter.
+
+Die \emph{Ground Truth} bezeichnet die wahren Zielwerte $y$ im Datensatz, gegen die die Vorhersagen $\hat{y}$ verglichen werden. In diesem Experiment sind dies analytische Werte aus einer bekannten Funktion wie dem Gauß-Signal, dem Hyperwürfel-Signal. Sie dienen als Referenz für die Berechnung von Loss und RMSE.
+
+In diesem Experiment beschreibt der \emph{Fit} die Übereinstimmung zwischen den Modellvorhersagen $\hat{y}$ und der bekannten Ground Truth $y$, gemessen durch den Trainings- und Validierungs-Loss. Ein guter Fit liegt vor, wenn beide Loss-Werte niedrig und ähnlich sind, was auf eine gelungene Approximation der Ground-Truth-Funktion bei gleichzeitiger Generalisierungsfähigkeit hinweist.
+
+
+\vspace{0.125\baselineskip}
+\noindent
+
+Im Folgenden ist zwischen \textit{Approximation} und \textit{Fit} zu unterscheiden. Approximiert wird der Signalwert $y$ als Größe abhängig in VaMAI von der aus meiner Projektperspektive offen parametrisierten Kritiaklität $k(\dots)$, die vom \gls{Evidenzbasierte neuronale Netze} mittels $\gamma = \mu$ direkt als Netz-Ausgabe-Parameter geschätzt wird. Hier lässt sich eine direkte Fehlerapproximation des Original-Signals als Ground-Truth mit dem Fehler-Signal durchführen wie durch die vorherigen Amplitudengleichungen für Gauss- und Hyperwürfel angedeutet. Diese Signalapproximation wurde im Projektverlauf getrennt vom Fit-Begriff. Der wie oben beschrieben erstens von der Loss-Konvergenz, zweitens von der Abweichung einer Fehlermetrik wie $\textit{RMSE}$ zur Ground-Truth abhängig gemacht wurde. Dieser Unterschied soll im Folgenden durch die ermittelten optimalen Samplegrößen aus dem Experiment im Abgleich zur Konvergenz aus zur Vereinfachung fest vorgegebenen Set $n = \{ 10, 50, 100, 150, 200 \} \rightarrow \left{ n_{\min}, n_{\frac{\Delta}{2}}, n_{\Delta} \right}$ zugeordnet werden. Dazu wird die rechte Seite der Zurodnung den drei Ergbnisgrößen des Netzes - $\mu = \gamma$ als Mittelwert, $\sigma^{2}_{alea}$ als aleatorische Unsicherheit, $\sigma^{2}_{epist}$ als epistemische Unsicherheit - über den Raum zugeordnet. Es wird für jede Konfiguration $\{\text{Signal},\text{Epoche},\text{Neuronen},\text{Schichten} \}$ eine $3\times3$-Matrix der Ergebnisoberflächen, sowie seperat des assoziierten Loss zur Bewertung abgebildet.
+
+\vspace{0.125\baselineskip}
+\noindent
+
+Dazu wird die Ausgangskonfiguration wie folgt überschrieben.
+
+\vspace{0.125\baselineskip}
+\noindent
+
+\paragraph{Überschriebene Ausgangskonfiguration 1} Trainings-Parametrisierung mit einer vollverbundenen Schicht, 64 Neuronen, 500 Epochen.
+
+\paragraph{Überschriebene Ausgangskonfiguration 2} Aminis vorgeschlagene Trainings-Parametrisierung für komplexere Fälle mit zwei vollverbundenen Schichten, 128 Neuronen, 2000 Epochen.
+
+\vspace{0.125\baselineskip}
+\noindent
+
+Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man folgende zielführende Dynamik für Gauss-Funktion, Hyperwürfel-Funktion bereits ohne größere Störfunktion mittels Rauschen.
+
+\paragraph{Loss Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}$}
+
+% \begin{figure}[!ht]
+%   \centering
+
+%   % Spaltenüberschriften
+%   \begin{minipage}{0.05\textwidth}
+%     \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{$\gamma = \mu$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{Aleatorische Unsicherheit}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{Epistemische Unsicherheit}
+%   \end{minipage}
+
+%   \vspace{0.3cm}
+
+%   % Zeile 1: n_min
+%   \begin{minipage}{0.05\textwidth}
+%     \centering\rotatebox{90}{$n_{\mathrm{min}}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y11.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y12.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y13.png}
+%   \end{minipage}
+
+%   \vspace{0.3cm}
+
+%   % Zeile 2: n_Delta/2
+%   \begin{minipage}{0.05\textwidth}
+%     \centering\rotatebox{90}{$n_{\Delta}/2$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y21.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y22.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y23.png}
+%   \end{minipage}
+
+%   \vspace{0.3cm}
+
+%   % Zeile 3: n_Delta
+%   \begin{minipage}{0.05\textwidth}
+%     \centering\rotatebox{90}{$n_{\Delta}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y31.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y32.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y33.png}
+%   \end{minipage}
+
+%   \caption{Vergleich der Vorhersagen und Unsicherheiten für $n_{\mathrm{min}}$, $n_{\Delta}/2$ und $n_{\Delta}$.}
+%   \label{fig:matrix_plot}
+% \end{figure}
 
 
 
-\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit} Zu sehen ist, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Underfit für ein einfaches Signal durch die Anzahl gewählter Epochen, Layer, Anzahl Neuronen äußert. Visuell ist es insbesondere durch ein Austreten aus der ursprünglichen Signalform erkennbar. Das Ergebnis der Trainingskonfiguration 2 ist eine minimale wellenförmige Gesamtunsicherheitsmasse diagonal unter der Gesamtzahl der Samples, die durch den ganzen Raum von den Minima über das Maxima des ursprünglichen Signals gesetzt wird. Es wird deutlich, dass Aminis Vorschlag der Trainingskonfiguration 2 für zweidimensionale Fälle im dreidimensionalen Fall mindestens durch Trainingskonfiguration 1 ersetzt werden sollte, um Ergebnisse zu erhalten, welche dem Original-Signal als Ground Truth in der Verteilung nahe kommen. Unter der Trainingskonfiguration 1 lässt sich behaupten, dass vorliegendes einfaches Gauss-Signal durch die erkannten Unsicherheiten in seiner Originalform annähernd bestimmt werden kann. Zwei Schichten, 128 Neuronen werden in recherchierter Literatur für komplexe Fälle erwähnt. % Quelle
+\paragraph{Interpretation Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}$}
+
+
+
+
+
+% Zu sehen ist, dass bei gleicher unterlegter Varianzverteilung sich eine Unterapproximation für ein einfaches Gauss-Signal durch die Anzahl gewählter Epochen, Layer, Anzahl Neuronen äußert. Visuell ist es insbesondere durch ein Austreten aus der ursprünglichen Signalform erkennbar. Das Ergebnis der Trainingskonfiguration 2 ist eine minimale wellenförmige Gesamtunsicherheitsmasse diagonal unter der Gesamtzahl der Samples, die durch den ganzen Raum von den Minima über das Maxima des ursprünglichen Signals gesetzt wird. Es wird deutlich, dass Aminis Vorschlag der Trainingskonfiguration 2 für zweidimensionale Fälle im dreidimensionalen Fall mindestens durch Trainingskonfiguration 1 ersetzt werden sollte, um Ergebnisse zu erhalten, welche dem Original-Signal als Ground Truth in der Verteilung nahe kommen. Unter der Trainingskonfiguration 1 lässt sich behaupten, dass vorliegendes einfaches Gauss-Signal durch die erkannten Unsicherheiten in seiner Originalform annähernd bestimmt werden kann. Zwei Schichten, 128 Neuronen werden in recherchierter Literatur für komplexe Fälle erwähnt. % Quelle
 
 % \begin{figure}[!ht]
 %   \centering
@@ -526,6 +693,12 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 1}
   \label{fig:three_subfigures1}
 \end{figure}
+
+
+
+
+\paragraph{Interpretation Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion, Unterapproximation zu Approximation}
+
 
 
 
@@ -632,8 +805,21 @@ f(x, y) = A \cdot \exp\left( -\left( \frac{(x - \mu_x)^2}{2\sigma_x^2} + \frac{(
 
 Folgendes Multi-3D-Signal zweier bereits mit Unsicherheit belegter Gauss-Signale 
 
+% --- Multi-Gauss ---
 \[
-F(x, y) = 2 \cdot \exp\left( -\frac{(x - 9)^2}{2 \cdot 1^2} - \frac{(y - 5)^2}{2 \cdot 1^2} \right) + \exp\left( -\frac{(x - 2)^2}{2 \cdot 0.5^2} - \frac{(y - 2)^2}{2 \cdot 0.5^2} \right) + \exp\left( -\frac{(x - 7)^2}{2 \cdot 1^2} - \frac{(y - 7)^2}{2 \cdot 1^2} \right)
+F_{\text{Gauss}}(x, y) =
+\exp\!\left( -\frac{(x - 2)^2}{2 \cdot 0.5^2} - \frac{(y - 2)^2}{2 \cdot 0.5^2} \right)
++ \exp\!\left( -\frac{(x - 6)^2}{2 \cdot 0.5^2} - \frac{(y - 6)^2}{2 \cdot 0.5^2} \right)
+\]
+
+% --- Multi-Hypercube ---
+\[
+F_{\text{Hyperwürfel}}(x, y) =
+\begin{cases}
+1, & \text{wenn } |x - 2| \leq 0.5 \ \text{und} \ |y - 2| \leq 0.5, \\
+1, & \text{wenn } |x - 6| \leq 0.5 \ \text{und} \ |y - 6| \leq 0.5, \\
+0, & \text{sonst}
+\end{cases}
 \]
 
 erzielte auf bisheriger Grundlage mit folgenden Parametrisierungen Underfits. 

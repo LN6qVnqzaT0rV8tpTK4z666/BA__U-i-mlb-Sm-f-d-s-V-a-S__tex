@@ -57,3 +57,5 @@ main.nlo
 presentations/mtheme
 crop-logos.sh
 **/**/*Zone.Identifier
+#
+**/**/*.html
