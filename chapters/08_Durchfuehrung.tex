@@ -573,162 +573,607 @@ Dazu wird die Ausgangskonfiguration wie folgt überschrieben.
 
 Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man folgende zielführende Dynamik für Gauss-Funktion, Hyperwürfel-Funktion bereits ohne größere Störfunktion mittels Rauschen.
 
-\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
+
+
+% Reserviere genug Platz; passe ggf. an (z.B. 24 Zeilen)
+\needspace{24\baselineskip}
+
+\begin{samepage}
+\begin{minipage}{\textwidth}
+
+\noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion,
+Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
+
+% ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
+
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$\gamma=\mu$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{Aleatorische Unsicherheit}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{Epistemische Unsicherheit}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 1
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\min}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n100_1.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n100_2.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n100_3.png}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 2
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n150_1.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n150_2.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n150_3.png}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 3
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\Delta}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n200_1.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n200_2.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y1_n200_3.png}\end{minipage}
+
+% Eine EINZIGE Caption für alles:
+\captionof{figure}{Vergleich der evidentiellen Ausgaben für $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:matrix_plot_gauss}
+
+% ---- wenn du weitere Reihen/Gruppen mit eigener Caption willst, wiederhole das Raster und setze eine zweite \captionof{figure}{...} ----
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\mathrm{min}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\Delta}$}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile: Pfad 100, 150, 200
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{Ausgabe}\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output2__gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-09__n100__run2.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output2__gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-09__n150__run3.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output2__gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-09__n200__run3.pdf}
+\end{minipage}
+
+\caption{Vergleich des Trainings- und Validierungsloss für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:matrix_plot}
+
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\mathrm{min}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\Delta}$}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile: Plots 100, 150, 200
+\begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$\hat{y} \ \text{vs.}\  y_{\mathrm{true}}$}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output2__gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-09__n100.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output2__gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-09__n150.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output2__gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-09__n200.pdf}
+\end{minipage}
+
+% Beschriftung
+\captionof{figure}{Vergleich Ground-Truth $y_{\mathrm{true}}$ zu Vorhersage $\hat{y}$ für drei Trainingsgrößen: $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:pred_vs_gt_matrix}
+
+\end{minipage}
+\end{samepage}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{samepage}
+\begin{minipage}{\textwidth}
+
+\noindent\textbf{Interpretation, Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion,
+Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
+
+Das Signal wird unterapproximiert.
+
+\end{minipage}
+\end{samepage}
 
 
 
-\begin{figure}[!ht]
-  \centering
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  % Spaltenüberschriften
-  \begin{minipage}{0.05\textwidth}
-    \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{$\gamma = \mu$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{Aleatorische Unsicherheit}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{Epistemische Unsicherheit}
-  \end{minipage}
+% Reserviere genug Platz; passe ggf. an (z.B. 24 Zeilen)
+\needspace{24\baselineskip}
 
-  \vspace{0.3cm}
+\begin{samepage}
+\begin{minipage}{\textwidth}
 
-  % Zeile 1: n_min
-  \begin{minipage}{0.05\textwidth}
-    \centering\rotatebox{90}{$n_{\mathrm{min}}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y21.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y22.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y23.png}
-  \end{minipage}
+\noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
+Unterapproximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
 
-  \vspace{0.3cm}
+% ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
 
-  % Zeile 2: n_Delta/2
-  \begin{minipage}{0.05\textwidth}
-    \centering\rotatebox{90}{$n_{\frac{\Delta}{2}}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y21.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y22.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y23.png}
-  \end{minipage}
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$\gamma=\mu$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{Aleatorische Unsicherheit}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{Epistemische Unsicherheit}\end{minipage}
 
-  \vspace{0.3cm}
+\vspace{0.125cm}
 
-  % Zeile 3: n_Delta
-  \begin{minipage}{0.05\textwidth}
-    \centering\rotatebox{90}{$n_{\Delta}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y31.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y32.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y33.png}
-  \end{minipage}
+% Zeile 1
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\min}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y21.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y22.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y23.png}\end{minipage}
 
-  \caption{Vergleich der evidentiellen Ausgaben für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
-  \label{fig:matrix_plot}
-\end{figure}
+\vspace{0.125cm}
 
+% Zeile 2
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y21.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y22.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y23.png}\end{minipage}
 
+\vspace{0.125cm}
 
-\begin{figure}[!ht]
-  \centering
+% Zeile 3
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\Delta}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y31.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y32.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y33.png}\end{minipage}
 
-  % Spaltenüberschriften
-  \begin{minipage}{0.05\textwidth}
-    \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{$n_{\mathrm{min}}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{$n_{\frac{\Delta}{2}}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{$n_{\Delta}$}
-  \end{minipage}
+% Eine EINZIGE Caption für alles:
+\captionof{figure}{Vergleich der evidentiellen Ausgaben für $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:matrix_plot_gauss}
 
-  \vspace{0.3cm}
+% ---- wenn du weitere Reihen/Gruppen mit eigener Caption willst, wiederhole das Raster und setze eine zweite \captionof{figure}{...} ----
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\mathrm{min}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\Delta}$}\end{minipage}
 
-  % Zeile 1: n_min
-  \begin{minipage}{0.05\textwidth}
-    \centering\rotatebox{90}{$\text{Loss }\mathcal{L}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y21.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y22.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y23.png}
-  \end{minipage}
+\vspace{0.125cm}
 
-  \caption{Vergleich des Trainings- und Validierungsloss für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
-  \label{fig:matrix_plot}
-\end{figure}
+% Zeile: Pfad 100, 150, 200
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{Ausgabe}\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n100__run1.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n150__run2.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n200__run4.pdf}
+\end{minipage}
 
+\caption{Vergleich des Trainings- und Validierungsloss für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:matrix_plot}
+
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\mathrm{min}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\Delta}$}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile: Plots 100, 150, 200
+\begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$\hat{y} \ \text{vs.}\  y_{\mathrm{true}}$}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n100.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n150.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n200.pdf}
+\end{minipage}
+
+% Beschriftung
+\captionof{figure}{Vergleich Ground-Truth $y_{\mathrm{true}}$ zu Vorhersage $\hat{y}$ für drei Trainingsgrößen: $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:pred_vs_gt_matrix}
+
+\end{minipage}
+\end{samepage}
 
 
-\begin{figure}[!ht]
-  \centering
-
-  % Spaltenüberschriften
-  \begin{minipage}{0.05\textwidth}
-    \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{$n_{\mathrm{min}}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{$n_{\frac{\Delta}{2}}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering \textbf{$n_{\Delta}$}
-  \end{minipage}
-
-  \vspace{0.3cm}
-
-  % Zeile 1: n_min
-  \begin{minipage}{0.05\textwidth}
-    \centering\rotatebox{90}{$\text{Loss }\mathcal{L}$}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y21.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y22.png}
-  \end{minipage}%
-  \begin{minipage}{0.3\textwidth}
-    \centering\includegraphics[width=\linewidth]{../figures/y23.png}
-  \end{minipage}
-
-  \caption{Vergleich der Plots Ground-Truth zu Vorhersage für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
-  \label{fig:matrix_plot}
-\end{figure}
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+% \begin{samepage}
+% \begin{minipage}
+
+% \textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
+
+% \begin{figure}[!ht]
+%   \centering
+
+%   % Spaltenüberschriften
+%   \begin{minipage}{0.05\textwidth}
+%     \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{$\gamma = \mu$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{Aleatorische Unsicherheit}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{Epistemische Unsicherheit}
+%   \end{minipage}
+
+%   \vspace{0.125cm}
+
+%   % Zeile 1: n_min
+%   \begin{minipage}{0.05\textwidth}
+%     \centering\rotatebox{90}{$n_{\mathrm{min}}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y21.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y22.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y23.png}
+%   \end{minipage}
+
+%   \vspace{0.125cm}
+
+%   % Zeile 2: n_Delta/2
+%   \begin{minipage}{0.05\textwidth}
+%     \centering\rotatebox{90}{$n_{\frac{\Delta}{2}}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y21.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y22.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y23.png}
+%   \end{minipage}
+
+%   \vspace{0.125cm}
+
+%   % Zeile 3: n_Delta
+%   \begin{minipage}{0.05\textwidth}
+%     \centering\rotatebox{90}{$n_{\Delta}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y31.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y32.png}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/y33.png}
+%   \end{minipage}
+
+%   \caption{Vergleich der evidentiellen Ausgaben für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+%   \label{fig:matrix_plot}
+
+%   %\centering
+
+%   % Spaltenüberschriften
+%   \begin{minipage}{0.05\textwidth}
+%     \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{$n_{\mathrm{min}}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{$n_{\frac{\Delta}{2}}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{$n_{\Delta}$}
+%   \end{minipage}
+
+%   \vspace{0.125cm}
+
+%   % Zeile 1: n_min
+%   \begin{minipage}{0.05\textwidth}
+%     \centering\rotatebox{90}{$\text{Loss }\mathcal{L}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n100__run1.pdf}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n150__run2.pdf}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n200__run4.pdf}
+%   \end{minipage}
+
+%   \caption{Vergleich des Trainings- und Validierungsloss für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+%   \label{fig:matrix_plot}
+
+%   %\centering
+
+%   % Spaltenüberschriften
+%   \begin{minipage}{0.05\textwidth}
+%     \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{$n_{\mathrm{min}}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{$n_{\frac{\Delta}{2}}$}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering \textbf{$n_{\Delta}$}
+%   \end{minipage}
+
+%   \vspace{0.125cm}
+
+%   % Zeile 1: n_min
+%   \begin{minipage}{0.05\textwidth}
+%     \centering\rotatebox{90}{$\hat{y} \quad\text{vs.}\quad y_{\mathrm{true}}$}
+%   \end{minipage}%     
+%   \begin{minipage}{0.3\textwidth} 
+%     \centering\includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n100.pdf}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n150.pdf}
+%   \end{minipage}%
+%   \begin{minipage}{0.3\textwidth}
+%     \centering\includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n200.pdf}
+%   \end{minipage}
+
+%   \caption{Vergleich der Plots Ground-Truth $ y_{\mathrm{true}}$ zu Vorhersage $\hat{y}$ für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+%   \label{fig:matrix_plot}
+% \end{figure}
+
+% \end{minipage}
+% \end{samepage}
 
 
-\paragraph{Interpretation Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
 
+% Reserviere genug Platz; passe ggf. an (z.B. 24 Zeilen)
+\needspace{24\baselineskip}
+
+\begin{samepage}
+\begin{minipage}{\textwidth}
+
+\noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion,
+Überapproximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
+
+% ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
+
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$\gamma=\mu$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{Aleatorische Unsicherheit}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{Epistemische Unsicherheit}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 1
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\min}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y21.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y22.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y23.png}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 2
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y21.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y22.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y23.png}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 3
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\Delta}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y31.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y32.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y33.png}\end{minipage}
+
+% Eine EINZIGE Caption für alles:
+\captionof{figure}{Vergleich der evidentiellen Ausgaben für $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:matrix_plot_gauss}
+
+% ---- wenn du weitere Reihen/Gruppen mit eigener Caption willst, wiederhole das Raster und setze eine zweite \captionof{figure}{...} ----
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\mathrm{min}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\Delta}$}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile: Pfad 100, 150, 200
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{Ausgabe}\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n100__run1.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n150__run2.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n200__run4.pdf}
+\end{minipage}
+
+\caption{Vergleich des Trainings- und Validierungsloss für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:matrix_plot}
+
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\mathrm{min}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\Delta}$}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile: Plots 100, 150, 200
+\begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$\hat{y} \ \text{vs.}\  y_{\mathrm{true}}$}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n100.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n150.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n200.pdf}
+\end{minipage}
+
+% Beschriftung
+\captionof{figure}{Vergleich Ground-Truth $y_{\mathrm{true}}$ zu Vorhersage $\hat{y}$ für drei Trainingsgrößen: $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:pred_vs_gt_matrix}
+
+\end{minipage}
+\end{samepage}
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% Reserviere genug Platz; passe ggf. an (z.B. 24 Zeilen)
+\needspace{24\baselineskip}
+
+\begin{samepage}
+\begin{minipage}{\textwidth}
+
+\noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
+Überapproximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
+
+% ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
+
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$\gamma=\mu$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{Aleatorische Unsicherheit}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{Epistemische Unsicherheit}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 1
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\min}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y21.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y22.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y23.png}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 2
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y21.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y22.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y23.png}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile 3
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\Delta}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y31.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y32.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y33.png}\end{minipage}
+
+% Eine EINZIGE Caption für alles:
+\captionof{figure}{Vergleich der evidentiellen Ausgaben für $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:matrix_plot_gauss}
+
+% ---- wenn du weitere Reihen/Gruppen mit eigener Caption willst, wiederhole das Raster und setze eine zweite \captionof{figure}{...} ----
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\mathrm{min}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\Delta}$}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile: Pfad 100, 150, 200
+\begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{Ausgabe}\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n100__run1.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n150__run2.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n200__run4.pdf}
+\end{minipage}
+
+\caption{Vergleich des Trainings- und Validierungsloss für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:matrix_plot}
+
+% Spaltenüberschriften
+\begin{minipage}{0.05\textwidth}\vspace{0.5cm}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\mathrm{min}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\frac{\Delta}{2}}$}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering \textbf{$n_{\Delta}$}\end{minipage}
+
+\vspace{0.125cm}
+
+% Zeile: Plots 100, 150, 200
+\begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$\hat{y} \ \text{vs.}\  y_{\mathrm{true}}$}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n100.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n150.pdf}
+\end{minipage}%
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n200.pdf}
+\end{minipage}
+
+% Beschriftung
+\captionof{figure}{Vergleich Ground-Truth $y_{\mathrm{true}}$ zu Vorhersage $\hat{y}$ für drei Trainingsgrößen: $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+\label{fig:pred_vs_gt_matrix}
+
+\end{minipage}
+\end{samepage}
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -760,42 +1205,37 @@ Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man
 %   \label{fig:three_subfigures1}
 % \end{figure}
 
-\begin{figure}[!ht]
-  \centering
+% \begin{figure}[!ht]
+%   \centering
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y21.png}
-    \caption{Konfiguration 1, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
-    \label{fig:bild21}
-  \end{subfigure}
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y21.png}
+%     \caption{Konfiguration 1, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+%     \label{fig:bild21}
+%   \end{subfigure}
 
-  \vspace{0.5em}  % Kleiner Abstand zwischen den Bildern
+%   \vspace{0.5em}  % Kleiner Abstand zwischen den Bildern
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y22.png}
-    \caption{Konfiguration 1, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-    \label{fig:bild22}
-  \end{subfigure}
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y22.png}
+%     \caption{Konfiguration 1, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+%     \label{fig:bild22}
+%   \end{subfigure}
 
-  \vspace{0.5em}
+%   \vspace{0.5em}
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y23.png}
-    \caption{Konfiguration 1, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
-    \label{fig:bild23}
-  \end{subfigure}
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y23.png}
+%     \caption{Konfiguration 1, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+%     \label{fig:bild23}
+%   \end{subfigure}
 
-  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 1}
-  \label{fig:three_subfigures1}
-\end{figure}
-
-
-
-
-\paragraph{Interpretation Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion, Unterapproximation zu Approximation}
+%   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 1}
+%   \label{fig:three_subfigures1}
+% \end{figure}
 
 
 
@@ -825,77 +1265,111 @@ Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man
 %   \label{fig:three_subfigures2}
 % \end{figure}
 
-\begin{figure}[!ht]
-  \centering
+% \begin{figure}[!ht]
+%   \centering
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y31.png}
-    \caption{Konfiguration 2, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
-    \label{fig:bild21}
-  \end{subfigure}
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y31.png}
+%     \caption{Konfiguration 2, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+%     \label{fig:bild21}
+%   \end{subfigure}
 
-  \vspace{0.5em}
+%   \vspace{0.5em}
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y32.png}
-    \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-    \label{fig:bild22}
-  \end{subfigure}
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y32.png}
+%     \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+%     \label{fig:bild22}
+%   \end{subfigure}
 
-  \vspace{0.5em}
+%   \vspace{0.5em}
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y33.png}
-    \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
-    \label{fig:bild23}
-  \end{subfigure}
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y33.png}
+%     \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+%     \label{fig:bild23}
+%   \end{subfigure}
 
-  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 2}
-  \label{fig:three_subfigures2}
-\end{figure}
+%   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 2}
+%   \label{fig:three_subfigures2}
+% \end{figure}
 
-\paragraph{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 2} 
-
-
-
-\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit} Zu sehen ist unter Konfiguration 3, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Overfit für ein einfaches Signal durch die doppelte Anzahl gewählter Epochen bei gleicher Anzahl Layer, Anzahl Neuronen wie im Fit-Szenario äußert. Visuell ist es insbesondere durch ein Austreten der epistemischen Varianz aus der ursprünglichen Signalform erkennbar. Das Ergebnis beruht auf der Trainingskonfiguration 1 mit doppelter Epochenzahl von viertausend. Es wird visuell deutlich, dass die Ground Truth der epistemischen Varianz im Original-Signal, welche durch die Obergrenze bei eins limitiert ist, durch einen Overfit überkonfident auf 1,4 approximiert wird. Der vorhandene Sample-Punkt auf der Spitze des Gauss-Signals als gesampletes Maximum des Original-Signals wird überschritten. Eine optimale Epochenzahl für einen Fit für das einzelne 3D-Gauss-Signal lässt sich so auf den Bereich zwischen 2000 und 4000 Epochen mindestens aus diesen Try-And-Error-Versuchen eingrenzen.
+% \paragraph{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 2} 
 
 
 
-\begin{figure}[!ht]
-  \centering
+% \paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit} Zu sehen ist unter Konfiguration 3, dass bei gleicher unterlegter Varianzverteilung als Hyperwürfel sich ein Overfit für ein einfaches Signal durch die doppelte Anzahl gewählter Epochen bei gleicher Anzahl Layer, Anzahl Neuronen wie im Fit-Szenario äußert. Visuell ist es insbesondere durch ein Austreten der epistemischen Varianz aus der ursprünglichen Signalform erkennbar. Das Ergebnis beruht auf der Trainingskonfiguration 1 mit doppelter Epochenzahl von viertausend. Es wird visuell deutlich, dass die Ground Truth der epistemischen Varianz im Original-Signal, welche durch die Obergrenze bei eins limitiert ist, durch einen Overfit überkonfident auf 1,4 approximiert wird. Der vorhandene Sample-Punkt auf der Spitze des Gauss-Signals als gesampletes Maximum des Original-Signals wird überschritten. Eine optimale Epochenzahl für einen Fit für das einzelne 3D-Gauss-Signal lässt sich so auf den Bereich zwischen 2000 und 4000 Epochen mindestens aus diesen Try-And-Error-Versuchen eingrenzen.
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y41.png}
-    \caption{Konfiguration 3, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
-    \label{fig:bild31}
-  \end{subfigure}
 
-  \vspace{0.5em}
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y42.png}
-    \caption{Konfiguration 3, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-    \label{fig:bild32}
-  \end{subfigure}
+% \begin{figure}[!ht]
+%   \centering
 
-  \vspace{0.5em}
+%   % -- nur für die kleinen Captions linksbündig --
+%   \begingroup
+%   \captionsetup{justification=raggedright,singlelinecheck=false}
 
-  \begin{subfigure}[t]{\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y43.png}
-    \caption{Konfiguration 3, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
-    \label{fig:bild33}
-  \end{subfigure}
+%   \begin{minipage}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{../figures/y41.png}
+%     \caption*{Konfiguration 3, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+%     \label{fig:bild31}
+%   \end{minipage}\hfill
+%   \begin{minipage}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{../figures/y42.png}
+%     \caption*{Konfiguration 3, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+%     \label{fig:bild32}
+%   \end{minipage}\hfill
+%   \begin{minipage}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{../figures/y43.png}
+%     \caption*{Konfiguration 3, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+%     \label{fig:bild33}
+%   \end{minipage}
+%   \endgroup
+%   % -- ab hier wieder Standard --
 
-  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 3}
-  \label{fig:three_subfigures3}
-\end{figure}
+%   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 3}
+%   \label{fig:three_subfigures3}
+% \end{figure}
+
+
+
+% \begin{figure}[!ht]
+%   \centering
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y41.png}
+%     \caption{Konfiguration 3, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+%     \label{fig:bild31}
+%   \end{subfigure}
+
+%   \vspace{0.5em}
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y42.png}
+%     \caption{Konfiguration 3, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+%     \label{fig:bild32}
+%   \end{subfigure}
+
+%   \vspace{0.5em}
+
+%   \begin{subfigure}[t]{\textwidth}
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{../figures/y43.png}
+%     \caption{Konfiguration 3, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+%     \label{fig:bild33}
+%   \end{subfigure}
+
+%   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 3}
+%   \label{fig:three_subfigures3}
+% \end{figure}
 
 
 
@@ -955,33 +1429,32 @@ Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherhe
 \begin{figure}[!ht]
   \centering
 
-  \begin{subfigure}[t]{\textwidth}
+  % Erstes Bild: Ground Truth
+  \begin{minipage}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y51.png}
-    \caption{Konfiguration 4, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+    \includegraphics[width=\linewidth]{../figures/y51.png}
+    \caption*{Konfiguration 4, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
     \label{fig:bild41}
-  \end{subfigure}
-
-  \vspace{0.5em}
-
-  \begin{subfigure}[t]{\textwidth}
+  \end{minipage}
+  \hfill
+  % Zweites Bild: Aleatorische Unsicherheit
+  \begin{minipage}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y52.png}
-    \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+    \includegraphics[width=\linewidth]{../figures/y52.png}
+    \caption*{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
     \label{fig:bild42}
-  \end{subfigure}
-
-  \vspace{0.5em}
-
-  \begin{subfigure}[t]{\textwidth}
+  \end{minipage}
+  \hfill
+  % Drittes Bild: Epistemische Unsicherheit
+  \begin{minipage}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y53.png}
-    \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \includegraphics[width=\linewidth]{../figures/y53.png}
+    \caption*{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
     \label{fig:bild43}
-  \end{subfigure}
+  \end{minipage}
 
   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 4}
-  \label{fig:three_subfigures3}
+  \label{fig:three_subfigures4}
 \end{figure}
 
 
@@ -1146,33 +1619,34 @@ benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich
 \begin{figure}[!ht]
   \centering
 
-  \begin{subfigure}[t]{\textwidth}
+  % Erstes Bild: Ground Truth
+  \begin{minipage}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y61.png}
-    \caption{Konfiguration 5, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
-    \label{fig:bild31}
-  \end{subfigure}
-
-  % \vspace{0.5em}
-
-  % \begin{subfigure}[t]{\textwidth}
+    \includegraphics[width=\linewidth]{../figures/y61.png}
+    \caption*{Konfiguration 5, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
+    \label{fig:bild51}
+  \end{minipage}
+  \hfill
+  % % Zweites Bild: Aleatorische Unsicherheit (hier Platzhalter)
+  % \begin{minipage}[t]{0.32\textwidth}
   %   \centering
-  %   \includegraphics[width=0.6\textwidth]{../figures/y62.png}
-  %   \caption{Konfiguration 5, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-  %   \label{fig:bild32}
-  % \end{subfigure}
-
-  \vspace{0.5em}
-
-  \begin{subfigure}[t]{\textwidth}
+  %   \vspace*{0.5cm} % Falls Platzhalterhöhe
+  %   \textit{(kein Plot vorhanden)}
+  %   % \includegraphics[width=\linewidth]{../figures/y62.png}
+  %   % \caption*{Konfiguration 5, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+  %   \label{fig:bild52}
+  % \end{minipage}
+  % \hfill
+  % Drittes Bild: Epistemische Unsicherheit
+  \begin{minipage}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y63.png}
-    \caption{Konfiguration 5, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
-    \label{fig:bild33}
-  \end{subfigure}
+    \includegraphics[width=\linewidth]{../figures/y63.png}
+    \caption*{Konfiguration 5, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \label{fig:bild53}
+  \end{minipage}
 
   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 5}
-  \label{fig:three_subfigures3}
+  \label{fig:three_subfigures5}
 \end{figure}
 
 
@@ -1239,25 +1713,28 @@ Wählt man $\lambda_{clip}$, $\lambda_{bound}$ äquivalent zum letzten Versuch \
 \begin{figure}[!ht]
   \centering
 
-  \begin{subfigure}[t]{\textwidth}
+  % Erstes Bild: Aleatorische Unsicherheit
+  \begin{minipage}[t]{0.49\textwidth}
     \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y72.png}
-    \caption{Konfiguration 6, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
+    \includegraphics[width=\linewidth]{../figures/y72.png}
+    \captionsetup{justification=raggedright,singlelinecheck=false}
+    \caption*{Konfiguration 6, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
     \label{fig:bild32}
-  \end{subfigure}
-
-  \vspace{0.5em}
-
-  \begin{subfigure}[t]{\textwidth}
+  \end{minipage}%
+  \hfill
+  % Zweites Bild: Epistemische Unsicherheit
+  \begin{minipage}[t]{0.49\textwidth}
     \centering
-    \includegraphics[width=0.6\textwidth]{../figures/y73.png}
-    \caption{Konfiguration 6, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
+    \includegraphics[width=\linewidth]{../figures/y73.png}
+    \captionsetup{justification=raggedright,singlelinecheck=false}
+    \caption*{Konfiguration 6, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
     \label{fig:bild33}
-  \end{subfigure}
+  \end{minipage}
 
   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 6}
   \label{fig:three_subfigures3}
 \end{figure}
+
 
 
 
@@ -1327,10 +1804,6 @@ Kritikalitätsgewichtete Unsicherheit    & 0.0167 & 0.0491 & +0.0324 \\
 \end{table}
 
 \paragraph{5. Interpretation der Meta-Unsicherheit} Nimmt man eine JSD von null als Gleichheit der resultierenden Verteilungen der Gesamtunsicherheit in der Gesamtvarianz an, so ist ein Betrag von 0.4405 vergleichsweise hoch. \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} im synthetischen \gls{Bayesianische neuronale Netze} im Vergleich zum \gls{Evidenzbasierte neuronale Netze} bestätigen die strukturelle Abweichung der Unsicherheitsmodellierung aus allen bisherigen Ergebnissen der Thesis, und verknüpfter Abschlussarbeiten. Trotz nahezu identischer Accuracy (95.72\,\% vs. 95.71\,\%) verdeutlichen die Differenzen in den Varianzmetriken und der kritikalitätsgewichteten Unsicherheit eine deutlich unterschiedliche Vertrauensstruktur in den Vorhersagen beider Modelle. Grundlegend wird damit aufgezeigt, dass eine Kalibrierung über verschiedene Unsicherheitsattribute so möglich, und zum Vergleich im Verbund sinnvoll ist. Die Aussagekraft der \textit{Meta-Unsicherheit} als Analysewerkzeug für Unsicherheitsannahmen hängt dabei unmittelbar vom Design der Experimente in machine-learning-basierten Surrogatmodellen ab. Weitere Attribute wie in der Datenpipeline aufgezeigt können genutzt werden, um die Unsicherheitsmodellierung zu spezialisieren.
-
-
-
-\paragraph{Fazit der Durchführung} Gemäß A7 sollen abschließend die wichtigsten Ansätze und Ergebnisse der Arbeit in einem Jupyter Notebook zusammenfasst werden. Dies findet sich im Anhang. 
 
 
 
