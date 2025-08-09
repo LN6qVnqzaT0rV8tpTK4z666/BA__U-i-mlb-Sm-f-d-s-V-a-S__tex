@@ -184,7 +184,7 @@ Integriert wurden Lösungen von Herr M.Sc. Mavani der sich zur \gls{Bayesianisch
 
 \subsection*{Experiment zur Approximation der Generalisierung von Hypothesen zur Unsicherheit über verschiedene Datensätze}
 
-Grundsätzlich ergab sich aus der Recherche ein überdurchschnittlich hoher Anteil an Papern, die eine Loss-Variation zur Bewertung der Performance von vorhandenen Modellen \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} durchgeführt haben mit der besten Übersicht wie erwähnt in Ulmer et al. (vgl. Ulmer et al. \parencite{Ulmer2023}}). Loss-Funktions Kandidaten $\mathcal{L}$ werden über den Datensätzen $\mathcal{D}$ von Depeweg ausgeführt und gemittelt bezüglich der Accuracy ($Acc$) auf dem $i$-ten Datensatz, $\overline{Acc} = \sum_{i=1}^{n} Acc(x)_{i}$. Es wurde grob approxmiert, um eine Tendenz erkennbar zu unterscheiden. Erwartet wurde, dass kein eindeutiger Kandidat der Loss-Funktionen über die Accuracy favorisierbar ist, um die Vertrauenswürdigkeit der Netze über verschiedene Datensätze zu bewerten. Die Tabelle fasst nachfolgenden Ausdruck zusammen. Erneut sei dabei erwähnt, dass keine nachhaltige Stichprobe über einen vollparametrisierten Test erhoben, sondern approximiert und gemittelt wurde, um eine Tendenz festzustellen. 
+Grundsätzlich ergab sich aus der Recherche ein überdurchschnittlich hoher Anteil an Papern, die eine Loss-Variation zur Bewertung der Performance von vorhandenen Modellen \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} durchgeführt haben mit der besten Übersicht wie erwähnt in Ulmer et al. (vgl. Ulmer et al. \parencite{Ulmer2023}). Loss-Funktions Kandidaten $\mathcal{L}$ werden über den Datensätzen $\mathcal{D}$ von Depeweg ausgeführt und gemittelt bezüglich der Accuracy ($Acc$) auf dem $i$-ten Datensatz, $\overline{Acc} = \sum_{i=1}^{n} Acc(x)_{i}$. Es wurde grob approxmiert, um eine Tendenz erkennbar zu unterscheiden. Erwartet wurde, dass kein eindeutiger Kandidat der Loss-Funktionen über die Accuracy favorisierbar ist, um die Vertrauenswürdigkeit der Netze über verschiedene Datensätze zu bewerten. Die Tabelle fasst nachfolgenden Ausdruck zusammen. Erneut sei dabei erwähnt, dass keine nachhaltige Stichprobe über einen vollparametrisierten Test erhoben, sondern approximiert und gemittelt wurde, um eine Tendenz festzustellen. 
 
 \[
 \begin{array}{c}
@@ -367,20 +367,6 @@ Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äqui
 \paragraph{Fit-Parametrisierung \gls{Evidenzbasierte neuronale Netze}} Zur Bewertung des Fits des \gls{Evidenzbasierte neuronale Netze} wird folgende Bewertung herangezogen. % Grundsätzlich liefert Herr Autenrieths Kritikalitätssoftware ein Modul zum attributweisen Raumvergleich in dem man dies zukünftig berücksichtigen könnte. 
 Es wird ein Original-Signalverlauf $y(x)$ zum vom Netz rekonstruierten $\hat{y}(x)$ abgebildet als Fehler-Signal $e(x)$: 
 
-% \[
-% e(x) = y(x) - \hat{y}(x) := 
-% \underbrace{
-%   \underbrace{\frac{1}{\sigma \cdot \sqrt{2\pi}}}_{\text{Amplitude } A_1}
-%   \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
-% }_{\text{Gauss-Signal 1}}
-% - 
-% \underbrace{
-%   \underbrace{\frac{1}{\sigma \cdot \sqrt{2\pi}}}_{\text{Amplitude } A_2}
-%   \cdot \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
-% }_{\text{Gauss-Signal 2}}
-% \quad \text{mit } A_1 \geq A_2
-% \]
-
 {\small
 \begin{align}
 e(x)     &= y(x) - \hat{y}(x)
@@ -521,26 +507,57 @@ f(x, y) =
 
 Hierbei ist $\delta > 0$ die Halbseitenlänge des Würfels. Für $\delta = 0{,}5$ ergibt sich ein Quadrat um den Punkt $(5, 5)$ im Bereich $[4{,}5, 5{,}5] \times [4{,}5, 5{,}5]$.
 
-\paragraph{Ausgangs-Sampling} Das ursprüngliche Latin-Hypercube-Sampling soll in der Samplezahl varriert werden mit $n = { n_{min}:=10, n_{frac{\Delta}{2}}, n_{\Delta} }$. $n_{\Delta}$ als Maximum soll abhängig von der Konvergenz der Loss-Funktion sein, die sich an diesem Punkt nicht mehr signifikant ändert. Dieser wird durch Try-and-Error-Versuche bestimmt aus vorgegebenen Samplegrößen zum Vereinfachen des Experiments, $n = \{ 10, 50, 100, 150, 200 \}$. $n_{\frac{\Delta}{2}}$ entspricht dem intervallhalbierenden Wert von $\left[ n_{\min},\; n_{\Delta} \right]$. Im Experiment werden zuerst $n_{\min}$, dann anhand der Konvergenzrichtung sowie vorgegebenen $n$, $n_{\Delta}$ bestimmt und schließlich $n_{\frac{\Delta}{2}}$.
+\paragraph{Ausgangs-Sampling} Das ursprüngliche Latin-Hypercube-Sampling von Herr Autenriehts Kritikalitätsraum soll in der Samplezahl varriert werden mit $n = \{ n_{min} := 10, n_{\frac{\Delta}{2}}, n_{\Delta} \}$. $n_{\Delta}$ als Maximum soll abhängig von der Konvergenz der Loss-Funktion sein, die sich an diesem Punkt nicht mehr signifikant ändert. Dieser wird durch eine Schleife über die Trainings bestimmt aus vorgegebenen Samplegrößen zum Vereinfachen des Experiments, $n = \{ 10, 50, 100, 150, 200 \}$. $n_{\frac{\Delta}{2}}$ entspricht dem intervallhalbierenden Wert von $\left[ n_{min},\; n_{\Delta} \right]$. Im Experiment werden zuerst $n_{min}$, dann anhand der Konvergenzrichtung sowie vorgegebenen $n$, $n_{\Delta}$ bestimmt und schließlich $n_{\frac{\Delta}{2}}$.
 
 Für jede gewählte Samplesize $n$ wurde das Modell über eine feste Anzahl Epochen trainiert. Nach jeder Epoche wurden der Trainings- und der Validierungsverlust aufgezeichnet. Die Epoche mit dem minimalen Validierungsverlust wurde als beste Epoche bestimmt. Je höher die Epoche, umso vergleichbarer konvergieren Trainings- und Validierungsloss. Je mehr Trainings- und Validierungsloss konvergieren, umso mehr wird dem Modell ein generalisbierbarer Fit an die Ausgangsdaten zugeordnet. 
 
-\paragraph{Under-, Over-, Fit-Defintion} Der Begriff \emph{Fit} beschreibt, wie gut ein Modell die zugrunde liegende Datenverteilung approximiert. Mathematisch versucht das Modell $f_\theta(x)$, die unbekannte Zielfunktion $y = g(x)$ möglichst genau zu approximieren. Ein guter Fit bedeutet, dass sowohl der Trainings-Loss als auch der Validierungs-Loss niedrig sind und ähnliche Werte aufweisen. Der Trainings-Loss $L_{\text{train}}$ misst den Fehler zwischen den Modellvorhersagen $\hat{y}$ und der Ground Truth $y$ auf den Trainingsdaten, während der Validierungs-Loss $L_{\text{val}}$ den Fehler auf einem unabhängigen Validierungsdatensatz angibt. 
-
-Sind beide Loss-Werte hoch, liegt ein \textit{Unterfit} vor, das Modell hat also die Struktur der Daten nicht erfasst. Sind beide Werte niedrig und ähnlich groß, spricht man von einem guten Fit, da das Modell sowohl die Trainingsdaten gut approximiert als auch auf neuen Daten gut generalisiert. Ist der Trainings-Loss niedrig, der Validierungs-Loss jedoch deutlich höher, liegt ein \gls{Überfit} oder \gls{Overfit} vor; das Modell hat sich zu stark an die Trainingsdaten angepasst und generalisiert schlechter.
-
-Die \emph{Ground Truth} bezeichnet die wahren Zielwerte $y$ im Datensatz, gegen die die Vorhersagen $\hat{y}$ verglichen werden. In diesem Experiment sind dies analytische Werte aus einer bekannten Funktion wie dem Gauß-Signal, dem Hyperwürfel-Signal. Sie dienen als Referenz für die Berechnung von Loss und RMSE.
-
-In diesem Experiment beschreibt der \emph{Fit} die Übereinstimmung zwischen den Modellvorhersagen $\hat{y}$ und der bekannten Ground Truth $y$, gemessen durch den Trainings- und Validierungs-Loss. Ein guter Fit liegt vor, wenn beide Loss-Werte niedrig und ähnlich sind, was auf eine gelungene Approximation der Ground-Truth-Funktion bei gleichzeitiger Generalisierungsfähigkeit hinweist.
 
 
-\vspace{0.125\baselineskip}
-\noindent
+\paragraph{Under-, Over-, Fit-Defintion} Der Begriff \textit{Fit} beschreibt, wie gut ein Modell die zugrunde liegende Datenverteilung approximiert. Mathematisch versucht das Modell $f_\theta(x)$, die unbekannte Zielfunktion $y = g(x)$ möglichst genau zu approximieren. Ein guter Fit bedeutet, dass sowohl der Trainings-Loss als auch der Validierungs-Loss niedrig sind und ähnliche Werte aufweisen. Der Trainings-Loss $L_{\text{train}}$ misst den Fehler zwischen den Modellvorhersagen $\hat{y}$ und der Ground Truth $y$ auf den Trainingsdaten, während der Validierungs-Loss $L_{\text{val}}$ den Fehler auf einem unabhängigen Validierungsdatensatz angibt. 
 
-Im Folgenden ist zwischen \textit{Approximation} und \textit{Fit} zu unterscheiden. Approximiert wird der Signalwert $y$ als Größe abhängig in VaMAI von der aus meiner Projektperspektive offen parametrisierten Kritiaklität $k(\dots)$, die vom \gls{Evidenzbasierte neuronale Netze} mittels $\gamma = \mu$ direkt als Netz-Ausgabe-Parameter geschätzt wird. Hier lässt sich eine direkte Fehlerapproximation des Original-Signals als Ground-Truth mit dem Fehler-Signal durchführen wie durch die vorherigen Amplitudengleichungen für Gauss- und Hyperwürfel angedeutet. Diese Signalapproximation wurde im Projektverlauf getrennt vom Fit-Begriff. Der wie oben beschrieben erstens von der Loss-Konvergenz, zweitens von der Abweichung einer Fehlermetrik wie $\textit{RMSE}$ zur Ground-Truth abhängig gemacht wurde. Dieser Unterschied soll im Folgenden durch die ermittelten optimalen Samplegrößen aus dem Experiment im Abgleich zur Konvergenz aus zur Vereinfachung fest vorgegebenen Set $n = \{ 10, 50, 100, 150, 200 \} \rightarrow \left{ n_{\min}, n_{\frac{\Delta}{2}}, n_{\Delta} \right}$ zugeordnet werden. Dazu wird die rechte Seite der Zurodnung den drei Ergbnisgrößen des Netzes - $\mu = \gamma$ als Mittelwert, $\sigma^{2}_{alea}$ als aleatorische Unsicherheit, $\sigma^{2}_{epist}$ als epistemische Unsicherheit - über den Raum zugeordnet. Es wird für jede Konfiguration $\{\text{Signal},\text{Epoche},\text{Neuronen},\text{Schichten} \}$ eine $3\times3$-Matrix der Ergebnisoberflächen, sowie seperat des assoziierten Loss zur Bewertung abgebildet.
+Sind beide Loss-Werte hoch, liegt ein \textit{Unterfit} vor, das Modell hat also die Struktur der Daten nicht erfasst. Sind beide Werte niedrig und ähnlich groß, spricht man von einem guten Fit, da das Modell sowohl die Trainingsdaten gut approximiert als auch auf neuen Daten gut generalisiert. Ist der Trainings-Loss niedrig, der Validierungs-Loss jedoch deutlich höher, liegt ein Überfit oder Overfit vor; das Modell hat sich zu stark an die Trainingsdaten angepasst und generalisiert schlechter.
+
+Die \textit{Ground Truth} bezeichnet die wahren Zielwerte $y$ im Datensatz, gegen die die Vorhersagen $\hat{y}$ verglichen werden. In diesem Experiment sind dies analytische Werte aus einer bekannten Funktion wie dem Gauß-Signal, dem Hyperwürfel-Signal. Sie dienen als Referenz für die Berechnung von Loss und RMSE.
+
+In diesem Experiment beschreibt der \textit{Fit} die Übereinstimmung zwischen den Modellvorhersagen $\hat{y}$ und der bekannten Ground Truth $y$, gemessen durch den Trainings- und Validierungs-Loss. Ein guter Fit liegt vor, wenn beide Loss-Werte niedrig und ähnlich sind, was auf eine gelungene Annäherung der Ground-Truth-Funktion bei gleichzeitiger Generalisierungsfähigkeit hinweist.
+
 
 \vspace{0.125\baselineskip}
 \noindent
+
+Im Folgenden ist zwischen \textit{Approximation} und \textit{Fit} zu unterscheiden. Approximiert wird der Signalwert $y$ als Größe abhängig in VaMAI von der aus meiner Projektperspektive offen parametrisierten Kritiaklität $k(\dots)$, die vom \gls{Evidenzbasierte neuronale Netze} mittels $\gamma = \mu$ direkt als Netz-Ausgabe-Parameter geschätzt wird. Hier lässt sich eine direkte Fehlerapproximation des Original-Signals als Ground-Truth mit dem Fehler-Signal durchführen wie durch die vorherigen Amplitudengleichungen für Gauss- und Hyperwürfel angedeutet. Diese Signalapproximation wurde im Projektverlauf getrennt vom Fit-Begriff. Der wie oben beschrieben erstens von der Loss-Konvergenz, zweitens von der Abweichung einer Fehlermetrik wie $\textit{RMSE}$ zur Ground-Truth abhängig gemacht wurde. Dieser Unterschied soll im Folgenden durch die ermittelten optimalen Samplegrößen aus dem Experiment im Abgleich zur Konvergenz aus zur Vereinfachung fest vorgegebenen Set $n = \{ 10, 50, 100, 150, 200 \} \rightarrow \{ n_{min}, n_{\frac{\Delta}{2}}, n_{\Delta} \}$ zugeordnet werden. Dazu wird die rechte Seite der Zurodnung den drei Ergbnisgrößen des Netzes - $\mu = \gamma$ als Mittelwert, $\sigma^{2}_{alea}$ als aleatorische Unsicherheit, $\sigma^{2}_{epist}$ als epistemische Unsicherheit - über den Raum zugeordnet. Es wird für jede Konfiguration $\{\text{Signal},\text{Epoche},\text{Neuronen},\text{Schichten} \}$ eine $3\times3$-Matrix der Ergebnisoberflächen, sowie seperat des assoziierten Loss in $1\times3$-Matrix, sowie assoziierter Ground-Truth-zur-Vorhersage-Plot als $1\times3$-Matrix zur Bewertung abgebildet. Die Ergebnisoberflächen definieren sich in Abhängigkeit der evidentiellen Parameter, sowie den Parameterkoordinaten der Oberfläche - für die z-Koordinate wurden Aminins Gleichungen aleatorischer, epistemischer Unsicherheit gewählt. $u$, $v$ sind beliebieg zu vergleichende Dimensionen am VaMAI Standardbeispiel $0 \leq u \leq 10, 0 \leq v \leq 10, (u,v) \in \mathbb{R}^3$. Sie werden als Ausschnitt der für VaMAI geforderten Hochdimensionalität im allgemeinen $R^{n} \subseteq \mathbb{K}^{n}$ betrachtet.
+
+\begin{small}
+\[
+\begin{aligned}
+&u, v \in \mathbb{R}^{3} \subseteq \mathbb{K}^{n} \ \text{Zurordnung Oberfläche-Parameterkoordinaten} \\[0.5em]
+\text{Aleatorische Varianz:} \quad
+&\mathbf{r}_{\mathrm{aleatorisch}}(u,v) =
+\begin{pmatrix}
+u \\
+v \\
+\displaystyle \frac{\beta(u,v)}{\alpha(u,v) - 1}
+\end{pmatrix}
+\\[1.0em]
+\text{Epistemische Varianz:} \quad
+&\mathbf{r}_{\mathrm{epistemisch}}(u,v) =
+\begin{pmatrix}
+u \\
+v \\
+\displaystyle \frac{\beta(u,v)}{v(u,v) \cdot (\alpha(u,v) - 1)}
+\end{pmatrix}
+\\[1.0em]
+\text{Vorhersage } \mu = \gamma \ \text{(Näherung an $y$):} \quad
+&\mathbf{r}_{\mu}(u,v) =
+\begin{pmatrix}
+u \\
+v \\
+\gamma(u,v)
+\end{pmatrix}
+\end{aligned}
+\]
+\end{small}
+
 
 Dazu wird die Ausgangskonfiguration wie folgt überschrieben.
 
@@ -556,80 +573,161 @@ Dazu wird die Ausgangskonfiguration wie folgt überschrieben.
 
 Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man folgende zielführende Dynamik für Gauss-Funktion, Hyperwürfel-Funktion bereits ohne größere Störfunktion mittels Rauschen.
 
-\paragraph{Loss Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}$}
-
-% \begin{figure}[!ht]
-%   \centering
-
-%   % Spaltenüberschriften
-%   \begin{minipage}{0.05\textwidth}
-%     \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering \textbf{$\gamma = \mu$}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering \textbf{Aleatorische Unsicherheit}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering \textbf{Epistemische Unsicherheit}
-%   \end{minipage}
-
-%   \vspace{0.3cm}
-
-%   % Zeile 1: n_min
-%   \begin{minipage}{0.05\textwidth}
-%     \centering\rotatebox{90}{$n_{\mathrm{min}}$}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y11.png}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y12.png}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y13.png}
-%   \end{minipage}
-
-%   \vspace{0.3cm}
-
-%   % Zeile 2: n_Delta/2
-%   \begin{minipage}{0.05\textwidth}
-%     \centering\rotatebox{90}{$n_{\Delta}/2$}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y21.png}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y22.png}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y23.png}
-%   \end{minipage}
-
-%   \vspace{0.3cm}
-
-%   % Zeile 3: n_Delta
-%   \begin{minipage}{0.05\textwidth}
-%     \centering\rotatebox{90}{$n_{\Delta}$}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y31.png}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y32.png}
-%   \end{minipage}%
-%   \begin{minipage}{0.3\textwidth}
-%     \centering\includegraphics[width=\linewidth]{../figures/y33.png}
-%   \end{minipage}
-
-%   \caption{Vergleich der Vorhersagen und Unsicherheiten für $n_{\mathrm{min}}$, $n_{\Delta}/2$ und $n_{\Delta}$.}
-%   \label{fig:matrix_plot}
-% \end{figure}
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
 
 
 
-\paragraph{Interpretation Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}$}
+\begin{figure}[!ht]
+  \centering
+
+  % Spaltenüberschriften
+  \begin{minipage}{0.05\textwidth}
+    \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{$\gamma = \mu$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{Aleatorische Unsicherheit}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{Epistemische Unsicherheit}
+  \end{minipage}
+
+  \vspace{0.3cm}
+
+  % Zeile 1: n_min
+  \begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$n_{\mathrm{min}}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y21.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y22.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y23.png}
+  \end{minipage}
+
+  \vspace{0.3cm}
+
+  % Zeile 2: n_Delta/2
+  \begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$n_{\frac{\Delta}{2}}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y21.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y22.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y23.png}
+  \end{minipage}
+
+  \vspace{0.3cm}
+
+  % Zeile 3: n_Delta
+  \begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$n_{\Delta}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y31.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y32.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y33.png}
+  \end{minipage}
+
+  \caption{Vergleich der evidentiellen Ausgaben für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+  \label{fig:matrix_plot}
+\end{figure}
+
+
+
+\begin{figure}[!ht]
+  \centering
+
+  % Spaltenüberschriften
+  \begin{minipage}{0.05\textwidth}
+    \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{$n_{\mathrm{min}}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{$n_{\frac{\Delta}{2}}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{$n_{\Delta}$}
+  \end{minipage}
+
+  \vspace{0.3cm}
+
+  % Zeile 1: n_min
+  \begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$\text{Loss }\mathcal{L}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y21.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y22.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y23.png}
+  \end{minipage}
+
+  \caption{Vergleich des Trainings- und Validierungsloss für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+  \label{fig:matrix_plot}
+\end{figure}
+
+
+
+\begin{figure}[!ht]
+  \centering
+
+  % Spaltenüberschriften
+  \begin{minipage}{0.05\textwidth}
+    \vspace{0.5cm} % Platz, damit Spaltenüberschrift mittig ist
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{$n_{\mathrm{min}}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{$n_{\frac{\Delta}{2}}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering \textbf{$n_{\Delta}$}
+  \end{minipage}
+
+  \vspace{0.3cm}
+
+  % Zeile 1: n_min
+  \begin{minipage}{0.05\textwidth}
+    \centering\rotatebox{90}{$\text{Loss }\mathcal{L}$}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y21.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y22.png}
+  \end{minipage}%
+  \begin{minipage}{0.3\textwidth}
+    \centering\includegraphics[width=\linewidth]{../figures/y23.png}
+  \end{minipage}
+
+  \caption{Vergleich der Plots Ground-Truth zu Vorhersage für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
+  \label{fig:matrix_plot}
+\end{figure}
+
+
+
+
+\paragraph{Interpretation Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion, Unterapproximation zu Approximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
 
 
 
@@ -734,7 +832,7 @@ Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man
     \centering
     \includegraphics[width=0.6\textwidth]{../figures/y31.png}
     \caption{Konfiguration 2, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
-    \label{fig:bild31}
+    \label{fig:bild21}
   \end{subfigure}
 
   \vspace{0.5em}
@@ -743,7 +841,7 @@ Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man
     \centering
     \includegraphics[width=0.6\textwidth]{../figures/y32.png}
     \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-    \label{fig:bild32}
+    \label{fig:bild22}
   \end{subfigure}
 
   \vspace{0.5em}
@@ -752,7 +850,7 @@ Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man
     \centering
     \includegraphics[width=0.6\textwidth]{../figures/y33.png}
     \caption{Konfiguration 2, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
-    \label{fig:bild33}
+    \label{fig:bild23}
   \end{subfigure}
 
   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 2}
@@ -861,7 +959,7 @@ Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherhe
     \centering
     \includegraphics[width=0.6\textwidth]{../figures/y51.png}
     \caption{Konfiguration 4, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
-    \label{fig:bild31}
+    \label{fig:bild41}
   \end{subfigure}
 
   \vspace{0.5em}
@@ -870,7 +968,7 @@ Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherhe
     \centering
     \includegraphics[width=0.6\textwidth]{../figures/y52.png}
     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-    \label{fig:bild32}
+    \label{fig:bild42}
   \end{subfigure}
 
   \vspace{0.5em}
@@ -879,7 +977,7 @@ Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherhe
     \centering
     \includegraphics[width=0.6\textwidth]{../figures/y53.png}
     \caption{Konfiguration 4, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
-    \label{fig:bild33}
+    \label{fig:bild43}
   \end{subfigure}
 
   \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 4}
@@ -1041,7 +1139,7 @@ Mittels selber Konfiguration wie im \glqq{}Einzelnes 3D-Signal \gls{EvidentialDe
 \text{Regularisierung } \lambda = 10^{-3},
 \end{align*}
 
-benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich geklippt worden. Varriert wurden die Epochenzahl zwischen 2000 und 4000 mit dem besten Ergebnis in Tendenz zu 2000. Erste Ergebnisse unter $\lambda_{\text{clip}}=2$, $\lambda_{\text{bound}}=5$ fielen zu flach aus. $\lambda_{\text{clip}}$, $\lambda_{\text{bound}}$ wirken Ausgabe-amplifizierend auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} bei Verdopplung der Parameter im selben Verhältnis. $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{bound}}=[20, 40]$ mitteln das geklippte Signal in Herr Autentrieths Kritikalitätsgrenzen als bestes Ergebnis für die Amplitude. Niedrigere Parametrisierungen liefern die beste Nachbildung der Position des Gauss-Signals mit zu flachem Volumen. Ein weiterer sensibler Faktor ist die Epochenzahl zwischen 2000 und 2500. Bei 2500 Epochen gilt: Die Krümmung des Gauss für das obere Drittel wird noch besser nachgebildet, doch die Gauss-Nachbildung geht im unteren Teil bereits wieder in eine Underfit-Dynamik über. Bei 2000 Epochen ist der Ausblick auf den Kompromiss Volumen, Position am besten wie in der Abbildung zu sehen. Verfehlt jedoch leider noch die gewählten Kritikalitätsgrenzen, um 0.1 Kritikalität aufgrund einer ungetesteten Parameter-Kombination. Weiteres Experimentier-Budget erscheint hier sinnvoll, um den Kompromiss zwischen Volumen und Position zu lösen. Über alle Versuche mit geklippter Loss-Funktion ist die Oberfläche im oberen Drittel einheitlich zur Sample-Oberfläche nachgebildet worden, ohne Ausreißer. Die Loss-Erweiterung erfüllt damit ihren Zweck. Unsicherheit des Netzes wurde in gleichen Dynamiken wie in vorherigen Versuchen ausgedrückt in wellenförmig abflachender Konvergenz zum Domänenrand oder äquidistanten Massen um den Punkt größter Sampledichte.
+benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich geklippt worden. Variiert wurden die Epochenzahl zwischen 2000 und 4000 mit dem besten Ergebnis in Tendenz zu 2000. Erste Ergebnisse unter $\lambda_{\text{clip}}=2$, $\lambda_{\text{bound}}=5$ fielen zu flach aus. $\lambda_{\text{clip}}$, $\lambda_{\text{bound}}$ wirken Ausgabe-amplifizierend auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} bei Verdopplung der Parameter im selben Verhältnis. $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{bound}}=[20, 40]$ mitteln das geklippte Signal in Herr Autentrieths Kritikalitätsgrenzen als bestes Ergebnis für die Amplitude. Niedrigere Parametrisierungen liefern die beste Nachbildung der Position des Gauss-Signals mit zu flachem Volumen. Ein weiterer sensibler Faktor ist die Epochenzahl zwischen 2000 und 2500. Bei 2500 Epochen gilt: Die Krümmung des Gauss für das obere Drittel wird noch besser nachgebildet, doch die Gauss-Nachbildung geht im unteren Teil bereits wieder in eine Underfit-Dynamik über. Bei 2000 Epochen ist der Ausblick auf den Kompromiss Volumen, Position am besten wie in der Abbildung zu sehen. Verfehlt jedoch leider noch die gewählten Kritikalitätsgrenzen, um 0.1 Kritikalität aufgrund einer ungetesteten Parameter-Kombination. Weiteres Experimentier-Budget erscheint hier sinnvoll, um den Kompromiss zwischen Volumen und Position zu lösen. Über alle Versuche mit geklippter Loss-Funktion ist die Oberfläche im oberen Drittel einheitlich zur Sample-Oberfläche nachgebildet worden, ohne Ausreißer. Die Loss-Erweiterung erfüllt damit ihren Zweck. Unsicherheit des Netzes wurde in gleichen Dynamiken wie in vorherigen Versuchen ausgedrückt in wellenförmig abflachender Konvergenz zum Domänenrand oder äquidistanten Massen um den Punkt größter Sampledichte.
 
 % TODO: Bild für aleatorische Varianz Epoche=2000-2500, $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{bound}}=[20, 40]$ nachliefern.
 
@@ -1079,13 +1177,13 @@ benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich
 
 
 
-\paragraph{Behandlung Unterkonfidenz und Nichtwissen} Es wird eine \emph{Zero Evidence Region} (ZER) definiert als Bereich im Eingaberaum, in dem die \gls{Epistemische Unsicherheit} des Modells unterhalb eines minimalen Schwellenwertes liegt. Basierend auf Josangs \gls{subjectivelogic} ergibt sich die Unsicherheitsmasse für kontinuierliche Modelle analog zur multivariaten Meinung als:
+\paragraph{Behandlung Unterkonfidenz und Nichtwissen} Es wird eine \textit{Zero Evidence Region} (ZER) definiert als Bereich im Eingaberaum, in dem die \gls{Epistemische Unsicherheit} des Modells unterhalb eines minimalen Schwellenwertes liegt. Basierend auf Josangs \gls{subjectivelogic} ergibt sich die Unsicherheitsmasse für kontinuierliche Modelle analog zur multivariaten Meinung als:
 
 \[
 u(x) := \frac{1}{\alpha(x)} \quad \text{mit Evidenz } E = \alpha(x) - 1
 \]
 
-Wir führen eine untere Evidenzschranke \( \alpha_{\min} > 0 \) ein und definieren über $\alpha$, sowie alternativ über die epistemische Varianz $\text{Var}_{\text{epist}$:
+Wir führen eine untere Evidenzschranke \( \alpha_{\min} > 0 \) ein und definieren über $\alpha$, sowie alternativ über die epistemische Varianz $\text{Var}_{\text{epist}}$:
 
 \begin{equation*}
 \begin{minipage}[t]{0.48\linewidth}
@@ -1228,7 +1326,7 @@ Kritikalitätsgewichtete Unsicherheit    & 0.0167 & 0.0491 & +0.0324 \\
 \caption{Vergleich ausgewählter Unsicherheitsmetriken zwischen ENN und synthetisch approximiertem BNN}
 \end{table}
 
-\paragraph{5. Interpretation der Meta-Unsicherheit} Nimmt man eine JSD von null als Gleichheit der resultierenden Verteilungen der Gesamtunsicherheit in der Gesamtvarianz an, so ist ein Betrag von 0.4405 vergleichsweise hoch. \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} im synthetischen \gls{Bayesianische neuronale Netze} im Vergleich zum \gls{Evidenzbasierte neuronale Netze} bestätigen die strukturelle Abweichung der Unsicherheitsmodellierung aus allen bisherigen Ergebnissen der Thesis, und verknüpfter Abschlussarbeiten. Trotz nahezu identischer Accuracy (95.72\,\% vs. 95.71\,\%) verdeutlichen die Differenzen in den Varianzmetriken und der kritikalitätsgewichteten Unsicherheit eine deutlich unterschiedliche Vertrauensstruktur in den Vorhersagen beider Modelle. Grundlegend wird damit aufgezeigt, dass eine Kalibrierung über verschiedene Unsicherheitsattribute so möglich, und zum Vergleich im Verbund sinnvoll ist. Die Aussagekraft der \emph{Meta-Unsicherheit} als Analysewerkzeug für Unsicherheitsannahmen hängt dabei unmittelbar vom Design der Experimente in machine-learning-basierten Surrogatmodellen ab. Weitere Attribute wie in der Datenpipeline aufgezeigt können genutzt werden, um die Unsicherheitsmodellierung zu spezialisieren.
+\paragraph{5. Interpretation der Meta-Unsicherheit} Nimmt man eine JSD von null als Gleichheit der resultierenden Verteilungen der Gesamtunsicherheit in der Gesamtvarianz an, so ist ein Betrag von 0.4405 vergleichsweise hoch. \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} im synthetischen \gls{Bayesianische neuronale Netze} im Vergleich zum \gls{Evidenzbasierte neuronale Netze} bestätigen die strukturelle Abweichung der Unsicherheitsmodellierung aus allen bisherigen Ergebnissen der Thesis, und verknüpfter Abschlussarbeiten. Trotz nahezu identischer Accuracy (95.72\,\% vs. 95.71\,\%) verdeutlichen die Differenzen in den Varianzmetriken und der kritikalitätsgewichteten Unsicherheit eine deutlich unterschiedliche Vertrauensstruktur in den Vorhersagen beider Modelle. Grundlegend wird damit aufgezeigt, dass eine Kalibrierung über verschiedene Unsicherheitsattribute so möglich, und zum Vergleich im Verbund sinnvoll ist. Die Aussagekraft der \textit{Meta-Unsicherheit} als Analysewerkzeug für Unsicherheitsannahmen hängt dabei unmittelbar vom Design der Experimente in machine-learning-basierten Surrogatmodellen ab. Weitere Attribute wie in der Datenpipeline aufgezeigt können genutzt werden, um die Unsicherheitsmodellierung zu spezialisieren.
 
 
 
