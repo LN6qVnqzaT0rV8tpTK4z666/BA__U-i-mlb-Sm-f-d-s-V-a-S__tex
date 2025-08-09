@@ -564,14 +564,12 @@ Dazu wird die Ausgangskonfiguration wie folgt überschrieben.
 \vspace{0.125\baselineskip}
 \noindent
 
-\paragraph{Überschriebene Ausgangskonfiguration 1} Trainings-Parametrisierung mit einer vollverbundenen Schicht, 64 Neuronen, 500 Epochen.
+\paragraph{Überschriebene Ausgangskonfiguration 1} Trainings-Parametrisierung mit zwei vollverbundenen Schichten, 64 Neuronen, 2000 Epochen führt zu Unterapproximation Gauss-Funktion, Hyperwürfel-Funktion.
 
-\paragraph{Überschriebene Ausgangskonfiguration 2} Aminis vorgeschlagene Trainings-Parametrisierung für komplexere Fälle mit zwei vollverbundenen Schichten, 128 Neuronen, 2000 Epochen.
+% \vspace{0.125\baselineskip}
+% \noindent
 
-\vspace{0.125\baselineskip}
-\noindent
-
-Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man folgende zielführende Dynamik für Gauss-Funktion, Hyperwürfel-Funktion bereits ohne größere Störfunktion mittels Rauschen.
+% Wählt man die unter Amini vorgeschlagene Trainings-Parametrisierung erhält man folgende zielführende Dynamik für Gauss-Funktion, Hyperwürfel-Funktion bereits ohne größere Störfunktion mittels Rauschen.
 
 
 
@@ -688,7 +686,14 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \noindent\textbf{Interpretation, Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion,
 Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 
-Das Signal wird unterapproximiert.
+\begin{itemize}
+    \item Das Signal wird unterapproximiert.
+    \item Die Konvergenz zur besten Epoche ergibt die Maximalwerte von 232, 240, 528 Epochen.
+    \item Das iterative Training wählt basierend auf der Konvergenz von Training- und Validation-Loss höhere Samplingzahlen für $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.
+\end{itemize}
+
+
+
 
 \end{minipage}
 \end{samepage}
