@@ -1,0 +1,40 @@
+% !TeX root = ../main.tex
+
+\chapter{Auswertung}\label{chapter:auswertung}
+
+
+
+\paragraph{R1} Über die Ausarbeitung der Thesis wurden Bayesische Neuronale Netze, Evidentielle Neuronale Netze, Conformal Prediction mit einer minimalen Sensitivitätsanalyse als Surrogatmodell verglichen. Bayesische Neuronale Netze haben in der Ausarbeitung ein positives Verhalten gegenüber Approximationen von konvexen oder konkaven Ebenen über eine globale Raumsituation in meinen Konfigurationen gezeigt. Zusätzlich haben sie stark streuendes Rauschen sehr viel besser als der evidentielle Ansatz nachgebildet. Evidentielle Neuronale Netze haben jedoch zusätzlich spitze schwach gesamplete Amplituden aus einem zu approximierenden Grundsignal wie einer die Sampling-Ebene durchbrechenden Gauss-Glocke berücksichtigt. Bayesische Neuronale Netze haben diese unter meinen Architektur-Variationen basierend auf Herr Mavanis SVI Ansatz ignoieriert. Evidentielle Neuronale Netze sind aus der Rechereche als Überkonfident bezeichnet worden. In der Thesis-Ausarbeitung wurde durch die Loss-Erweiterung ein Ansatz erarbeitet das verwendetete Evidentielle Neuronale Netz wettbewerbsfähiger gegenüber der konservativen doch schnelleren Schätzung einer Conformal Prediction zu machen. Abschließend hat sich im Projekt VaMAI bis hierin kein Favorit für alle Projektteilnehmer herausgestellt.
+
+
+\paragraph{R2} Zur Beantwortung welche allgemeinen und modellspezifischen Faktoren das Lernen von Unsicherheiten in ML-Modellen beeinflussen, wurde ein Fragenkatalog erarebeitet, recherchiert, belegt und in Tabellenform wiedergegeben, die als Referenz für VaMAI Teilnehmer dienen sollen. 
+
+
+\paragraph{R3} Um UQ zu verbessern wurde an einer Auswaahl von aus R2 gegebenen Einflussfaktoren allgemeine Stichpunkte an Quellen belegegt wiedergegeben. 
+
+
+\paragraph{R4} Inwieweit ML-basierte UQ zuverlässig den in realen Anwendungsszenarien beobachtbaren Unsicherheiten entsprechen kann ist grundlegend beantwortet worden. Eine präzisere Antwort ist mit der Wahl der Realdaten verbunden.  
+
+
+\paragraph{A1} Es wurden mittels In- und Exklusionskriterien für eine Recherche, eine Eingrenzung des Umfangs als \glqq{}Scope\grqq{} erarbeitet und wiedergegeben.
+
+
+\paragraph{A2} Es wurden grundsätzliche Unsicherheitsmetriken zum Einarbeiten in den Sachverhalt aufgezeigt. Alle Metriken waren in einer Form zur Projektausarbeitung relevant.  
+
+
+\paragraph{A3} Anwendungsfelder aus dem Ingenieurswesen wurden aufgezeigt. Darauf folgend wurden modellspezifische und anwendungsspezifische Metriken wiedergegeben. 
+
+
+\paragraph{A4} Es wurden Aspekte von Bayesischen sowie zusätzlich Evidentiellen Neuronalen Netzen wiedergegeben und mit Conformal Prediction verglichen. 
+
+
+\paragraph{A5} Der theoretische Einfluss einzelner Größen wie aleatorischer und epistemischer Varianz wurde an den Beispielen aus A4 vertieft und gegenübergestellt als Grundlage für A6. 
+
+
+\paragraph{A6} In der Durchführung der Implementierung und Valdierung der entwickelten Unsicherheitsmetriken und Modellierungstechniken in simulierten Daten hat sich folgendes ergeben. Bei der Bewertung der Parameter verstärken sich Konvergenzeffekte von Trainings- und Validierungsloss über die Samplezahl $n$ sichtbar an den Beispielen der einzelnen 3D-Signale Gauss, Hyperwürfel in Under- und Overfit. Dies wird linear beobachtet unterstützt von der Epochenzahl.
+
+%Bei der Wahl des optimalen Sample-Umfangs zum Trainings- und Validierungsloss fällt auf, dass 
+
+In der Under- und Overfit Bewertung verwendeter 3D-Signale varriiert die epistemische und aleatorische Varianz insgesamt kaum ersichtlich im Verhältnis im Raum zur Parametervariation. Die $\gamma$-Ergebnisse fallen dafür sehr viel differenzierter aus. 
+
+In der Approximations-Bewertung der 3D-Signale wird deutlich, dass sich Volumen und Position der Unsicherheiten der einzelnen 3D-Signale Gauss, Hyperwürfel verschieden stark im Volumen amplifizieren lassen. Es fehlt jedoch eine Normierung des Ausschlags, um aus der quantitativen Referenz eine qualitative Aussage über die Amplitude der epistemischen, aleatorischen Varianz zu treffen. Es wurde gezeigt, dass die Amplitude steuerbar ist. Es wurde gezeigt, dass die Steuerung der Amplitude in Kombination mit Erweiterung der von Amini vorgeschlagenen  Loss-Funktion Ergebnisse liefern kann, die Effekte in recherchierten Papern grundlegend eindämmen.
