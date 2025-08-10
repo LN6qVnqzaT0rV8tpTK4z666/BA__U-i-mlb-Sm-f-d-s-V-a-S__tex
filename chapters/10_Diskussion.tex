@@ -68,36 +68,26 @@
 
 \section{Diskussion}
 
+\textbf{R1} Die Resultate weisen darauf hin, dass Bayesische Neuronale Netze bei bestimmten Signalprofilen und unter stark streuendem Rauschen präzisere Approximationen erzielen können. Evidentielle Neuronale Netze ergänzen diese Eigenschaft durch eine höhere Sensitivität für selten gesampelte, ausgeprägte Signalamplituden. Die Erweiterung der Loss-Funktion führte zu einer messbaren Verbesserung gegenüber der Standardvariante, ohne jedoch eine eindeutige Überlegenheit gegenüber Conformal Prediction zu etablieren.
 
+\textbf{R2} Der entwickelte Fragenkatalog bietet eine strukturierte Übersicht relevanter Einflussgrößen auf das Erlernen von Unsicherheiten. Durch die systematische Anordnung lässt er sich sowohl als Referenz innerhalb des Projekts als auch für methodenübergreifende Vergleiche einsetzen.
 
-\textbf{R1}
+\textbf{R3} Die gezielte Betrachtung ausgewählter Faktoren aus R2 verdeutlicht, dass Änderungen im Modellaufbau und bei den Trainingsparametern die Qualität der Unsicherheitsquantifizierung deutlich beeinflussen können. Die hinterlegten Quellenbezüge belegen diese Einschätzung und liefern Anhaltspunkte für eine Umsetzung.
 
+\textbf{R4} Die Frage nach der Verlässlichkeit ML-basierter Unsicherheitsquantifizierung in realen Anwendungskontexten konnte in allgemeiner Form beantwortet werden. Für eine präzisere Einschätzung wären jedoch domänenspezifische Realdaten erforderlich, um methodische Grenzen und Stärken unter praxisnahen Bedingungen zu überprüfen.
 
-\textbf{R2}
+\textbf{A1} Die Eingrenzung des Themenfeldes durch In- und Exklusionskriterien führte zu einer zielgerichteten Recherche. So wurde vermieden, dass die Recherche sich davon thematisch entfernt.
 
+\textbf{A2} Die Darstellung grundlegender Unsicherheitsmetriken trug zu einem einheitlichen Verständnis für mich als Projektteilnehmer bei. Dieses Fundament erleichterte mir die methodische Gegenüberstellung und die Interpretation der Ergebnisse. Dies sollte dementsprechend auch für andere Projektteilnehmer gelten.
 
-\textbf{R3}
+\textbf{A3} Die aufgeführten Anwendungsbeispiele aus dem Ingenieurwesen verdeutlichen den möglichen Transfer in der Bedeutung der vorgestellten Metriken. Die Kombination aus modell- und anwendungsspezifischen Aspekten schafft eine Grundlage für eine Auswahl von Ansätzen im Ingenieurwesen.
 
+\textbf{A4} Der Vergleich zwischen Bayesischen und Evidentiellen Neuronalen Netzen sowie Conformal Prediction machte deutlich, dass die Methoden je nach Szenario unterschiedliche Vorteile bieten. Diese Erkenntnis kann als Entscheidungshilfe bei der Modellauswahl dienen.
 
-\textbf{R4}
+\textbf{A5} Josangs \glqq{}Subjective Logic\grqq{} wird in meinen Augen dem in der Literatur angemerktem Robustheitsanspruch für sicherheitskritische Systeme gerecht, da eine eindeutige  Logik-Hierarchie vorgegeben wird. Diese wurde an relevant empfundenen Stellen aufgezeigt. Sie würden in einer weiterführenden Arbeit den Transfer auf Evidentielle Neuronale Netzwerke im Hinblick auf eine Meta-Unsicherheit erlauben, sollte dieser weiter im Projekt verfolgt werden.
 
+\textbf{A6} Die Experimente zeigten, dass sich mit zunehmender Stichprobengröße und höherer Epochenzahl deutliche Konvergenzeffekte zwischen Trainings- und Validierungsloss einstellen. Die aleatorische Varianz entsprach in den Untersuchungen linear dem Eingangsverhalten, sofern der ganze Raum untersucht wurde ohne eingeführten ZER-Operator. Die epistmische Varianz stellte sich in den Untersuchungen überwiegend als höher, als die aleatorische Varianz heraus. Zudem wurde deutlich, dass sich die Amplituden der Unsicherheiten gezielt an Bereiche anpassen lassen, was für weiterführende Studien eine relevante Stellgröße darstellen kann. Ein Über- und Unterfit wurden in $\gamma$ gegenübergestellt und verbundene aleatorische, epistemische Varianz aufgezeigt. Mit der erarbeiteten Trennung von Approximation und Fit wäre es angebracht, den Trainings- und Validierungsloss von VaMAIs Ziel niedriger Samplezahlen aufzulockern, um mit extremeren Loss-Konvergenzen über Trainings- und Validierungsdaten Ergebnisse zu erzielen, die einen Fit vom Ausgangssignal $y$ gegenüber $\gamma$ darstellen. Dieses Verständnis kann im Verbund mit weiteren Aspekten zur vollständigen Fit-Definition für evidentielle Netzwerke in VaMAI beitragen. Zur Ausarbeitung einer normativen Skala für epistemische und aleatorische Varianz, die über Linearitätsbeobachtungen hinausgeht, wäre es in meinen Augen sinnvoll, diese mit der Raumabdeckung aus in Beziehung zu setzen. Ebenso wären bei der Ausarbeitung der Plots für Vorhersagen zu Stichproben ein weiterer Schritt das Einführen von Quantilen, zum expliziteren erfassen der Abdeckung der Ground-Truth. Dies wäre in Relation zu setzen zu den Amplituden-Ausschlägen der aleatorischen und epistemischen Varianz. Beobachtet wurden sowohl Änderungen in Position als auch im Volumen für epistemische, als auch aleatorische Varianz. Hier wäre eine normierende Methode für eine weitere Ausarbeitung sinnvoll. Dies würde es erlauben die Gesamtunsicherheit über den Kritikalitätsraum gemäß der Eingangsformel der Gesamtunsicherheit additiv und normiert zusammenzusetzen und im Idealfall eindeutig an der Ground-Truth zu belegen.
 
-\textbf{A1}
-
-
-\textbf{A2}
-
-
-\textbf{A3}
-
-
-\textbf{A4}
-
-
-\textbf{A5}
-
-
-\textbf{A6}
 
 % Bewertung der eingesetzten Methoden
 \paragraph{Bewertung der Modellierungsansätze}
@@ -115,13 +105,12 @@ Die Regularisierungsparameter $\nu$, $\alpha$ und $\beta$ sind dabei sensitiv in
 Die Trennung von \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} erfolgt hier auf Basis der evidenzbasierten Wahrscheinlichkeitsmodellierung. Dies ist theoretisch konsistent mit der Unsicherheitsdefinition der GUM, jedoch praktisch schwer zu validieren, solange keine realen Messdaten mit bekannter Varianzstruktur vorliegen.
 
 % Synthetische Daten hinterfragen
-Die genutzten Kritikalitätsfunktionen sind synthetisch definiert. 
-Somit bleibt offen, ob das trainierte Netz diese Trennung bei realen, verrauschten Daten gleichermaßen leisten kann. Eine Erweiterung um reale Sensorikdaten wäre hier ein nächster Schritt.
+Die genutzten Kritikalitätsfunktionen sind synthetisch definiert. Somit bleibt offen, ob das trainierte Netz diese Trennung bei realen, verrauschten Daten gleichermaßen leisten kann. Eine Erweiterung um reale Sensorikdaten wäre hier ein nächster Schritt.
 
 \paragraph{Einfluss der Kritikalitätsfunktion und Regularisierung}
 
 % Diskussion über die Konstruktion der Kritikalitätsräume
-Die Kritikalitätsfunktion $C(x)$ wurde explizit modelliert, um Unsicherheiten in sensiblen Bereichen zu begrenzen. Diese Eingrenzung erweist sich als effektives Steuerungsinstrument im Trainingsprozess, stellt aber eine idealisierte Repräsentation realer Risiken dar. In praktischen Anwendungen müsste $C(x)$ durch Expertenwissen, Redundanzlogik oder risikobasierte Metriken ersetzt werden.
+Die Kritikalitätsfunktion $C(x)$ wurde explizit modelliert, um Unsicherheiten in sensiblen Bereichen zu begrenzen. Diese Eingrenzung erweist sich als effektives Steuerungsinstrument im Trainingsprozess, stellt aber eine idealisierte Repräsentation realer Risiken dar. In praktischen Anwendungen müsste $C(x)$ durch Expertenwissen ersetzt werden.
 
 % Hier kannst du auch die Rolle der Zero-Evidence-Regionen erwähnen
 Ergänzend wurde eine ZER-Regelung über einen unteren Varianz-Schwellenwert eingeführt, um Regionen mit extrem geringer Evidenz explizit zu markieren. Dies erhöht die Erklärbarkeit des Modells, setzt aber voraus, dass die Parametrisierung der Evidenzverteilung sinnvoll gewählt wurde.
@@ -129,22 +118,20 @@ Ergänzend wurde eine ZER-Regelung über einen unteren Varianz-Schwellenwert ein
 \paragraph{Limitationen}
 
 % Offen und ehrlich: Was konnte nicht umgesetzt werden?
-Ein wesentlicher Nachteil der durchgeführten Studie ist die fehlende Validierung mit realen Anwendungsdaten. 
-Weder das Verhalten der Kritikalitätsfunktion noch die Effektivität der Verlustbegrenzung wurden im produktiven Kontext getestet. 
+Ein wesentlicher Nachteil der durchgeführten Studie ist die fehlende Validierung mit realen Anwendungsdaten. Weder das Verhalten der Kritikalitätsfunktion noch die Effektivität der Verlustbegrenzung wurden im produktiven Kontext getestet. 
 % Meta-Unsicherheit als Konzept zwar motiviert, jedoch nicht quantitativ experimentell untersucht.
 
 % Weitere Punkte
-Die gesamte Arbeit basiert auf synthetisch erzeugten Datensätzen. 
-Dies ermöglicht zwar kontrollierte Experimente, schränkt aber die Generalisierbarkeit auf reale Szenarien ein.
+Die gesamte Arbeit basiert auf synthetisch erzeugten Datensätzen. Dies ermöglicht zwar kontrollierte Experimente, schränkt aber die Generalisierbarkeit auf reale Szenarien ein.
 
 \paragraph{Ausblick und Weiterentwicklungsmöglichkeiten}
 
 % Wo könnte die Arbeit hinführen?
 Ein möglicher nächster Schritt wäre die Übertragung der entwickelten Methoden auf reale Daten mit bekannter Unsicherheitsstruktur, zum Beispiel aus der Sensorik, Messtechnik oder dem Bereich autonomer Systeme. 
-Auch eine Erweiterung des \gls{Evidenzbasierte neuronale Netze} um Rekurrenzmechanismen zum Beispiel LSTM oder ODE-Netze zur Modellierung von Zeitdynamik wäre in begrenzter Abstraktion von Signalen denkbar.
+Auch eine Erweiterung des \gls{Evidenzbasierte neuronale Netze} um Rekurrenzmechanismen zum Beispiel LSTM zur Modellierung von Zeitdynamik wäre in begrenzter Abstraktion von Signalen denkbar.
 
 % Meta-Unsicherheit als Forschungsrichtung
-Ein weiteres Forschungspotenzial liegt in der quantitativen Ausführung des Konzepts der Meta-Unsicherheit – also der Unsicherheit über die Unsicherheitsmaße selbst. 
+Ein weiteres Forschungspotenzial liegt in der quantitativen Ausführung des Konzepts der Meta-Unsicherheit – also der Unsicherheit über die Unsicherheitsmaße selbst. Hier könnten wiedersprüchliche Unsicherheitsquantifizierungen gegeneinander verglichen werden, um eine eindeutige Aussage zu treffen. 
 
 % Letzter Satz: Stärke der Arbeit betonen
 Die Arbeit zeigt, dass eine evidenzbasierte Unsicherheitsquantifizierung mit kritikalitätsabhängiger Regularisierung ein vielversprechender Ansatz zur Risikominimierung in sicherheitsrelevanten Systemen sein kann.

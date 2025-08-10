@@ -1068,6 +1068,13 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
 % R1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
+
+\begin{samepage}
+%\begin{minipage}
+
+
+
 \textbf{R1} Welche auf \gls{machinelearning} basierenden Surrogatmodelle sind für die Quantifizierung von Unsicherheiten geeignet?
 
 \begin{table}[!htpb]
@@ -1144,7 +1151,14 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
 
 % (Übersicht aus MC25) 
 
+
+\end{samepage}
+%\end{minipage}
+
+
 \newpage
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R2
@@ -1342,6 +1356,17 @@ Der aktuelle Stand im Bereich \gls{machinelearning} für die szenariobasierte Va
 % R3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
+\clearpage
+
+
+
+\begin{samepage}
+%\begin{minipage}
+
+
+
 \textbf{R3} Wie können diese Einflussfaktoren abgeschwächt werden, um die Unsicherheitsabschätzung zu verbessern?
 \par\vspace{1\baselineskip}\noindent
 
@@ -1394,7 +1419,16 @@ Wie kann man \textit{allgemeine Faktoren} beim Lernen von Unsicherheiten in \gls
   \label{tab:chapter6r31}
 \end{table}
 
+
+
+\end{samepage}
+%\end{minipage}
+
+
+
 \pagebreak
+
+
 
 Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten in \gls{machinelearning}-Modellen abschwächen?
 
@@ -1572,6 +1606,8 @@ Wie kann man \textit{modellspezifische Faktoren} beim Lernen von Unsicherheiten 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \textbf{R4} Inwieweit kann \gls{machinelearning}-basierte \gls{uncertaintyquantification} zuverlässig den in realen Anwendungsszenarien beobachteten Unsicherheiten entsprechen?
 \par\vspace{1\baselineskip}\noindent
@@ -2206,7 +2242,7 @@ Bohlke et al. (2023): Scalability challenges in large Vision Transformers
 \end{footnotesize}
 
 Hochwertige, zentrale Umfragen sind Ulmer et al. \parencite{Ulmer2023}, Gawlikowski et al. \parencite{Gawlikowski2023}. 
-Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der Realdaten ist im Anhang \ref{sec:enn_gum_derivation}.
+Der Zusammenhang der modellbasierten, evidenzbasierten Unsicherheit zu jener der Realdaten ist im Anhang. %\ref{sec:enn_gum_derivation}.
 
 \pagebreak
 
@@ -2561,6 +2597,10 @@ Zur Untersuchung von A4 wird der Vergleich zwischen \gls{Bayesianische neuronale
 
 
 
+\clearpage
+
+
+
 \begin{table}[!htbp]
   \centering
   \footnotesize
@@ -2734,6 +2774,12 @@ A6 soll mit minimaler Sensitivitätsanalyse am Beispiel \gls{Evidenzbasierte neu
 % A6 **/assets/repos/BA__U-i-mlb-Sm-f-d-s-V-a-S__tex/prototypes/prototype_s9-02-07-25/*.py
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
+\clearpage
+
+
+
 % S4: Auswertung
 \newline 
 \paragraph{Parametrisierung der Sensitivitätsanalyse \gls{Evidenzbasierte neuronale Netze}} 
@@ -2863,15 +2909,15 @@ Das Signifikanzniveau $\alpha$ bestimmt bei \gls{Conformal Prediction} die Breit
 
 \paragraph{Vergleichende Auswertung Modelle \gls{Bayesianische neuronale Netze}, \gls{Conformal Prediction}, \gls{Evidenzbasierte neuronale Netze}}
 
-Die drei Tabellen zeigen die Sensitivitätsanalysen für \gls{Evidenzbasierte neuronale Netze}, \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction} unter Variation ihrer jeweiligen Steuerungsgrößen (\(\nu\), Dropout-Rate, \(\alpha\)). Als gemeinsame Kennzahlen wurden die mittlere Gesamtvarianz \(\overline{\sigma(y)^2}\), die mittlere aleatorische Varianz \(\overline{\sigma_{\text{aleatorisch}}^2}\), die mittlere epistemische Varianz \(\overline{\sigma_{\text{epistemisch}}^2}\), daneben der RMSE sowie der \gls{relativeuncertaintyindex} ausgewertet.  
+Die drei Tabellen zeigen die Sensitivitätsanalysen für \gls{Evidenzbasierte neuronale Netze}, \gls{Bayesianische neuronale Netze} und \gls{Conformal Prediction} unter Variation ihrer jeweiligen Steuerungsgrößen (\(\nu\), Dropout-Rate, \(\alpha\)). Als gemeinsame Kennzahlen wurden die mittlere Gesamtvarianz \(\overline{\sigma}(y)^{2}\), die mittlere aleatorische Varianz \(\overline{\sigma}^{2}_{\text{\gls{Aleatorische Unsicherheit}}}\), die mittlere epistemische Varianz \(\overline{\sigma_{\text{\gls{Epistemische Unsicherheit}}}^2}\), daneben der RMSE sowie der \gls{relativeuncertaintyindex} ausgewertet.  
 
-Im direkten Vergleich zeigen \gls{Evidenzbasierte neuronale Netze} insgesamt höhere Varianzen, zum Beispiel bis \(\overline{\sigma(y)^2} \approx 1.6\), während der RMSE relativ stabil bei etwa \(155\) liegt. Die Zerlegung der Unsicherheit zeigt bei \gls{Evidenzbasierte neuronale Netze} für kleine \(\nu\) etwa gleiche Anteile zwischen \(\overline{\sigma_{\text{aleatorisch}}^2}\) und \(\overline{\sigma_{\text{epistemisch}}^2}\). Mit steigender Evidenz \(\nu\) sinkt \(\overline{\sigma_{\text{epistemisch}}^2}\) deutlich, wodurch sich der Anteil der Unsicherheit zunehmend auf die aleatorische Komponente verlagert. Dies verdeutlicht, dass zu geringe \(\nu\)-Werte eine \textit{Overconfidence} verhindern können, da das Modell dann größere epistemische Unsicherheit zulässt.  
+Im direkten Vergleich zeigen \gls{Evidenzbasierte neuronale Netze} insgesamt höhere Varianzen, zum Beispiel bis \(\overline{\sigma}(y)^{2} \approx 1.6\), während der RMSE relativ stabil bei etwa \(155\) liegt. Die Zerlegung der Unsicherheit zeigt bei \gls{Evidenzbasierte neuronale Netze} für kleine \(\nu\) etwa gleiche Anteile zwischen \(\overline{\sigma}^{2}_{\text{\gls{Aleatorische Unsicherheit}}}\) und \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}}\). Mit steigender Evidenz \(\nu\) sinkt \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}}\) deutlich, wodurch sich der Anteil der Unsicherheit zunehmend auf die aleatorische Komponente verlagert. Dies verdeutlicht, dass zu geringe \(\nu\)-Werte eine \textit{Overconfidence} verhindern können, da das Modell dann größere epistemische Unsicherheit zulässt.  
 
-Die \gls{Bayesianische neuronale Netze} liefern deutlich kleinere Varianzen, teilweise unter \(\overline{\sigma(y)^2} < 0.02\), bei gleichzeitig wesentlich niedrigerem RMSE zwischen \(6\) und \(9\). Höhere Dropout-Raten führen jedoch zu steigenden Werten sowohl für \(\overline{\sigma_{\text{epistemisch}}^2}\) als auch für \(\overline{\sigma_{\text{aleatorisch}}^2}\), was auf zunehmende Unsicherheitsstreuung hinweist. Allerdings kann ein zu niedriges Dropout-Raten-Niveau bei \gls{Bayesianische neuronale Netze}s \textit{Overconfidence} fördern, da epistemische Unsicherheit dann unterrepräsentiert bleibt.  
+Die \gls{Bayesianische neuronale Netze} liefern deutlich kleinere Varianzen, teilweise unter \(\overline{\sigma(y)}^{2} < 0.02\), bei gleichzeitig wesentlich niedrigerem RMSE zwischen \(6\) und \(9\). Höhere Dropout-Raten führen jedoch zu steigenden Werten sowohl für \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}}\) als auch für \(\overline{\sigma}^{2}_{\text{\gls{Aleatorische Unsicherheit}}}\), was auf zunehmende Unsicherheitsstreuung hinweist. Allerdings kann ein zu niedriges Dropout-Raten-Niveau bei \gls{Bayesianische neuronale Netze}s \textit{Overconfidence} fördern, da epistemische Unsicherheit dann unterrepräsentiert bleibt.  
 
-\gls{Conformal Prediction} liefert über alle \(\alpha\)-Level hinweg konstante mittlere Varianzwerte, da der zugrundeliegende Random-Forest-Fit unverändert bleibt. Hier beträgt \(\overline{\sigma(y)^2} \approx 0.57\), zusammengesetzt aus einer moderaten epistemischen Varianz \(\overline{\sigma_{\text{epistemisch}}^2} \approx 0.36\) und einer geringeren aleatorischen Komponente \(\overline{\sigma_{\text{aleatorisch}}^2} \approx 0.21\). Die \gls{relativeuncertaintyindex}-Werte liegen bei \gls{Conformal Prediction} mit ca. \(1.9\) deutlich höher, was eine relativ große Unsicherheitsbreite im Verhältnis zum RMSE (hier \(< 0.4\)) reflektiert. Durch die direkte Intervallberechnung schützt \gls{Conformal Prediction} per Konstruktion stärker gegen \textit{Overconfidence}, bleibt jedoch konservativer.  
+\gls{Conformal Prediction} liefert über alle \(\alpha\)-Level hinweg konstante mittlere Varianzwerte, da der zugrundeliegende Random-Forest-Fit unverändert bleibt. Hier beträgt \(\overline{\sigma(y)}^{2} \approx 0.57\), zusammengesetzt aus einer moderaten epistemischen Varianz \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}} \approx 0.36\) und einer geringeren aleatorischen Komponente \(\overline{\sigma}^{2}_{\text{\gls{Aleatorische Unsicherheit}}} \approx 0.21\). Die \gls{relativeuncertaintyindex}-Werte liegen bei \gls{Conformal Prediction} mit ca. \(1.9\) deutlich höher, was eine relativ große Unsicherheitsbreite im Verhältnis zum RMSE (hier \(< 0.4\)) reflektiert. Durch die direkte Intervallberechnung schützt \gls{Conformal Prediction} per Konstruktion stärker gegen \textit{Overconfidence}, bleibt jedoch konservativer.  
 
-Insgesamt zeigen die Modelle unterschiedliche Profile: Erstens, \gls{Evidenzbasierte neuronale Netze} weisen die höchsten Unsicherheitsniveaus bei konstant hohem RMSE auf. Zweitens, \gls{Bayesianische neuronale Netze} erzielen geringere Fehler und niedrigere Unsicherheiten, doch reagieren sensibel auf die gewählte Dropout-Rate. Drittens, \gls{Conformal Prediction} liefert stabile, eher breite Intervalle und sichert robuste Kalibrierung. Zusammenfassend erlauben die Kennzahlen \(\overline{\sigma(y)^2}\), \(\overline{\sigma_{\text{aleatorisch}}^2}\), \(\overline{\sigma_{\text{epistemisch}}^2}\), RMSE und \gls{relativeuncertaintyindex} eine methodenübergreifende Bewertung der Unsicherheiten und helfen wie grundlegend aufgezeigt \textit{Overconfidence} frühzeitig zu erkennen.
+Insgesamt zeigen die Modelle unterschiedliche Profile: Erstens, \gls{Evidenzbasierte neuronale Netze} weisen die höchsten Unsicherheitsniveaus bei konstant hohem RMSE auf. Zweitens, \gls{Bayesianische neuronale Netze} erzielen geringere Fehler und niedrigere Unsicherheiten, doch reagieren sensibel auf die gewählte Dropout-Rate. Drittens, \gls{Conformal Prediction} liefert stabile, eher breite Intervalle und sichert robuste Kalibrierung. Zusammenfassend erlauben die Kennzahlen \(\overline{\sigma(y)}^{2}\), \(\overline{\sigma}^{2}_{\text{\gls{Aleatorische Unsicherheit}}}\), \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}}\), RMSE und \gls{relativeuncertaintyindex} eine methodenübergreifende Bewertung der Unsicherheiten und helfen wie grundlegend aufgezeigt \textit{Overconfidence} frühzeitig zu erkennen.
 
 
 
