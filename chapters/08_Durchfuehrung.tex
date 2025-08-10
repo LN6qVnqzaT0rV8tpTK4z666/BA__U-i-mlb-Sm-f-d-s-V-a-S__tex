@@ -1118,7 +1118,7 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
-Überapproximation für $n=10$, $n_{\Delta}$, $n_{\frac{\Delta}{2}}$}
+Überapproximation für $n=10$, $n_{\Delta}=50$, $n_{\frac{\Delta}{2}}=100$}
 
 % ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
 
@@ -1132,25 +1132,25 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 
 % Zeile 1
 \begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\min}$}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y21.png}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y22.png}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y23.png}\end{minipage}
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n10_1.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n10_2.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n10_3.png}\end{minipage}
 
 \vspace{0.125cm}
 
 % Zeile 2
 \begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\frac{\Delta}{2}}$}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y21.png}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y22.png}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y23.png}\end{minipage}
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n50_1.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n50_2.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n50_3.png}\end{minipage}
 
 \vspace{0.125cm}
 
 % Zeile 3
 \begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{$n_{\Delta}$}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y31.png}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y32.png}\end{minipage}%
-\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y33.png}\end{minipage}
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n100_1.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n100_2.png}\end{minipage}%
+\begin{minipage}{0.3\textwidth}\centering\includegraphics[width=\linewidth]{../figures/y4_n100_3.png}\end{minipage}
 
 % Eine EINZIGE Caption für alles:
 \captionof{figure}{Vergleich der evidentiellen Ausgaben für $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
@@ -1169,15 +1169,15 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \begin{minipage}{0.05\textwidth}\centering\rotatebox{90}{Ausgabe}\end{minipage}%
 \begin{minipage}{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n100__run1.pdf}
+    \includegraphics[width=\linewidth]{../figures/output3__hypercube__epoch_4000__neurons_128__layer_2/Candidate/loss_plot__2025-08-10__n10__run2.pdf}
 \end{minipage}%
 \begin{minipage}{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n150__run2.pdf}
+    \includegraphics[width=\linewidth]{../figures/output3__hypercube__epoch_4000__neurons_128__layer_2/Candidate/loss_plot__2025-08-10__n50__run0.pdf}
 \end{minipage}%
 \begin{minipage}{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/loss_plot__2025-08-08__n200__run4.pdf}
+    \includegraphics[width=\linewidth]{../figures/output3__hypercube__epoch_4000__neurons_128__layer_2/Candidate/loss_plot__2025-08-10__n100__run4.pdf}
 \end{minipage}
 
 \caption{Vergleich des Trainings- und Validierungsloss für $n_{min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.}
@@ -1197,15 +1197,15 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \end{minipage}%
 \begin{minipage}{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n100.pdf}
+    \includegraphics[width=\linewidth]{../figures/output3__hypercube__epoch_4000__neurons_128__layer_2/Candidate/pred_vs_gt__2025-08-10__n10.pdf}
 \end{minipage}%
 \begin{minipage}{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n150.pdf}
+    \includegraphics[width=\linewidth]{../figures/output3__hypercube__epoch_4000__neurons_128__layer_2/Candidate/pred_vs_gt__2025-08-10__n50.pdf}
 \end{minipage}%
 \begin{minipage}{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{../figures/output___gauss__epoch_2000__neurons_64__layer_2/Candidate/pred_vs_gt__2025-08-08__n200.pdf}
+    \includegraphics[width=\linewidth]{../figures/output3__hypercube__epoch_4000__neurons_128__layer_2/Candidate/pred_vs_gt__2025-08-10__n100.pdf}
 \end{minipage}
 
 % Beschriftung
@@ -1218,6 +1218,25 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{samepage}
+\begin{minipage}{\textwidth}
+
+\noindent\textbf{Interpretation, Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
+Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
+
+\begin{itemize}
+    \item Das Signal wird überapproximiert.
+    \item Die Konvergenz zur besten Epoche ergibt die Maximalwerte von 0, 5, 6 Epochen.
+    \item Das iterative Training wählt basierend auf der Konvergenz von Training- und Validation-Loss niedrigere Samplingzahlen für $n_{\min}$, $n_{\frac{\Delta}{2}}$ und $n_{\Delta}$.
+    \item Die Überkonfidenz äußert sich besonders mit dem frühen Divergieren über alle niedrigen Sample-Zahlen.
+\end{itemize}
+
+
+
+
+\end{minipage}
+\end{samepage}
 
 
 
