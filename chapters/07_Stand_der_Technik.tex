@@ -2913,6 +2913,12 @@ Die drei Tabellen zeigen die Sensitivitätsanalysen für \gls{Evidenzbasierte ne
 
 Im direkten Vergleich zeigen \gls{Evidenzbasierte neuronale Netze} insgesamt höhere Varianzen, zum Beispiel bis \(\overline{\sigma}(y)^{2} \approx 1.6\), während der RMSE relativ stabil bei etwa \(155\) liegt. Die Zerlegung der Unsicherheit zeigt bei \gls{Evidenzbasierte neuronale Netze} für kleine \(\nu\) etwa gleiche Anteile zwischen \(\overline{\sigma}^{2}_{\text{\gls{Aleatorische Unsicherheit}}}\) und \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}}\). Mit steigender Evidenz \(\nu\) sinkt \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}}\) deutlich, wodurch sich der Anteil der Unsicherheit zunehmend auf die aleatorische Komponente verlagert. Dies verdeutlicht, dass zu geringe \(\nu\)-Werte eine \textit{Overconfidence} verhindern können, da das Modell dann größere epistemische Unsicherheit zulässt.  
 
+
+
+\clearpage
+
+
+
 Die \gls{Bayesianische neuronale Netze} liefern deutlich kleinere Varianzen, teilweise unter \(\overline{\sigma(y)}^{2} < 0.02\), bei gleichzeitig wesentlich niedrigerem RMSE zwischen \(6\) und \(9\). Höhere Dropout-Raten führen jedoch zu steigenden Werten sowohl für \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}}\) als auch für \(\overline{\sigma}^{2}_{\text{\gls{Aleatorische Unsicherheit}}}\), was auf zunehmende Unsicherheitsstreuung hinweist. Allerdings kann ein zu niedriges Dropout-Raten-Niveau bei \gls{Bayesianische neuronale Netze}s \textit{Overconfidence} fördern, da epistemische Unsicherheit dann unterrepräsentiert bleibt.  
 
 \gls{Conformal Prediction} liefert über alle \(\alpha\)-Level hinweg konstante mittlere Varianzwerte, da der zugrundeliegende Random-Forest-Fit unverändert bleibt. Hier beträgt \(\overline{\sigma(y)}^{2} \approx 0.57\), zusammengesetzt aus einer moderaten epistemischen Varianz \(\overline{\sigma}^{2}_{\text{\gls{Epistemische Unsicherheit}}} \approx 0.36\) und einer geringeren aleatorischen Komponente \(\overline{\sigma}^{2}_{\text{\gls{Aleatorische Unsicherheit}}} \approx 0.21\). Die \gls{relativeuncertaintyindex}-Werte liegen bei \gls{Conformal Prediction} mit ca. \(1.9\) deutlich höher, was eine relativ große Unsicherheitsbreite im Verhältnis zum RMSE (hier \(< 0.4\)) reflektiert. Durch die direkte Intervallberechnung schützt \gls{Conformal Prediction} per Konstruktion stärker gegen \textit{Overconfidence}, bleibt jedoch konservativer.  

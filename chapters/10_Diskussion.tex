@@ -66,7 +66,9 @@
 
 
 
-\section{Diskussion}
+\paragraph{Diskussion} 
+
+\newline
 
 \textbf{R1} Die Resultate weisen darauf hin, dass Bayesische Neuronale Netze bei bestimmten Signalprofilen und unter stark streuendem Rauschen präzisere Approximationen erzielen können. Evidentielle Neuronale Netze ergänzen diese Eigenschaft durch eine höhere Sensitivität für selten gesampelte, ausgeprägte Signalamplituden. Die Erweiterung der Loss-Funktion führte zu einer messbaren Verbesserung gegenüber der Standardvariante, ohne jedoch eine eindeutige Überlegenheit gegenüber Conformal Prediction zu etablieren.
 
@@ -84,7 +86,7 @@
 
 \textbf{A4} Der Vergleich zwischen Bayesischen und Evidentiellen Neuronalen Netzen sowie Conformal Prediction machte deutlich, dass die Methoden je nach Szenario unterschiedliche Vorteile bieten. Diese Erkenntnis kann als Entscheidungshilfe bei der Modellauswahl dienen.
 
-\textbf{A5} Josangs \glqq{}Subjective Logic\grqq{} wird in meinen Augen dem in der Literatur angemerktem Robustheitsanspruch für sicherheitskritische Systeme gerecht, da eine eindeutige  Logik-Hierarchie vorgegeben wird. Diese wurde an relevant empfundenen Stellen aufgezeigt. Sie würden in einer weiterführenden Arbeit den Transfer auf Evidentielle Neuronale Netzwerke im Hinblick auf eine Meta-Unsicherheit erlauben, sollte dieser weiter im Projekt verfolgt werden.
+\textbf{A5} Josangs \glqq{}Subjective Logic\grqq{} wird in meinen Augen dem in der Literatur angemerktem Robustheitsanspruch für sicherheitskritische Systeme gerecht, da eine eindeutige Logik-Hierarchie vorgegeben wird. Diese wurde an relevant empfundenen Stellen aufgezeigt. Sie würden in einer weiterführenden Arbeit den Transfer auf Evidentielle Neuronale Netzwerke im Hinblick auf eine Meta-Unsicherheit erlauben, sollte dieser weiter im Projekt verfolgt werden.
 
 \textbf{A6} Die Experimente zeigten, dass sich mit zunehmender Stichprobengröße und höherer Epochenzahl deutliche Konvergenzeffekte zwischen Trainings- und Validierungsloss einstellen. Die aleatorische Varianz entsprach in den Untersuchungen linear dem Eingangsverhalten, sofern der ganze Raum untersucht wurde ohne eingeführten ZER-Operator. Die epistmische Varianz stellte sich in den Untersuchungen überwiegend als höher, als die aleatorische Varianz heraus. Zudem wurde deutlich, dass sich die Amplituden der Unsicherheiten gezielt an Bereiche anpassen lassen, was für weiterführende Studien eine relevante Stellgröße darstellen kann. Ein Über- und Unterfit wurden in $\gamma$ gegenübergestellt und verbundene aleatorische, epistemische Varianz aufgezeigt. Mit der erarbeiteten Trennung von Approximation und Fit wäre es angebracht, den Trainings- und Validierungsloss von VaMAIs Ziel niedriger Samplezahlen aufzulockern, um mit extremeren Loss-Konvergenzen über Trainings- und Validierungsdaten Ergebnisse zu erzielen, die einen Fit vom Ausgangssignal $y$ gegenüber $\gamma$ darstellen. Dieses Verständnis kann im Verbund mit weiteren Aspekten zur vollständigen Fit-Definition für evidentielle Netzwerke in VaMAI beitragen. Zur Ausarbeitung einer normativen Skala für epistemische und aleatorische Varianz, die über Linearitätsbeobachtungen hinausgeht, wäre es in meinen Augen sinnvoll, diese mit der Raumabdeckung aus in Beziehung zu setzen. Ebenso wären bei der Ausarbeitung der Plots für Vorhersagen zu Stichproben ein weiterer Schritt das Einführen von Quantilen, zum expliziteren erfassen der Abdeckung der Ground-Truth. Dies wäre in Relation zu setzen zu den Amplituden-Ausschlägen der aleatorischen und epistemischen Varianz. Beobachtet wurden sowohl Änderungen in Position als auch im Volumen für epistemische, als auch aleatorische Varianz. Hier wäre eine normierende Methode für eine weitere Ausarbeitung sinnvoll. Dies würde es erlauben die Gesamtunsicherheit über den Kritikalitätsraum gemäß der Eingangsformel der Gesamtunsicherheit additiv und normiert zusammenzusetzen und im Idealfall eindeutig an der Ground-Truth zu belegen.
 

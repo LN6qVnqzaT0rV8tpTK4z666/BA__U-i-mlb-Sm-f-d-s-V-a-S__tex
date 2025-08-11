@@ -40,13 +40,9 @@ Für den Einsatz solcher AUVs kommen unsicherheitsbehaftete Verfahren zum Einsat
 
 % \gls{Autonomous Underwater Vehicle}s
 
-\section{Maschinelles Lernen als methodische Grundlage}
+\paragraph{Maschinelles Lernen als methodische Grundlage} \gls{machinelearning}-Verfahren sind heute zentrale Werkzeuge in der Datenverarbeitung und Automatisierungstechnik (vgl. Nof et al. ~\parencite{Nof2023}). Im Bereich \glqq supervised\grqq, \glqq unsupervised\grqq{} und \glqq reinforcement learning\grqq{} werden Modelle trainiert, um Daten zu klassifizieren, zu strukturieren oder durch Belohnung zu optimieren. Klassische Methoden wie Klassifikation und Regression bilden das methodische Fundament dieser Ansätze.
 
-\gls{machinelearning}-Verfahren sind heute zentrale Werkzeuge in der Datenverarbeitung und Automatisierungstechnik (vgl. Nof et al. ~\parencite{Nof2023}). Im Bereich \glqq supervised\grqq, \glqq unsupervised\grqq{} und \glqq reinforcement learning\grqq{} werden Modelle trainiert, um Daten zu klassifizieren, zu strukturieren oder durch Belohnung zu optimieren. Klassische Methoden wie Klassifikation und Regression bilden das methodische Fundament dieser Ansätze.
-
-\section{Unsicherheitsbehaftete Verfahren im \gls{machinelearning}-Kontext}
-
-In der \textit{Unsicherheitsquantifizierung} (\gls{uncertaintyquantification}) werden im \gls{machinelearning}-Kontext unter anderem zwei Arten unterschieden (vgl. Hullermeier et al. ~\parencite[{S.458, \glqq Sources of uncertainty in supervised learning\grqq{}, \gls{Aleatorische Unsicherheit} Z.23-27, \gls{Epistemische Unsicherheit} Z.23-25}]{Hullermeier2021}):
+\paragraph{Unsicherheitsbehaftete Verfahren im \gls{machinelearning}-Kontext} In der \textit{Unsicherheitsquantifizierung} (\gls{uncertaintyquantification}) werden im \gls{machinelearning}-Kontext unter anderem zwei Arten unterschieden (vgl. Hullermeier et al. ~\parencite[{S.458, \glqq Sources of uncertainty in supervised learning\grqq{}, \gls{Aleatorische Unsicherheit} Z.23-27, \gls{Epistemische Unsicherheit} Z.23-25}]{Hullermeier2021}):
 
 \begin{itemize}
   \item \textbf{\gls{Epistemische Unsicherheit}:} \textit{modellbedingte} Unsicherheit aufgrund unzureichender Daten oder Modellstruktur; potenziell reduzierbar.
@@ -55,16 +51,13 @@ In der \textit{Unsicherheitsquantifizierung} (\gls{uncertaintyquantification}) w
 
 Die \gls{Aleatorische Unsicherheit} kann weiter in \textit{homoskedastische} Unsicherheit, das heißt Unsicherheit, die für verschiedene Eingaben konstant bleibt, und \textit{heteroskedastische} Unsicherheit unterteilt werden. Heteroskedastische Unsicherheit hängt von den Eingaben in das Modell ab, wobei einige Eingaben potenziell verrauschtere Ausgaben haben als andere (vgl. Kendall et al. ~\parencite[S. 2, Z. 1-5]{kendall2017}).
 
-\section{Zusammenhang und steuerbare Unsicherheiten}
-
-Quellen wie Hoarau et al. beschreiben eine dynamische Beziehung zwischen \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} bei Untersuchung zusammenhängender Modalitäten in Regression (vgl. Hoarau et al. ~\parencite[S. 2, Z.10-14]{ArthurHoarau2025}). Neuere Arbeiten gehen davon aus, dass diese Unsicherheiten, insbesondere im Zusammenspiel mit evidenzbasierten Verfahren, unter bestimmten Bedingungen gezielt beeinflussbar beziehungsweise steuerbar sind: 
+\paragraph{Zusammenhang und steuerbare Unsicherheiten} Quellen wie Hoarau et al. beschreiben eine dynamische Beziehung zwischen \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} bei Untersuchung zusammenhängender Modalitäten in Regression (vgl. Hoarau et al. ~\parencite[S. 2, Z.10-14]{ArthurHoarau2025}). Neuere Arbeiten gehen davon aus, dass diese Unsicherheiten, insbesondere im Zusammenspiel mit evidenzbasierten Verfahren, unter bestimmten Bedingungen gezielt beeinflussbar beziehungsweise steuerbar sind: 
 
 \begin{quote}
 \glqq These findings indicate that both aleatoric and epistemic uncertainty can be influenced and reduced through targeted acquisition strategies, particularly in evidence-based modeling frameworks (vgl. Hoarau et al. ~\parencite[S.2, Z. 43-45]{ArthurHoarau2025}). \grqq{}
 \end{quote}
 
-\section{Schlussfolgerung}
-Die steigende Bedeutung verlässlicher Unsicherheitsanalysen in autonomen, sicherheitskritischen Systemen motiviert die vertiefte Untersuchung von \gls{machinelearning}-Verfahren unter Unsicherheitsgesichtspunkten. Ziel ist es, Modelle nicht nur leistungsfähig, sondern auch vertrauenswürdig und erklärbar zu gestalten.
+\paragraph{Schlussfolgerung} Die steigende Bedeutung verlässlicher Unsicherheitsanalysen in autonomen, sicherheitskritischen Systemen motiviert die vertiefte Untersuchung von \gls{machinelearning}-Verfahren unter Unsicherheitsgesichtspunkten. Ziel ist es, Modelle nicht nur leistungsfähig, sondern auch vertrauenswürdig und erklärbar zu gestalten.
 
 
 

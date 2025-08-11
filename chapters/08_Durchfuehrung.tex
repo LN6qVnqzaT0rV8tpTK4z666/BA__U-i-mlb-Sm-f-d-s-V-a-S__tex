@@ -12,15 +12,13 @@
 
 \begin{otherlanguage}{ngerman}
 
-In der Durchführung soll \textit{A6 Implementierung und Validierung der entwickelten Unsicherheitsmetriken
-und Modellierungstechniken in einer realistischen Anwendung, wie z. B. der
-Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten} beantwortet werden. \parencite{amini2020deep} liefert einen bekannten validierten Ansatz aus öffentlicher Forschung. Hergert 2025 liefert einen bekannten validierten Ansatz von Unternehmensseite. 
+In der Durchführung soll \textit{A6 Implementierung und Validierung der entwickelten Unsicherheitsmetriken und Modellierungstechniken in einer realistischen Anwendung, wie z. B. der Unsicherheitsabschätzung in kritischen Regionen von Simulationsdaten} beantwortet werden. Amini \parencite{amini2020deep} liefert einen bekannten validierten Ansatz aus öffentlicher Forschung. Ein Projektteilnehmer im folgenden gekürzt als DH aus VaMAI liefert einen bekannten validierten Ansatz von Unternehmensseite. 
 
 \section*{Bekannter Ansatz zur Raumerfassung}
 
 \subsection*{VaMAI - Kritikalitätsraum - Validierung - Annahmen}
 
-VaMAI verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung unter anderem über die Arbeit von Hergert. Hergert lieferte dafür bereits einen Ansatz mittels \glqq{}Gaussian Process\grqq{} als Surrogatmodell für die szenarienbasierte Validierung der autonomen Systeme der Atlas Elektronik GmbH. Ein Alternativer Ansatz zur Unsicherheisanalyse dabei sind \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. Umgangssprachlich hat Hergert den Raum so gut abgedeckt, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt: Zeige, dass durch die gewählte Methode - zum Beispiel Gaussian Processes und Unsicherheitsaggregation - die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
+VaMAI verfolgt mit dem Kritikalitätsraum die Idee einer Kritikalitätsabdeckung unter anderem über die Arbeit von DH. DH lieferte dafür bereits einen Ansatz mittels \glqq{}Gaussian Process\grqq{} als Surrogatmodell für die szenarienbasierte Validierung der autonomen Systeme der Atlas Elektronik GmbH. Ein Alternativer Ansatz zur Unsicherheisanalyse dabei sind \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze}. Umgangssprachlich hat DH den Raum so gut abgedeckt, dass mit einer gewissen Wahrscheinlichkeit kein Kritikalitätsbereich mehr in diesem Raum vorhanden ist. Als Beweisidee äußert sich das wie folgt: Zeige, dass durch die gewählte Methode - zum Beispiel Gaussian Processes und Unsicherheitsaggregation - die Wahrscheinlichkeit dafür, dass ein unentdeckter Kritikalitätsraum existiert, unter einem Schwellenwert liegt.
 
 \[ 
 \mathbb{P}\bigl(\exists\, x \in \Omega \setminus \widehat{\Omega}_k : \text{Kritikalität}(x) > \tau \bigr) < \varepsilon. 
@@ -35,12 +33,12 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
 \begin{enumerate}
   \item Unsicherheitsmodellierung mittels machine-learning basiertem Surrogatmodell
   \begin{itemize}
-    \item Liefert für jeden Punkt $x \in \Omega$ eine Wahrscheinlichkeitsverteilung mit Varianz $\mathrm{Var}(x) = \sigma^{2}_{\text{epistemisch}} + \sigma^{2}_{\text{aleatorisch}}$. Dieser Aspekt wird in der Arbeit von Herr B.Sc. N. Mavani für \gls{Bayesianische neuronale Netze} nach meiner Projektteilnahme mittels dieser Thesis, auf meiner Seite mittels \gls{Evidenzbasierte neuronale Netze} untersucht.
+    \item Liefert für jeden Punkt $x \in \Omega$ eine Wahrscheinlichkeitsverteilung mit Varianz $\mathrm{Var}(x) = \sigma^{2}_{\text{epistemisch}} + \sigma^{2}_{\text{aleatorisch}}$. Dieser Aspekt wird in der Arbeit von Herr N. Mavani für \gls{Bayesianische neuronale Netze} nach meiner Projektteilnahme mittels dieser Thesis, auf meiner Seite mittels \gls{Evidenzbasierte neuronale Netze} untersucht.
     \item Kritikalität ist allgemein im Projekt Funktion der Größe $k(x)$.
   \end{itemize}
   \item Sampling- / Klassifikationsabdeckung
   \begin{itemize}
-    \item Raum $\Omega$ wurde mit Dichte $\delta$ gesampled - zum Beispiel mittels Gitter, Trajektorien, Pfaden - von VaMAI Projektteilnehmer B.Sc. Pascal Imholze mit dem Ziel einer möglichst hohen Abdeckung.
+    \item Raum $\Omega$ wurde mit Dichte $\delta$ gesampled - zum Beispiel mittels Gitter, Trajektorien, Pfaden - von VaMAI Projektteilnehmer Herr Imholze mit dem Ziel einer möglichst hohen Abdeckung.
     \item Wenn $\forall x \in \Omgea$ ein Sample $x' \in \widehat{\Omega}_k$ mit $\lVert x - x' \rVert \le \delta'$ existiert, gilt \glqq dichte Abdeckung \grqq.
     \item Generell ist in Hinblick auf in VaMAI abgezielte Methoden wie \glqq{}Few Shot Learning\grqq{} von Herr Mavani mit Sampleumfängen $n \in [20, 30], n \in \mathbb{N}$ zu beachten, dass der zentrale Grenzwertsatz der auch die \gls{EvidentialDeepLearning} später erläuterte Student-t-Verteilung betrifft, nach Faustformel ab einem Stichprobenumfang $n \geq 30$ gültig ist. % Quelle GUM
   \end{itemize}
@@ -50,7 +48,7 @@ Zu beweisen ist: $\mathbb{P}\bigl( \Omega_k \setminus \widehat{\Omega}_k \neq \e
     \[
     \mathbb{P}\bigl( \sup_{x \in \Omega} \bigl\lvert f(x) - \widehat{k}(x) \bigr\rvert \ge \eta \bigr) \le \varepsilon.
     \]
-    \item Wenn $\widehat{k(x)} \approx k(x)$ auf ganz $\Omega$, gilt auch $\widehat{\Omega}_{k} \approx \Omega_{k}$. Es folgt, dass die Wahrscheinlichkeit einen echten Kritikalitätsraum \textit{nicht} zu erkennen kleiner als $\epsilon$ ist. Dieser Aspekt ist von Herr D. Hergert im Rahmen seiner Masterarbeit mittels Gaussian Processes gezeigt worden. 
+    \item Wenn $\widehat{k(x)} \approx k(x)$ auf ganz $\Omega$, gilt auch $\widehat{\Omega}_{k} \approx \Omega_{k}$. Es folgt, dass die Wahrscheinlichkeit einen echten Kritikalitätsraum \textit{nicht} zu erkennen kleiner als $\epsilon$ ist. Dieser Aspekt ist von Herr DH im Rahmen seiner Masterarbeit mittels Gaussian Processes gezeigt worden. 
   \end{itemize}
 
 \end{enumerate}
@@ -168,7 +166,7 @@ yacht
 
 \section*{Eigenentwicklung}
 
-\paragraph{Datenpipeline} Grundlegend benötigt wurde eine Datenpipeline. In Entwicklung mit Herr B.Sc. N. Mavani sollte für den Vergleich von \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} als Baseline von Mavanis Seite auf Depeweg (vgl. Depeweg \parencite{Depeweg2019}), von meiner Seite auf Ulmer (vgl. Ulmer et al. \parencite{Ulmer2023}) aufgesetzt werden.
+\paragraph{Datenpipeline} Grundlegend benötigt wurde eine Datenpipeline. In Entwicklung mit Herr N. Mavani sollte für den Vergleich von \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} als Baseline von Mavanis Seite auf Depeweg (vgl. Depeweg \parencite{Depeweg2019}), von meiner Seite auf Ulmer (vgl. Ulmer et al. \parencite{Ulmer2023}) aufgesetzt werden.
 
 Dazu wurden von Depeweg (vgl. Depeweg \parencite{Depeweg2019}) verwendete Datensätze verwendet und ergänzt um im Anhang, Abschnitt Datensätze gelistete. Aufgesetzte Stufen der Datenpipeline sind eine Vorverarbeitung zum Umwandeln von Formaten, Einlesen in Torch Dataset Klassen, Torch Trainingsklassen, Visualisierungsklassen.
 
@@ -178,13 +176,13 @@ Im Projekt behandelte Metriken wurden aufgefasst mit einer Klasse Metrik, Metrik
 
 Integriert wurden Lösungen von Herr M.Sc. Mavani der sich zur \gls{Bayesianische neuronale Netze} Auswertung für ein Python Pyro Jax Backend entschieden und damit Lösungen nach den Pyroworkflows für Hamilton Monte Carlo (\gls{hmc}), Stochastic Variational Inference (\gls{svi}) geliefert hat.  
 
-\paragraph{Zwischenfazit Datenpipeline} Die Recherche belegt einen hochindividualisierten Grad in der Wahl der Metriken zur Belegung der Unsicherheiten in einer Datenpipeline. Ebenso wie die Skript-Ausgestaltung softwareseitig zur Ermittlung dieser. Josang für \gls{Bayesianische neuronale Netze} auf, dass dies durch explizite Ausmodellierung robust gestaltet werden kann, und erläutert dazu ein explizit methodisches Vorgehen. Um das Einbeziehen beliebiger Metriken möglich zu machen, wurde ein Hauptdurchlauf bezüglich \gls{EvidentialDeepLearning} fertig gestellt, der zu 80\% durchläuft. 
+\paragraph{Zwischenfazit Datenpipeline} Die Recherche belegt einen hochindividualisierten Grad in der Wahl der Metriken zur Belegung der Unsicherheiten in einer Datenpipeline. Ebenso wie die Skript-Ausgestaltung softwareseitig zur Ermittlung dieser. Josang zeigt für \gls{Bayesianische neuronale Netze} auf, dass dies durch explizite Ausmodellierung robust gestaltet werden kann, und erläutert dazu ein explizit methodisches Vorgehen. Um das Einbeziehen beliebiger Metriken möglich zu machen, wurde ein Hauptdurchlauf bezüglich \gls{EvidentialDeepLearning} fertig gestellt, der zu 80\% auf die Tensor-Schnittstellen passend zu den gewählten Datensets durchläuft. Ein grundlegendes Zwischenziel war die Möglichkeit der Erarbeitung der Optimmierung eigener Modelle bezüglich der verglichenen Architekturen, wobei in meinem Ansatz \gls{Evidenzbasierte neuronale Netze} bevorzugt wurden. Weiterhin wurde darauf abgezielt bei zukünftigen fertigen Trainings zum Beispiel \gls{Evidenzbasierte neuronale Netze}, \gls{Bayesianische neuronale Netze} Vergleiche herstellen zu können. Da folgende Ausarbeitungen der Thesis bevorzugt wurden, ist die Fertigstellung nicht weiter priorisiert worden.  
 
 
 
 \subsection*{Experiment zur Approximation der Generalisierung von Hypothesen zur Unsicherheit über verschiedene Datensätze}
 
-Grundsätzlich ergab sich aus der Recherche ein überdurchschnittlich hoher Anteil an Papern, die eine Loss-Variation zur Bewertung der Performance von vorhandenen Modellen \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} durchgeführt haben mit der besten Übersicht wie erwähnt in Ulmer et al. (vgl. Ulmer et al. \parencite{Ulmer2023}). Loss-Funktions Kandidaten $\mathcal{L}$ werden über den Datensätzen $\mathcal{D}$ von Depeweg ausgeführt und gemittelt bezüglich der Accuracy ($Acc$) auf dem $i$-ten Datensatz, $\overline{Acc} = \sum_{i=1}^{n} Acc(x)_{i}$. Es wurde grob approxmiert, um eine Tendenz erkennbar zu unterscheiden. Erwartet wurde, dass kein eindeutiger Kandidat der Loss-Funktionen über die Accuracy favorisierbar ist, um die Vertrauenswürdigkeit der Netze über verschiedene Datensätze zu bewerten. Die Tabelle fasst nachfolgenden Ausdruck zusammen. Erneut sei dabei erwähnt, dass keine nachhaltige Stichprobe über einen vollparametrisierten Test erhoben, sondern approximiert und gemittelt wurde, um eine Tendenz festzustellen. 
+Grundsätzlich ergab sich aus der Recherche ein überdurchschnittlich hoher Anteil an Papern, die eine Loss-Variation zur Bewertung der Performance von vorhandenen Modellen \gls{Bayesianische neuronale Netze}, \gls{Evidenzbasierte neuronale Netze} durchgeführt haben, mit der besten Übersicht wie erwähnt in Ulmer et al. (vgl. Ulmer et al. \parencite{Ulmer2023}). Loss-Funktions Kandidaten $\mathcal{L}$ werden über den Datensätzen $\mathcal{D}$ von Depeweg ausgeführt und gemittelt bezüglich der Accuracy ($Acc$) auf dem $i$-ten Datensatz, $\overline{Acc} = \sum_{i=1}^{n} Acc(x)_{i}$. Es wurde grob approxmiert, um eine Tendenz erkennbar zu unterscheiden. Erwartet wurde, dass kein eindeutiger Kandidat der Loss-Funktionen über die Accuracy favorisierbar ist, um die Vertrauenswürdigkeit der Netze über verschiedene Datensätze zu bewerten. Die Tabelle fasst nachfolgenden Ausdruck zusammen. Erneut sei dabei erwähnt, dass keine nachhaltige Stichprobe über einen vollparametrisierten Test erhoben, sondern aus manuellen Skriptdurchläufen approximiert und gemittelt wurde, um eine Tendenz festzustellen. 
 
 \[
 \begin{array}{c}
@@ -261,18 +259,18 @@ Im Verlauf sollten diese von Herr Mavani reduziert werden auf zwanzig bis dreiß
 
 
 
-\subsection*{VaMAI - Kritikalitätsraum - Validierung - Experiment}
+\subsection*{VaMAI - Kritikalitätsraum - Validierung - Experiment - Fit der Vorhersage zur Ground Truth}
 
 Herr Autenrieths Kritikalitätsraum-Software wurde eingebunden in die bisherige Eigenentwicklung. Die Umgebung liefert einen Raum in dem beispielhafte Signalumgebungen 
 % evtl. formalisieren.
-zusammengesetzt werden können. Er ist bereits grundlegend unsicherheitsbehaftbar. Zuerst wurde eine Visualisierung nach dem Ansatz der\glqq{}Deep Evidential Regression\grqq{} ergänzt (vgl. Amini 2020 \parencite{amini2020}). Als nächstes wurde ein \gls{EvidentialDeepLearning}-Training unter Aminis vorhandenen bereits optimierten Modellen (siehe Rekonstruktion Aminis Ergebnisse) in den Hauptablauf integriert. 
+zusammengesetzt werden können. Er ist bereits grundlegend unsicherheitsbehaftbar. Zuerst wurde eine Visualisierung nach dem Ansatz der\glqq{}Deep Evidential Regression\grqq{} ergänzt (vgl. Amini \parencite{amini2020}). Als nächstes wurde ein \gls{EvidentialDeepLearning}-Training unter Aminis vorhandenen bereits optimierten Modellen (siehe Rekonstruktion Aminis Ergebnisse) in den Hauptablauf integriert. 
 
 Die synthetischen Daten ersetzen in diesem Fall reale Messungen, Simulationsergebnisse $\{ x_{i}, y_{i} \}$. $x_{i}$ ist ein Eingabepunkt der als kleinste Einheit bereits als Szenario im Parameterraum zählen kann. $y_{i}$ liefert die Kritikalität in diesem Punkt. Das \gls{EvidentialDeepLearning}-Modell beantwortet die Frage, mit welcher Unsicherheit es glaube, dass $y$ an einem neuen Punkt läge. 
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=\textwidth]{../figures/x4.png}
-  \caption{R4.4 Angen. Grund-Verteilung auf unbek. Daten für \gls{EvidentialDeepLearning}-Modell n. Amini 2020}
+  \caption{R4.4 Angen. Grund-Verteilung auf unbek. Daten für \gls{EvidentialDeepLearning}-Modell n. Amini}
 \end{figure}
 
 Das evidentielle Modell nach Amini ordnet das als $y \sim \mathcal{N}(\mu, \sigma^2)$ zu. $(\mu$, $\sigma^2)$ kennt das Modell nicht aus Vorwissen. Es nimmt stattdessen an, erstens $\mu$ ist unsicherheitsbehaftet, damit folgt $\mu \sim \mathcal{N}(\gamma, \sigma^{2} / \lambda)$. Zweitens $\sigma^{2}$ ist unsicherheitsbehaftet, damit folgt $\sigma^{2} \sim \mathcal{NIG}(\alpha, \beta)$. So sucht das Modell $p(y|\gamma,\lambda,\alpha,\beta)$. Die Daten liefern die Evidenz als Ergebnis. Das \gls{EvidentialDeepLearning}-Modell schätzt direkt die Hyperparameter ausgehend von Eingaben $x$, $f(x) \rightarrow \{ \gamma(x), \lambda(x), \alpha(x), \beta(x) \}$. Es ergibt sich für jeden Punkt $x$ eine bedingte Unsicherheitsverteilung für $y$. Amini verdeutlicht dies kompakt in Gleichungen (3), (4), (5), Abbildung R.4.4 (vgl. Amini 2020 \parencite{amini2020}). 
@@ -283,7 +281,7 @@ Ergebende Unsicherheitsmasse ist Student-t-verteilt (vgl. Gleichungen (6), (7)),
 f : \mathbb{R}^d \to \mathbb{R}^4, \quad x \mapsto (\gamma, \lambda, \alpha, \beta) \quad \Rightarrow \quad p(y \mid x) \sim \text{Student-}t\left(\mu = \gamma,\, \sigma^2 = \frac{\alpha \lambda}{\beta (1 + \lambda)},\, \nu = 2\alpha\right)
 \]
 
-R4.4 visualisiert die Zusammensetzung der Student-\emph{t}-Verteilung in Abhängigkeit von der Evidenz im Ausdruck der Ordnung: Bei niedriger Ordnung sowie Evidenz (\(\nearrow \alpha \Rightarrow \nearrow \nu\)) ergibt sich eine breite, unsichere Verteilung. Während höhere Ordnung sowie Evidenz (\(\searrow \alpha \Rightarrow \searrow \nu\)) zu einer schmaleren, sichereren Verteilung führt, welche gegen die Normalverteilung konvergiert. Alle weiteren Proportionalitäten für die evidentiellen Parameter sind in (5) einsehbar (vgl. Amini 2020 \parencite{amini2020}). Erste vom Modell geschätze Wahrscheinlichkeitsmasse um einen Schätzwert ergibt sich aus Gleichung (4) ohne Regularisierung in R4.4. platikurtisch hellblau. Regularisierungsbedingungen formen die Verteilung unter Evidenz-Kriterien leptokurtisch dunkelblau. Machine-Learning-basiert regularisieren Loss-Funktion nach dem Min-Max-Prinzip angenommene Fehler- gegen Zielgrößen, hier durch Amini beschränkt Varianz gegenüber Evidenz (vgl. Gleichung (8), (9), (10) unter (5)). Amini wählt die Kullback-Leibler-Divergenz als Maß für die Ausgangs- zur Optimalverteilung. Überlässt dabei jedoch ein Detail dem geneigten Leser, dessen Behandlung im Stand der Technik mittels Josangs \gls{subjectivelogic} aufgezeigt wurde.
+R4.4 visualisiert die Zusammensetzung der Student-\emph{t}-Verteilung in Abhängigkeit von der Evidenz im Ausdruck der Ordnung: Bei niedriger Ordnung sowie Evidenz (\(\nearrow \alpha \Rightarrow \nearrow \nu\)) ergibt sich eine breite, unsichere Verteilung. Während höhere Ordnung sowie Evidenz (\(\searrow \alpha \Rightarrow \searrow \nu\)) zu einer schmaleren, sichereren Verteilung führt, welche gegen die Normalverteilung konvergiert. Alle weiteren Proportionalitäten für die evidentiellen Parameter sind in (5) einsehbar (vgl. Amini \parencite{amini2020}). Erste vom Modell geschätze Wahrscheinlichkeitsmasse um einen Schätzwert ergibt sich aus Gleichung (4) ohne Regularisierung in R4.4. platikurtisch hellblau. Regularisierungsbedingungen formen die Verteilung unter Evidenz-Kriterien leptokurtisch dunkelblau. Machine-Learning-basiert regularisieren Loss-Funktion nach dem Min-Max-Prinzip angenommene Fehler- gegen Zielgrößen, hier durch Amini beschränkt Varianz gegenüber Evidenz (vgl. Gleichung (8), (9), (10) unter (5)). Amini wählt die Kullback-Leibler-Divergenz als Maß für die Ausgangs- zur Optimalverteilung. Überlässt dabei jedoch ein Detail dem geneigten Leser, dessen Behandlung im Stand der Technik mittels Josangs \gls{subjectivelogic} aufgezeigt wurde.
 
 \begin{quote}
   \glqq{}[..] the KL between any NIG and the zero evidence NIG prior is undefined.\grqq{} \newline ~\parencite[{S. 5, \glqq Minimizing evidence on errors \grqq, Z. 6 ff.}]{amini2020deep}
@@ -364,7 +362,7 @@ Herr Autenrieths Kritikalitätsraums Unsicherheitsbehaftung wird zunächst äqui
 
 
 
-\paragraph{Fit-Parametrisierung \gls{Evidenzbasierte neuronale Netze}} Zur Bewertung des Fits des \gls{Evidenzbasierte neuronale Netze} wird folgende Bewertung herangezogen. % Grundsätzlich liefert Herr Autenrieths Kritikalitätssoftware ein Modul zum attributweisen Raumvergleich in dem man dies zukünftig berücksichtigen könnte. 
+\paragraph{Approximations-Parametrisierung \gls{Evidenzbasierte neuronale Netze}} Zur Bewertung von Approximationen des \gls{Evidenzbasierte neuronale Netze} wird folgende Bewertung herangezogen. % Grundsätzlich liefert Herr Autenrieths Kritikalitätssoftware ein Modul zum attributweisen Raumvergleich in dem man dies zukünftig berücksichtigen könnte. 
 Es wird ein Original-Signalverlauf $y(x)$ zum vom Netz rekonstruierten $\hat{y}(x)$ abgebildet als Fehler-Signal $e(x)$: 
 
 {\small
@@ -410,9 +408,9 @@ Ebenso die epistemische Varianz in Abhängigkeit vom Mittelwert des Signals
 \sigma^2_{\text{epistemisch}} = \frac{\beta}{\lambda(\alpha - 1)} \quad \text{für } \alpha > 1 \text{ nach Amini (5.2)}
 \]
 
-Eine der beiden Bedingungen ist als Vorwissen des Autors von Signalvergleichen mittels \gls{EvidentialDeepLearning} zum Abgleich einer guten Approximation sinnvoll, um die Amplitude zur Approximation abzuschätzen. Für das im Experiment verwendete Gauß-Signal ergibt sich die optimale Approximation bei einer Amplitude $A = 1$. Abweichungen von diesem Wert werden als Unterapproximation ($A < 1$), Überapproximation ($A > 1$) der Gesamtunsicherheit (interpretiert als additive Varianz nach (5.1)) gewertet. Gleiches gilt für den Hyperwürfel. \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} werden tabellarisch eingeordnet. $e(x)$ quantifiziert damit die Approximation für zu betrachtende Unsicherheitsarten über die Amplitude zur Signal-Klasse. 
+Eine der beiden Bedingungen ist als Vorwissen des Autors von Signalvergleichen mittels \gls{EvidentialDeepLearning} zum Abgleich einer guten Approximation sinnvoll, um die Amplitude zur Approximation abzuschätzen. Für das im Experiment verwendete Gauß-Signal ergibt sich die optimale Approximation bei einer Amplitude $A = 1$. Abweichungen von diesem Wert werden als Unterapproximation ($A < 1$), Überapproximation ($A > 1$) der Gesamtunsicherheit gewertet - interpretiert als additive Varianz nach (5.1). Gleiches gilt für den Hyperwürfel. \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} werden tabellarisch eingeordnet. $e(x)$ quantifiziert damit die Approximation für zu betrachtende Unsicherheitsarten über die Amplitude zur Signal-Klasse. 
 
-An dieser Stelle wurde der Under-, Over-, Fit Begriff diskutiert und für unpräzise empfunden, weil für die Unsicherheitsmassen $\mu$, \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} nicht unersucht wird, wie sich das Modell gegenüber einer dynamischen Veränderung der Sample-Zahl in Bezug auf Generalisierbarkeit, Robustheit in der Modellkomplexität verhält. Ziel ist es nach Ausarbeitung vielmehr, statische Signalzustände sowie Sample-Zahl-Variationen direkt zu approximieren und daraus Rückschlüsse auf die Unsicherheitsverteilung zu ziehen.
+An dieser Stelle wurde der Under-, Over-, Fit Begriff diskutiert und für unpräzise empfunden, weil für die Unsicherheitsmassen $\mu$, \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} nicht unersucht wird, wie sich das Modell gegenüber einer dynamischen Veränderung der Sample-Zahl in Bezug auf Generalisierbarkeit, Robustheit in der Modellkomplexität verhält. Ziel war es zunächst vielmehr, statische Signalzustände sowie Sample-Zahl-Variationen direkt zu approximieren und daraus Rückschlüsse auf die Unsicherheitsverteilung zu ziehen.
 
 
 \begin{table}[h!]
@@ -470,7 +468,7 @@ An dieser Stelle wurde der Under-, Over-, Fit Begriff diskutiert und für unprä
 % \paragraph{Verallgemeinerung der Fit-Parametrisierung \gls{Evidenzbasierte neuronale Netze} für Kritikalitätsabdeckung} %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Aufgreifen in Diskussion unter Hergert als BNN Kritikalitätsabdeckung Ausblick ENN
+% Aufgreifen in Diskussion unter DH als BNN Kritikalitätsabdeckung Ausblick ENN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \paragraph{Ausgangs-Konfiguration \glqq Prototyping \grqq} Um das UI für die Ausgangssituation des VaMAI Standardbeispiels zu erarbeiten, wurde folgende Ausgangs-Konfiguration mit Aminis \gls{Evidenzbasierte neuronale Netze} eingebunden. Feedforward-Netzwerk mit einer versteckten Schicht (\texttt{Dense(64, relu)}), Ausgangslayer \texttt{DenseNormalGamma}. Optimierer: Adam, Lernrate: $1\cdot10^{-3}$. Verlustfunktion: \texttt{EvidentialRegression} mit Regularisierung \texttt{coeff=1e-2}. Trainingsdauer: 100 Epochen. Trainingsdaten: Latin Hypercube Sampling (101 Samples), Rauschen: Gauß-verteiltes Rauschen mit $\sigma = 0{,}01$. Evaluation mittels RMSE auf Testdaten (80/20 Split), 5 Wiederholungen. Ausgaben: $\gamma$, $\nu$, $\alpha$, $\beta$ zur Berechnung von aleatorischer und epistemischer Varianz.
@@ -509,13 +507,13 @@ Hierbei ist $\delta > 0$ die Halbseitenlänge des Würfels. Für $\delta = 0{,}5
 
 \paragraph{Ausgangs-Sampling} Das ursprüngliche Latin-Hypercube-Sampling von Herr Autenriehts Kritikalitätsraum soll in der Samplezahl varriert werden mit $n = \{ n_{min} := 10, n_{\frac{\Delta}{2}}, n_{\Delta} \}$. $n_{\Delta}$ als Maximum soll abhängig von der Konvergenz der Loss-Funktion sein, die sich an diesem Punkt nicht mehr signifikant ändert. Dieser wird durch eine Schleife über die Trainings bestimmt aus vorgegebenen Samplegrößen zum Vereinfachen des Experiments, $n = \{ 10, 50, 100, 150, 200 \}$. $n_{\frac{\Delta}{2}}$ entspricht dem intervallhalbierenden Wert von $\left[ n_{min},\; n_{\Delta} \right]$. Im Experiment werden zuerst $n_{min}$, dann anhand der Konvergenzrichtung sowie vorgegebenen $n$, $n_{\Delta}$ bestimmt und schließlich $n_{\frac{\Delta}{2}}$.
 
-Für jede gewählte Samplesize $n$ wurde das Modell über eine feste Anzahl Epochen trainiert. Nach jeder Epoche wurden der Trainings- und der Validierungsverlust aufgezeichnet. Die Epoche mit dem minimalen Validierungsverlust wurde als beste Epoche bestimmt. Je höher die Epoche, umso vergleichbarer konvergieren Trainings- und Validierungsloss. Je mehr Trainings- und Validierungsloss konvergieren, umso mehr wird dem Modell ein generalisbierbarer Fit an die Ausgangsdaten zugeordnet. 
+Für jede gewählte Samplesize $n$ wurde das Modell über eine feste Anzahl Epochen $e := \{ 2000, \dots, 8000 \}$ trainiert. Nach jeder Epoche wurden der Trainings- und der Validierungsverlust aufgezeichnet. Die Epoche mit dem minimalen Validierungsverlust wurde als beste Epoche bestimmt. Je höher die Epoche, umso vergleichbarer konvergieren Trainings- und Validierungsloss. Je stärker Trainings- und Validierungsloss konvergieren, umso mehr wird dem Modell ein generalisbierbarer Fit an die Ausgangsdaten zugeordnet. 
 
 
 
-\paragraph{Under-, Over-, Fit-Defintion} Der Begriff \textit{Fit} beschreibt, wie gut ein Modell die zugrunde liegende Datenverteilung approximiert. Mathematisch versucht das Modell $f_\theta(x)$, die unbekannte Zielfunktion $y = g(x)$ möglichst genau zu approximieren. Ein guter Fit bedeutet, dass sowohl der Trainings-Loss als auch der Validierungs-Loss niedrig sind und ähnliche Werte aufweisen. Der Trainings-Loss $L_{\text{train}}$ misst den Fehler zwischen den Modellvorhersagen $\hat{y}$ und der Ground Truth $y$ auf den Trainingsdaten, während der Validierungs-Loss $L_{\text{val}}$ den Fehler auf einem unabhängigen Validierungsdatensatz angibt. 
+\paragraph{Under-, Over-, Fit-Defintion} Der Begriff \textit{Fit} beschreibt, wie gut ein Modell die zugrunde liegende Datenverteilung approximiert. Mathematisch versucht das Modell $f_\theta(x)$, die unbekannte Zielfunktion $y = f(\dots)$ möglichst genau zu approximieren. Ein guter Fit bedeutet, dass sowohl der Trainings-Loss als auch der Validierungs-Loss niedrig sind und ähnliche Werte aufweisen. Der Trainings-Loss $L_{\text{train}}$ misst den Fehler zwischen den Modellvorhersagen $\hat{y}$ und der Ground Truth $y$ auf den Trainingsdaten, während der Validierungs-Loss $L_{\text{val}}$ den Fehler auf einem unabhängigen Validierungsdatensatz angibt. 
 
-Sind beide Loss-Werte hoch, liegt ein \textit{Unterfit} vor, das Modell hat also die Struktur der Daten nicht erfasst. Sind beide Werte niedrig und ähnlich groß, spricht man von einem guten Fit, da das Modell sowohl die Trainingsdaten gut approximiert als auch auf neuen Daten gut generalisiert. Ist der Trainings-Loss niedrig, der Validierungs-Loss jedoch deutlich höher, liegt ein Überfit oder Overfit vor; das Modell hat sich zu stark an die Trainingsdaten angepasst und generalisiert schlechter.
+Sind beide Loss-Werte hoch, liegt ein \textit{Unterfit} vor. Das Modell hat also die Struktur der Daten nicht erfasst. Sind beide Werte niedrig und ähnlich groß, spricht man von einem guten Fit. Da das Modell sowohl die Trainingsdaten gut approximiert, als auch auf neuen Daten gut generalisiert. Ist der Trainings-Loss niedrig, der Validierungs-Loss jedoch deutlich höher, liegt ein Überfit oder Overfit vor. Das Modell hat sich zu stark an die Trainingsdaten angepasst und generalisiert schlechter.
 
 Die \textit{Ground Truth} bezeichnet die wahren Zielwerte $y$ im Datensatz, gegen die die Vorhersagen $\hat{y}$ verglichen werden. In diesem Experiment sind dies analytische Werte aus einer bekannten Funktion wie dem Gauß-Signal, dem Hyperwürfel-Signal. Sie dienen als Referenz für die Berechnung von Loss und RMSE.
 
@@ -525,7 +523,7 @@ In diesem Experiment beschreibt der \textit{Fit} die Übereinstimmung zwischen d
 \vspace{0.125\baselineskip}
 \noindent
 
-Im Folgenden ist zwischen \textit{Approximation} und \textit{Fit} zu unterscheiden. Approximiert wird der Signalwert $y$ als Größe abhängig in VaMAI von der aus meiner Projektperspektive offen parametrisierten Kritiaklität $k(\dots)$, die vom \gls{Evidenzbasierte neuronale Netze} mittels $\gamma = \mu$ direkt als Netz-Ausgabe-Parameter geschätzt wird. Hier lässt sich eine direkte Fehlerapproximation des Original-Signals als Ground-Truth mit dem Fehler-Signal durchführen wie durch die vorherigen Amplitudengleichungen für Gauss- und Hyperwürfel angedeutet. Diese Signalapproximation wurde im Projektverlauf getrennt vom Fit-Begriff. Der wie oben beschrieben erstens von der Loss-Konvergenz, zweitens von der Abweichung einer Fehlermetrik wie $\textit{RMSE}$ zur Ground-Truth abhängig gemacht wurde. Dieser Unterschied soll im Folgenden durch die ermittelten optimalen Samplegrößen aus dem Experiment im Abgleich zur Konvergenz aus zur Vereinfachung fest vorgegebenen Set $n = \{ 10, 50, 100, 150, 200 \} \rightarrow \{ n_{min}, n_{\frac{\Delta}{2}}, n_{\Delta} \}$ zugeordnet werden. Dazu wird die rechte Seite der Zurodnung den drei Ergbnisgrößen des Netzes - $\mu = \gamma$ als Mittelwert, $\sigma^{2}_{alea}$ als aleatorische Unsicherheit, $\sigma^{2}_{epist}$ als epistemische Unsicherheit - über den Raum zugeordnet. Es wird für jede Konfiguration $\{\text{Signal},\text{Epoche},\text{Neuronen},\text{Schichten} \}$ eine $3\times3$-Matrix der Ergebnisoberflächen, sowie seperat des assoziierten Loss in $1\times3$-Matrix, sowie assoziierter Ground-Truth-zur-Vorhersage-Plot als $1\times3$-Matrix zur Bewertung abgebildet. Die Ergebnisoberflächen definieren sich in Abhängigkeit der evidentiellen Parameter, sowie den Parameterkoordinaten der Oberfläche - für die z-Koordinate wurden Aminins Gleichungen aleatorischer, epistemischer Unsicherheit gewählt. $u$, $v$ sind beliebieg zu vergleichende Dimensionen am VaMAI Standardbeispiel $0 \leq u \leq 10, 0 \leq v \leq 10, (u,v) \in \mathbb{R}^3$. Sie werden als Ausschnitt der für VaMAI geforderten Hochdimensionalität im allgemeinen $R^{n} \subseteq \mathbb{K}^{n}$ betrachtet.
+Im Folgenden ist weiterhin zwischen \textit{Approximation} und \textit{Fit} zu unterscheiden. Approximiert wird der Signalwert $y$ als Größe abhängig in VaMAI von der aus meiner Projektperspektive offen parametrisierten Kritiaklität $k(\dots)$, die vom \gls{Evidenzbasierte neuronale Netze} mittels $\gamma = \mu$ direkt als Netz-Ausgabe-Parameter geschätzt wird. Hier lässt sich eine direkte Fehlerapproximation $e(x) = y - \hat{y}$ des Original-Signals als Ground-Truth mit dem Fehler-Signal durchführen wie durch die vorherigen Amplitudengleichungen für Gauss- und Hyperwürfel angedeutet. Diese Signalapproximation wurde im Projektverlauf getrennt vom Fit-Begriff. Der wie oben beschrieben erstens von der Loss-Konvergenz, zweitens von der Abweichung einer Fehlermetrik wie $\textit{RMSE}$ zur Ground-Truth abhängig gemacht wurde. Dieser Unterschied soll im Folgenden durch die ermittelten optimalen Samplegrößen aus dem Experiment im Abgleich zur Konvergenz aus zur Vereinfachung fest vorgegebenen Set $n = \{ 10, 50, 100, 150, 200 \} \rightarrow \{ n_{min}, n_{\frac{\Delta}{2}}, n_{\Delta} \}$ zugeordnet werden. Dazu wird die rechte Seite der Zurodnung den drei Ergbnisgrößen des Netzes - $\mu = \gamma$ als Mittelwert, $\sigma^{2}_{alea}$ als aleatorische Unsicherheit, $\sigma^{2}_{epist}$ als epistemische Unsicherheit - über den Raum zugeordnet. Es wird für jede Konfiguration $\{\text{Signal} =: s,\text{Epoche} = ep,\text{Neuronen} =: ne, \text{Schichten} =: l \}$ eine $3\times3$-Matrix der Ergebnisoberflächen, sowie seperat des assoziierten Loss in $1\times3$-Matrix, sowie assoziierter Ground-Truth-zur-Vorhersage-Plot als $1\times3$-Matrix zur Bewertung abgebildet. Die Ergebnisoberflächen definieren sich in Abhängigkeit der evidentiellen Parameter, sowie den Parameterkoordinaten der Oberfläche - für die z-Koordinate wurden Aminins Gleichungen aleatorischer, epistemischer Unsicherheit gewählt. $u$, $v$ sind beliebieg zu vergleichende Dimensionen am VaMAI Standardbeispiel $0 \leq u \leq 10, 0 \leq v \leq 10, (u,v) \in \mathbb{R}^3$. Sie werden als Ausschnitt der für VaMAI geforderten Hochdimensionalität im allgemeinen $R^{n} \subseteq \mathbb{K}^{n}$ betrachtet.
 
 \begin{small}
 \[
@@ -580,7 +578,7 @@ Dazu wird die Ausgangskonfiguration wie folgt überschrieben.
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion,
-Unterapproximation für $n=100$, $n_{\Delta}=200$, $n_{\frac{\Delta}{2}}=150$}
+Unterapproximation für $n=100$, $n_{\Delta}=200$, $n_{\frac{\Delta}{2}}=150$, $ep=2000$, $ne=64$, $l=2$ }
 
 % ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
 
@@ -684,7 +682,7 @@ Unterapproximation für $n=100$, $n_{\Delta}=200$, $n_{\frac{\Delta}{2}}=150$}
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Interpretation, Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion,
-Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
+Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$, $ep=2000$, $ne=64$, $l=2$}
 
 \begin{itemize}
     \item Das Signal wird unterapproximiert.
@@ -710,7 +708,7 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
-Unterapproximation für $n=100$, $n_{\Delta}=200$, $n_{\frac{\Delta}{2}}=150$}
+Unterapproximation für $n=100$, $n_{\Delta}=200$, $n_{\frac{\Delta}{2}}=150$, $ep=2000$, $ne=64$, $l=2$}
 
 % ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
 
@@ -816,7 +814,7 @@ Unterapproximation für $n=100$, $n_{\Delta}=200$, $n_{\frac{\Delta}{2}}=150$}
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Interpretation, Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
-Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
+Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$, $ep=2000$, $ne=64$, $l=2$}
 
 \begin{itemize}
     \item Das Signal wird unterapproximiert.
@@ -988,7 +986,7 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Gauss-Funktion,
-Überapproximation für $n=100$, $n_{\Delta}=200$, $n_{\frac{\Delta}{2}}=150$}
+Überapproximation für $n=100$, $n_{\Delta}=200$, $n_{\frac{\Delta}{2}}=150$, $ep=4000$, $ne=128$, $l=2$}
 
 % ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
 
@@ -1094,7 +1092,7 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Interpretation, Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
-Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
+Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$, $ep=4000$, $ne=128$, $l=2$}
 
 \begin{itemize}
     \item Das Signal wird überapproximiert.
@@ -1118,7 +1116,7 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
-Überapproximation für $n=10$, $n_{\Delta}=50$, $n_{\frac{\Delta}{2}}=100$}
+Überapproximation für $n=10$, $n_{\Delta}=50$, $n_{\frac{\Delta}{2}}=100$ $ep=4000$, $ne=128$, $l=2$}
 
 % ---- dein Minipage-Raster, UNVERÄNDERT, aber OHNE \begin{figure} ... \end{figure} ----
 
@@ -1223,7 +1221,7 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 \begin{minipage}{\textwidth}
 
 \noindent\textbf{Interpretation, Einzelnes 3D-Signal \gls{EvidentialDeepLearning}, Hyperwürfel-Funktion,
-Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
+Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$, $ep=4000$, $ne=128$, $l=2$}
 
 \begin{itemize}
     \item Das Signal wird überapproximiert.
@@ -1436,7 +1434,9 @@ Unterapproximation für $n=100$, $n_{\Delta}=150$, $n_{\frac{\Delta}{2}}=200$}
 
 
 
-\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit} 
+\subsection*{VaMAI - Kritikalitätsraum - Validierung - Experiment - Approximationen zur Steuerung der \gls{uncertaintyquantification}}
+
+\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Unterapproximation zu annähernder Approximation} 
 
 Folgendes Multi-3D-Signal zweier bereits mit Unsicherheit belegter Gauss-Signale 
 
@@ -1457,7 +1457,7 @@ F_{\text{Hyperwürfel}}(x, y) =
 \end{cases}
 \]
 
-erzielte auf bisheriger Grundlage mit folgenden Parametrisierungen Underfits. 
+erzielte auf bisheriger Grundlage mit folgenden Parametrisierungen Unterapproximationen. 
 
 \begin{table}[h!]
 \centering
@@ -1473,19 +1473,9 @@ erzielte auf bisheriger Grundlage mit folgenden Parametrisierungen Underfits.
 \caption{Vergleich von Netzwerkarchitekturen und Trainingsparametern in Konfiguration 4}
 \end{table}
 
-Zu beobachten ist, dass eine Erhöhung der Schicht- und Neuronen-Anzahl im 3D-Fall dazu beiträgt das größte Teil-Signal präziser auf dem Domänenboden abzubilden bis es die Originalposition des größten Teil-Signals erreicht. Jedoch fällt das Volumen zu flach aus. Eine weitere Beobachtung ist, dass Aminis Regressionsansatz bei mehreren Signalformen in der Domäne, im Volumen die Gesamtunsicherheitsmasse der aleatorischen und epistemischen Varianz aller auftretenden Signale erfasst. Ergänzend dazu orientiert sich die Position der erfassten Gesamtunsicherheitsmasse jedoch im ersten Fall an der größten Dichte von Maximalwerten der auftretenden Signal-Formen. 
+Zu beobachten ist, dass eine Erhöhung der Schicht- und Neuronen-Anzahl im 3D-Fall dazu beiträgt das größte Teil-Signal präziser auf dem Domänenboden abzubilden bis es die Originalposition des größten Teil-Signals erreicht. Jedoch fällt das Volumen zu flach aus für den angelegten Eingang der Störfunktion. Eine weitere Beobachtung ist, dass Aminis Regressionsansatz bei mehreren Signalformen in der Domäne, im Volumen die Gesamtunsicherheitsmasse der aleatorischen und epistemischen Varianz aller auftretenden Signale erfasst. Ergänzend dazu orientiert sich die Position der erfassten Gesamtunsicherheitsmasse jedoch im ersten Fall an der größten Dichte von Maximalwerten der auftretenden Signal-Formen. Wählt man schließlich der ursprünglichen Parametrisierung von Amini entgegenkommend 2 Schichten, 64 Neuronen, 2000 Epochen kommt man zum besten gemittelten Ergebnis aus der aleatorischen und epistemischen Varianz zwischen den beiden verwendeten Signalen. 
 
-Wählt man schließlich der ursprünglichen Parametrisierung von Amini entgegenkommend
-
-2 Schichten, 64 Neuronen, 2000 Epochen 
-
-kommt man zum besten gemittelten Ergebnis aus der aleatorischen und epistemischen Varianz zwischen den beiden verwendeten Signalen. 
-
-Für weitere Schritte wird das wie folgt interpretiert. Im Projekt VaMAI möchte man die aleatorische und epistemische Varianz pro Signal präziser erfassen, sodass eben geschilderte Beobachtungen nicht hinreichend sind. 
-
-Lösungsansätze könnten beispielsweise das Eingrenzen von Signal-Positionen in der Domäne durch eine beliebige Abtastung sein. Das abgetastete Teilvolumen wird dann vom Evidentiellen Netzwerk auf seine Teilunsicherheiten untersucht. Das Ergebnis setzt man additiv zusammen. 
-
-Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherheitsmassen als auch die Volumen der Teil-Unsicherheitsmassen in Bezug auf die als Boden angesehene Fläche der verglichenen Dimensionen korrekt bestimmen lassen. 
+Für weitere Schritte wird das wie folgt interpretiert. Im Projekt VaMAI möchte man die aleatorische und epistemische Varianz pro Signal präziser erfassen, sodass eben geschilderte Beobachtungen nicht hinreichend sind. Lösungsansätze könnten beispielsweise das Eingrenzen von Signal-Positionen in der Domäne durch eine beliebige Abtastung sein. Das abgetastete Teilvolumen wird dann vom Evidentiellen Netzwerk auf seine Teilunsicherheiten untersucht. Das Ergebnis setzt man additiv zusammen. Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherheitsmassen als auch die Volumen der Teil-Unsicherheitsmassen in Bezug auf die als Boden angesehene Fläche der verglichenen Dimensionen korrekt bestimmen lassen. 
 
 
 
@@ -1522,7 +1512,7 @@ Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherhe
 
 
 
-\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Overfit} Es wurde im Zeitrahmen unter im letzten Paragraphen erwähnter Parametrisierung kein offensichtlicher Overfit erzielt, der alle Signal-Klassen visuell detailgetreu abbildet. Interpretiert wird, dass das größte Teil-Signal in Originalposition des größten Teil-Signals auf dem Domänenboden der verglichenen Dimensionen als erste Beobachtung des letzten Pargraphen unter der hohen Schicht-, Neuronen-, Epochenzahl aus der letzten Tabelle den Overfit von Aminis Regressionsansatz bei mehreren 3D-Signalen abbildet.  
+\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Überapproximation} Es wurde im Zeitrahmen unter im letzten Paragraphen erwähnter Parametrisierung kein offensichtlicher Überapproximation erzielt, der alle Signal-Klassen visuell detailgetreu abbildet. Interpretiert wird, dass das größte Teil-Signal in Originalposition des größten Teil-Signals auf dem Domänenboden der verglichenen Dimensionen als erste Beobachtung des letzten Pargraphen unter der hohen Schicht-, Neuronen-, Epochenzahl aus der letzten Tabelle den Überapproximation von Aminis Regressionsansatz bei mehreren 3D-Signalen abbildet.  
 
 
 
@@ -1530,25 +1520,25 @@ Die Erwartungshaltung ist, dass sich so, sowohl die Position der Teil-Unsicherhe
 
 
 
-\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Störfunktion} 
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Unterapproximation zu annähernder Approximation und Störfunktion} 
 
-Grundlegend ergibt die Auswertung für das einzelne Guass-Signal \textit{mit} Störfunktion sehr ähnliche Dynamik im Ergebnis des \gls{Evidenzbasierte neuronale Netze} wie im ursprünglichen Abschnitt. Ein Underfit ergibt ebenfalls eine zu flache Unsicherheitsmasse mit überkonfidentem Zuwachs zur Domänengrenze. Eine zunehmende Störfunktions-Parametrisierung mit Amplitude von 0,01 zu 1, Standardabweichung konstant 1, ergibt zwei Effekte. Das Abflachen der vom \gls{Evidenzbasierte neuronale Netze} erfassten Gesamtunsicherheitsmasse mit der Tendenz zur Fit-Dynamik. Zweitens das Verrauschen der Gesamtunsicherheitsmasse. Das Verrauschen mit Amplitude 0,2 äußert sich in fleckweisen noch flacheren Volumenabschnitten, um die größte resultierende Gesamtunsicherheitsmasse in einem Abschnitt hoher Sample-Dichte. Interpretiert man weitere Lösungsansätze für dieses Verhalten, erlaubt die Differenz der Ergebnis-Massen eine eindeutige Filterung. Dabei kann erwartet werden, dass kleine Amplituden der Störfunktion durch einen Hochpassfilter, größere Amplituden durch einen Tiefpass, sowie Kombinationen durch Bandpass auf die abgezielte Unsicherheitsmasse gefiltert werden kann. In komplexeren Fällen der Überlagerung wäre ein Ansatz wieder eine ortsweise Abtastung der Signale und additive Kombination der Lösung. 
-
-
-
-\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit mit Störfunktion}
-
-Mit Störfunktion kann \textit{nicht} die selbe Overfit Dynamik wie im vorherigen Abschnitt zum einzelnen Gauss-Signal erzielt werden. Es verzögert sich \textit{nicht} lediglich durch die Epochenzahl. Bereits eine Amplitude von 0,2 sorgt bei im vorherigen Abschnitt verwendeter Epochenzahl von viertausend für gleich große um die wahre Unsicherheitsmasse äquidistant verteilte kleine Unsicherheitsmassen, in dem Fall drei, welche die Unsicherheit des Netzes ausdrücken. 
+Grundlegend ergibt die Auswertung für das einzelne Guass-Signal \textit{mit} Störfunktion sehr ähnliche Dynamik im Ergebnis des \gls{Evidenzbasierte neuronale Netze} wie im ursprünglichen Abschnitt. Eine Unterapproximation ergibt ebenfalls eine zu flache Unsicherheitsmasse mit überkonfidentem Zuwachs zur Domänengrenze. Eine zunehmende Störfunktions-Parametrisierung mit Amplitude von 0,01 zu 1, Standardabweichung konstant 1, ergibt zwei Effekte. Das Abflachen der vom \gls{Evidenzbasierte neuronale Netze} erfassten Gesamtunsicherheitsmasse mit der Tendenz zu einer guten Approximation-Dynamik. Zweitens das Verrauschen der Gesamtunsicherheitsmasse. Das Verrauschen mit Amplitude 0,2 äußert sich in fleckweisen noch flacheren Volumenabschnitten, um die größte resultierende Gesamtunsicherheitsmasse in einem Abschnitt hoher Sample-Dichte. Interpretiert man weitere Lösungsansätze für dieses Verhalten, erlaubt die Differenz der Ergebnis-Massen eine eindeutige Filterung. Dabei kann erwartet werden, dass kleine Amplituden der Störfunktion durch einen Hochpassfilter, größere Amplituden durch einen Tiefpass, sowie Kombinationen durch Bandpass auf die abgezielte Unsicherheitsmasse gefiltert werden kann. In komplexeren Fällen der Überlagerung wäre ein Ansatz wieder eine ortsweise Abtastung der Signale und additive Kombination der Lösung. 
 
 
 
-\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Underfit zu annäherndem Fit und Overfit mit Störfunktion} 
+\paragraph{Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Überapproximation mit Störfunktion}
 
-Wie im vorherigen Abschnitt ohne Störfunktion verzerren sich die Einzel-Signal-Beobachtungen lediglich durch die vom Netz erfasste Gesamtunsicherheitsmasse mit abweichendem Volumen von der Erwartungshaltung einer hinreichend den ursprünglichen Signalformen entsprechenden. Ebenso erhöht sich die Unsicherheit des Netzes wieder ausgedrückt, dadurch das die aus mehreren Signalformen zusammengesetzte Unsicherheitsmasse aufgeteilt wird, auf die vom Netz äquidistant angelegten Teilvolumina um den Punkt der höchsten Signaldichte. Dies entspricht nicht der von VaMAI geforderten Ähnlichkeit zu den ursprünglichen Signalformen. Außerdem erzielt es je nach Störfunktionsamplitude zu hohe oder niedrige Ergebnisse. 
+Mit Störfunktion kann \textit{nicht} die selbe Überapproximations Dynamik wie im vorherigen Abschnitt zum einzelnen Gauss-Signal erzielt werden. Es verzögert sich \textit{nicht} lediglich durch die Epochenzahl. Bereits eine Amplitude von 0,2 sorgt bei im vorherigen Abschnitt verwendeter Epochenzahl von viertausend für gleich große um die wahre Unsicherheitsmasse äquidistant verteilte kleine Unsicherheitsmassen, in dem Fall drei, welche die Unsicherheit des Netzes ausdrücken. 
 
 
 
-\paragraph{Zwischenfazit der Durchführung - Über- und Unterkonfidenz} Schwachstelle durchgeführter Experimente ist ein Über- und Unterschätzen von Grenzwerten in Abhängigkeit von der Hyperparameter-Wahl, sowie die nach oben ungebundene Loss-Funktion wie aufgezeigt im Paragraphen \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{}. Mittels Josangs \gls{subjectivelogic} wurden erweiterte Parametrisierungen aufgezeigt, welche die Behandlung des Unterschätzens bis zur Definition von \glqq{}Zero Evidence Regions\grqq{} behandeln. Das Überschätzen ist hier, so wie in der Literatur im Fokus. Kritikalität in VaMAI fordert das Einhalten der gegebenen Signal-Grenzen unabdingbar ein. Ulmer et al. zeigen dafür in (28) unter (26) auf Oh und Shins Ansatz auf, die \glqq{}Negative Log Likelihood\grqq{} Loss-Funktion mit Regularisierung nach Aminis Regressionsansatz unter (27) um einen Dritt-Term zu Erweitern. Dazu wurden verantwortliche Parameter $\nu$, $\alpha$ in (26) von Oh und Shin explizit mittels partieller Differenziation gelöst, um mit (29) eine eindeutige analytische Obergrenze - unintuitiv - über eine Minimum-Funktion $U_{\nu,\alpha}=min(U_{\nu}, U_{\alpha})$ auf einem Mini-Batch aufzuzeigen (vgl. Ulmer et al. \parencite[S.17, Z. 20-25, S.18 Z. 1-8]{Ulmer2023}}). Die analytische Lösung von Oh und Shin lautet: 
+\paragraph{Multi 3D-Signal \gls{EvidentialDeepLearning} Unterapproximation zu annähernder Approximation und Überapproximation mit Störfunktion} 
+
+Wie im vorherigen Abschnitt ohne Störfunktion verzerren sich die Einzel-Signal-Beobachtungen lediglich durch die vom Netz erfasste Gesamtunsicherheitsmasse mit abweichendem Volumen von der Erwartungshaltung einer hinreichend den ursprünglichen Signalformen entsprechenden. Ebenso erhöht sich die Unsicherheit des Netzes wieder ausgedrückt, dadurch das die aus mehreren Signalformen zusammengesetzte Unsicherheitsmasse aufgeteilt wird, auf die vom Netz äquidistant angelegten Teilvolumina um den Punkt der höchsten Signaldichte. Dies entspricht nicht der von VaMAI geforderten Ähnlichkeit zu den ursprünglichen Signalformen - wenn auch hier nicht untersucht auf $\gamma$, sondern in Ausschlägen der aleatorischen, epistemischen Varianz. Außerdem erzielt es je nach Störfunktionsamplitude zu hohe oder niedrige Ergebnisse für die aleatorische Varianz. 
+
+
+
+\paragraph{Zwischenfazit der Durchführung - Über- und Unterkonfidenz} Schwachstelle durchgeführter Experimente ist ein Über- und Unterschätzen von Grenzwerten in Abhängigkeit von der Hyperparameter-Wahl, sowie die nach oben ungebundene Loss-Funktion wie aufgezeigt im Paragraphen \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Überapproximation\grqq{}. Mittels Josangs \gls{subjectivelogic} wurden erweiterte Parametrisierungen aufgezeigt, welche die Behandlung des Unterschätzens bis zur Definition von \glqq{}Zero Evidence Regions\grqq{} behandeln. Das Überschätzen ist hier, so wie in der Literatur im Fokus. Kritikalität in VaMAI fordert das Einhalten der gegebenen Signal-Grenzen unabdingbar ein. Ein normierters Verhalten ließe die additive Beziehung aus der Eingangsgleichung zur Gesamtunsicherheit über den Raum quanifizierbar zu. Ulmer et al. zeigen dafür in (28) unter (26) auf Oh und Shins Ansatz auf, die \glqq{}Negative Log Likelihood\grqq{} Loss-Funktion mit Regularisierung nach Aminis Regressionsansatz unter (27) um einen Dritt-Term zu Erweitern. Dazu wurden verantwortliche Parameter $\nu$, $\alpha$ in (26) von Oh und Shin explizit mittels partieller Differenziation gelöst, um mit (29) eine eindeutige analytische Obergrenze - unintuitiv - über eine Minimum-Funktion $U_{\nu,\alpha}=min(U_{\nu}, U_{\alpha})$ auf einem Mini-Batch aufzuzeigen (vgl. Ulmer et al. \parencite[S.17, Z. 20-25, S.18 Z. 1-8]{Ulmer2023}}). Die analytische Lösung von Oh und Shin lautet: 
 
 \[
 U_{\nu} = \frac{\beta(\nu + 1)}{\alpha \cdot \nu}, \quad 
@@ -1653,13 +1643,13 @@ die Gesamtvarianz des evidentiellen Modells. Der Schranken-Term lautet:
 
 Dies ist ein Ansatz sowohl die Kontrolle über die Überkonfidenz im Trainingsverhalten zu regulieren, als auch die finalen Varianzwerte an die Grenzen der Kritikalitätsfunktion zu binden.
 
-Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{} aufgezeigt werden.
+Dies soll jetzt noch einmal unter selber Konfiguration an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Überapproximation\grqq{} aufgezeigt werden.
 
 
 
-\paragraph{Behandlung Überkonfidenz - \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippter Fit\grqq{}}
+\paragraph{Behandlung Überkonfidenz - \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippte Approximation\grqq{}}
 
-Mittels selber Konfiguration wie im \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Overfit\grqq{} in Schicht-, Neuronen-, Epochenzahl und Anpassung 
+Mittels selber Konfiguration wie im \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Überapproximation\grqq{} in Schicht-, Neuronen-, Epochenzahl und Anpassung 
 
 \begin{align*}
 \mathcal{L}_{\text{total}}(w) &= 
@@ -1675,41 +1665,31 @@ Mittels selber Konfiguration wie im \glqq{}Einzelnes 3D-Signal \gls{EvidentialDe
 \text{Regularisierung } \lambda = 10^{-3},
 \end{align*}
 
-benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich geklippt worden. Variiert wurden die Epochenzahl zwischen 2000 und 4000 mit dem besten Ergebnis in Tendenz zu 2000. Erste Ergebnisse unter $\lambda_{\text{clip}}=2$, $\lambda_{\text{bound}}=5$ fielen zu flach aus. $\lambda_{\text{clip}}$, $\lambda_{\text{bound}}$ wirken Ausgabe-amplifizierend auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} bei Verdopplung der Parameter im selben Verhältnis. $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{bound}}=[20, 40]$ mitteln das geklippte Signal in Herr Autentrieths Kritikalitätsgrenzen als bestes Ergebnis für die Amplitude. Niedrigere Parametrisierungen liefern die beste Nachbildung der Position des Gauss-Signals mit zu flachem Volumen. Ein weiterer sensibler Faktor ist die Epochenzahl zwischen 2000 und 2500. Bei 2500 Epochen gilt: Die Krümmung des Gauss für das obere Drittel wird noch besser nachgebildet, doch die Gauss-Nachbildung geht im unteren Teil bereits wieder in eine Underfit-Dynamik über. Bei 2000 Epochen ist der Ausblick auf den Kompromiss Volumen, Position am besten wie in der Abbildung zu sehen. Verfehlt jedoch leider noch die gewählten Kritikalitätsgrenzen, um 0.1 Kritikalität aufgrund einer ungetesteten Parameter-Kombination. Weiteres Experimentier-Budget erscheint hier sinnvoll, um den Kompromiss zwischen Volumen und Position zu lösen. Über alle Versuche mit geklippter Loss-Funktion ist die Oberfläche im oberen Drittel einheitlich zur Sample-Oberfläche nachgebildet worden, ohne Ausreißer. Die Loss-Erweiterung erfüllt damit ihren Zweck. Unsicherheit des Netzes wurde in gleichen Dynamiken wie in vorherigen Versuchen ausgedrückt in wellenförmig abflachender Konvergenz zum Domänenrand oder äquidistanten Massen um den Punkt größter Sampledichte.
+benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich geklippt worden. Variiert wurden die Epochenzahl zwischen 2000 und 4000 mit dem besten Ergebnis in Tendenz zu 2000. Erste Ergebnisse unter $\lambda_{\text{clip}}=2$, $\lambda_{\text{bound}}=5$ fielen zu flach aus. $\lambda_{\text{clip}}$, $\lambda_{\text{bound}}$ wirken Ausgabe-amplifizierend auf \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} bei Verdopplung der Parameter im selben Verhältnis. $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{bound}}=[20, 40]$ mitteln das geklippte Signal in Herr Autentrieths Kritikalitätsgrenzen als bestes Ergebnis für die Amplitude. Niedrigere Parametrisierungen liefern die beste Nachbildung der Position des Gauss-Signals mit zu flachem Volumen. Ein weiterer sensibler Faktor ist die Epochenzahl zwischen 2000 und 2500. Bei 2500 Epochen gilt: Die Krümmung des Gauss für das obere Drittel wird noch besser nachgebildet, doch die Gauss-Nachbildung geht im unteren Teil bereits wieder in eine Unterapproximations-Dynamik über. Bei 2000 Epochen ist der Ausblick auf den Kompromiss Volumen, Position am besten wie in der Abbildung zu sehen. Verfehlt jedoch leider noch die gewählten Kritikalitätsgrenzen, um 0.1 Kritikalität aufgrund einer ungetesteten Parameter-Kombination. Weiteres Experimentier-Budget erscheint hier sinnvoll, um den Kompromiss zwischen Volumen und Position zu lösen. Über alle Versuche mit geklippter Loss-Funktion ist die Oberfläche im oberen Drittel einheitlich zur Sample-Oberfläche nachgebildet worden, ohne Ausreißer. Die Loss-Erweiterung erfüllt damit ihren Zweck. Unsicherheit des Netzes wurde in gleichen Dynamiken wie in vorherigen Versuchen ausgedrückt in wellenförmig abflachender Konvergenz zum Domänenrand oder äquidistanten Massen um den Punkt größter Sampledichte.
 
 % TODO: Bild für aleatorische Varianz Epoche=2000-2500, $\lambda_{\text{clip}}=[8, 16]$, $\lambda_{\text{bound}}=[20, 40]$ nachliefern.
 
 \begin{figure}[!ht]
   \centering
 
-  % Erstes Bild: Ground Truth
-  \begin{minipage}[t]{0.32\textwidth}
+  % Erstes Bild
+  \begin{minipage}[t]{0.48\textwidth}
     \centering
     \includegraphics[width=\linewidth]{../figures/y61.png}
     \caption*{Konfiguration 5, Original-Signal als Wert der Kritikalitätsfunktion \(k(\cdot)\) als \gls{GroundTruth}}
     \label{fig:bild51}
-  \end{minipage}
+  \end{minipage}%
   \hfill
-  % % Zweites Bild: Aleatorische Unsicherheit (hier Platzhalter)
-  % \begin{minipage}[t]{0.32\textwidth}
-  %   \centering
-  %   \vspace*{0.5cm} % Falls Platzhalterhöhe
-  %   \textit{(kein Plot vorhanden)}
-  %   % \includegraphics[width=\linewidth]{../figures/y62.png}
-  %   % \caption*{Konfiguration 5, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Aleatorische Unsicherheit}}
-  %   \label{fig:bild52}
-  % \end{minipage}
-  % \hfill
-  % Drittes Bild: Epistemische Unsicherheit
-  \begin{minipage}[t]{0.32\textwidth}
+  % Zweites Bild
+  \begin{minipage}[t]{0.48\textwidth}
     \centering
     \includegraphics[width=\linewidth]{../figures/y63.png}
     \caption*{Konfiguration 5, vom \gls{Evidenzbasierte neuronale Netze} erkannte \gls{Epistemische Unsicherheit}}
     \label{fig:bild53}
   \end{minipage}
 
-  \caption{Vergleich von \gls{GroundTruth}, \gls{Aleatorische Unsicherheit} und \gls{Epistemische Unsicherheit} unter Konfiguration 5}
-  \label{fig:three_subfigures5}
+  \caption{Vergleich von \gls{GroundTruth} und \gls{Epistemische Unsicherheit} unter Konfiguration 5}
+  \label{fig:two_subfigures5}
 \end{figure}
 
 
@@ -1720,7 +1700,7 @@ benannt als Konfiguration 5, ist das epistmische Signal im Kritikalitätsbereich
 u(x) := \frac{1}{\alpha(x)} \quad \text{mit Evidenz } E = \alpha(x) - 1
 \]
 
-Wir führen eine untere Evidenzschranke \( \alpha_{\min} > 0 \) ein und definieren über $\alpha$, sowie alternativ über die epistemische Varianz $\text{Var}_{\text{epist}}$:
+Es soll eine untere Evidenzschranke \( \alpha_{\min} > 0 \) definiert werden über $\alpha$, sowie alternativ über die epistemische Varianz $\text{Var}_{\text{epist}}$:
 
 \begin{equation*}
 \begin{minipage}[t]{0.48\linewidth}
@@ -1767,9 +1747,9 @@ U_0 = 2.0, \quad
 \nu = 4.0
 \]
 
-Dies soll jetzt noch einmal ausgehend von Konfiguration 5 an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Underfit\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert, spezialisiert werden.  
+Dies soll jetzt noch einmal ausgehend von Konfiguration 5 an \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} Unterapproximation\grqq{} aufgezeigt werden. Die Evidenz und \glqq{}Zero-Evidence\grqq{} kann über die diversen Parametrisierungen, die Josang liefert, spezialisiert werden.  
 
-Wählt man $\lambda_{clip}$, $\lambda_{bound}$ äquivalent zum letzten Versuch \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippter Fit\grqq{} steuert man die Konvergenz des Modells über noch vorhandenen Eingabedaten, die nicht vom ZER-Operator getroffen werden. Trainiert man das Netz über die bisher etablierten Konfiguration von 5 Läufen, 2000 Epochen, zwei vollverbunden Schichten, 128 Neuronen, maximal $\lambda_{clip}=8$, maximal $\lambda_{bound}=40$ divergiert der Loss ab dem fünften Lauf überdurchschnittlich häufig zu keinem Ausgabewert $nan$. Reduziert man als Konfiguration 6 die $\lambda$-Parameter von dort an, erhält man über fünf Läufe Training eine Durchschnittsausgabe keiner (Wert \glqq{}null\grqq{}) \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} über den gesamten Raum. Eine zu den vorherigen Fits vergleichbare Lösung, die der \gls{GroundTruth} des Original-Signals nachkommt, liegt ab 1000 Episoden aufwärts im Zwischenbereich erwähnter Konfigurationen. Höheres $U_{0}$, $\nu$ fängt an die Fit-Dynamik des \gls{Evidenzbasierte neuronale Netze} zu verbessern. Der grundlegende Mechanismus zur Etablierung eines unteren Schwellenwerts, der alle darunterliegenden Evidenzen nahe Null zu Null schätzt, funktioniert. Damit ist die grundlegende Funktion aufgezeigt wie in der streng abfallenden Steigung der Varianzen im Übergang zu null gegenüber dem Gesamtraum zu sehen. Es wird an dieser Stelle keine Optimierung zu \gls{GroundTruth} angestrebt.  
+Wählt man $\lambda_{clip}$, $\lambda_{bound}$ äquivalent zum letzten Versuch \glqq{}Einzelnes 3D-Signal \gls{EvidentialDeepLearning} in Obergrenze geklippte Approximation\grqq{} steuert man die Konvergenz des Modells über noch vorhandenen Eingabedaten, die nicht vom ZER-Operator getroffen werden. Trainiert man das Netz über die bisher etablierten Konfiguration von 5 Läufen, 2000 Epochen, zwei vollverbunden Schichten, 128 Neuronen, maximal $\lambda_{clip}=8$, maximal $\lambda_{bound}=40$ divergiert der Loss ab dem fünften Lauf überdurchschnittlich häufig zu keinem Ausgabewert $nan$. Reduziert man als Konfiguration 6 die $\lambda$-Parameter von dort an, erhält man über fünf Läufe Training eine Durchschnittsausgabe keiner (Wert \glqq{}null\grqq{}) \gls{Aleatorische Unsicherheit}, \gls{Epistemische Unsicherheit} über den gesamten Raum. Eine zu den vorherigen Approximationen vergleichbare Lösung, die dem Original-Signal nachkommt, liegt ab 1000 Episoden aufwärts im Zwischenbereich erwähnter Konfigurationen. Höheres $U_{0}$, $\nu$ fängt an die Approximations-Dynamik des \gls{Evidenzbasierte neuronale Netze} zu verbessern. Der grundlegende Mechanismus zur Etablierung eines unteren Schwellenwerts, der alle darunterliegenden Evidenzen nahe Null zu Null schätzt, funktioniert. Damit ist die grundlegende Funktion aufgezeigt wie in der streng abfallenden Steigung der Varianzen im Übergang zu null gegenüber dem Gesamtraum zu sehen. Es wird an dieser Stelle keine weitere Optimierung angestrebt.  
 
 
 
@@ -1805,7 +1785,7 @@ Wählt man $\lambda_{clip}$, $\lambda_{bound}$ äquivalent zum letzten Versuch \
 
 
 
-\paragraph{Vorbereitung} Herr B.Sc. Mavanis \gls{Bayesianische neuronale Netze} Ansätze in Jax wurden zur Bearbeitung dieser Thesis verworfen, weil sie im Zeitrahmen zum Ende meiner Projektphase zum 24.07. zu ungenügenden Ergebnissen führten. Der HMC-Ansatz wurde nach Umstellung für diesen Zweck ebenfalls verworfen, wegen überstiegenem Budget in Trainingszeit. Es wurde in Herr Mavanis Repository unter Branch des Autoren ein Pyro Äquivalent implementiert sowie varriert mit drei, vier und fünf vollverbundenen Schichten, 32, 64, 128 Neuronen, 2000 bis im Schnitt 5000 Epochen inklusive Aufwärmprozess, 500 bis 2000 SVI Posterior Samples, Invertierung des Mittelwerts als Ausgabeneuron, Variation des \gls{Bayesianische neuronale Netze} Modell Rangs, Unter- und Übergewichtung der Ausgabeneuronen, Übersampling der Signalspitze, Miterfassung aleatorischer Varianz, Verrauschen der epistemischen Varianz, Änderung der Aktivierungsfunktionen mittels ReLu, SiLu sowie zusätzlicher Lern-Raten-Abfall. Das beste Ergebnis wurde mit SVI, zwei vollverbundenen versteckten Schichten, 64 Neuronen, 2000 Epsioden und ohne Lern-Raten-Abfall erzielt. Das Gauss-Signal konnte auf dem Boden in der Position annähernd korrekt positioniert werden. Bei korrekter Position lieferte jede Parameter-Änderung zu sensibel-varrierende Ergebnisse in Bezug auf das Volumen, ohne auffällige Konvergenzen. In Bezug auf das Volumen konnte ein zum \gls{Evidenzbasierte neuronale Netze} vergleichbarer Underfit mit einem vergleichbar aus der Signalform austretendem wellenartigen Volumen erzielt werden. Wurde das Volumen annährend korrekt geschätzt, reagierte die Position zu sensibel auf Parameter-Änderungen. Hauptergebnis der Experimentierphase ist das zu stark mittlende Verhalten des \gls{Bayesianische neuronale Netze} über erwähnte Parameter-Variation in verwendeten Ansätzen. So wird bei großer Samplezahl am gewählten Beispiel aus Herr Autenriehts Kritikalitätsraum regelmäßig eine zur Gauss-Steigung invertierte konkave Ebene aufgespannt, wichtige gesamplete Spitzenwerte ignoriert. Die Intention die Ausgabe zu Invertieren war nicht zielführend. Zusammenfassend wurde in keinem Fall ein relevantes vergleichbares Ergebnis auf dem einfachen Gauss-Beispiel erzielt. Deshalb wird ein synthetisches Ergebnis des \gls{Bayesianische neuronale Netze} generiert, um den Vorschlag für die Methodik aufzuzeigen und abzuschließen.  
+\paragraph{Vorbereitung} Herr Mavanis \gls{Bayesianische neuronale Netze} Ansätze in Jax wurden zur Bearbeitung dieser Thesis verworfen, weil sie im Zeitrahmen zum Ende meiner Projektphase zum 24.07. zu ungenügenden Ergebnissen führten. Der HMC-Ansatz wurde nach Umstellung für diesen Zweck ebenfalls verworfen, wegen überstiegenem Budget in Trainingszeit. Es wurde in Herr Mavanis Repository unter Branch des Autoren ein Pyro Äquivalent implementiert sowie varriert mit drei, vier und fünf vollverbundenen Schichten, 32, 64, 128 Neuronen, 2000 bis im Schnitt 5000 Epochen inklusive Aufwärmprozess, 500 bis 2000 SVI Posterior Samples, Invertierung des Mittelwerts als Ausgabeneuron, Variation des \gls{Bayesianische neuronale Netze} Modell Rangs, Unter- und Übergewichtung der Ausgabeneuronen, Übersampling der Signalspitze, Miterfassung aleatorischer Varianz, Verrauschen der epistemischen Varianz, Änderung der Aktivierungsfunktionen mittels ReLu, SiLu sowie zusätzlicher Lern-Raten-Abfall. Das beste Ergebnis wurde mit SVI, zwei vollverbundenen versteckten Schichten, 64 Neuronen, 2000 Epsioden und ohne Lern-Raten-Abfall erzielt. Das Gauss-Signal konnte auf dem Boden in der Position annähernd korrekt positioniert werden. Bei korrekter Position lieferte jede Parameter-Änderung zu sensibel-varrierende Ergebnisse in Bezug auf das Volumen, ohne auffällige Konvergenzen. In Bezug auf das Volumen konnte ein zum \gls{Evidenzbasierte neuronale Netze} vergleichbarer Unterapproximation mit einem vergleichbar aus der Signalform austretendem wellenartigen Volumen erzielt werden. Wurde das Volumen annährend korrekt geschätzt, reagierte die Position zu sensibel auf Parameter-Änderungen. Hauptergebnis der Experimentierphase ist das zu stark mittlende Verhalten des \gls{Bayesianische neuronale Netze} über erwähnte Parameter-Variation in verwendeten Ansätzen. So wird bei großer Samplezahl am gewählten Beispiel aus Herr Autenriehts Kritikalitätsraum regelmäßig eine zur Gauss-Steigung invertierte konkave Ebene aufgespannt, wichtige gesamplete Spitzenwerte ignoriert. Die Intention die Ausgabe zu Invertieren war nicht zielführend. Zusammenfassend wurde in keinem Fall ein relevantes vergleichbares Ergebnis auf dem einfachen Gauss-Beispiel erzielt. Deshalb wird ein synthetisches Ergebnis des \gls{Bayesianische neuronale Netze} generiert, um den Vorschlag für die Methodik aufzuzeigen und abzuschließen.  
 
 
 
@@ -1866,7 +1846,7 @@ Kritikalitätsgewichtete Unsicherheit    & 0.0167 & 0.0491 & +0.0324 \\
 \caption{Vergleich ausgewählter Unsicherheitsmetriken zwischen ENN und synthetisch approximiertem BNN}
 \end{table}
 
-\paragraph{5. Interpretation der Meta-Unsicherheit} Nimmt man eine JSD von null als Gleichheit der resultierenden Verteilungen der Gesamtunsicherheit in der Gesamtvarianz an, so ist ein Betrag von 0.4405 vergleichsweise hoch. \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} im synthetischen \gls{Bayesianische neuronale Netze} im Vergleich zum \gls{Evidenzbasierte neuronale Netze} bestätigen die strukturelle Abweichung der Unsicherheitsmodellierung aus allen bisherigen Ergebnissen der Thesis, und verknüpfter Abschlussarbeiten. Trotz nahezu identischer Accuracy (95.72\,\% vs. 95.71\,\%) verdeutlichen die Differenzen in den Varianzmetriken und der kritikalitätsgewichteten Unsicherheit eine deutlich unterschiedliche Vertrauensstruktur in den Vorhersagen beider Modelle. Grundlegend wird damit aufgezeigt, dass eine Kalibrierung über verschiedene Unsicherheitsattribute so möglich, und zum Vergleich im Verbund sinnvoll ist. Die Aussagekraft der \textit{Meta-Unsicherheit} als Analysewerkzeug für Unsicherheitsannahmen hängt dabei unmittelbar vom Design der Experimente in machine-learning-basierten Surrogatmodellen ab. Weitere Attribute wie in der Datenpipeline aufgezeigt können genutzt werden, um die Unsicherheitsmodellierung zu spezialisieren.
+\paragraph{5. Interpretation der Meta-Unsicherheit} Nimmt man eine JSD von null als Gleichheit der resultierenden Verteilungen der Gesamtunsicherheit in der Gesamtvarianz an, so ist ein Betrag von 0.4405 vergleichsweise hoch. \gls{Epistemische Unsicherheit}, \gls{Aleatorische Unsicherheit} im synthetischen \gls{Bayesianische neuronale Netze} im Vergleich zum \gls{Evidenzbasierte neuronale Netze} könnten die strukturelle Abweichung der Unsicherheitsmodellierung aus allen bisherigen Ergebnissen der Thesis, und verknüpfter Abschlussarbeiten bestätigen. Dies würde eine vergleichende Implementierung in der Datenpipeline mit abgeschlossener \gls{Bayesianische neuronale Netze}-Training bedingen. Nimmt man diese Situation an, könnte man sie wie folgt auswerten, um die Ambivalenzen in den Beziehungen von \gls{uncertaintyquantification} aufzuzeigen und durch Erweitung sinnvoll gegenüberzustellen. Trotz nahezu identischer Accuracy (95.72\,\% vs. 95.71\,\%) verdeutlichen die Differenzen in den Varianzmetriken und der kritikalitätsgewichteten Unsicherheit eine deutlich unterschiedliche Vertrauensstruktur in den Vorhersagen beider Modelle. Grundlegend wird damit aufgezeigt, dass eine Kalibrierung über verschiedene Unsicherheitsattribute so möglich, und zum Vergleich im Verbund sinnvoll ist. Die Aussagekraft der \textit{Meta-Unsicherheit} als Analysewerkzeug für Unsicherheitsannahmen hängt dabei unmittelbar vom Design der Experimente in machine-learning-basierten Surrogatmodellen ab. Weitere Attribute wie in der Datenpipeline aufgezeigt können genutzt werden, um die Unsicherheitsmodellierung zu spezialisieren.
 
 
 
